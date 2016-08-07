@@ -6,7 +6,7 @@ This is a WIP.  At present it does not support structures, arrays, or function p
 
 There may be a variety of bugs.
 
-Copy this directory into your orange c directory and build.
+Copy this directory into your orange c directory and build from the 'netil' directory.
 
 Run the compiler on a simple C program (test.c is included as an example).
 
