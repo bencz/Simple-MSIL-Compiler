@@ -184,7 +184,7 @@ static ARCH_SIZING sizes = {
     0, /* char a_struct;  */ /* alignment only */
     4, /*char a_float;*/
     8, /*char a_double;*/
-    10, /*char a_longdouble;*/
+    8, /*char a_longdouble;*/
     0,/*char a_fcomplexpad;*/
     0,/*char a_rcomplexpad;*/
     2,/*char a_lrcomplexpad;*/
@@ -236,7 +236,7 @@ static ARCH_FLOAT adbl = {
     -1022, 1022, 1024, 53
     } ;
 static ARCH_FLOAT aldbl = {
-    -16382, 16382, 16384, 64
+    -1022, 1022, 1024, 53
 } ;
 static ARCH_PEEP peeps[] = { 0 } ;
 static ARCH_CHARACTERISTICS architecture = {
@@ -265,7 +265,7 @@ static ARCH_CHARACTERISTICS architecture = {
     OPT_REVERSESTORE | OPT_REVERSEPARAM, /* preferred optimizations */
     DO_NOGLOBAL | DO_NOLOCAL | DO_NOREGALLOC | DO_NOADDRESSINIT | 
         DO_NOPARMADJSIZE |DO_NOLOADSTACK | DO_NOKILLDUP | DO_NOENTRYIF |
-        DO_NOCONSTBRANCH,
+        DO_NOCONSTBRANCH | DO_NOOPTCONVERSION | DO_NOINLINE,
                  /* optimizations we don't want */
     FALSE,			/* true if has floating point regs */
     0,            /* floating point modes, not honored currently */

@@ -730,7 +730,6 @@ static IMODE *GetBucket(IMODE *mem)
 
 void optimize(SYMBOL *funcsp)
 {
-    return;
         //printf("optimization start\n");
     if (chosenAssembler->gen->pre_gcse)
         chosenAssembler->gen->pre_gcse(intermed_head);
@@ -786,6 +785,7 @@ void optimize(SYMBOL *funcsp)
         }
     //printf("ssa out\n");
         TranslateFromSSA(FALSE);
+     return;
         removeDead(blockArray[0]);
 //		RemoveCriticalThunks();
         if ((optflags & OPT_GLOBAL) && ! (chosenAssembler->arch->denyopts & DO_NOGLOBAL))
