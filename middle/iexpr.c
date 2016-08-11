@@ -244,7 +244,11 @@ IMODE *LookupStoreTemp(IMODE *dest, IMODE *src)
 IMODE *LookupLoadTemp(IMODE *dest, IMODE *source)
 {
     (void) dest;
-    
+
+    if (chosenAssembler->arch->denyopts & DO_UNIQUEIND)
+    {
+        return tempreg(source->size, 0);
+    }    
     if ((source->mode != i_immed)
         && (source->offset->type != en_tempref || source->mode == i_ind))
     {
@@ -541,6 +545,17 @@ IMODE *indnode(IMODE *ap1, int size)
         ap2->ptrsize = ap1->size;
         ap2->size = size;
         return ap2;
+    }
+    if (chosenAssembler->arch->denyopts & DO_UNIQUEIND)
+    {
+        IMODE *ap2 = tempreg(ap1->size, 0);
+        gen_icode(i_assn, ap2, ap1, NULL);
+        ap1 = Alloc(sizeof(IMODE));
+        *ap1 = *ap2;
+        ap1->mode = i_ind;
+        ap1->ptrsize = ap1->size;
+        ap1->size = size;
+        return ap1;
     }
     sp = varsp(ap1->offset);
     if (sp && ap1->mode == i_immed && sp->imvalue && sp->imvalue->size == size)
@@ -1424,6 +1439,10 @@ IMODE *gen_assign(SYMBOL *funcsp, EXPRESSION *node, int flags, int size)
     else
         gen_icode(i_assn, ap1, ap4, NULL);
     */
+    if ((chosenAssembler->arch->preferopts & OPT_REVERSESTORE) && ap1->mode == i_ind)
+    {
+        ap1 = gen_expr(funcsp, node->left, (flags & ~F_NOVALUE), natural_size(node->left));
+    }
     ap1->vol = node->left->isvolatile;
     ap1->restricted = node->left->isrestrict;
     return ap1;
@@ -1443,14 +1462,28 @@ IMODE *gen_aincdec(SYMBOL *funcsp, EXPRESSION *node, int flags, int size, enum i
     LIST *l;
     (void)size;
     siz1 = natural_size(node->left);
-    ap1 = gen_expr( funcsp, RemoveAutoIncDec(node->left), 0, siz1);
-    ncnode = node->left;
-    while (castvalue(ncnode))
-        ncnode = ncnode->left;
-    ap6 = gen_expr( funcsp, ncnode, F_STORE, siz1);
-    ap5 = LookupLoadTemp(ap1, ap1);
-    if (ap5 != ap1)
-        gen_icode(i_assn, ap5, ap1, NULL);
+    if (chosenAssembler->arch->preferopts & OPT_REVERSESTORE)
+    {
+        ncnode = node->left;
+        while (castvalue(ncnode))
+            ncnode = ncnode->left;
+        ap6 = gen_expr( funcsp, ncnode, F_STORE, siz1);
+        ap1 = gen_expr( funcsp, RemoveAutoIncDec(node->left), 0, siz1);
+        ap5 = LookupLoadTemp(ap1, ap1);
+        if (ap5 != ap1)
+            gen_icode(i_assn, ap5, ap1, NULL);
+    }
+    else
+    {
+        ap1 = gen_expr( funcsp, RemoveAutoIncDec(node->left), 0, siz1);
+        ncnode = node->left;
+        while (castvalue(ncnode))
+            ncnode = ncnode->left;
+        ap6 = gen_expr( funcsp, ncnode, F_STORE, siz1);
+        ap5 = LookupLoadTemp(ap1, ap1);
+        if (ap5 != ap1)
+            gen_icode(i_assn, ap5, ap1, NULL);
+    }
     if (flags & (F_NOVALUE | F_COMPARE))
     {
         if (flags & F_COMPARE)
