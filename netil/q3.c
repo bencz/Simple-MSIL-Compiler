@@ -1,17 +1,18 @@
-int nn1(int *a)
+//#include <Stdio.h>
+void printf(void*,...);
+struct aa{
+    int a,b,c;
+} bb = {1,2,3};
+
+struct aa nn1(int pp)
 {
-    int b = ++( *a);
-    return b;
+    struct aa cc = bb;
+    cc.b = pp;
+    return cc;
 }
-/*
-int nn2(int *a)
+main()
 {
-    int b = (*a)++;
-    return b;
+    struct aa ss = nn1(55);
+    printf("%d %d %d\n", ss.a, ss.b, ss.c);
+    return 0;
 }
-int nn3(int *a)
-{
-    *a += 1;
-    return *a;
-}
-*/
