@@ -1,18 +1,26 @@
-//#include <Stdio.h>
+/*#include <Stdio.h>*/
 void printf(void*,...);
-struct aa{
-    int a,b,c;
-} bb = {1,2,3};
-
-struct aa nn1(int pp)
+void strcpy(char *, char*);
+void bb(int xx[3])
 {
-    struct aa cc = bb;
-    cc.b = pp;
-    return cc;
+    xx[0] = 11;
+    xx[1] = 22;
+    xx[2] = 33;
+}
+void cc(char *aa)
+{
+    strcpy(aa, "hi dave");
+}
+void nn1()
+{
+    int aa[3];
+    char zz[21];
+    bb(aa);
+    cc(zz);
+    printf("%s %d %d %d\n", zz, aa[0], aa[1], aa[2]);
 }
 main()
 {
-    struct aa ss = nn1(55);
-    printf("%d %d %d\n", ss.a, ss.b, ss.c);
+    nn1();
     return 0;
 }
