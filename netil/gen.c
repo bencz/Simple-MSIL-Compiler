@@ -53,6 +53,7 @@ static int inframe;
 static int switch_deflab;
 static LLONG_TYPE switch_range, switch_case_count, switch_case_max;
 static IMODE *switch_ip;
+static AMODE *switch_ip_a;
 static enum {swm_enumerate, swm_compactstart, swm_compact, swm_tree} switch_mode;
 static int switch_lastcase;
 static int *switchTreeLabels, *switchTreeBranchLabels ;
@@ -91,6 +92,17 @@ void gen_code(enum e_op op, AMODE *ap)
     code->opcode = op;
     code->oper1 = ap;
     add_peep(code);
+}
+void oa_gen_label(int labno)
+/*
+ *      add a compiler generated label to the peep list.
+ */
+{
+    OCODE *new;
+    new = beLocalAlloc(sizeof(OCODE));
+    new->opcode = op_label;
+    new->oper1 = (AMODE*)labno;
+    add_peep(new);
 }
 
 AMODE *make_label(int lab)
@@ -701,10 +713,20 @@ void asm_smod(QUAD *q)               /* signed modulous */
 }
 void asm_muluh(QUAD *q)
 {
+    EXPRESSION *en = intNode(en_c_i, 32);
+    AMODE *ap = make_constant(ISZ_UINT, en);
+    gen_code(op_mul,NULL);
+    gen_code(op_ldc_i4, ap);
+    gen_code(op_shr_un, NULL);
     decrement_stack();
 }
 void asm_mulsh(QUAD *q)
 {
+    EXPRESSION *en = intNode(en_c_i, 32);
+    AMODE *ap = make_constant(ISZ_UINT, en);
+    gen_code(op_mul,NULL);
+    gen_code(op_ldc_i4, ap);
+    gen_code(op_shr, NULL);
     decrement_stack();
 }
 void asm_mul(QUAD *q)               /* signed multiply */
@@ -753,7 +775,10 @@ void asm_eor(QUAD *q)                /* binary exclusive or */
 void asm_setne(QUAD *q)              /* evaluate a = b != c */
 {
     gen_code(op_ceq, NULL);
-    gen_code(op_not, NULL);
+    gen_code(op_ldc_i4_1, NULL);
+    gen_code(op_xor, NULL);
+    increment_stack();
+    decrement_stack();
     decrement_stack();
     
 }
@@ -778,13 +803,19 @@ void asm_seta(QUAD *q)               /* evaluate a = b U> c */
 void asm_setnc(QUAD *q)              /* evaluate a = b U>= c */
 {
     gen_code(op_clt_un, NULL);
-    gen_code(op_not, NULL);
+    gen_code(op_ldc_i4_1, NULL);
+    gen_code(op_xor, NULL);
+    increment_stack();
+    decrement_stack();
     decrement_stack();
 }
 void asm_setbe(QUAD *q)              /* evaluate a = b U<= c */
 {
     gen_code(op_cgt_un, NULL);
-    gen_code(op_not, NULL);
+    gen_code(op_ldc_i4_1, NULL);
+    gen_code(op_xor, NULL);
+    increment_stack();
+    decrement_stack();
     decrement_stack();
     
 }
@@ -803,14 +834,20 @@ void asm_setg(QUAD *q)               /* evaluate a = b s> c */
 void asm_setle(QUAD *q)              /* evaluate a = b S<= c */
 {
     gen_code(op_cgt, NULL);
-    gen_code(op_not, NULL);
+    gen_code(op_ldc_i4_1, NULL);
+    gen_code(op_xor, NULL);
+    increment_stack();
+    decrement_stack();
     decrement_stack();
     
 }
 void asm_setge(QUAD *q)              /* evaluate a = b S>= c */
 {
     gen_code(op_clt, NULL);
-    gen_code(op_not, NULL);
+    gen_code(op_ldc_i4_1, NULL);
+    gen_code(op_xor, NULL);
+    increment_stack();
+    decrement_stack();
     decrement_stack();
     
 }
@@ -850,16 +887,12 @@ void bingen(int lower, int avg, int higher)
 {
     int nelab = beGetLabel;
     if (switchTreeBranchLabels[avg] !=  0)
-        gen_label(switchTreeBranchLabels[avg]);
-    gen_code(op_dup, NULL);
+        oa_gen_label(switchTreeBranchLabels[avg]);
+    gen_load(switch_ip_a);
     load_constant(switch_ip->size, intNode(en_c_i, switchTreeCases[avg]));
-    gen_branch(op_bne_un, nelab, FALSE);
-    gen_code(op_pop, NULL);
-    gen_branch(op_br, switchTreeLabels[avg], FALSE);
-    gen_label(nelab);
+    gen_branch(op_beq,  switchTreeLabels[avg], FALSE);
     if (avg == lower)
     {
-        gen_code(op_pop, NULL);
         gen_branch(op_br, switch_deflab, FALSE);
     }
     else
@@ -871,7 +904,7 @@ void bingen(int lower, int avg, int higher)
             lab = switchTreeBranchLabels[avg2] = beGetLabel;
         else
             lab = switch_deflab;
-        gen_code(op_dup, NULL);
+        gen_load(switch_ip_a);
         load_constant(switch_ip->size, intNode(en_c_i, switchTreeCases[avg]));
         if (switch_ip->size < 0)
             gen_branch(op_bgt, lab, FALSE);
@@ -890,6 +923,7 @@ void asm_coswitch(QUAD *q)           /* switch characteristics */
     switch_range = q->dc.right->offset->v.i;
     switch_case_max = switch_case_count = q->ans->offset->v.i;
     switch_ip = q->dc.left;
+    switch_ip_a = getAmode(switch_ip);
     if (switch_ip->size == ISZ_ULONGLONG || switch_ip->size == - ISZ_ULONGLONG || switch_case_max <= 5)
     {
         switch_mode = swm_enumerate;
@@ -914,13 +948,12 @@ void asm_coswitch(QUAD *q)           /* switch characteristics */
         switchTreePos = 0;
         memset(switchTreeBranchLabels, 0, sizeof(int) * switch_case_max);
     }
-    increment_stack();
 }
 void asm_swbranch(QUAD *q)           /* case characteristics */
 {
     static AMODE *swap;
     ULLONG_TYPE swcase = q->dc.left->offset->v.i;
-    int lab = q->dc.v.label;
+    int labin = q->dc.v.label, lab;
     if (switch_case_count == 0)
     {
 /*		diag("asm_swbranch, count mismatch"); in case only a default */
@@ -931,6 +964,7 @@ void asm_swbranch(QUAD *q)           /* case characteristics */
     {
         swap = beLocalAlloc(sizeof(AMODE));
         swap->mode = am_switch;
+        gen_load(switch_ip_a);
         if (swcase != 0)
         {
             load_constant(switch_ip->size, intNode(en_c_i, swcase));
@@ -944,19 +978,13 @@ void asm_swbranch(QUAD *q)           /* case characteristics */
         int lab;
         case swm_enumerate:
         default:
-            lab = beGetLabel;
 
-            gen_code(op_dup, NULL);
+            gen_load(switch_ip_a);
             load_constant(switch_ip->size, intNode(en_c_i, swcase));
-            gen_branch(op_bne_un, lab, FALSE);
-            gen_code(op_pop, NULL);
-            gen_branch(op_br, swcase, FALSE);
-            gen_label(lab);
+            gen_branch(op_beq, labin, TRUE);
             if (-- switch_case_count == 0)
             {
-                gen_code(op_pop, NULL);
                 gen_branch(op_br, switch_deflab, FALSE);
-                decrement_stack();
             }
             break ;
         case swm_compact:
@@ -967,7 +995,7 @@ void asm_swbranch(QUAD *q)           /* case characteristics */
             }
             // fall through
         case swm_compactstart:
-            compactgen(swap, lab);
+            compactgen(swap, labin);
             switch_lastcase = swcase + 1;
             switch_mode = swm_compact;
             -- switch_case_count;
@@ -976,12 +1004,15 @@ void asm_swbranch(QUAD *q)           /* case characteristics */
             break ;
         case swm_tree:
             switchTreeCases[switchTreePos] = swcase;
-            switchTreeLabels[switchTreePos++] = lab;
+            switchTreeLabels[switchTreePos++] = labin;
             if (--switch_case_count == 0)
             {
                 bingen(0, switch_case_max / 2, switch_case_max);
+                increment_stack();
+                increment_stack();
                 decrement_stack();
-            }                
+                decrement_stack();
+            }
             break ;
     }
     
@@ -1134,6 +1165,28 @@ void asm_functail(QUAD *q, int begin, int size)	/* functail start or end */
 void asm_atomic(QUAD *q)
 {
 }
+QUAD * leftInsertionPos(QUAD *head, IMODE *im)
+{
+    QUAD *rv = head;
+    head = head->back;
+    while (head && head->dc.opcode != i_block)
+    {
+        if (head->temps & TEMP_ANS)
+        {
+            if (im->offset->v.sp->value.i == head->ans->offset->v.sp->value.i)
+            {
+                rv = head;
+            }
+            if (!(head->temps & TEMP_LEFT))
+                break;
+            im = head->dc.left;
+            if (im->offset->v.sp->pushedtotemp)
+                break;
+        }
+        head = head->back;
+    }
+    return rv;
+}
 int examine_icode(QUAD *head)
 {
     while (head)
@@ -1142,11 +1195,13 @@ int examine_icode(QUAD *head)
             && head->dc.opcode != i_dbgblock && head->dc.opcode != i_dbgblockend && head->dc.opcode != i_var
             && head->dc.opcode != i_label && head->dc.opcode != i_line && head->dc.opcode != i_passthrough
             && head->dc.opcode != i_func && head->dc.opcode != i_gosub && head->dc.opcode != i_parmadj
-            && head->dc.opcode != i_ret && head->dc.opcode != i_varstart)
+            && head->dc.opcode != i_ret && head->dc.opcode != i_varstart
+            && head->dc.opcode != i_coswitch && head->dc.opcode != i_swbranch)
         {
-            if (head->dc.left && head->dc.left->mode == i_immed && head->dc.opcode != i_assn)
+            if (head->dc.opcode == i_muluh || head->dc.opcode == i_mulsh)
             {
-                IMODE *ap = InitTempOpt(head->dc.left->size, head->dc.left->size);
+                int sz = head->dc.opcode == i_muluh ? ISZ_ULONGLONG : - ISZ_ULONGLONG;
+                IMODE *ap = InitTempOpt(sz, sz);
                 QUAD *q = Alloc(sizeof(QUAD));
                 q->dc.opcode = i_assn;
                 q->ans = ap;
@@ -1155,6 +1210,22 @@ int examine_icode(QUAD *head)
                 head->dc.left = ap;
                 head->temps |= TEMP_LEFT;
                 InsertInstruction(head->back, q);
+                head->dc.right->size = sz;
+            }
+            if (head->dc.left && head->dc.left->mode == i_immed && head->dc.opcode != i_assn)
+            {
+                IMODE *ap = InitTempOpt(head->dc.left->size, head->dc.left->size);
+                QUAD *q = Alloc(sizeof(QUAD)), *t;
+                q->dc.opcode = i_assn;
+                q->ans = ap;
+                q->temps = TEMP_ANS;
+                q->dc.left = head->dc.left;
+                head->dc.left = ap;
+                head->temps |= TEMP_LEFT;
+                t = head;
+                if (head->temps & TEMP_RIGHT)
+                    t = leftInsertionPos(head, head->dc.right);
+                InsertInstruction(t->back, q);
             }
             if (head->dc.opcode == i_clrblock)
             {
