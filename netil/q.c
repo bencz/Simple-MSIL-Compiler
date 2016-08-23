@@ -1,5 +1,12 @@
+#include <Stdio.h>
+int (*aa)(int);
+int bb(int rr)
+{
+    return rr * 3;
+}
 main()
 {
-    double aa = 44.032;
-    printf("%f\n", aa);
+    aa = bb;
+    printf("%d\n",(*aa)(5));
+    return 0;
 }
