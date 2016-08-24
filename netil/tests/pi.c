@@ -7,6 +7,7 @@
   void* memset(void*, int , unsigned int);
   unsigned int strlen(const char*);
   int putchar(int c);
+  int atoi(const char*);
 
 #define ARRAY_SIZE 128000
 
