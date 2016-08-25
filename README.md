@@ -2,14 +2,17 @@
 
 This is a version of the Orange C compiler that does MSIL code generation.
 
-This is a WIP.  At present it does not support structures, or function pointers.   
+This is a WIP.  At present it mostly supports the C language.  
 
-The results are undefined if you try to call an unprototyped function, or don't return a value from a function that needs
-to return a value.
+Known things that are missing are complex numbers, marshalling of function pointers between managed and unmanaged code, variable sized arrays, and the library is MSVCRT.DLL so it doesn't support functions introduced after C89.
+
+The results are undefined if you try to call an unprototyped function.
+
+The results are undefined if you try to use some extension such as alloca.
 
 There may be a variety of bugs.
 
-Copy this directory into your orange c directory then create the subdirectory netil\obj\bcc32 and build from the 'netil' directory.
+If you want to build it copy this directory into your orange c directory then create the subdirectory netil\obj\bcc32 and build from the 'netil' directory.
 
 Run the compiler 'occil' on a simple C program (test.c is included as an example).
 
