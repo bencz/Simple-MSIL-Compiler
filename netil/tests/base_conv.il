@@ -7,7 +7,7 @@
 .assembly extern mscorlib { }
 
 
-.method public hidebysig static int32 'main'(int32 argc, void * argv)  cil managed
+.method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
 // Line 39:	int main()
 
@@ -200,7 +200,7 @@ L_25:
 		[0] int8 'aux/0',
 		[1] void* 'result/1',
 		[2] int32 'i/2',
-		[3] valuetype 'int8[38]' 'map/3'
+		[3] valuetype 'int8[37]' 'map/3'
 	)
 	.maxstack	4
 L_40:
@@ -215,7 +215,7 @@ L_40:
 
 	ldloca	'map/3'
 	ldc.i4	0
-	ldc.i4	38
+	ldc.i4	37
 	initblk
 	ldloca	'map/3'
 	conv.u4
@@ -573,7 +573,7 @@ L_41:
 	ret
 }
 .class private value explicit ansi sealed 'int8[]' {.pack 1 .size 1}
-.class private value explicit ansi sealed 'int8[38]' {.pack 1 .size 38}
+.class private value explicit ansi sealed 'int8[37]' {.pack 1 .size 37}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'calloc'(uint32, uint32) preservesig {}

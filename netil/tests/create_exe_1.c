@@ -102,7 +102,7 @@ int main() {
     offset += sizeof(HintTable);
     memcpy(bufEXE+offset, LookupTable, sizeof(LookupTable));
     memcpy(bufEXE+ALIGNMENT*3, InitBuffer, sizeof(InitBuffer));
-    if ((fpDst = fopen("lala.exe","wb")) == NULL) {
+    if ((fpDst = fopen("created_exe_1.exe","wb")) == NULL) {
         printf("Fail to create the file lala.exe");
         exit(1);
     }

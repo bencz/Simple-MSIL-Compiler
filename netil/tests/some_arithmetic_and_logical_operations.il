@@ -7,7 +7,7 @@
 .assembly extern mscorlib { }
 
 
-.method public hidebysig static int32 'main'(int32 argc, void * argv)  cil managed
+.method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
 // Line 419:	int main()
 

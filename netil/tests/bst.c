@@ -176,16 +176,40 @@ int cmpfunc(const void * a, const void * b)
 	return (*(int*)a - *(int*)b);
 }
 
+void swap(void *v[], int i, int j)
+{
+    void *temp;
+
+    temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
+}
+
+void q_sort(void *v[], int left, int right, int (*comp)(const void *, const void *))
+{
+    int i, last;
+
+    if (left >= right) return;
+    swap(v, left, (left + right) / 2);
+    last = left;
+    for (i = left + 1; i <= right; i++) {
+        if ((*comp)(v[i], v[left]) < 0)
+            swap(v, ++last, i);
+    }
+    swap(v, left, last);
+    sort(v, left, last - 1, comp);
+    sort(v, last + 1, right, comp);
+}
 
 int main()
 {
 	node* raiz = NULL;
-	//srand(time(NULL));
 	int counter = 0;
-	bool sucesso = false;
+	bool sucesso = false;  
+	srand(time(NULL));
 	while (1)
 	{
-		int numero = rand() % 500;
+		int numero = rand() % 1000;
 		if (!valorExiste(numero))
 		{
 			raiz = ab_inserirnode(raiz, numero, &sucesso);
@@ -201,11 +225,11 @@ int main()
 
 	ab_imprimiremordem(raiz);
 
-	qsort(listaNumeros, TAMANHO, sizeof(int), cmpfunc);
+#if USE_QSORT
+	q_sort(listaNumeros, TAMANHO, sizeof(int), cmpfunc);
+#endif
 	ab_deletarnode(&raiz, listaNumeros[TAMANHO-2], &sucesso);
-
 	ab_imprimiremordem(raiz);
-
 	ab_liberaarvore(raiz);
 
 	return 0;
