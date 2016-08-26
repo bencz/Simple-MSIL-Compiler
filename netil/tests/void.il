@@ -1,4 +1,4 @@
-//File q2.c
+//File void.c
 //Compiler version 6.0.8.1
 
 .corflags 2 // 32-bit
@@ -7,39 +7,19 @@
 .assembly extern mscorlib { }
 
 
-.method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
+.method public hidebysig static int32 'main'(int32 'Unnamed++Identifier 1', void * 'argv')  cil managed
 {
-// Line 5:	main()
-
-// Line 6:	{
-
-	.maxstack	1
-L_1:
-// Line 7:	    return zz(4);
-
-	ldc.i4	4
-	call	int32 'zz'(int32)
-// Line 8:	}
-L_2:
-	ret
-
-}
- .method public hidebysig static int32 'zz'(int32 'a' ) cil managed
-{
-// Line 1:	int zz(int a)
+// Line 1:	int main(void)
 
 // Line 2:	{
 
-	.maxstack	2
-L_9:
-// Line 3:	    return a + 10;
+	.maxstack	1
+L_1:
+// Line 3:		return 0;
 
-	ldarg	'a'
-	ldc.i4	10
-	add
+	ldc.i4	0
 // Line 4:	}
-
-L_10:
+L_2:
 	ret
 
 }

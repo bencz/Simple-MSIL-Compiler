@@ -7,7 +7,7 @@
 .assembly extern mscorlib { }
 
 
-.method public hidebysig static int32 'main'(int32 argc, void * argv)  cil managed
+.method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
 // Line 249:	int main()
 
@@ -1085,9 +1085,9 @@ L_222:
 
 // Line 187:		resultado = !(x & 1);
 
+	ldc.i4	0
 	ldarg	'x'
 	ldc.i4	1
-	ldc.i4	0
 	and
 	ceq
 	conv.i4

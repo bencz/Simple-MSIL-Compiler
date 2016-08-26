@@ -1,4 +1,4 @@
-//File q4.c
+//File q.c
 //Compiler version 6.0.8.1
 
 .corflags 2 // 32-bit
@@ -9,61 +9,58 @@
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
-// Line 2:	main()
+// Line 7:	main()
 
-// Line 3:	{
+// Line 8:	{
 
-	.locals
-	(
-		[0] int32 'i/0',
-		[1] int32 'j/1'
-	)
-	.maxstack	2
+	.maxstack	3
 L_2:
-// Line 4:	    int i,j;
+// Line 9:	    aa = bb;
 
-	ldc.i4	0
-	stloc	'i/0'
-	br	'L_6'
-L_5:
-// Line 6:	    {
+	ldftn	int32 'bb'(int32)
+	stsfld	method 	int32 *(int32) 'aa'
 
-// Line 7:	        j = i * 10;
-
-	ldloc	'i/0'
-	ldc.i4	10
-	mul
-	stloc	'j/1'
-// Line 8:	        printf("%d\n", j);
+// Line 10:	    printf("%d\n",(*aa)(5));
 
 	ldsflda	valuetype 'int8[]' 'L_1'
 
-	ldloc	'j/1'
+	ldc.i4	5
+	ldsfld	method 	int32 *(int32) 'aa'
+
+	calli		int32 *(int32)
 	call	vararg int32 'printf'(void*, ..., int32)
 	pop
-L_8:
-	ldloc	'i/0'
-	ldc.i4	1
-	add
-	stloc	'i/0'
-// Line 5:	    for (i=0; i < 200; i++)
-
-L_6:
-	ldloc	'i/0'
-	ldc.i4	200
-	blt	'L_5'
-L_7:
-// Line 9:	    }
-
-// Line 10:	    return 0;
+// Line 11:	    return 0;
 
 	ldc.i4	0
-// Line 11:	}
+// Line 12:	}
 L_3:
 	ret
 
 }
- .field public static valuetype 'int8[]' 'L_1' at $L_1
+ .method public hidebysig static int32 'bb'(int32 'rr' ) cil managed
+{
+// Line 3:	int bb(int rr)
+
+// Line 4:	{
+
+	.maxstack	2
+L_10:
+// Line 5:	    return rr * 3;
+
+	ldarg	'rr'
+	ldc.i4	3
+	mul
+// Line 6:	}
+
+L_11:
+	ret
+
+}
+ .field public static method 	int32 *(int32) 'aa' at $aa
+.data $aa = bytearray (0 0 0 0 
+)
+.field public static valuetype 'int8[]' 'L_1' at $L_1
 .data $L_1 = bytearray (25 64 a 0 
 )
 .method public hidebysig static void $Main() cil managed {
