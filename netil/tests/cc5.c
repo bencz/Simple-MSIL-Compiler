@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
-#include <ctype.h>
 
 #define  SIZETOKEN	1000	
 #define  OPERATOR2 	"== != <= >= |= += -= *= /= >> << ++ -- && || -> "
@@ -11,6 +10,16 @@ int  fToken, fTrace, fCode;
 char *Token[SIZETOKEN];
 int  nToken;
 int  tix = -1;
+
+int is_alpha(int c)
+{
+  return ((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z'));
+}
+
+int is_digit(int c)
+{
+  return ((c>='0') && (c<='9'));
+}
 
 void error(const char *format, char *arg)
 {
@@ -22,17 +31,24 @@ void error(const char *format, char *arg)
 
 int isAlpha(int c)
 {
-	return (isalpha(c) || c == '_');
+	return (is_alpha(c) || c == '_');
 }
 
 int isAlNum(int c)
 {
-	return isAlpha(c) || isdigit(c);
+	return isAlpha(c) || is_digit(c);
 }
 
 int isKanji(int c)
 {
 	return (c >= 0x81 && c <= 0x9F) || (c >= 0xE0 && c <= 0xFC);
+}
+
+char *strdup (const char *s) {
+    char *d = (char*)malloc (strlen (s) + 1);   
+    if (d == NULL) return NULL;         
+    strcpy (d,s);                       
+    return d;                          
 }
 
 void lex(const char *srcfile)
@@ -69,7 +85,7 @@ void lex(const char *srcfile)
 				if (*p++ != '"') 
 					error("Expected '\"' <%s>", pBgn);
 			}
-			else if (isdigit(*p))
+			else if (is_digit(*p))
 			{
 				strtoul(p, &p, 10); //for (p++; *p != '\0' && isdigit(*p); p++) ;
 			}
@@ -318,7 +334,7 @@ void variableDeclaration(int status)
 			if (ispp("="))
 			{
 				char *tk = Token[tix++];
-				if (isdigit(*tk)) outDataInt(atoi(tk));
+				if (is_digit(*tk)) outDataInt(atoi(tk));
 				else error("unsupported: <%s>", tk);
 			}
 			else
@@ -596,7 +612,7 @@ void functionCall()
 // PrimExpression ::= Identifier ["[" Expression "]"] | "(" Expr ")" | Constant | FunctionCall
 void primaryExpression(int mode)
 {
-	if (isdigit(*Token[tix]))  			// Constant
+	if (is_digit(*Token[tix]))  			// Constant
 	{
 		outCode3(mov_eax, atoi(Token[tix++]), IVAL);
 	}

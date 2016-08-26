@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+
+int isalpha(int c);
+int isdigit(int c);
 
 #define  SIZETOKEN	1000
 #define  OPERATOR2 	"== != <= >= |= += -= *= /= >> << ++ -- && || -> "
@@ -17,6 +19,13 @@ int isAlpha(int c)
 int isAlNum(int c)
 {
 	return isAlpha(c) || isdigit(c);
+}
+
+char *strdup (const char *s) {
+    char *d = (char*)malloc (strlen (s) + 1);   
+    if (d == NULL) return NULL;         
+    strcpy (d,s);                       
+    return d;                          
 }
 
 void lex(const char *srcfile)
