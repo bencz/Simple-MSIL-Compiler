@@ -9,7 +9,8 @@ Known things that are missing are complex numbers, variable sized arrays, and th
 This version supports common RTL variables such as stdin, stdout, stderr, errno, and the variables used for the macros in
 ctype.h.   It also supports command line arguments.
  
-This version supports marshalling of function pointers.
+This version supports marshalling of function pointers.  A small helper dll called 'occmsil.dll' is involved in creating thunks for this.  occmsil is built when you build the compiler; but as of this writing bug fixes to the main orange c
+project are required to build occmsil properly.
 
 The results are undefined if you try to call an unprototyped function.
 
@@ -26,6 +27,4 @@ It will generate an MSIL assembly language program (.il extension).   You can us
 This version does not allow linking of multiple modules into a single program.
 
 Assemble the MSIL program with ILASM and you have a .NET exectuable!
-
-From time to time there may be bug fixes in the orange C main tree to support this effort; if something doesn't build sync with the orange c project.
 
