@@ -141,7 +141,7 @@ BOOLEAN matchesCopy(SYMBOL *sp, BOOLEAN move);
 void createConstructorsForLambda(SYMBOL *sp);
 void createConstructor(SYMBOL *sp, SYMBOL *consfunc);
 void createDefaultConstructors(SYMBOL *sp);
-void destructBlock(EXPRESSION **exp, HASHREC *hr);
+void destructBlock(EXPRESSION **exp, HASHREC *hr, BOOLEAN mainDestruct);
 EXPRESSION *thunkConstructorHead(BLOCKDATA *b, SYMBOL *sym, SYMBOL *cons, HASHTABLE *syms, BOOLEAN parseInitializers, BOOLEAN doCopy);
 void thunkDestructorTail(BLOCKDATA *b, SYMBOL *sp, SYMBOL *dest, HASHTABLE *syms);
 void createAssignment(SYMBOL *sym, SYMBOL *asnfunc);

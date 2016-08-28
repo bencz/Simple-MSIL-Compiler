@@ -365,7 +365,9 @@ char msil_bltins[] = " void exit(int); "
     "void *__pctype_func(); "
     "int *_errno(); "
     "void *__OCCMSIL_GetProcThunkToManaged(void *proc); "
-    "void *__OCCMSIL_GetProcThunkToUnmanaged(void *proc); ";
+    "void *__OCCMSIL_GetProcThunkToUnmanaged(void *proc); "
+    "void *malloc(unsigned); "
+    "void free(void *); ";
 
 /* Init module */
 void oa_ini(void)
@@ -622,7 +624,14 @@ void puttype(TYPE *tp)
             buf[0] = 0;
             while (tp->array)
             {
-                sprintf(buf + strlen(buf), "[%d]", tp->size/tp->btp->size);
+                if (tp->vla)
+                {
+                    sprintf(buf + strlen(buf), "[vla]");
+                }
+                else
+                {
+                    sprintf(buf + strlen(buf), "[%d]", tp->size/tp->btp->size);
+                }
                 tp = tp->btp;
             }
             puttype(tp);
