@@ -46,7 +46,9 @@
 #define CPLUSPLUSERROR 32
 
 extern COMPILER_PARAMS cparams ;
+extern ARCH_ASM *chosenAssembler;
 extern int instantiatingTemplate;
+extern int structLevel;
 
 #ifndef CPREPROCESSOR
 extern char infile[256];
@@ -191,7 +193,7 @@ static struct {
 {"'inline' not allowed here", ERROR },
 {"'main' may not be declared as inline", ERROR },
 {"Function takes no arguments", ERROR },
-{"Call to function '%s' without a prototype", WARNING },
+{"Call to function '%s' without a prototype", TRIVIALWARNING },
 {"Argument list too long in call to '%s'", ERROR },
 {"Argument list too short in call to '%s'", ERROR },
 {"Call of nonfunction", ERROR },
@@ -280,7 +282,7 @@ static struct {
 {"Array of references is not allowed", ERROR },
 {"Reference variable '%s' must be initialized", ERROR },
 {"Reference initialization requires Lvalue", ERROR },
-{"Reference initialization of type '%s' requires Lvalue of type '%s'", ERROR},
+{"Reference initialization of type '%s' cannot be bound to type '%s'", ERROR},
 {"Reference member '%s' in a class without constructors", ERROR },
 {"Reference member '%s' not initialized in class constructor", ERROR },
 {"Qualified reference variable not allowed", WARNING },
@@ -319,7 +321,7 @@ static struct {
 {"Default argument may not be a pointer or reference to function", ERROR },
 {"Default argument not allowed in typedef", ERROR },
 {"Default argument may not use 'this'", ERROR},
-{"Default argument missing after paramater '%s'", ERROR},
+{"Default argument missing after parameter '%s'", ERROR},
 {"Deleting or defaulting existing function '%s'", ERROR },
 {"Reference to deleted function '%s'", ERROR },
 {"'main' may not be deleted", ERROR },
@@ -433,7 +435,7 @@ static struct {
 {"Capture item listed multiple times", ERROR },
 {"Explicit capture blocked", ERROR },
 {"Implicit capture blocked", ERROR },
-{"Cannot default paramaters of lambda function", ERROR },
+{"Cannot default parameters of lambda function", ERROR },
 {"Cannot capture this", ERROR },
 {"Must capture variables with 'auto' storage class or 'this'", ERROR },
 {"Lambda function must have body", ERROR },
@@ -478,8 +480,8 @@ static struct {
 {"'Class' template parameter missing default" ,ERROR },
 {"'Class' template parameter default must refer to type" ,ERROR },
 {"Template 'template' parameter missing default" ,ERROR },
-{"'Non-type' template paramer has invalid type", ERROR },
-{"Type mismatch in default for 'non-type' template paramater", ERROR },
+{"'Non-type' template parameter has invalid type", ERROR },
+{"Type mismatch in default for 'non-type' template parameter", ERROR },
 {"'%s' was not previously declared as a template", ERROR },
 {"'%s' was previously declared as a template", ERROR },
 {"Template parameters do not agree with previous declaration", ERROR },
@@ -516,7 +518,7 @@ static struct {
 {"Pack ... specifier required here", ERROR },
 {"'Class' template parameter expected", ERROR },
 {"Structured type expected", ERROR },
-{"Packed template paramater not allowed here", ERROR },
+{"Packed template parameter not allowed here", ERROR },
 {"In template instantiation started here", WARNING },
 {"Invalid use of type '%s'", ERROR },
 {"Requires template<> header", ERROR },
@@ -526,7 +528,15 @@ static struct {
 {"Constructor '%s' is not allowed", ERROR },
 {"Constant member '%s' in a class without constructors", ERROR },
 {"Delete of pointer to undefined type '%s'", WARNING },
-
+{"Arithmetic with pointer of type 'void *'", WARNING },
+{"Overloaded function '%s' is ambiguous in this context", ERROR },
+{"Use of an initializer-list requires '#include <initializer_list>'", ERROR },
+{"Use '&' to take the address of a member function", ERROR },
+{"ISO C++ forbids in-class initialization of non-const static member '%s'", ERROR },
+{"Need packed template parameter", ERROR },
+{"Mismatched types '%s' and '%s' while infering lambda return type", ERROR },
+{"Exception specifier blocks exceptions thrown from '%s'", WARNING },
+{"Exception specifier blocks locally thrown exception of type '%s'", WARNING },
 #endif
 } ;
 
@@ -567,6 +577,21 @@ static char kwtosym(enum e_kw kw)
             return '?';
     }
 };
+static BOOLEAN IsReturnErr(int err)
+{
+    switch (err)
+    {
+//        case ERR_FUNCTION_SHOULD_RETURN_VALUE:
+        case ERR_CALL_FUNCTION_NO_PROTO:
+        case ERR_RETURN_MUST_RETURN_VALUE:
+        case ERR_RETURN_NO_VALUE:
+        case ERR_RETMISMATCH:
+        case ERR_FUNCTION_RETURNING_ADDRESS_STACK_VARIABLE:
+            return chosenAssembler->arch->erropts & EO_RETURNASERR;
+        default:
+            return FALSE;
+    }
+}
 static BOOLEAN alwaysErr(int err)
 {
     switch (err)
@@ -620,10 +645,10 @@ static BOOLEAN ignoreErrtemplateNestingCount(int err)
 BOOLEAN printerrinternal(int err, char *file, int line, va_list args)
 {
     char buf[2048];
-    char infunc[1024];
+    char infunc[2048];
     char *listerr;
     char nameb[265], *name = nameb;
-    if (templateNestingCount && ignoreErrtemplateNestingCount(err))
+    if (cparams.prm_makestubs || templateNestingCount && ignoreErrtemplateNestingCount(err))
         return FALSE;
     if (!file)
     {
@@ -649,8 +674,8 @@ BOOLEAN printerrinternal(int err, char *file, int line, va_list args)
     }
     if (total_errors > cparams.prm_maxerr)
         return FALSE;
-    if (!alwaysErr(err) && currentErrorFile && !strcmp(currentErrorFile, file) && 
-        line == currentErrorLine)
+    if (!alwaysErr(err) && currentErrorFile && !strcmp(currentErrorFile, includes->fname) && 
+        includes->line == currentErrorLine)
         return FALSE;
     if (err >= sizeof(errors)/sizeof(errors[0]))
     {
@@ -663,7 +688,7 @@ BOOLEAN printerrinternal(int err, char *file, int line, va_list args)
         vsprintf(buf, errors[err].name, args);
 //        va_end(arg);
     }
-    if ((errors[err].level & ERROR) || (cparams.prm_ansi && (errors[err].level & ANSIERROR)) 
+    if (IsReturnErr(err) || (errors[err].level & ERROR) || (cparams.prm_ansi && (errors[err].level & ANSIERROR)) 
         || (cparams.prm_cplusplus && (errors[err].level & CPLUSPLUSERROR)))
     {
         if (!cparams.prm_quiet)
@@ -742,7 +767,7 @@ void preverror(int err, char *name, char *origfile, int origline)
 #ifndef CPREPROCESSOR
 void preverrorsym(int err, SYMBOL *sp, char *origfile, int origline)
 {
-    char buf[1024];
+    char buf[2048];
     unmangle(buf, sp->errname);
     if (origfile && origline)
         preverror(err, buf, origfile, origline);
@@ -781,10 +806,10 @@ void getcls(char *buf, SYMBOL *clssym)
 }
 void errorqualified(int err, SYMBOL *strSym, NAMESPACEVALUES *nsv, char *name)
 {
-    char buf[1024];
-    char unopped[256];
+    char buf[2048];
+    char unopped[2048];
     char *last = "typename";
-    char lastb[512];
+    char lastb[2048];
     if (strSym)
     {
         unmangle(lastb, strSym->decoratedName);
@@ -803,7 +828,7 @@ void errorqualified(int err, SYMBOL *strSym, NAMESPACEVALUES *nsv, char *name)
         }
         else
         {
-            unmang1(unopped, name+1, last);
+            unmang1(unopped, name+1, last, FALSE);
         }
     }
     else
@@ -843,7 +868,7 @@ void errorstr(int err, char *val)
 }
 void errorsym(int err, SYMBOL *sym)
 {
-    char buf[1024];
+    char buf[2048];
 #ifdef CPREPROCESSOR
     strcpy(buf, sym->name);
 #else
@@ -858,14 +883,14 @@ void errorsym(int err, SYMBOL *sym)
 #ifndef CPREPROCESSOR
 void errorsym2(int err, SYMBOL *sym1, SYMBOL *sym2)
 {
-    char one[1024], two[1024];
+    char one[2048], two[2048];
     unmangle(one, sym1->errname);
     unmangle(two, sym2->errname);
     printerr(err, preprocFile, preprocLine, one, two);
 }
 void errorstrsym(int err, char *name, SYMBOL *sym2)
 {
-    char two[1024];
+    char two[2048];
     unmangle(two, sym2->errname);
     printerr(err, preprocFile, preprocLine, name, two);
 }
@@ -878,7 +903,7 @@ void errorstringtype(int err, char *str, TYPE *tp1)
                                                    
 void errortype (int err, TYPE *tp1, TYPE *tp2)
 {
-    char tpb1[256], tpb2[256];
+    char tpb1[4096], tpb2[4096];
     typeToString(tpb1, tp1);
     if (tp2)
         typeToString(tpb2, tp2);
@@ -896,8 +921,8 @@ void errorabstract(int error, SYMBOL *sp)
 }
 void errorarg(int err, int argnum, SYMBOL *declsp, SYMBOL *funcsp)
 {
-    char argbuf[1024];
-    char buf[1024];
+    char argbuf[2048];
+    char buf[2048];
     if (declsp->anonymous)
         sprintf(argbuf,"%d",argnum);
     else
@@ -1394,7 +1419,6 @@ void checkUnused(HASHTABLE *syms)
         while (hr)
         {
             SYMBOL *sp = (SYMBOL *)hr->p;
-            currentErrorLine = 0;
             if (sp->storage_class == sc_overloads)
                 sp = (SYMBOL *)sp->tp->syms->table[0]->p;
             if (!sp->used && !sp->anonymous)
@@ -1457,7 +1481,7 @@ void findUnusedStatics(NAMESPACEVALUES *nameSpace)
                         if (sp->storage_class == sc_global || sp->storage_class == sc_static
                             || sp->storage_class == sc_localstatic)
                             /* void will be caught earlier */
-                            if (!isfunction(sp->tp) && sp->tp->size == 0 && !isvoid(sp->tp) && sp->tp->type != bt_any)
+                            if (!isfunction(sp->tp) && !isarray(sp->tp) && sp->tp->size == 0 && !isvoid(sp->tp) && sp->tp->type != bt_any)
                                 errorsym(ERR_UNSIZED, sp);
                     }
                 }
@@ -1471,10 +1495,10 @@ static void usageErrorCheck(SYMBOL *sp)
     if ((sp->storage_class == sc_auto || sp->storage_class == sc_register || sp->storage_class == sc_localstatic)
         && !sp->assigned && !sp->used && !sp->altered)
     {
-        errorsym(ERR_USED_WITHOUT_ASSIGNMENT, sp);
+        if (!structLevel || !sp->deferredCompile)
+            errorsym(ERR_USED_WITHOUT_ASSIGNMENT, sp);
     }
     sp->used = TRUE;
-    currentErrorLine = 0;
 }
 static SYMBOL *getAssignSP(EXPRESSION *exp)
 {
@@ -1703,6 +1727,7 @@ void assignmentUsages(EXPRESSION *node, BOOLEAN first)
         case en_not_lvalue:
         case en_thisref:
         case en_lvalue:
+        case en_funcret:
             assignmentUsages(node->left, FALSE);
             break;
         case en_atomic:
@@ -1729,6 +1754,9 @@ void assignmentUsages(EXPRESSION *node, BOOLEAN first)
             break;
         case en_stmt:
         case en_templateparam:
+        case en_templateselector:
+        case en_packedempty:
+        case en_sizeofellipse:
             break;
         default:
             diag("assignmentUsages");
@@ -1931,6 +1959,7 @@ static int checkDefaultExpression(EXPRESSION *node)
             break;
         case en_stmt:
         case en_templateparam:
+        case en_templateselector:
             break;
         default:
             diag("rv |= checkDefaultExpression");
