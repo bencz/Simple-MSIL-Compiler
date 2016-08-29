@@ -2154,7 +2154,7 @@ IMODE *gen_funccall(SYMBOL *funcsp, EXPRESSION *node, int flags)
 //		if (ap != ap3)
 //			gen_icode(i_assn, ap, ap3, NULL);
         if (ap->mode == i_immed && ap->offset->type == en_pc) {
-            if (f->sp && f->sp->linkage2 == lk_import) {
+            if (f->sp && f->sp->linkage2 == lk_import && (!chosenAssembler->arch->preferopts & CODEGEN_MSIL)) {
                 IMODE *ap1 = (IMODE *)Alloc(sizeof(IMODE));
                 *ap1 = *ap;
                 ap1->retval = FALSE;

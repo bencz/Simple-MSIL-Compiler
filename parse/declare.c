@@ -4893,6 +4893,38 @@ jointemplate:
             lex = getsym();
             lex = insertUsing(lex, access, storage_class_in, hasAttributes);
         }
+        else if (!asExpression && MATCHKW(lex, kw___using__))
+        {
+            lex = getsym();
+            if (lex && lex->type == l_astr)
+            {
+                int elems = 0;
+                STRING *data;
+                                
+                lex = concatStringsInternal(lex, &data, &elems);
+                if (chosenAssembler->_using_)
+                {
+                    char buf[260];
+                    int i;
+                    for (i=0; i < data->pointers[0]->count; i++)
+                        buf[i] = data->pointers[0]->str[i];
+                    buf[i] = 0;
+                    if (!chosenAssembler->_using_(buf))
+                    {
+                        error(ERR___USING___NOT_FOUND);
+                    }
+                }
+                else
+                {
+                    error(ERR___USING___NOT_SUPPORTED);
+                }
+            }
+            else
+            {
+                error(ERR___USING___NEEDS_STRING);
+            }
+
+        }
         else if (!asExpression && MATCHKW(lex, kw_static_assert))
         {
             if (hasAttributes)

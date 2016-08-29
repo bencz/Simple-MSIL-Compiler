@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
 /* Protogen Version 1.00 Saturday November 18, 2006  21:08:23 */
 
                              /* Beinterf.c */
@@ -999,3 +1002,7 @@ BOOLEAN matchingCharTypes(TYPE *typ1, TYPE *typ2);
 void typenumptr(char *buf, TYPE *tp);
 TYPE *typenum(char *buf, TYPE *tp);
 void typeToString(char *buf, TYPE *typ);
+
+#ifdef __cplusplus
+}
+#endif
