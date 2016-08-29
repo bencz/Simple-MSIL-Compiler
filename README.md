@@ -18,11 +18,16 @@ The results are undefined if you try to use some extension such as alloca.
 
 There may be a variety of bugs.
 
-If you want to build it copy this directory into your orange c directory then create the subdirectory netil\obj\bcc32 and build from the 'netil' directory.
+If you want to build it copy this directory into your orange c directory then build from the 'netil' directory.   The following files will be built:   netlib.lib, occmsil.dll, and occil.exe
 
 Run the compiler 'occil' on a simple C program (test.c is included as an example).
 
-It will generate an MSIL assembly language program (.il extension).   You can use C language functions including printf() that will be resolved to MSVCRT.DLL, but no resolution to other DLLs is possible.
+It will generate an MSIL assembly language program (.il extension).   It will try to find c runtime library files in mscvrt.dll.   If you want to import from other files (e.g. for example kernel32.dll) try something like:
+
+	__using__ "kernel32"
+
+as part of the source code, but you do still need to prototype the functions using an appropriate header (in this case usually windows.h)
+
 
 This version does not allow linking of multiple modules into a single program.
 
