@@ -14,6 +14,17 @@ namespace lsmsilcrtl
             Marshal.FreeHGlobal(new System.IntPtr(item));
         }
     }
+    public static unsafe class pointer
+    {
+        public static object box(void *ptr)
+        {
+            return (object)(IntPtr)(ptr);
+        }
+        public static void *unbox(object obj)
+        {
+            return ((IntPtr)obj).ToPointer();
+        }
+    }
     public unsafe class args
     {
         public args(Object[] n) { _ptr = n; index = 0; }
