@@ -1,10 +1,12 @@
-//File some_arithmetic_and_logical_operations.c
-//Compiler version 6.0.8.1
+//File some_arithmetic_and_logical_operations.C
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
+
+.assembly extern lsmsilcrtl { }
 
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
@@ -2759,7 +2761,21 @@ L_329:
 	20 32 29 20 3d 20 25 68 
 	75 a 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -2768,6 +2784,19 @@ L_329:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -2782,6 +2811,9 @@ L_329:
 }
 .class private value explicit ansi sealed 'int8[]' {.pack 1 .size 1}
 .class private value explicit ansi sealed 'uint32[7]' {.pack 1 .size 28}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}

@@ -1,17 +1,6 @@
-#if __ORANGECIL__
-  #define NULL ((void*)0)
-  void printf(char *, ...);
-  void scanf(char *, ...);
-  void exit(int);
-  void* malloc(int);
-  void free(void*);
-  void* memset(void*, int , unsigned int);
-  unsigned int strlen(const char*);
-#else
   #include <stdio.h>
   #include <stdlib.h>
   #include <string.h>
-#endif
 
 char *strrev_t(char *str)
 {

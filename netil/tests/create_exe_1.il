@@ -1,10 +1,12 @@
 //File create_exe_1.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
+
+.assembly extern lsmsilcrtl { }
 
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
@@ -3296,7 +3298,21 @@ L_5:
 	65 78 65 5f 31 2e 65 78 
 	65 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -3305,6 +3321,19 @@ L_5:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -3330,10 +3359,13 @@ L_5:
 .class private value explicit ansi sealed 'tagIMAGE_DOS_HEADER' {.pack 1 .size 64}
 .class private value explicit ansi sealed '_IMAGE_IMPORT_DESCRIPTOR' {.pack 1 .size 20}
 .class private value explicit ansi sealed '_IMAGE_IMPORT_DESCRIPTOR[2]' {.pack 1 .size 40}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) uint32 'fwrite'(void*, uint32, uint32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'fopen'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fclose'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'memcpy'(void*, void*, uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}

@@ -1,10 +1,12 @@
 //File test.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
+
+.assembly extern lsmsilcrtl { }
 
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
@@ -27,7 +29,8 @@ L_3:
 	call	int32 'qq'()
 	ldsfld	int32 'p'
 
-	call	vararg void 'printf'(void*, ..., int32, int32)
+	call	vararg int32 'printf'(void*, ..., int32, int32)
+	pop
 L_6:
 // Line 19:	    return 0;
 
@@ -67,7 +70,8 @@ L_15:
 	ldsflda	valuetype 'int8[]' 'L_1'
 
 	ldloc	'i/0'
-	call	vararg void 'printf'(void*, ..., int32)
+	call	vararg int32 'printf'(void*, ..., int32)
+	pop
 L_18:
 	ldloc	'i/0'
 	ldc.i4	1
@@ -97,7 +101,7 @@ L_13:
 .field public static void* 'x' at $x
 .data $x = bytearray (0 0 0 0 
 )
-.method public hidebysig static void '__DYNAMIC_STARTUP___2238570617'() cil managed
+.method private hidebysig static void '__DYNAMIC_STARTUP___2238570617'() cil managed
 {
 	.maxstack	1
 
@@ -118,7 +122,21 @@ L_27:
 .field public static valuetype 'int8[]' 'L_1' at $L_1
 .data $L_1 = bytearray (25 64 20 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -127,6 +145,19 @@ L_27:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	call void __DYNAMIC_STARTUP___2238570617()
 	ldloca 'argc'
 	ldloca 'argv'
@@ -141,6 +172,9 @@ L_27:
 	ret
 }
 .class private value explicit ansi sealed 'int8[]' {.pack 1 .size 1}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg void 'printf'(void*) preservesig {}

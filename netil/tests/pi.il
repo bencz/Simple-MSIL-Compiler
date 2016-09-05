@@ -1,17 +1,19 @@
 //File pi.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
 
+.assembly extern lsmsilcrtl { }
+
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
-// Line 14:	int main(int argc, char **argv)
+// Line 6:	int main(int argc, char **argv)
 
-// Line 15:	{
+// Line 7:	{
 
 	.locals
 	(
@@ -21,7 +23,7 @@
 	)
 	.maxstack	4
 L_3:
-// Line 16:		int casas = argc == 2 ? atoi(argv[1]) : 1000;
+// Line 8:		int casas = argc == 2 ? atoi(argv[1]) : 1000;
 
 	ldloca	'casas/0'
 	ldarg	'argc'
@@ -31,15 +33,16 @@ L_3:
 	ldc.i4	4
 	add
 	ldind.u4
-	call	int32 'atoi'(void*)
+	call	int32 'atol'(void*)
+	conv.i4
 	br	'L_309'
 L_308:
 	ldc.i4	1000
 L_309:
 	stind.i4
-// Line 18:		int xc;
+// Line 10:		int xc;
 
-// Line 19:		memset(x, 0, ARRAY_SIZE);
+// Line 11:		memset(x, 0, ARRAY_SIZE);
 
 	ldloca	'x/1'
 	ldc.i4	0
@@ -47,25 +50,26 @@ L_309:
 	conv.u4
 	call	void* 'memset'(void*, int32, uint32)
 	pop
-// Line 20:	
+// Line 12:	
 
-// Line 21:		printf("Numero de casas: %d\n", casas);
+// Line 13:		printf("Numero de casas: %d\n", casas);
 
 	ldsflda	valuetype 'int8[]' 'L_1'
 
 	ldloc	'casas/0'
-	call	vararg void 'printf'(void*, ..., int32)
-// Line 22:	
+	call	vararg int32 'printf'(void*, ..., int32)
+	pop
+// Line 14:	
 
-// Line 23:		xc = 0;
+// Line 15:		xc = 0;
 
 	ldc.i4	0
 	stloc	'xc/2'
-// Line 24:		xc++;
+// Line 16:		xc++;
 
 	ldc.i4	1
 	stloc	'xc/2'
-// Line 25:		x[xc] += casas;
+// Line 17:		x[xc] += casas;
 
 	ldc.i4	1
 	ldc.i4	2
@@ -83,15 +87,15 @@ L_309:
 	stind.i4
 	br	'L_8'
 L_6:
-// Line 27:		{
+// Line 19:		{
 
-// Line 28:			xc--;
+// Line 20:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 29:			x[xc]++;
+// Line 21:			x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -107,13 +111,13 @@ L_6:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 30:			xc += 8;
+// Line 22:			xc += 8;
 
 	ldloc	'xc/2'
 	ldc.i4	8
 	add
 	stloc	'xc/2'
-// Line 31:			x[xc] += 10;
+// Line 23:			x[xc] += 10;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -129,13 +133,13 @@ L_6:
 	ldc.i4	10
 	add
 	stind.i4
-// Line 32:			xc -= 7;
+// Line 24:			xc -= 7;
 
 	ldloc	'xc/2'
 	ldc.i4	7
 	sub
 	stloc	'xc/2'
-// Line 33:			x[xc]--;
+// Line 25:			x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -152,7 +156,7 @@ L_6:
 	sub
 	stind.i4
 L_8:
-// Line 26:		while (x[xc] != 0)
+// Line 18:		while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -163,15 +167,15 @@ L_8:
 	ldc.i4	0
 	bne.un	'L_6'
 L_7:
-// Line 34:		}
+// Line 26:		}
 
-// Line 35:		xc++;
+// Line 27:		xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 36:		x[xc] += 5;
+// Line 28:		x[xc] += 5;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -189,15 +193,15 @@ L_7:
 	stind.i4
 	br	'L_13'
 L_11:
-// Line 38:		{
+// Line 30:		{
 
-// Line 39:			xc--;
+// Line 31:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 40:			x[xc] += 9;
+// Line 32:			x[xc] += 9;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -213,13 +217,13 @@ L_11:
 	ldc.i4	9
 	add
 	stind.i4
-// Line 41:			xc++;
+// Line 33:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 42:			x[xc]--;
+// Line 34:			x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -236,7 +240,7 @@ L_11:
 	sub
 	stind.i4
 L_13:
-// Line 37:		while (x[xc] != 0)
+// Line 29:		while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -247,9 +251,9 @@ L_13:
 	ldc.i4	0
 	bne.un	'L_11'
 L_12:
-// Line 43:		}
+// Line 35:		}
 
-// Line 44:		x[xc]++;
+// Line 36:		x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -265,13 +269,13 @@ L_12:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 45:		xc += 6;
+// Line 37:		xc += 6;
 
 	ldloc	'xc/2'
 	ldc.i4	6
 	add
 	stloc	'xc/2'
-// Line 46:		x[xc]++;
+// Line 38:		x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -289,15 +293,15 @@ L_12:
 	stind.i4
 	br	'L_18'
 L_16:
-// Line 48:		{
+// Line 40:		{
 
-// Line 49:			xc -= 2;
+// Line 41:			xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 50:			x[xc] += 3;
+// Line 42:			x[xc] += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -315,9 +319,9 @@ L_16:
 	stind.i4
 	br	'L_22'
 L_20:
-// Line 52:			{
+// Line 44:			{
 
-// Line 53:				xc += 2;
+// Line 45:				xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -325,9 +329,9 @@ L_20:
 	stloc	'xc/2'
 	br	'L_26'
 L_24:
-// Line 55:				{
+// Line 47:				{
 
-// Line 56:					x[xc]--;
+// Line 48:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -343,14 +347,14 @@ L_24:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 57:					xc--;
+// Line 49:					xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
 L_26:
-// Line 54:				while (x[xc] != 0)
+// Line 46:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -361,9 +365,9 @@ L_26:
 	ldc.i4	0
 	bne.un	'L_24'
 L_25:
-// Line 58:				}
+// Line 50:				}
 
-// Line 59:				xc--;
+// Line 51:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -371,16 +375,16 @@ L_25:
 	stloc	'xc/2'
 	br	'L_31'
 L_29:
-// Line 61:				{
+// Line 53:				{
 
-// Line 62:					xc++;
+// Line 54:					xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
 L_31:
-// Line 60:				while (x[xc] != 0)
+// Line 52:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -391,15 +395,15 @@ L_31:
 	ldc.i4	0
 	bne.un	'L_29'
 L_30:
-// Line 63:				}
+// Line 55:				}
 
-// Line 64:				xc--;
+// Line 56:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 65:				x[xc]--;
+// Line 57:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -416,7 +420,7 @@ L_30:
 	sub
 	stind.i4
 L_22:
-// Line 51:			while (x[xc] != 0)
+// Line 43:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -427,9 +431,9 @@ L_22:
 	ldc.i4	0
 	bne.un	'L_20'
 L_21:
-// Line 66:			}
+// Line 58:			}
 
-// Line 67:			xc += 2;
+// Line 59:			xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -437,15 +441,15 @@ L_21:
 	stloc	'xc/2'
 	br	'L_37'
 L_35:
-// Line 69:			{
+// Line 61:			{
 
-// Line 70:				xc++;
+// Line 62:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 71:				x[xc]++;
+// Line 63:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -461,14 +465,14 @@ L_35:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 72:				xc++;
+// Line 64:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
 L_37:
-// Line 68:			while (x[xc] != 0)
+// Line 60:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -479,9 +483,9 @@ L_37:
 	ldc.i4	0
 	bne.un	'L_35'
 L_36:
-// Line 73:			}
+// Line 65:			}
 
-// Line 74:			xc--;
+// Line 66:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -489,16 +493,16 @@ L_36:
 	stloc	'xc/2'
 	br	'L_42'
 L_40:
-// Line 76:			{
+// Line 68:			{
 
-// Line 77:				xc--;
+// Line 69:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
 L_42:
-// Line 75:			while (x[xc] != 0)
+// Line 67:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -509,16 +513,16 @@ L_42:
 	ldc.i4	0
 	bne.un	'L_40'
 L_41:
-// Line 78:			}
+// Line 70:			}
 
-// Line 79:			xc++;
+// Line 71:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
 L_18:
-// Line 47:		while (x[xc] != 0)
+// Line 39:		while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -529,9 +533,9 @@ L_18:
 	ldc.i4	0
 	bne.un	'L_16'
 L_17:
-// Line 80:		}
+// Line 72:		}
 
-// Line 81:		xc++;
+// Line 73:		xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -539,13 +543,13 @@ L_17:
 	stloc	'xc/2'
 	br	'L_48'
 L_46:
-// Line 83:		{
+// Line 75:		{
 
 	br	'L_52'
 L_50:
-// Line 85:			{
+// Line 77:			{
 
-// Line 86:				x[xc]--;
+// Line 78:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -561,13 +565,13 @@ L_50:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 87:				xc += 4;
+// Line 79:				xc += 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	add
 	stloc	'xc/2'
-// Line 88:				x[xc]++;
+// Line 80:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -583,14 +587,14 @@ L_50:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 89:				xc -= 4;
+// Line 81:				xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	sub
 	stloc	'xc/2'
 L_52:
-// Line 84:			while (x[xc] != 0)
+// Line 76:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -601,15 +605,15 @@ L_52:
 	ldc.i4	0
 	bne.un	'L_50'
 L_51:
-// Line 90:			}
+// Line 82:			}
 
-// Line 91:			xc += 3;
+// Line 83:			xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	add
 	stloc	'xc/2'
-// Line 92:			x[xc] += 3;
+// Line 84:			x[xc] += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -625,13 +629,13 @@ L_51:
 	ldc.i4	3
 	add
 	stind.i4
-// Line 93:			xc++;
+// Line 85:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 94:			x[xc]--;
+// Line 86:			x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -648,7 +652,7 @@ L_51:
 	sub
 	stind.i4
 L_48:
-// Line 82:		while (x[xc] != 0)
+// Line 74:		while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -659,9 +663,9 @@ L_48:
 	ldc.i4	0
 	bne.un	'L_52'
 L_47:
-// Line 95:		}
+// Line 87:		}
 
-// Line 96:		xc--;
+// Line 88:		xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -669,16 +673,16 @@ L_47:
 	stloc	'xc/2'
 	br	'L_58'
 L_56:
-// Line 98:		{
+// Line 90:		{
 
-// Line 99:			xc -= 4;
+// Line 91:			xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	sub
 	stloc	'xc/2'
 L_58:
-// Line 97:		while (x[xc] != 0)
+// Line 89:		while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -689,15 +693,15 @@ L_58:
 	ldc.i4	0
 	bne.un	'L_56'
 L_57:
-// Line 100:		}
+// Line 92:		}
 
-// Line 101:		xc -= 8;
+// Line 93:		xc -= 8;
 
 	ldloc	'xc/2'
 	ldc.i4	8
 	sub
 	stloc	'xc/2'
-// Line 102:		x[xc]++;
+// Line 94:		x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -715,9 +719,9 @@ L_57:
 	stind.i4
 	br	'L_63'
 L_61:
-// Line 104:		{
+// Line 96:		{
 
-// Line 105:			x[xc]--;
+// Line 97:			x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -733,7 +737,7 @@ L_61:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 106:			xc += 12;
+// Line 98:			xc += 12;
 
 	ldloc	'xc/2'
 	ldc.i4	12
@@ -741,15 +745,15 @@ L_61:
 	stloc	'xc/2'
 	br	'L_67'
 L_65:
-// Line 108:			{
+// Line 100:			{
 
-// Line 109:				xc--;
+// Line 101:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 110:				x[xc]++;
+// Line 102:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -767,9 +771,9 @@ L_65:
 	stind.i4
 	br	'L_71'
 L_69:
-// Line 112:				{
+// Line 104:				{
 
-// Line 113:					x[xc]--;
+// Line 105:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -785,13 +789,13 @@ L_69:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 114:					xc += 4;
+// Line 106:					xc += 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	add
 	stloc	'xc/2'
-// Line 115:					x[xc]++;
+// Line 107:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -807,14 +811,14 @@ L_69:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 116:					xc -= 4;
+// Line 108:					xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	sub
 	stloc	'xc/2'
 L_71:
-// Line 111:				while (x[xc] != 0)
+// Line 103:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -825,22 +829,22 @@ L_71:
 	ldc.i4	0
 	bne.un	'L_69'
 L_70:
-// Line 117:				}
+// Line 109:				}
 
-// Line 118:				xc++;
+// Line 110:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 119:				xc += 4;
+// Line 111:				xc += 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	add
 	stloc	'xc/2'
 L_67:
-// Line 107:			while (x[xc] != 0)
+// Line 99:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -851,9 +855,9 @@ L_67:
 	ldc.i4	0
 	bne.un	'L_65'
 L_66:
-// Line 120:			}
+// Line 112:			}
 
-// Line 121:			xc -= 4;
+// Line 113:			xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
@@ -861,9 +865,9 @@ L_66:
 	stloc	'xc/2'
 	br	'L_77'
 L_75:
-// Line 123:			{
+// Line 115:			{
 
-// Line 124:				xc += 5;
+// Line 116:				xc += 5;
 
 	ldloc	'xc/2'
 	ldc.i4	5
@@ -871,15 +875,15 @@ L_75:
 	stloc	'xc/2'
 	br	'L_81'
 L_79:
-// Line 126:				{
+// Line 118:				{
 
-// Line 127:					xc -= 4;
+// Line 119:					xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	sub
 	stloc	'xc/2'
-// Line 128:					x[xc]++;
+// Line 120:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -895,13 +899,13 @@ L_79:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 129:					xc += 4;
+// Line 121:					xc += 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	add
 	stloc	'xc/2'
-// Line 130:					x[xc]--;
+// Line 122:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -918,7 +922,7 @@ L_79:
 	sub
 	stind.i4
 L_81:
-// Line 125:				while (x[xc] != 0)
+// Line 117:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -929,15 +933,15 @@ L_81:
 	ldc.i4	0
 	bne.un	'L_79'
 L_80:
-// Line 131:				}
+// Line 123:				}
 
-// Line 132:				xc -= 5;
+// Line 124:				xc -= 5;
 
 	ldloc	'xc/2'
 	ldc.i4	5
 	sub
 	stloc	'xc/2'
-// Line 133:				x[xc]--;
+// Line 125:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -955,15 +959,15 @@ L_80:
 	stind.i4
 	br	'L_86'
 L_84:
-// Line 135:				{
+// Line 127:				{
 
-// Line 136:					xc -= 2;
+// Line 128:					xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 137:					x[xc] += 10;
+// Line 129:					x[xc] += 10;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -979,13 +983,13 @@ L_84:
 	ldc.i4	10
 	add
 	stind.i4
-// Line 138:					xc += 2;
+// Line 130:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
-// Line 139:					x[xc]--;
+// Line 131:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1002,7 +1006,7 @@ L_84:
 	sub
 	stind.i4
 L_86:
-// Line 134:				while (x[xc] != 0)
+// Line 126:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1013,9 +1017,9 @@ L_86:
 	ldc.i4	0
 	bne.un	'L_84'
 L_85:
-// Line 140:				}
+// Line 132:				}
 
-// Line 141:				xc += 3;
+// Line 133:				xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
@@ -1023,9 +1027,9 @@ L_85:
 	stloc	'xc/2'
 	br	'L_91'
 L_89:
-// Line 143:				{
+// Line 135:				{
 
-// Line 144:					xc -= 2;
+// Line 136:					xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1033,15 +1037,15 @@ L_89:
 	stloc	'xc/2'
 	br	'L_95'
 L_93:
-// Line 146:					{
+// Line 138:					{
 
-// Line 147:						xc--;
+// Line 139:						xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 148:						x[xc]++;
+// Line 140:						x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1057,11 +1061,79 @@ L_93:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 149:						xc -= 2;
+// Line 141:						xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
+	stloc	'xc/2'
+// Line 142:						x[xc]++;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	1
+	add
+	stind.i4
+// Line 143:						xc += 3;
+
+	ldloc	'xc/2'
+	ldc.i4	3
+	add
+	stloc	'xc/2'
+// Line 144:						x[xc]--;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	1
+	sub
+	stind.i4
+L_95:
+// Line 137:					while (x[xc] != 0)
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	0
+	bne.un	'L_93'
+L_94:
+// Line 145:					}
+
+// Line 146:					xc--;
+
+	ldloc	'xc/2'
+	ldc.i4	1
+	sub
+	stloc	'xc/2'
+	br	'L_100'
+L_98:
+// Line 148:					{
+
+// Line 149:						xc++;
+
+	ldloc	'xc/2'
+	ldc.i4	1
+	add
 	stloc	'xc/2'
 // Line 150:						x[xc]++;
 
@@ -1079,11 +1151,11 @@ L_93:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 151:						xc += 3;
+// Line 151:						xc--;
 
 	ldloc	'xc/2'
-	ldc.i4	3
-	add
+	ldc.i4	1
+	sub
 	stloc	'xc/2'
 // Line 152:						x[xc]--;
 
@@ -1101,76 +1173,8 @@ L_93:
 	ldc.i4	1
 	sub
 	stind.i4
-L_95:
-// Line 145:					while (x[xc] != 0)
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	0
-	bne.un	'L_93'
-L_94:
-// Line 153:					}
-
-// Line 154:					xc--;
-
-	ldloc	'xc/2'
-	ldc.i4	1
-	sub
-	stloc	'xc/2'
-	br	'L_100'
-L_98:
-// Line 156:					{
-
-// Line 157:						xc++;
-
-	ldloc	'xc/2'
-	ldc.i4	1
-	add
-	stloc	'xc/2'
-// Line 158:						x[xc]++;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	1
-	add
-	stind.i4
-// Line 159:						xc--;
-
-	ldloc	'xc/2'
-	ldc.i4	1
-	sub
-	stloc	'xc/2'
-// Line 160:						x[xc]--;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	1
-	sub
-	stind.i4
 L_100:
-// Line 155:					while (x[xc] != 0)
+// Line 147:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1181,15 +1185,15 @@ L_100:
 	ldc.i4	0
 	bne.un	'L_98'
 L_99:
-// Line 161:					}
+// Line 153:					}
 
-// Line 162:					xc--;
+// Line 154:					xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 163:					x[xc] += 2;
+// Line 155:					x[xc] += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1205,13 +1209,13 @@ L_99:
 	ldc.i4	2
 	add
 	stind.i4
-// Line 164:					xc -= 2;
+// Line 156:					xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 165:					x[xc]++;
+// Line 157:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1227,13 +1231,13 @@ L_99:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 166:					xc += 6;
+// Line 158:					xc += 6;
 
 	ldloc	'xc/2'
 	ldc.i4	6
 	add
 	stloc	'xc/2'
-// Line 167:					x[xc]--;
+// Line 159:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1250,7 +1254,7 @@ L_99:
 	sub
 	stind.i4
 L_91:
-// Line 142:				while (x[xc] != 0)
+// Line 134:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1261,9 +1265,9 @@ L_91:
 	ldc.i4	0
 	bne.un	'L_89'
 L_90:
-// Line 168:				}
+// Line 160:				}
 
-// Line 169:				xc -= 2;
+// Line 161:				xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1271,9 +1275,9 @@ L_90:
 	stloc	'xc/2'
 	br	'L_106'
 L_104:
-// Line 171:				{
+// Line 163:				{
 
-// Line 172:					x[xc]--;
+// Line 164:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1290,7 +1294,7 @@ L_104:
 	sub
 	stind.i4
 L_106:
-// Line 170:				while (x[xc] != 0)
+// Line 162:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1301,15 +1305,15 @@ L_106:
 	ldc.i4	0
 	bne.un	'L_104'
 L_105:
-// Line 173:				}
+// Line 165:				}
 
-// Line 174:				xc -= 2;
+// Line 166:				xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 175:				x[xc]--;
+// Line 167:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1325,7 +1329,7 @@ L_105:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 176:				xc--;
+// Line 168:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1333,9 +1337,9 @@ L_105:
 	stloc	'xc/2'
 	br	'L_111'
 L_109:
-// Line 178:				{
+// Line 170:				{
 
-// Line 179:					x[xc]--;
+// Line 171:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1351,13 +1355,13 @@ L_109:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 180:					xc += 2;
+// Line 172:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
-// Line 181:					x[xc]++;
+// Line 173:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1373,13 +1377,13 @@ L_109:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 182:					xc--;
+// Line 174:					xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 183:					x[xc]--;
+// Line 175:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1397,16 +1401,16 @@ L_109:
 	stind.i4
 	br	'L_115'
 L_113:
-// Line 185:					{
+// Line 177:					{
 
-// Line 186:						xc += 3;
+// Line 178:						xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	add
 	stloc	'xc/2'
 L_115:
-// Line 184:					while (x[xc] != 0)
+// Line 176:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1417,9 +1421,9 @@ L_115:
 	ldc.i4	0
 	bne.un	'L_113'
 L_114:
-// Line 187:					}
+// Line 179:					}
 
-// Line 188:					xc++;
+// Line 180:					xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1427,19 +1431,19 @@ L_114:
 	stloc	'xc/2'
 	br	'L_120'
 L_118:
-// Line 190:					{
+// Line 182:					{
 
 	br	'L_124'
 L_122:
-// Line 192:						{
+// Line 184:						{
 
-// Line 193:							xc--;
+// Line 185:							xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 194:							x[xc]++;
+// Line 186:							x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1455,13 +1459,13 @@ L_122:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 195:							xc++;
+// Line 187:							xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 196:							x[xc]--;
+// Line 188:							x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1478,7 +1482,7 @@ L_122:
 	sub
 	stind.i4
 L_124:
-// Line 191:						while (x[xc] != 0)
+// Line 183:						while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1489,15 +1493,15 @@ L_124:
 	ldc.i4	0
 	bne.un	'L_122'
 L_123:
-// Line 197:						}
+// Line 189:						}
 
-// Line 198:						xc++;
+// Line 190:						xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 199:						x[xc]++;
+// Line 191:						x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1513,14 +1517,14 @@ L_123:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 200:						xc += 2;
+// Line 192:						xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
 L_120:
-// Line 189:					while (x[xc] != 0)
+// Line 181:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1531,16 +1535,16 @@ L_120:
 	ldc.i4	0
 	bne.un	'L_124'
 L_119:
-// Line 201:					}
+// Line 193:					}
 
-// Line 202:					xc -= 5;
+// Line 194:					xc -= 5;
 
 	ldloc	'xc/2'
 	ldc.i4	5
 	sub
 	stloc	'xc/2'
 L_111:
-// Line 177:				while (x[xc] != 0)
+// Line 169:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1551,9 +1555,9 @@ L_111:
 	ldc.i4	0
 	bne.un	'L_109'
 L_110:
-// Line 203:				}
+// Line 195:				}
 
-// Line 204:				xc++;
+// Line 196:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1561,9 +1565,9 @@ L_110:
 	stloc	'xc/2'
 	br	'L_131'
 L_129:
-// Line 206:				{
+// Line 198:				{
 
-// Line 207:					x[xc]--;
+// Line 199:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1580,7 +1584,7 @@ L_129:
 	sub
 	stind.i4
 L_131:
-// Line 205:				while (x[xc] != 0)
+// Line 197:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1591,15 +1595,15 @@ L_131:
 	ldc.i4	0
 	bne.un	'L_129'
 L_130:
-// Line 208:				}
+// Line 200:				}
 
-// Line 209:				xc++;
+// Line 201:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 210:				x[xc]++;
+// Line 202:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1615,13 +1619,13 @@ L_130:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 211:				xc -= 3;
+// Line 203:				xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	sub
 	stloc	'xc/2'
-// Line 212:				x[xc]--;
+// Line 204:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1639,15 +1643,15 @@ L_130:
 	stind.i4
 	br	'L_136'
 L_134:
-// Line 214:				{
+// Line 206:				{
 
-// Line 215:					xc += 2;
+// Line 207:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
-// Line 216:					x[xc]++;
+// Line 208:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1663,13 +1667,13 @@ L_134:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 217:					xc -= 2;
+// Line 209:					xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 218:					x[xc]--;
+// Line 210:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1686,7 +1690,7 @@ L_134:
 	sub
 	stind.i4
 L_136:
-// Line 213:				while (x[xc] != 0)
+// Line 205:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1697,16 +1701,16 @@ L_136:
 	ldc.i4	0
 	bne.un	'L_134'
 L_135:
-// Line 219:				}
+// Line 211:				}
 
-// Line 220:				xc--;
+// Line 212:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
 L_77:
-// Line 122:			while (x[xc] != 0)
+// Line 114:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1717,15 +1721,15 @@ L_77:
 	ldc.i4	0
 	bne.un	'L_75'
 L_76:
-// Line 221:			}
+// Line 213:			}
 
-// Line 222:			xc -= 4;
+// Line 214:			xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	sub
 	stloc	'xc/2'
-// Line 223:			x[xc]++;
+// Line 215:			x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1741,13 +1745,13 @@ L_76:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 224:			xc += 7;
+// Line 216:			xc += 7;
 
 	ldloc	'xc/2'
 	ldc.i4	7
 	add
 	stloc	'xc/2'
-// Line 225:			xc++;
+// Line 217:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1755,9 +1759,9 @@ L_76:
 	stloc	'xc/2'
 	br	'L_142'
 L_140:
-// Line 227:			{
+// Line 219:			{
 
-// Line 228:				x[xc]--;
+// Line 220:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1774,7 +1778,7 @@ L_140:
 	sub
 	stind.i4
 L_142:
-// Line 226:			while (x[xc] != 0)
+// Line 218:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1785,9 +1789,9 @@ L_142:
 	ldc.i4	0
 	bne.un	'L_140'
 L_141:
-// Line 229:			}
+// Line 221:			}
 
-// Line 230:			xc++;
+// Line 222:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1795,15 +1799,15 @@ L_141:
 	stloc	'xc/2'
 	br	'L_147'
 L_145:
-// Line 232:			{
+// Line 224:			{
 
-// Line 233:				xc -= 3;
+// Line 225:				xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	sub
 	stloc	'xc/2'
-// Line 234:				x[xc]++;
+// Line 226:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1819,13 +1823,13 @@ L_145:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 235:				xc += 3;
+// Line 227:				xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	add
 	stloc	'xc/2'
-// Line 236:				x[xc]--;
+// Line 228:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1842,7 +1846,7 @@ L_145:
 	sub
 	stind.i4
 L_147:
-// Line 231:			while (x[xc] != 0)
+// Line 223:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1853,15 +1857,15 @@ L_147:
 	ldc.i4	0
 	bne.un	'L_145'
 L_146:
-// Line 237:			}
+// Line 229:			}
 
-// Line 238:			xc -= 2;
+// Line 230:			xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 239:			x[xc] += 10;
+// Line 231:			x[xc] += 10;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1877,7 +1881,7 @@ L_146:
 	ldc.i4	10
 	add
 	stind.i4
-// Line 240:			xc--;
+// Line 232:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1885,9 +1889,9 @@ L_146:
 	stloc	'xc/2'
 	br	'L_152'
 L_150:
-// Line 242:			{
+// Line 234:			{
 
-// Line 243:				x[xc]--;
+// Line 235:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1903,13 +1907,13 @@ L_150:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 244:				xc += 2;
+// Line 236:				xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
-// Line 245:				x[xc]++;
+// Line 237:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1925,13 +1929,13 @@ L_150:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 246:				xc--;
+// Line 238:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 247:				x[xc]--;
+// Line 239:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1949,16 +1953,16 @@ L_150:
 	stind.i4
 	br	'L_156'
 L_154:
-// Line 249:				{
+// Line 241:				{
 
-// Line 250:					xc += 3;
+// Line 242:					xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	add
 	stloc	'xc/2'
 L_156:
-// Line 248:				while (x[xc] != 0)
+// Line 240:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -1969,9 +1973,9 @@ L_156:
 	ldc.i4	0
 	bne.un	'L_154'
 L_155:
-// Line 251:				}
+// Line 243:				}
 
-// Line 252:				xc++;
+// Line 244:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -1979,19 +1983,19 @@ L_155:
 	stloc	'xc/2'
 	br	'L_161'
 L_159:
-// Line 254:				{
+// Line 246:				{
 
 	br	'L_165'
 L_163:
-// Line 256:					{
+// Line 248:					{
 
-// Line 257:						xc--;
+// Line 249:						xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 258:						x[xc]++;
+// Line 250:						x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2007,13 +2011,13 @@ L_163:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 259:						xc++;
+// Line 251:						xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 260:						x[xc]--;
+// Line 252:						x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2030,7 +2034,7 @@ L_163:
 	sub
 	stind.i4
 L_165:
-// Line 255:					while (x[xc] != 0)
+// Line 247:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2041,15 +2045,15 @@ L_165:
 	ldc.i4	0
 	bne.un	'L_163'
 L_164:
-// Line 261:					}
+// Line 253:					}
 
-// Line 262:					xc++;
+// Line 254:					xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 263:					x[xc]++;
+// Line 255:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2065,14 +2069,14 @@ L_164:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 264:					xc += 2;
+// Line 256:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
 L_161:
-// Line 253:				while (x[xc] != 0)
+// Line 245:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2083,16 +2087,16 @@ L_161:
 	ldc.i4	0
 	bne.un	'L_165'
 L_160:
-// Line 265:				}
+// Line 257:				}
 
-// Line 266:				xc -= 5;
+// Line 258:				xc -= 5;
 
 	ldloc	'xc/2'
 	ldc.i4	5
 	sub
 	stloc	'xc/2'
 L_152:
-// Line 241:			while (x[xc] != 0)
+// Line 233:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2103,9 +2107,9 @@ L_152:
 	ldc.i4	0
 	bne.un	'L_150'
 L_151:
-// Line 267:			}
+// Line 259:			}
 
-// Line 268:			xc++;
+// Line 260:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -2113,9 +2117,9 @@ L_151:
 	stloc	'xc/2'
 	br	'L_172'
 L_170:
-// Line 270:			{
+// Line 262:			{
 
-// Line 271:				x[xc]--;
+// Line 263:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2132,7 +2136,7 @@ L_170:
 	sub
 	stind.i4
 L_172:
-// Line 269:			while (x[xc] != 0)
+// Line 261:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2143,15 +2147,15 @@ L_172:
 	ldc.i4	0
 	bne.un	'L_170'
 L_171:
-// Line 272:			}
+// Line 264:			}
 
-// Line 273:			xc++;
+// Line 265:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 274:			x[xc]++;
+// Line 266:			x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2167,7 +2171,7 @@ L_171:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 275:			xc++;
+// Line 267:			xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -2175,15 +2179,15 @@ L_171:
 	stloc	'xc/2'
 	br	'L_177'
 L_175:
-// Line 277:			{
+// Line 269:			{
 
-// Line 278:				xc -= 2;
+// Line 270:				xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 279:				x[xc]++;
+// Line 271:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2199,13 +2203,13 @@ L_175:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 280:				xc--;
+// Line 272:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 281:				x[xc]++;
+// Line 273:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2221,13 +2225,13 @@ L_175:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 282:				xc += 3;
+// Line 274:				xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	add
 	stloc	'xc/2'
-// Line 283:				x[xc]--;
+// Line 275:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2244,7 +2248,7 @@ L_175:
 	sub
 	stind.i4
 L_177:
-// Line 276:			while (x[xc] != 0)
+// Line 268:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2255,21 +2259,21 @@ L_177:
 	ldc.i4	0
 	bne.un	'L_175'
 L_176:
-// Line 284:			}
+// Line 276:			}
 
-// Line 285:			xc -= 3;
+// Line 277:			xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	sub
 	stloc	'xc/2'
-// Line 286:			xc--;
+// Line 278:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 287:			x[xc]++;
+// Line 279:			x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2285,13 +2289,13 @@ L_176:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 288:			xc--;
+// Line 280:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 289:			x[xc]++;
+// Line 281:			x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2307,7 +2311,7 @@ L_176:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 290:			xc += 2;
+// Line 282:			xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2315,9 +2319,9 @@ L_176:
 	stloc	'xc/2'
 	br	'L_182'
 L_180:
-// Line 292:			{
+// Line 284:			{
 
-// Line 293:				x[xc]--;
+// Line 285:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2335,9 +2339,9 @@ L_180:
 	stind.i4
 	br	'L_186'
 L_184:
-// Line 295:				{
+// Line 287:				{
 
-// Line 296:					x[xc]--;
+// Line 288:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2355,9 +2359,9 @@ L_184:
 	stind.i4
 	br	'L_190'
 L_188:
-// Line 298:					{
+// Line 290:					{
 
-// Line 299:						x[xc]--;
+// Line 291:						x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2375,9 +2379,9 @@ L_188:
 	stind.i4
 	br	'L_194'
 L_192:
-// Line 301:						{
+// Line 293:						{
 
-// Line 302:							x[xc]--;
+// Line 294:							x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2395,9 +2399,9 @@ L_192:
 	stind.i4
 	br	'L_198'
 L_196:
-// Line 304:							{
+// Line 296:							{
 
-// Line 305:								x[xc]--;
+// Line 297:								x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2415,9 +2419,9 @@ L_196:
 	stind.i4
 	br	'L_202'
 L_200:
-// Line 307:								{
+// Line 299:								{
 
-// Line 308:									x[xc]--;
+// Line 300:									x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2435,9 +2439,9 @@ L_200:
 	stind.i4
 	br	'L_206'
 L_204:
-// Line 310:									{
+// Line 302:									{
 
-// Line 311:										x[xc]--;
+// Line 303:										x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2455,9 +2459,9 @@ L_204:
 	stind.i4
 	br	'L_210'
 L_208:
-// Line 313:										{
+// Line 305:										{
 
-// Line 314:											x[xc]--;
+// Line 306:											x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2475,9 +2479,9 @@ L_208:
 	stind.i4
 	br	'L_214'
 L_212:
-// Line 316:											{
+// Line 308:											{
 
-// Line 317:												x[xc]--;
+// Line 309:												x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2493,13 +2497,13 @@ L_212:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 318:												xc--;
+// Line 310:												xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 319:												x[xc]--;
+// Line 311:												x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2515,7 +2519,7 @@ L_212:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 320:												xc++;
+// Line 312:												xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -2523,9 +2527,9 @@ L_212:
 	stloc	'xc/2'
 	br	'L_218'
 L_216:
-// Line 322:												{
+// Line 314:												{
 
-// Line 323:													x[xc]--;
+// Line 315:													x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2541,13 +2545,13 @@ L_216:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 324:													xc--;
+// Line 316:													xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 325:													x[xc]++;
+// Line 317:													x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2563,13 +2567,13 @@ L_216:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 326:													xc--;
+// Line 318:													xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 327:													x[xc]--;
+// Line 319:													x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2585,14 +2589,14 @@ L_216:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 328:													xc += 2;
+// Line 320:													xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
 L_218:
-// Line 321:												while (x[xc] != 0)
+// Line 313:												while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2603,10 +2607,10 @@ L_218:
 	ldc.i4	0
 	bne.un	'L_216'
 L_217:
-// Line 329:												}
+// Line 321:												}
 
 L_214:
-// Line 315:											while (x[xc] != 0)
+// Line 307:											while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2617,10 +2621,10 @@ L_214:
 	ldc.i4	0
 	bne.un	'L_212'
 L_213:
-// Line 330:											}
+// Line 322:											}
 
 L_210:
-// Line 312:										while (x[xc] != 0)
+// Line 304:										while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2631,10 +2635,10 @@ L_210:
 	ldc.i4	0
 	bne.un	'L_208'
 L_209:
-// Line 331:										}
+// Line 323:										}
 
 L_206:
-// Line 309:									while (x[xc] != 0)
+// Line 301:									while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2645,10 +2649,10 @@ L_206:
 	ldc.i4	0
 	bne.un	'L_204'
 L_205:
-// Line 332:									}
+// Line 324:									}
 
 L_202:
-// Line 306:								while (x[xc] != 0)
+// Line 298:								while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2659,10 +2663,10 @@ L_202:
 	ldc.i4	0
 	bne.un	'L_200'
 L_201:
-// Line 333:								}
+// Line 325:								}
 
 L_198:
-// Line 303:							while (x[xc] != 0)
+// Line 295:							while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2673,10 +2677,10 @@ L_198:
 	ldc.i4	0
 	bne.un	'L_196'
 L_197:
-// Line 334:							}
+// Line 326:							}
 
 L_194:
-// Line 300:						while (x[xc] != 0)
+// Line 292:						while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2687,10 +2691,10 @@ L_194:
 	ldc.i4	0
 	bne.un	'L_192'
 L_193:
-// Line 335:						}
+// Line 327:						}
 
 L_190:
-// Line 297:					while (x[xc] != 0)
+// Line 289:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2701,10 +2705,10 @@ L_190:
 	ldc.i4	0
 	bne.un	'L_188'
 L_189:
-// Line 336:					}
+// Line 328:					}
 
 L_186:
-// Line 294:				while (x[xc] != 0)
+// Line 286:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2715,10 +2719,10 @@ L_186:
 	ldc.i4	0
 	bne.un	'L_184'
 L_185:
-// Line 337:				}
+// Line 329:				}
 
 L_182:
-// Line 291:			while (x[xc] != 0)
+// Line 283:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2729,9 +2733,9 @@ L_182:
 	ldc.i4	0
 	bne.un	'L_180'
 L_181:
-// Line 338:			}
+// Line 330:			}
 
-// Line 339:			xc--;
+// Line 331:			xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -2739,9 +2743,9 @@ L_181:
 	stloc	'xc/2'
 	br	'L_232'
 L_230:
-// Line 341:			{
+// Line 333:			{
 
-// Line 342:				x[xc] += 5;
+// Line 334:				x[xc] += 5;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2759,15 +2763,15 @@ L_230:
 	stind.i4
 	br	'L_236'
 L_234:
-// Line 344:				{
+// Line 336:				{
 
-// Line 345:					xc -= 3;
+// Line 337:					xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	sub
 	stloc	'xc/2'
-// Line 346:					x[xc] += 8;
+// Line 338:					x[xc] += 8;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2783,13 +2787,13 @@ L_234:
 	ldc.i4	8
 	add
 	stind.i4
-// Line 347:					xc--;
+// Line 339:					xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 348:					x[xc] += 8;
+// Line 340:					x[xc] += 8;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2805,13 +2809,13 @@ L_234:
 	ldc.i4	8
 	add
 	stind.i4
-// Line 349:					xc += 4;
+// Line 341:					xc += 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
 	add
 	stloc	'xc/2'
-// Line 350:					x[xc]--;
+// Line 342:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2828,7 +2832,7 @@ L_234:
 	sub
 	stind.i4
 L_236:
-// Line 343:				while (x[xc] != 0)
+// Line 335:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2839,21 +2843,21 @@ L_236:
 	ldc.i4	0
 	bne.un	'L_234'
 L_235:
-// Line 351:				}
+// Line 343:				}
 
-// Line 352:				xc--;
+// Line 344:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 353:				xc -= 3;
+// Line 345:				xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	sub
 	stloc	'xc/2'
-// Line 354:				x[xc]++;
+// Line 346:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2869,13 +2873,13 @@ L_235:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 355:				xc--;
+// Line 347:				xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 356:				x[xc]--;
+// Line 348:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2891,7 +2895,7 @@ L_235:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 357:				xc += 4;
+// Line 349:				xc += 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
@@ -2899,15 +2903,15 @@ L_235:
 	stloc	'xc/2'
 	br	'L_241'
 L_239:
-// Line 359:				{
+// Line 351:				{
 
-// Line 360:					xc++;
+// Line 352:					xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	add
 	stloc	'xc/2'
-// Line 361:					x[xc]++;
+// Line 353:					x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2923,13 +2927,13 @@ L_239:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 362:					xc -= 3;
+// Line 354:					xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	sub
 	stloc	'xc/2'
-// Line 363:					x[xc] += 9;
+// Line 355:					x[xc] += 9;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2945,13 +2949,13 @@ L_239:
 	ldc.i4	9
 	add
 	stind.i4
-// Line 364:					xc--;
+// Line 356:					xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
-// Line 365:					x[xc]--;
+// Line 357:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2967,11 +2971,79 @@ L_239:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 366:					xc += 3;
+// Line 358:					xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
 	add
+	stloc	'xc/2'
+// Line 359:					x[xc]--;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	1
+	sub
+	stind.i4
+L_241:
+// Line 350:				while (x[xc] != 0)
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	0
+	bne.un	'L_239'
+L_240:
+// Line 360:				}
+
+// Line 361:				xc -= 5;
+
+	ldloc	'xc/2'
+	ldc.i4	5
+	sub
+	stloc	'xc/2'
+	br	'L_246'
+L_244:
+// Line 363:				{
+
+// Line 364:					xc += 2;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	add
+	stloc	'xc/2'
+// Line 365:					x[xc]++;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	1
+	add
+	stind.i4
+// Line 366:					xc -= 2;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	sub
 	stloc	'xc/2'
 // Line 367:					x[xc]--;
 
@@ -2989,8 +3061,8 @@ L_239:
 	ldc.i4	1
 	sub
 	stind.i4
-L_241:
-// Line 358:				while (x[xc] != 0)
+L_246:
+// Line 362:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -2999,27 +3071,11 @@ L_241:
 	add
 	ldind.i4
 	ldc.i4	0
-	bne.un	'L_239'
-L_240:
+	bne.un	'L_244'
+L_245:
 // Line 368:				}
 
-// Line 369:				xc -= 5;
-
-	ldloc	'xc/2'
-	ldc.i4	5
-	sub
-	stloc	'xc/2'
-	br	'L_246'
-L_244:
-// Line 371:				{
-
-// Line 372:					xc += 2;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	add
-	stloc	'xc/2'
-// Line 373:					x[xc]++;
+// Line 369:				x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3035,11 +3091,37 @@ L_244:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 374:					xc -= 2;
+// Line 370:				xc--;
+
+	ldloc	'xc/2'
+	ldc.i4	1
+	sub
+	stloc	'xc/2'
+	br	'L_251'
+L_249:
+// Line 372:				{
+
+// Line 373:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	1
 	sub
+	stind.i4
+// Line 374:					xc++;
+
+	ldloc	'xc/2'
+	ldc.i4	1
+	add
 	stloc	'xc/2'
 // Line 375:					x[xc]--;
 
@@ -3057,92 +3139,14 @@ L_244:
 	ldc.i4	1
 	sub
 	stind.i4
-L_246:
-// Line 370:				while (x[xc] != 0)
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	0
-	bne.un	'L_244'
-L_245:
-// Line 376:				}
-
-// Line 377:				x[xc]++;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	1
-	add
-	stind.i4
-// Line 378:				xc--;
-
-	ldloc	'xc/2'
-	ldc.i4	1
-	sub
-	stloc	'xc/2'
-	br	'L_251'
-L_249:
-// Line 380:				{
-
-// Line 381:					x[xc]--;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	1
-	sub
-	stind.i4
-// Line 382:					xc++;
-
-	ldloc	'xc/2'
-	ldc.i4	1
-	add
-	stloc	'xc/2'
-// Line 383:					x[xc]--;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	1
-	sub
-	stind.i4
-// Line 384:					xc--;
+// Line 376:					xc--;
 
 	ldloc	'xc/2'
 	ldc.i4	1
 	sub
 	stloc	'xc/2'
 L_251:
-// Line 379:				while (x[xc] != 0)
+// Line 371:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3153,9 +3157,9 @@ L_251:
 	ldc.i4	0
 	bne.un	'L_249'
 L_250:
-// Line 385:				}
+// Line 377:				}
 
-// Line 386:				xc++;
+// Line 378:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -3163,15 +3167,15 @@ L_250:
 	stloc	'xc/2'
 	br	'L_256'
 L_254:
-// Line 388:				{
+// Line 380:				{
 
-// Line 389:					xc += 2;
+// Line 381:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
 	stloc	'xc/2'
-// Line 390:					putchar(x[xc]);
+// Line 382:					putchar(x[xc]);
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3179,9 +3183,11 @@ L_254:
 	ldloca	'x/1'
 	add
 	ldind.i4
-	call	int32 'putchar'(int32)
+	ldsfld	void* '__stdout'
+
+	call	int32 'fputc'(int32, void*)
 	pop
-// Line 391:					xc -= 4;
+// Line 383:					xc -= 4;
 
 	ldloc	'xc/2'
 	ldc.i4	4
@@ -3189,9 +3195,9 @@ L_254:
 	stloc	'xc/2'
 	br	'L_260'
 L_258:
-// Line 393:					{
+// Line 385:					{
 
-// Line 394:						x[xc]++;
+// Line 386:						x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3207,7 +3213,7 @@ L_258:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 395:						putchar(x[xc]);
+// Line 387:						putchar(x[xc]);
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3215,13 +3221,15 @@ L_258:
 	ldloca	'x/1'
 	add
 	ldind.i4
-	call	int32 'putchar'(int32)
+	ldsfld	void* '__stdout'
+
+	call	int32 'fputc'(int32, void*)
 	pop
 	br	'L_264'
 L_262:
-// Line 397:						{
+// Line 389:						{
 
-// Line 398:							x[xc]--;
+// Line 390:							x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3238,7 +3246,7 @@ L_262:
 	sub
 	stind.i4
 L_264:
-// Line 396:						while (x[xc] != 0)
+// Line 388:						while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3249,10 +3257,10 @@ L_264:
 	ldc.i4	0
 	bne.un	'L_262'
 L_263:
-// Line 399:						}
+// Line 391:						}
 
 L_260:
-// Line 392:					while (x[xc] != 0)
+// Line 384:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3263,13 +3271,77 @@ L_260:
 	ldc.i4	0
 	bne.un	'L_258'
 L_259:
-// Line 400:					}
+// Line 392:					}
 
-// Line 401:					xc += 2;
+// Line 393:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	add
+	stloc	'xc/2'
+// Line 394:					x[xc]--;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	1
+	sub
+	stind.i4
+L_256:
+// Line 379:				while (x[xc] != 0)
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldc.i4	0
+	bne.un	'L_254'
+L_255:
+// Line 395:				}
+
+// Line 396:				xc++;
+
+	ldloc	'xc/2'
+	ldc.i4	1
+	add
+	stloc	'xc/2'
+	br	'L_271'
+L_269:
+// Line 398:				{
+
+// Line 399:					xc += 2;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	add
+	stloc	'xc/2'
+// Line 400:					putchar(x[xc]);
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	shl
+	ldloca	'x/1'
+	add
+	ldind.i4
+	ldsfld	void* '__stdout'
+
+	call	int32 'fputc'(int32, void*)
+	pop
+// Line 401:					xc -= 2;
+
+	ldloc	'xc/2'
+	ldc.i4	2
+	sub
 	stloc	'xc/2'
 // Line 402:					x[xc]--;
 
@@ -3287,70 +3359,8 @@ L_259:
 	ldc.i4	1
 	sub
 	stind.i4
-L_256:
-// Line 387:				while (x[xc] != 0)
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	0
-	bne.un	'L_254'
-L_255:
-// Line 403:				}
-
-// Line 404:				xc++;
-
-	ldloc	'xc/2'
-	ldc.i4	1
-	add
-	stloc	'xc/2'
-	br	'L_271'
-L_269:
-// Line 406:				{
-
-// Line 407:					xc += 2;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	add
-	stloc	'xc/2'
-// Line 408:					putchar(x[xc]);
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	call	int32 'putchar'(int32)
-	pop
-// Line 409:					xc -= 2;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	sub
-	stloc	'xc/2'
-// Line 410:					x[xc]--;
-
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldloc	'xc/2'
-	ldc.i4	2
-	shl
-	ldloca	'x/1'
-	add
-	ldind.i4
-	ldc.i4	1
-	sub
-	stind.i4
 L_271:
-// Line 405:				while (x[xc] != 0)
+// Line 397:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3361,9 +3371,9 @@ L_271:
 	ldc.i4	0
 	bne.un	'L_269'
 L_270:
-// Line 411:				}
+// Line 403:				}
 
-// Line 412:				xc++;
+// Line 404:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -3371,9 +3381,9 @@ L_270:
 	stloc	'xc/2'
 	br	'L_276'
 L_274:
-// Line 414:				{
+// Line 406:				{
 
-// Line 415:					x[xc]--;
+// Line 407:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3390,7 +3400,7 @@ L_274:
 	sub
 	stind.i4
 L_276:
-// Line 413:				while (x[xc] != 0)
+// Line 405:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3401,9 +3411,9 @@ L_276:
 	ldc.i4	0
 	bne.un	'L_274'
 L_275:
-// Line 416:				}
+// Line 408:				}
 
-// Line 417:				xc++;
+// Line 409:				xc++;
 
 	ldloc	'xc/2'
 	ldc.i4	1
@@ -3411,9 +3421,9 @@ L_275:
 	stloc	'xc/2'
 	br	'L_281'
 L_279:
-// Line 419:				{
+// Line 411:				{
 
-// Line 420:					x[xc]--;
+// Line 412:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3430,7 +3440,7 @@ L_279:
 	sub
 	stind.i4
 L_281:
-// Line 418:				while (x[xc] != 0)
+// Line 410:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3441,9 +3451,9 @@ L_281:
 	ldc.i4	0
 	bne.un	'L_279'
 L_280:
-// Line 421:				}
+// Line 413:				}
 
-// Line 422:				xc += 3;
+// Line 414:				xc += 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
@@ -3451,9 +3461,9 @@ L_280:
 	stloc	'xc/2'
 	br	'L_286'
 L_284:
-// Line 424:				{
+// Line 416:				{
 
-// Line 425:					xc += 2;
+// Line 417:					xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3461,15 +3471,15 @@ L_284:
 	stloc	'xc/2'
 	br	'L_290'
 L_288:
-// Line 427:					{
+// Line 419:					{
 
-// Line 428:						xc -= 8;
+// Line 420:						xc -= 8;
 
 	ldloc	'xc/2'
 	ldc.i4	8
 	sub
 	stloc	'xc/2'
-// Line 429:						x[xc]++;
+// Line 421:						x[xc]++;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3485,13 +3495,13 @@ L_288:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 430:						xc += 8;
+// Line 422:						xc += 8;
 
 	ldloc	'xc/2'
 	ldc.i4	8
 	add
 	stloc	'xc/2'
-// Line 431:						x[xc]--;
+// Line 423:						x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3508,7 +3518,7 @@ L_288:
 	sub
 	stind.i4
 L_290:
-// Line 426:					while (x[xc] != 0)
+// Line 418:					while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3519,15 +3529,15 @@ L_290:
 	ldc.i4	0
 	bne.un	'L_288'
 L_289:
-// Line 432:					}
+// Line 424:					}
 
-// Line 433:					xc -= 2;
+// Line 425:					xc -= 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
 	sub
 	stloc	'xc/2'
-// Line 434:					x[xc]--;
+// Line 426:					x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3544,7 +3554,7 @@ L_289:
 	sub
 	stind.i4
 L_286:
-// Line 423:				while (x[xc] != 0)
+// Line 415:				while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3555,10 +3565,10 @@ L_286:
 	ldc.i4	0
 	bne.un	'L_284'
 L_285:
-// Line 435:				}
+// Line 427:				}
 
 L_232:
-// Line 340:			while (x[xc] != 0)
+// Line 332:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3569,9 +3579,9 @@ L_232:
 	ldc.i4	0
 	bne.un	'L_230'
 L_231:
-// Line 436:			}
+// Line 428:			}
 
-// Line 437:			xc += 2;
+// Line 429:			xc += 2;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3579,9 +3589,9 @@ L_231:
 	stloc	'xc/2'
 	br	'L_297'
 L_295:
-// Line 439:			{
+// Line 431:			{
 
-// Line 440:				x[xc]--;
+// Line 432:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3598,7 +3608,7 @@ L_295:
 	sub
 	stind.i4
 L_297:
-// Line 438:			while (x[xc] != 0)
+// Line 430:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3609,9 +3619,9 @@ L_297:
 	ldc.i4	0
 	bne.un	'L_295'
 L_296:
-// Line 441:			}
+// Line 433:			}
 
-// Line 442:			xc -= 3;
+// Line 434:			xc -= 3;
 
 	ldloc	'xc/2'
 	ldc.i4	3
@@ -3619,9 +3629,9 @@ L_296:
 	stloc	'xc/2'
 	br	'L_302'
 L_300:
-// Line 444:			{
+// Line 436:			{
 
-// Line 445:				x[xc]--;
+// Line 437:				x[xc]--;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3638,7 +3648,7 @@ L_300:
 	sub
 	stind.i4
 L_302:
-// Line 443:			while (x[xc] != 0)
+// Line 435:			while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3649,16 +3659,16 @@ L_302:
 	ldc.i4	0
 	bne.un	'L_300'
 L_301:
-// Line 446:			}
+// Line 438:			}
 
-// Line 447:			xc -= 8;
+// Line 439:			xc -= 8;
 
 	ldloc	'xc/2'
 	ldc.i4	8
 	sub
 	stloc	'xc/2'
 L_63:
-// Line 103:		while (x[xc] != 0)
+// Line 95:		while (x[xc] != 0)
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3669,9 +3679,9 @@ L_63:
 	ldc.i4	0
 	bne.un	'L_61'
 L_62:
-// Line 448:		}
+// Line 440:		}
 
-// Line 449:		x[xc] += 10;
+// Line 441:		x[xc] += 10;
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3687,7 +3697,7 @@ L_62:
 	ldc.i4	10
 	add
 	stind.i4
-// Line 450:		putchar(x[xc]);
+// Line 442:		putchar(x[xc]);
 
 	ldloc	'xc/2'
 	ldc.i4	2
@@ -3695,17 +3705,20 @@ L_62:
 	ldloca	'x/1'
 	add
 	ldind.i4
-	call	int32 'putchar'(int32)
+	ldsfld	void* '__stdout'
+
+	call	int32 'fputc'(int32, void*)
 	pop
-// Line 451:		printf("\n");
+// Line 443:		printf("\n");
 
 	ldsflda	valuetype 'int8[]' 'L_2'
 
-	call	vararg void 'printf'(void*, ...)
-// Line 452:	  return 0;
+	call	vararg int32 'printf'(void*, ...)
+	pop
+// Line 444:	  return 0;
 
 	ldc.i4	0
-// Line 453:	}
+// Line 445:	}
 
 L_4:
 	ret
@@ -3719,7 +3732,21 @@ L_4:
 	65 20 63 61 73 61 73 3a 
 	20 25 64 a 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -3728,6 +3755,19 @@ L_4:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -3742,9 +3782,12 @@ L_4:
 }
 .class private value explicit ansi sealed 'int8[]' {.pack 1 .size 1}
 .class private value explicit ansi sealed 'int32[128000]' {.pack 1 .size 512000}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'atoi'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'putchar'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'memset'(void*, int32, uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'atol'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fputc'(int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg void 'printf'(void*) preservesig {}

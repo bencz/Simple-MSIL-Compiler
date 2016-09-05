@@ -1,17 +1,19 @@
-//File BZIP2.C
-//Compiler version 6.0.8.1
+//File bzip2.C
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
 
+.assembly extern lsmsilcrtl { }
+
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
-// Line 3961:	IntNative main ( IntNative argc, Char *argv[] )
+// Line 3951:	IntNative main ( IntNative argc, Char *argv[] )
 
-// Line 3962:	{
+// Line 3952:	{
 
 	.locals
 	(
@@ -24,151 +26,151 @@
 	)
 	.maxstack	64
 L_126:
-// Line 3966:	   Cell   *aa;
+// Line 3956:	   Cell   *aa;
 
-// Line 3967:	
+// Line 3957:	
 
-// Line 3968:	
+// Line 3958:	
 
-// Line 3969:	   PRINTLOC;
+// Line 3959:	   PRINTLOC;
 
-// Line 3970:	
+// Line 3960:	
 
-// Line 3971:	   #if DEBUG
+// Line 3961:	   #if DEBUG
 
-// Line 3972:	      fprintf ( stderr, "bzip2: *** compiled with debugging ON ***\n" );
+// Line 3962:	      fprintf ( stderr, "bzip2: *** compiled with debugging ON ***\n" );
 
-// Line 3973:	   #endif
+// Line 3963:	   #endif
 
-// Line 3974:	
+// Line 3964:	
 
-// Line 3975:	    
+// Line 3965:	    
 
-// Line 3976:	   if (sizeof(Int32) != 4 || sizeof(UInt32) != 4  ||
+// Line 3966:	   if (sizeof(Int32) != 4 || sizeof(UInt32) != 4  ||
 
-// Line 3977:	       sizeof(Int16) != 2 || sizeof(UInt16) != 2  ||
+// Line 3967:	       sizeof(Int16) != 2 || sizeof(UInt16) != 2  ||
 
-// Line 3978:	       sizeof(Char)  != 1 || sizeof(UChar)  != 1) {
+// Line 3968:	       sizeof(Char)  != 1 || sizeof(UChar)  != 1) {
 
 L_129:
-// Line 3986:	   }
+// Line 3976:	   }
 
-// Line 3987:	
+// Line 3977:	
 
-// Line 3988:	
+// Line 3978:	
 
-// Line 3989:	    
+// Line 3979:	    
 
-// Line 3990:	#ifdef XXXXX
+// Line 3980:	#ifdef XXXXX
 
-// Line 3991:	   signal (SIGINT,  mySignalCatcher);
+// Line 3981:	   signal (SIGINT,  mySignalCatcher);
 
-// Line 3992:	   signal (SIGTERM, mySignalCatcher);
+// Line 3982:	   signal (SIGTERM, mySignalCatcher);
 
-// Line 3993:	   signal (SIGSEGV, mySIGSEGVorSIGBUScatcher);
+// Line 3983:	   signal (SIGSEGV, mySIGSEGVorSIGBUScatcher);
 
-// Line 3994:	   #if BZ_UNIX
+// Line 3984:	   #if BZ_UNIX
 
-// Line 3995:	   signal (SIGHUP,  mySignalCatcher);
+// Line 3985:	   signal (SIGHUP,  mySignalCatcher);
 
-// Line 3996:	   signal (SIGBUS,  mySIGSEGVorSIGBUScatcher);
+// Line 3986:	   signal (SIGBUS,  mySIGSEGVorSIGBUScatcher);
 
-// Line 3997:	   #endif
+// Line 3987:	   #endif
 
-// Line 3998:	#endif
+// Line 3988:	#endif
 
-// Line 3999:	
+// Line 3989:	
 
-// Line 4000:	    
+// Line 3990:	    
 
-// Line 4001:	   outputHandleJustInCase  = NULL;
+// Line 3991:	   outputHandleJustInCase  = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'outputHandleJustInCase'
 
-// Line 4002:	   ftab                    = NULL;
+// Line 3992:	   ftab                    = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'ftab'
 
-// Line 4003:	   ll4                     = NULL;
+// Line 3993:	   ll4                     = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'll4'
 
-// Line 4004:	   ll16                    = NULL;
+// Line 3994:	   ll16                    = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'll16'
 
-// Line 4005:	   ll8                     = NULL;
+// Line 3995:	   ll8                     = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'll8'
 
-// Line 4006:	   tt                      = NULL;
+// Line 3996:	   tt                      = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'tt'
 
-// Line 4007:	   block                   = NULL;
+// Line 3997:	   block                   = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'block'
 
-// Line 4008:	   zptr                    = NULL;
+// Line 3998:	   zptr                    = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'zptr'
 
-// Line 4009:	   smallMode               = False;
+// Line 3999:	   smallMode               = False;
 
 	ldc.i4	0
 	stsfld	uint8 'smallMode'
 
-// Line 4010:	   keepInputFiles          = False;
+// Line 4000:	   keepInputFiles          = False;
 
 	ldc.i4	0
 	stsfld	uint8 'keepInputFiles'
 
-// Line 4011:	   verbosity               = 0;
+// Line 4001:	   verbosity               = 0;
 
 	ldc.i4	0
 	stsfld	int32 'verbosity'
 
-// Line 4012:	   blockSize100k           = 9;
+// Line 4002:	   blockSize100k           = 9;
 
 	ldc.i4	9
 	stsfld	int32 'blockSize100k'
 
-// Line 4013:	   testFailsExist          = False;
+// Line 4003:	   testFailsExist          = False;
 
 	ldc.i4	0
 	stsfld	uint8 'testFailsExist'
 
-// Line 4014:	   bsStream                = NULL;
+// Line 4004:	   bsStream                = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'bsStream'
 
-// Line 4015:	   numFileNames            = 0;
+// Line 4005:	   numFileNames            = 0;
 
 	ldc.i4	0
 	stsfld	int32 'numFileNames'
 
-// Line 4016:	   numFilesProcessed       = 0;
+// Line 4006:	   numFilesProcessed       = 0;
 
 	ldc.i4	0
 	stsfld	int32 'numFilesProcessed'
 
-// Line 4017:	   workFactor              = 30;
+// Line 4007:	   workFactor              = 30;
 
 	ldc.i4	30
 	stsfld	int32 'workFactor'
 
-// Line 4018:	
+// Line 4008:	
 
-// Line 4019:	   strcpy ( inName,  "(none)" );
+// Line 4009:	   strcpy ( inName,  "(none)" );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -176,7 +178,7 @@ L_129:
 
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 4020:	   strcpy ( outName, "(none)" );
+// Line 4010:	   strcpy ( outName, "(none)" );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -184,9 +186,9 @@ L_129:
 
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 4021:	
+// Line 4011:	
 
-// Line 4022:	   strcpy ( progNameReally, argv[0] );
+// Line 4012:	   strcpy ( progNameReally, argv[0] );
 
 	ldsflda	valuetype 'int8[1024]' 'progNameReally'
 
@@ -194,7 +196,7 @@ L_129:
 	ldind.u4
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 4023:	   progName = &progNameReally[0];
+// Line 4013:	   progName = &progNameReally[0];
 
 	ldsflda	valuetype 'int8[1024]' 'progNameReally'
 
@@ -205,7 +207,7 @@ L_129:
 	stloc	'tmp/3'
 	br	'L_133'
 L_132:
-// Line 4025:	      if (*tmp == PATH_SEP) progName = tmp + 1;
+// Line 4015:	      if (*tmp == PATH_SEP) progName = tmp + 1;
 
 	ldloc	'tmp/3'
 	ldind.i1
@@ -223,7 +225,7 @@ L_135:
 	ldc.i4	1
 	add
 	stloc	'tmp/3'
-// Line 4024:	   for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
+// Line 4014:	   for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
 
 L_133:
 	ldloc	'tmp/3'
@@ -232,13 +234,13 @@ L_133:
 	ldc.i4	0
 	bne.un	'L_132'
 L_134:
-// Line 4026:	
+// Line 4016:	
 
-// Line 4027:	
+// Line 4017:	
 
-// Line 4028:	    
+// Line 4018:	    
 
-// Line 4029:	   argList = NULL;
+// Line 4019:	   argList = NULL;
 
 	ldc.i4	0
 	stloc	'argList/4'
@@ -246,7 +248,7 @@ L_134:
 	stloc	'i/1'
 	br	'L_138'
 L_137:
-// Line 4031:	      APPEND_FILESPEC(argList, argv[i]);
+// Line 4021:	      APPEND_FILESPEC(argList, argv[i]);
 
 	ldloc	'argList/4'
 	ldloc	'i/1'
@@ -262,7 +264,7 @@ L_140:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 4030:	   for (i = 1; i <= argc-1; i++)
+// Line 4020:	   for (i = 1; i <= argc-1; i++)
 
 L_138:
 	ldloc	'i/1'
@@ -271,18 +273,18 @@ L_138:
 	sub
 	ble	'L_137'
 L_139:
-// Line 4032:	
+// Line 4022:	
 
-// Line 4033:	
+// Line 4023:	
 
-// Line 4034:	    
+// Line 4024:	    
 
-// Line 4035:	   longestFileName = 7;
+// Line 4025:	   longestFileName = 7;
 
 	ldc.i4	7
 	stsfld	int32 'longestFileName'
 
-// Line 4036:	   numFileNames    = 0;
+// Line 4026:	   numFileNames    = 0;
 
 	ldc.i4	0
 	stsfld	int32 'numFileNames'
@@ -291,7 +293,7 @@ L_139:
 	stloc	'aa/5'
 	br	'L_142'
 L_141:
-// Line 4038:	      if (aa->name[0] != '-') {
+// Line 4028:	      if (aa->name[0] != '-') {
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -299,7 +301,7 @@ L_141:
 	conv.i4
 	ldc.i4	45
 	beq	'L_145'
-// Line 4039:	         numFileNames++;
+// Line 4029:	         numFileNames++;
 
 	ldsfld	int32 'numFileNames'
 
@@ -307,7 +309,7 @@ L_141:
 	add
 	stsfld	int32 'numFileNames'
 
-// Line 4040:	         if (longestFileName < (Int32)strlen(aa->name) )
+// Line 4030:	         if (longestFileName < (Int32)strlen(aa->name) )
 
 	ldsfld	int32 'longestFileName'
 
@@ -316,7 +318,7 @@ L_141:
 	call	uint32 'strlen'(void*)
 	conv.i4
 	bge	'L_147'
-// Line 4041:	            longestFileName = (Int32)strlen(aa->name);
+// Line 4031:	            longestFileName = (Int32)strlen(aa->name);
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -332,35 +334,35 @@ L_144:
 	add
 	ldind.u4
 	stloc	'aa/5'
-// Line 4037:	   for (aa = argList; aa != NULL; aa = aa->link)
+// Line 4027:	   for (aa = argList; aa != NULL; aa = aa->link)
 
 L_142:
 	ldloc	'aa/5'
 	ldc.i4	0
 	bne.un	'L_141'
 L_143:
-// Line 4042:	      }
+// Line 4032:	      }
 
-// Line 4043:	
+// Line 4033:	
 
-// Line 4044:	    
+// Line 4034:	    
 
-// Line 4045:	    
+// Line 4035:	    
 
-// Line 4046:	   opMode = OM_Z;
+// Line 4036:	   opMode = OM_Z;
 
 	ldc.i4	1
 	stsfld	int32 'opMode'
 
-// Line 4047:	
+// Line 4037:	
 
-// Line 4048:	   if ( (strcmp ( "bunzip2",     progName ) == 0) ||
+// Line 4038:	   if ( (strcmp ( "bunzip2",     progName ) == 0) ||
 
-// Line 4049:	        (strcmp ( "BUNZIP2",     progName ) == 0) ||
+// Line 4039:	        (strcmp ( "BUNZIP2",     progName ) == 0) ||
 
-// Line 4050:	        (strcmp ( "bunzip2.exe", progName ) == 0) ||
+// Line 4040:	        (strcmp ( "bunzip2.exe", progName ) == 0) ||
 
-// Line 4051:	        (strcmp ( "BUNZIP2.EXE", progName ) == 0) )
+// Line 4041:	        (strcmp ( "BUNZIP2.EXE", progName ) == 0) )
 
 	ldsflda	valuetype 'int8[]' 'L_104'
 
@@ -391,25 +393,25 @@ L_143:
 	ldc.i4	0
 	bne.un	'L_149'
 L_272:
-// Line 4052:	      opMode = OM_UNZ;
+// Line 4042:	      opMode = OM_UNZ;
 
 	ldc.i4	2
 	stsfld	int32 'opMode'
 
 L_149:
-// Line 4053:	
+// Line 4043:	
 
-// Line 4054:	
+// Line 4044:	
 
-// Line 4055:	    
+// Line 4045:	    
 
-// Line 4056:	   if (numFileNames == 0)
+// Line 4046:	   if (numFileNames == 0)
 
 	ldsfld	int32 'numFileNames'
 
 	ldc.i4	0
 	bne.un	'L_150'
-// Line 4057:	      srcMode = SM_I2O; else srcMode = SM_F2F;
+// Line 4047:	      srcMode = SM_I2O; else srcMode = SM_F2F;
 
 	ldc.i4	1
 	stsfld	int32 'srcMode'
@@ -420,15 +422,15 @@ L_150:
 	stsfld	int32 'srcMode'
 
 L_151:
-// Line 4058:	
+// Line 4048:	
 
-// Line 4059:	    
+// Line 4049:	    
 
 	ldloc	'argList/4'
 	stloc	'aa/5'
 	br	'L_153'
 L_152:
-// Line 4061:	      if (aa->name[0] == '-' && aa->name[1] != '-')
+// Line 4051:	      if (aa->name[0] == '-' && aa->name[1] != '-')
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -448,7 +450,7 @@ L_152:
 	stloc	'j/2'
 	br	'L_158'
 L_157:
-// Line 4063:	            switch (aa->name[j]) {
+// Line 4053:	            switch (aa->name[j]) {
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -563,105 +565,105 @@ L_296:
 	beq	'L_180'
 	br	'L_182'
 L_163:
-// Line 4064:	               case 'c': srcMode          = SM_F2O; break;
+// Line 4054:	               case 'c': srcMode          = SM_F2O; break;
 
 	ldc.i4	2
 	stsfld	int32 'srcMode'
 
 	br	'L_161'
 L_164:
-// Line 4065:	               case 'd': opMode           = OM_UNZ; break;
+// Line 4055:	               case 'd': opMode           = OM_UNZ; break;
 
 	ldc.i4	2
 	stsfld	int32 'opMode'
 
 	br	'L_161'
 L_165:
-// Line 4066:	               case 'f': opMode           = OM_Z; break;
+// Line 4056:	               case 'f': opMode           = OM_Z; break;
 
 	ldc.i4	1
 	stsfld	int32 'opMode'
 
 	br	'L_161'
 L_166:
-// Line 4067:	               case 't': opMode           = OM_TEST; break;
+// Line 4057:	               case 't': opMode           = OM_TEST; break;
 
 	ldc.i4	3
 	stsfld	int32 'opMode'
 
 	br	'L_161'
 L_167:
-// Line 4068:	               case 'k': keepInputFiles   = True; break;
+// Line 4058:	               case 'k': keepInputFiles   = True; break;
 
 	ldc.i4	1
 	stsfld	uint8 'keepInputFiles'
 
 	br	'L_161'
 L_168:
-// Line 4069:	               case 's': smallMode        = True; break;
+// Line 4059:	               case 's': smallMode        = True; break;
 
 	ldc.i4	1
 	stsfld	uint8 'smallMode'
 
 	br	'L_161'
 L_169:
-// Line 4070:	               case '1': blockSize100k    = 1; break;
+// Line 4060:	               case '1': blockSize100k    = 1; break;
 
 	ldc.i4	1
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_170:
-// Line 4071:	               case '2': blockSize100k    = 2; break;
+// Line 4061:	               case '2': blockSize100k    = 2; break;
 
 	ldc.i4	2
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_171:
-// Line 4072:	               case '3': blockSize100k    = 3; break;
+// Line 4062:	               case '3': blockSize100k    = 3; break;
 
 	ldc.i4	3
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_172:
-// Line 4073:	               case '4': blockSize100k    = 4; break;
+// Line 4063:	               case '4': blockSize100k    = 4; break;
 
 	ldc.i4	4
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_173:
-// Line 4074:	               case '5': blockSize100k    = 5; break;
+// Line 4064:	               case '5': blockSize100k    = 5; break;
 
 	ldc.i4	5
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_174:
-// Line 4075:	               case '6': blockSize100k    = 6; break;
+// Line 4065:	               case '6': blockSize100k    = 6; break;
 
 	ldc.i4	6
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_175:
-// Line 4076:	               case '7': blockSize100k    = 7; break;
+// Line 4066:	               case '7': blockSize100k    = 7; break;
 
 	ldc.i4	7
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_176:
-// Line 4077:	               case '8': blockSize100k    = 8; break;
+// Line 4067:	               case '8': blockSize100k    = 8; break;
 
 	ldc.i4	8
 	stsfld	int32 'blockSize100k'
 
 	br	'L_161'
 L_177:
-// Line 4078:	               case '9': blockSize100k    = 9; break;
+// Line 4068:	               case '9': blockSize100k    = 9; break;
 
 	ldc.i4	9
 	stsfld	int32 'blockSize100k'
@@ -669,14 +671,14 @@ L_177:
 	br	'L_161'
 L_178:
 L_179:
-// Line 4079:	               case 'V':
+// Line 4069:	               case 'V':
 
-// Line 4080:	               case 'L': license();            break;
+// Line 4070:	               case 'L': license();            break;
 
 	call	void 'license'()
 	br	'L_161'
 L_180:
-// Line 4081:	               case 'v': verbosity++; break;
+// Line 4071:	               case 'v': verbosity++; break;
 
 	ldsfld	int32 'verbosity'
 
@@ -686,26 +688,25 @@ L_180:
 
 	br	'L_161'
 L_181:
-// Line 4082:	               case 'h': usage ( progName );
+// Line 4072:	               case 'h': usage ( progName );
 
 	ldsfld	void* 'progName'
 
 	call	void 'usage'(void*)
-// Line 4083:	                         exit ( 1 );
+// Line 4073:	                         exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
-// Line 4084:	                         break;
+// Line 4074:	                         break;
 
 	br	'L_161'
 L_182:
-// Line 4085:	               default:  fprintf ( stderr, "%s: Bad flag `%s'\n",
+// Line 4075:	               default:  fprintf ( stderr, "%s: Bad flag `%s'\n",
 
-// Line 4086:	                                   progName, aa->name );
+// Line 4076:	                                   progName, aa->name );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_108'
 
 	ldsfld	void* 'progName'
@@ -714,16 +715,16 @@ L_182:
 	ldind.u4
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 4087:	                         usage ( progName );
+// Line 4077:	                         usage ( progName );
 
 	ldsfld	void* 'progName'
 
 	call	void 'usage'(void*)
-// Line 4088:	                         exit ( 1 );
+// Line 4078:	                         exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
-// Line 4089:	                         break;
+// Line 4079:	                         break;
 
 L_161:
 L_160:
@@ -731,7 +732,7 @@ L_160:
 	ldc.i4	1
 	add
 	stloc	'j/2'
-// Line 4062:	         for (j = 1; aa->name[j] != '\0'; j++)
+// Line 4052:	         for (j = 1; aa->name[j] != '\0'; j++)
 
 L_158:
 	ldloc	'aa/5'
@@ -750,24 +751,24 @@ L_155:
 	add
 	ldind.u4
 	stloc	'aa/5'
-// Line 4060:	   for (aa = argList; aa != NULL; aa = aa->link)
+// Line 4050:	   for (aa = argList; aa != NULL; aa = aa->link)
 
 L_153:
 	ldloc	'aa/5'
 	ldc.i4	0
 	bne.un	'L_152'
 L_154:
-// Line 4090:	         }
+// Line 4080:	         }
 
-// Line 4091:	
+// Line 4081:	
 
-// Line 4092:	    
+// Line 4082:	    
 
 	ldloc	'argList/4'
 	stloc	'aa/5'
 	br	'L_185'
 L_184:
-// Line 4094:	      if (ISFLAG("--stdout"))            srcMode          = SM_F2O;  else
+// Line 4084:	      if (ISFLAG("--stdout"))            srcMode          = SM_F2O;  else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -781,7 +782,7 @@ L_184:
 
 	br	'L_190'
 L_189:
-// Line 4095:	      if (ISFLAG("--decompress"))        opMode           = OM_UNZ;  else
+// Line 4085:	      if (ISFLAG("--decompress"))        opMode           = OM_UNZ;  else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -795,7 +796,7 @@ L_189:
 
 	br	'L_192'
 L_191:
-// Line 4096:	      if (ISFLAG("--compress"))          opMode           = OM_Z;    else
+// Line 4086:	      if (ISFLAG("--compress"))          opMode           = OM_Z;    else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -809,7 +810,7 @@ L_191:
 
 	br	'L_194'
 L_193:
-// Line 4097:	      if (ISFLAG("--test"))              opMode           = OM_TEST; else
+// Line 4087:	      if (ISFLAG("--test"))              opMode           = OM_TEST; else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -823,7 +824,7 @@ L_193:
 
 	br	'L_196'
 L_195:
-// Line 4098:	      if (ISFLAG("--keep"))              keepInputFiles   = True;    else
+// Line 4088:	      if (ISFLAG("--keep"))              keepInputFiles   = True;    else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -837,7 +838,7 @@ L_195:
 
 	br	'L_198'
 L_197:
-// Line 4099:	      if (ISFLAG("--small"))             smallMode        = True;    else
+// Line 4089:	      if (ISFLAG("--small"))             smallMode        = True;    else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -851,7 +852,7 @@ L_197:
 
 	br	'L_200'
 L_199:
-// Line 4100:	      if (ISFLAG("--version"))           license();                  else
+// Line 4090:	      if (ISFLAG("--version"))           license();                  else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -863,7 +864,7 @@ L_199:
 	call	void 'license'()
 	br	'L_202'
 L_201:
-// Line 4101:	      if (ISFLAG("--license"))           license();                  else
+// Line 4091:	      if (ISFLAG("--license"))           license();                  else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -875,7 +876,7 @@ L_201:
 	call	void 'license'()
 	br	'L_204'
 L_203:
-// Line 4102:	      if (ISFLAG("--repetitive-fast"))   workFactor = 5;             else
+// Line 4092:	      if (ISFLAG("--repetitive-fast"))   workFactor = 5;             else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -889,7 +890,7 @@ L_203:
 
 	br	'L_206'
 L_205:
-// Line 4103:	      if (ISFLAG("--repetitive-best"))   workFactor = 150;           else
+// Line 4093:	      if (ISFLAG("--repetitive-best"))   workFactor = 150;           else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -903,7 +904,7 @@ L_205:
 
 	br	'L_208'
 L_207:
-// Line 4104:	      if (ISFLAG("--verbose"))           verbosity++;                else
+// Line 4094:	      if (ISFLAG("--verbose"))           verbosity++;                else
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -920,7 +921,7 @@ L_207:
 
 	br	'L_210'
 L_209:
-// Line 4105:	      if (ISFLAG("--help"))              { usage ( progName ); exit ( 1 ); }
+// Line 4095:	      if (ISFLAG("--help"))              { usage ( progName ); exit ( 1 ); }
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -936,9 +937,9 @@ L_209:
 	call	void 'exit'(int32)
 	br	'L_214'
 L_211:
-// Line 4106:	         else
+// Line 4096:	         else
 
-// Line 4107:	         if (strncmp ( aa->name, "--", 2) == 0) {
+// Line 4097:	         if (strncmp ( aa->name, "--", 2) == 0) {
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -949,11 +950,10 @@ L_211:
 	call	int32 'strncmp'(void*, void*, uint32)
 	ldc.i4	0
 	bne.un	'L_215'
-// Line 4108:	            fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
+// Line 4098:	            fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_108'
 
 	ldsfld	void* 'progName'
@@ -962,12 +962,12 @@ L_211:
 	ldind.u4
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 4109:	            usage ( progName );
+// Line 4099:	            usage ( progName );
 
 	ldsfld	void* 'progName'
 
 	call	void 'usage'(void*)
-// Line 4110:	            exit ( 1 );
+// Line 4100:	            exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
@@ -984,7 +984,7 @@ L_196:
 L_194:
 L_192:
 L_190:
-// Line 4111:	         }
+// Line 4101:	         }
 
 L_187:
 	ldloc	'aa/5'
@@ -992,18 +992,18 @@ L_187:
 	add
 	ldind.u4
 	stloc	'aa/5'
-// Line 4093:	   for (aa = argList; aa != NULL; aa = aa->link) {
+// Line 4083:	   for (aa = argList; aa != NULL; aa = aa->link) {
 
 L_185:
 	ldloc	'aa/5'
 	ldc.i4	0
 	bne.un	'L_184'
 L_186:
-// Line 4112:	   }
+// Line 4102:	   }
 
-// Line 4113:	
+// Line 4103:	
 
-// Line 4114:	   if (opMode == OM_Z && smallMode) blockSize100k = 2;
+// Line 4104:	   if (opMode == OM_Z && smallMode) blockSize100k = 2;
 
 	ldsfld	int32 'opMode'
 
@@ -1017,9 +1017,9 @@ L_186:
 	stsfld	int32 'blockSize100k'
 
 L_219:
-// Line 4115:	
+// Line 4105:	
 
-// Line 4116:	   if (opMode == OM_Z && srcMode == SM_F2O && numFileNames > 1) {
+// Line 4106:	   if (opMode == OM_Z && srcMode == SM_F2O && numFileNames > 1) {
 
 	ldsfld	int32 'opMode'
 
@@ -1033,29 +1033,28 @@ L_219:
 
 	ldc.i4	1
 	ble	'L_220'
-// Line 4117:	      fprintf ( stderr, "%s: I won't compress multiple files to stdout.\n",
+// Line 4107:	      fprintf ( stderr, "%s: I won't compress multiple files to stdout.\n",
 
-// Line 4118:	                progName );
+// Line 4108:	                progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_122'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 4119:	      exit ( 1 );
+// Line 4109:	      exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
 L_220:
-// Line 4120:	   }
+// Line 4110:	   }
 
-// Line 4121:	
+// Line 4111:	
 
-// Line 4122:	   if (srcMode == SM_F2O && numFileNames == 0) {
+// Line 4112:	   if (srcMode == SM_F2O && numFileNames == 0) {
 
 	ldsfld	int32 'srcMode'
 
@@ -1065,29 +1064,28 @@ L_220:
 
 	ldc.i4	0
 	bne.un	'L_223'
-// Line 4123:	      fprintf ( stderr, "%s: -c expects at least one filename.\n",
+// Line 4113:	      fprintf ( stderr, "%s: -c expects at least one filename.\n",
 
-// Line 4124:	                progName );
+// Line 4114:	                progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_123'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 4125:	      exit ( 1 );
+// Line 4115:	      exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
 L_223:
-// Line 4126:	   }
+// Line 4116:	   }
 
-// Line 4127:	
+// Line 4117:	
 
-// Line 4128:	   if (opMode == OM_TEST && srcMode == SM_F2O) {
+// Line 4118:	   if (opMode == OM_TEST && srcMode == SM_F2O) {
 
 	ldsfld	int32 'opMode'
 
@@ -1097,29 +1095,28 @@ L_223:
 
 	ldc.i4	2
 	bne.un	'L_226'
-// Line 4129:	      fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
+// Line 4119:	      fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
 
-// Line 4130:	                progName );
+// Line 4120:	                progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_124'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 4131:	      exit ( 1 );
+// Line 4121:	      exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
 L_226:
-// Line 4132:	   }
+// Line 4122:	   }
 
-// Line 4133:	
+// Line 4123:	
 
-// Line 4134:	   if (opMode != OM_Z) blockSize100k = 0;
+// Line 4124:	   if (opMode != OM_Z) blockSize100k = 0;
 
 	ldsfld	int32 'opMode'
 
@@ -1129,37 +1126,37 @@ L_226:
 	stsfld	int32 'blockSize100k'
 
 L_229:
-// Line 4135:	
+// Line 4125:	
 
-// Line 4136:	   if (opMode == OM_Z) {
+// Line 4126:	   if (opMode == OM_Z) {
 
 	ldsfld	int32 'opMode'
 
 	ldc.i4	1
 	bne.un	'L_230'
-// Line 4137:	      allocateCompressStructures();
+// Line 4127:	      allocateCompressStructures();
 
 	call	void 'allocateCompressStructures'()
-// Line 4138:	      if (srcMode == SM_I2O)
+// Line 4128:	      if (srcMode == SM_I2O)
 
 	ldsfld	int32 'srcMode'
 
 	ldc.i4	1
 	bne.un	'L_232'
-// Line 4139:	         compress ( NULL );
+// Line 4129:	         compress ( NULL );
 
 	ldc.i4	0
 	conv.u4
 	call	void 'compress'(void*)
 	br	'L_242'
 L_232:
-// Line 4140:	         else
+// Line 4130:	         else
 
 	ldloc	'argList/4'
 	stloc	'aa/5'
 	br	'L_235'
 L_234:
-// Line 4142:	            if (aa->name[0] != '-') {
+// Line 4132:	            if (aa->name[0] != '-') {
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -1167,7 +1164,7 @@ L_234:
 	conv.i4
 	ldc.i4	45
 	beq	'L_238'
-// Line 4143:	               numFilesProcessed++;
+// Line 4133:	               numFilesProcessed++;
 
 	ldsfld	int32 'numFilesProcessed'
 
@@ -1175,7 +1172,7 @@ L_234:
 	add
 	stsfld	int32 'numFilesProcessed'
 
-// Line 4144:	               compress ( aa->name );
+// Line 4134:	               compress ( aa->name );
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -1187,7 +1184,7 @@ L_237:
 	add
 	ldind.u4
 	stloc	'aa/5'
-// Line 4141:	         for (aa = argList; aa != NULL; aa = aa->link)
+// Line 4131:	         for (aa = argList; aa != NULL; aa = aa->link)
 
 L_235:
 	ldloc	'aa/5'
@@ -1195,38 +1192,38 @@ L_235:
 	bne.un	'L_234'
 L_236:
 L_233:
-// Line 4145:	            }
+// Line 4135:	            }
 
 	br	'L_242'
 L_230:
-// Line 4146:	   } else
+// Line 4136:	   } else
 
-// Line 4147:	   if (opMode == OM_UNZ) {
+// Line 4137:	   if (opMode == OM_UNZ) {
 
 	ldsfld	int32 'opMode'
 
 	ldc.i4	2
 	bne.un	'L_243'
-// Line 4148:	      if (srcMode == SM_I2O)
+// Line 4138:	      if (srcMode == SM_I2O)
 
 	ldsfld	int32 'srcMode'
 
 	ldc.i4	1
 	bne.un	'L_245'
-// Line 4149:	         uncompress ( NULL );
+// Line 4139:	         uncompress ( NULL );
 
 	ldc.i4	0
 	conv.u4
 	call	void 'uncompress'(void*)
 	br	'L_255'
 L_245:
-// Line 4150:	         else
+// Line 4140:	         else
 
 	ldloc	'argList/4'
 	stloc	'aa/5'
 	br	'L_248'
 L_247:
-// Line 4152:	            if (aa->name[0] != '-') {
+// Line 4142:	            if (aa->name[0] != '-') {
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -1234,7 +1231,7 @@ L_247:
 	conv.i4
 	ldc.i4	45
 	beq	'L_251'
-// Line 4153:	               numFilesProcessed++;
+// Line 4143:	               numFilesProcessed++;
 
 	ldsfld	int32 'numFilesProcessed'
 
@@ -1242,7 +1239,7 @@ L_247:
 	add
 	stsfld	int32 'numFilesProcessed'
 
-// Line 4154:	               uncompress ( aa->name );
+// Line 4144:	               uncompress ( aa->name );
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -1254,7 +1251,7 @@ L_250:
 	add
 	ldind.u4
 	stloc	'aa/5'
-// Line 4151:	         for (aa = argList; aa != NULL; aa = aa->link)
+// Line 4141:	         for (aa = argList; aa != NULL; aa = aa->link)
 
 L_248:
 	ldloc	'aa/5'
@@ -1262,37 +1259,37 @@ L_248:
 	bne.un	'L_247'
 L_249:
 L_246:
-// Line 4155:	            }
+// Line 4145:	            }
 
 	br	'L_255'
 L_243:
-// Line 4156:	   } else {
+// Line 4146:	   } else {
 
-// Line 4157:	      testFailsExist = False;
+// Line 4147:	      testFailsExist = False;
 
 	ldc.i4	0
 	stsfld	uint8 'testFailsExist'
 
-// Line 4158:	      if (srcMode == SM_I2O)
+// Line 4148:	      if (srcMode == SM_I2O)
 
 	ldsfld	int32 'srcMode'
 
 	ldc.i4	1
 	bne.un	'L_257'
-// Line 4159:	         testf ( NULL );
+// Line 4149:	         testf ( NULL );
 
 	ldc.i4	0
 	conv.u4
 	call	void 'testf'(void*)
 	br	'L_258'
 L_257:
-// Line 4160:	         else
+// Line 4150:	         else
 
 	ldloc	'argList/4'
 	stloc	'aa/5'
 	br	'L_260'
 L_259:
-// Line 4162:	            if (aa->name[0] != '-') {
+// Line 4152:	            if (aa->name[0] != '-') {
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -1300,7 +1297,7 @@ L_259:
 	conv.i4
 	ldc.i4	45
 	beq	'L_263'
-// Line 4163:	               numFilesProcessed++;
+// Line 4153:	               numFilesProcessed++;
 
 	ldsfld	int32 'numFilesProcessed'
 
@@ -1308,7 +1305,7 @@ L_259:
 	add
 	stsfld	int32 'numFilesProcessed'
 
-// Line 4164:	               testf ( aa->name );
+// Line 4154:	               testf ( aa->name );
 
 	ldloc	'aa/5'
 	ldind.u4
@@ -1320,7 +1317,7 @@ L_262:
 	add
 	ldind.u4
 	stloc	'aa/5'
-// Line 4161:	         for (aa = argList; aa != NULL; aa = aa->link)
+// Line 4151:	         for (aa = argList; aa != NULL; aa = aa->link)
 
 L_260:
 	ldloc	'aa/5'
@@ -1328,46 +1325,45 @@ L_260:
 	bne.un	'L_259'
 L_261:
 L_258:
-// Line 4165:	            }
+// Line 4155:	            }
 
-// Line 4166:	      if (testFailsExist) {
+// Line 4156:	      if (testFailsExist) {
 
 	ldsfld	uint8 'testFailsExist'
 
 	ldc.i4	0
 	beq	'L_266'
-// Line 4167:	         fprintf ( stderr,
+// Line 4157:	         fprintf ( stderr,
 
-// Line 4168:	           "\n"
+// Line 4158:	           "\n"
 
-// Line 4169:	           "You can use the `bzip2recover' program to *attempt* to recover\n"
+// Line 4159:	           "You can use the `bzip2recover' program to *attempt* to recover\n"
 
-// Line 4170:	           "data from undamaged sections of corrupted files.\n\n"
+// Line 4160:	           "data from undamaged sections of corrupted files.\n\n"
 
-// Line 4171:	         );
+// Line 4161:	         );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_125'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
-// Line 4172:	         exit(2);
+// Line 4162:	         exit(2);
 
 	ldc.i4	2
 	call	void 'exit'(int32)
 L_266:
-// Line 4173:	      }
+// Line 4163:	      }
 
 L_255:
 L_242:
-// Line 4174:	   }
+// Line 4164:	   }
 
-// Line 4175:	   return 0;
+// Line 4165:	   return 0;
 
 	ldc.i4	0
-// Line 4176:	}
+// Line 4166:	}
 
 L_127:
 	ret
@@ -1375,18 +1371,18 @@ L_127:
 }
  .method public hidebysig static void 'initialiseCRC'() cil managed
 {
-// Line 668:	void initialiseCRC ( void )
+// Line 658:	void initialiseCRC ( void )
 
-// Line 669:	{
+// Line 659:	{
 
 	.maxstack	1
 L_302:
-// Line 670:	   globalCrc = 0xffffffffUL;
+// Line 660:	   globalCrc = 0xffffffffUL;
 
 	ldc.i4	-1
 	stsfld	uint32 'globalCrc'
 
-// Line 671:	}
+// Line 661:	}
 
 L_303:
 	ret
@@ -1394,18 +1390,18 @@ L_303:
 }
  .method public hidebysig static uint32 'getFinalCRC'() cil managed
 {
-// Line 675:	UInt32 getFinalCRC ( void )
+// Line 665:	UInt32 getFinalCRC ( void )
 
-// Line 676:	{
+// Line 666:	{
 
 	.maxstack	1
 L_310:
-// Line 677:	   return ~globalCrc;
+// Line 667:	   return ~globalCrc;
 
 	ldsfld	uint32 'globalCrc'
 
 	not
-// Line 678:	}
+// Line 668:	}
 
 L_311:
 	ret
@@ -1413,17 +1409,17 @@ L_311:
 }
  .method public hidebysig static uint32 'getGlobalCRC'() cil managed
 {
-// Line 682:	UInt32 getGlobalCRC ( void )
+// Line 672:	UInt32 getGlobalCRC ( void )
 
-// Line 683:	{
+// Line 673:	{
 
 	.maxstack	1
 L_318:
-// Line 684:	   return globalCrc;
+// Line 674:	   return globalCrc;
 
 	ldsfld	uint32 'globalCrc'
 
-// Line 685:	}
+// Line 675:	}
 
 L_319:
 	ret
@@ -1431,18 +1427,18 @@ L_319:
 }
  .method public hidebysig static void 'setGlobalCRC'(uint32 'newCrc' ) cil managed
 {
-// Line 689:	void setGlobalCRC ( UInt32 newCrc )
+// Line 679:	void setGlobalCRC ( UInt32 newCrc )
 
-// Line 690:	{
+// Line 680:	{
 
 	.maxstack	1
 L_326:
-// Line 691:	   globalCrc = newCrc;
+// Line 681:	   globalCrc = newCrc;
 
 	ldarg	'newCrc'
 	stsfld	uint32 'globalCrc'
 
-// Line 692:	}
+// Line 682:	}
 
 L_327:
 	ret
@@ -1450,13 +1446,13 @@ L_327:
 }
  .method public hidebysig static void 'bsSetStream'(void* 'f' , uint8 'wr' ) cil managed
 {
-// Line 716:	void bsSetStream ( FILE* f, Bool wr )
+// Line 706:	void bsSetStream ( FILE* f, Bool wr )
 
-// Line 717:	{
+// Line 707:	{
 
 	.maxstack	2
 L_334:
-// Line 718:	   if (bsStream != NULL) panic ( "bsSetStream" );
+// Line 708:	   if (bsStream != NULL) panic ( "bsSetStream" );
 
 	ldsfld	void* 'bsStream'
 
@@ -1466,37 +1462,37 @@ L_334:
 
 	call	void 'panic'(void*)
 L_337:
-// Line 719:	   bsStream = f;
+// Line 709:	   bsStream = f;
 
 	ldarg	'f'
 	stsfld	void* 'bsStream'
 
-// Line 720:	   bsLive = 0;
+// Line 710:	   bsLive = 0;
 
 	ldc.i4	0
 	stsfld	int32 'bsLive'
 
-// Line 721:	   bsBuff = 0;
+// Line 711:	   bsBuff = 0;
 
 	ldc.i4	0
 	stsfld	uint32 'bsBuff'
 
-// Line 722:	   bytesOut = 0;
+// Line 712:	   bytesOut = 0;
 
 	ldc.i4	0
 	stsfld	uint32 'bytesOut'
 
-// Line 723:	   bytesIn = 0;
+// Line 713:	   bytesIn = 0;
 
 	ldc.i4	0
 	stsfld	uint32 'bytesIn'
 
-// Line 724:	   bsWriting = wr;
+// Line 714:	   bsWriting = wr;
 
 	ldarg	'wr'
 	stsfld	uint8 'bsWriting'
 
-// Line 725:	}
+// Line 715:	}
 
 L_335:
 	ret
@@ -1504,13 +1500,13 @@ L_335:
 }
  .method public hidebysig static void 'bsFinishedWithStream'() cil managed
 {
-// Line 729:	void bsFinishedWithStream ( void )
+// Line 719:	void bsFinishedWithStream ( void )
 
-// Line 730:	{
+// Line 720:	{
 
 	.maxstack	2
 L_343:
-// Line 731:	   if (bsWriting)
+// Line 721:	   if (bsWriting)
 
 	ldsfld	uint8 'bsWriting'
 
@@ -1518,7 +1514,7 @@ L_343:
 	beq	'L_346'
 	br	'L_349'
 L_347:
-// Line 733:	         fputc ( (UChar)(bsBuff >> 24), bsStream );
+// Line 723:	         fputc ( (UChar)(bsBuff >> 24), bsStream );
 
 	ldsfld	uint32 'bsBuff'
 
@@ -1530,7 +1526,7 @@ L_347:
 
 	call	int32 'fputc'(int32, void*)
 	pop
-// Line 734:	         bsBuff <<= 8;
+// Line 724:	         bsBuff <<= 8;
 
 	ldsfld	uint32 'bsBuff'
 
@@ -1538,7 +1534,7 @@ L_347:
 	shl
 	stsfld	uint32 'bsBuff'
 
-// Line 735:	         bsLive -= 8;
+// Line 725:	         bsLive -= 8;
 
 	ldsfld	int32 'bsLive'
 
@@ -1546,7 +1542,7 @@ L_347:
 	sub
 	stsfld	int32 'bsLive'
 
-// Line 736:	         bytesOut++;
+// Line 726:	         bytesOut++;
 
 	ldsfld	uint32 'bytesOut'
 
@@ -1555,7 +1551,7 @@ L_347:
 	stsfld	uint32 'bytesOut'
 
 L_349:
-// Line 732:	      while (bsLive > 0) {
+// Line 722:	      while (bsLive > 0) {
 
 	ldsfld	int32 'bsLive'
 
@@ -1563,14 +1559,14 @@ L_349:
 	bgt	'L_347'
 L_348:
 L_346:
-// Line 737:	      }
+// Line 727:	      }
 
-// Line 738:	   bsStream = NULL;
+// Line 728:	   bsStream = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'bsStream'
 
-// Line 739:	}
+// Line 729:	}
 
 L_344:
 	ret
@@ -1578,9 +1574,9 @@ L_344:
 }
  .method public hidebysig static uint32 'bsR'(int32 'n' ) cil managed
 {
-// Line 777:	INLINE UInt32 bsR ( Int32 n )
+// Line 767:	INLINE UInt32 bsR ( Int32 n )
 
-// Line 778:	{
+// Line 768:	{
 
 	.locals
 	(
@@ -1589,9 +1585,9 @@ L_344:
 	)
 	.maxstack	4
 L_357:
-// Line 779:	   UInt32 v;
+// Line 769:	   UInt32 v;
 
-// Line 780:	   bsNEEDR ( n );
+// Line 770:	   bsNEEDR ( n );
 
 	br	'L_363'
 L_361:
@@ -1630,7 +1626,7 @@ L_363:
 	ldarg	'n'
 	blt	'L_361'
 L_362:
-// Line 781:	   v = (bsBuff >> (bsLive-n)) & ((1 << n)-1);
+// Line 771:	   v = (bsBuff >> (bsLive-n)) & ((1 << n)-1);
 
 	ldc.i4	1
 	ldarg	'n'
@@ -1647,7 +1643,7 @@ L_362:
 	shr.un
 	and
 	stloc	'v/0'
-// Line 782:	   bsLive -= n;
+// Line 772:	   bsLive -= n;
 
 	ldsfld	int32 'bsLive'
 
@@ -1655,10 +1651,10 @@ L_362:
 	sub
 	stsfld	int32 'bsLive'
 
-// Line 783:	   return v;
+// Line 773:	   return v;
 
 	ldloc	'v/0'
-// Line 784:	}
+// Line 774:	}
 
 L_358:
 	ret
@@ -1666,13 +1662,13 @@ L_358:
 }
  .method public hidebysig static void 'bsW'(int32 'n' , uint32 'v' ) cil managed
 {
-// Line 788:	INLINE void bsW ( Int32 n, UInt32 v )
+// Line 778:	INLINE void bsW ( Int32 n, UInt32 v )
 
-// Line 789:	{
+// Line 779:	{
 
 	.maxstack	3
 L_373:
-// Line 790:	   bsNEEDW ( n );
+// Line 780:	   bsNEEDW ( n );
 
 	br	'L_379'
 L_377:
@@ -1710,7 +1706,7 @@ L_379:
 	ldc.i4	8
 	bge	'L_377'
 L_378:
-// Line 791:	   bsBuff |= (v << (32 - bsLive - n));
+// Line 781:	   bsBuff |= (v << (32 - bsLive - n));
 
 	ldarg	'v'
 	ldsfld	int32 'bsLive'
@@ -1726,7 +1722,7 @@ L_378:
 	or
 	stsfld	uint32 'bsBuff'
 
-// Line 792:	   bsLive += n;
+// Line 782:	   bsLive += n;
 
 	ldsfld	int32 'bsLive'
 
@@ -1734,7 +1730,7 @@ L_378:
 	add
 	stsfld	int32 'bsLive'
 
-// Line 793:	}
+// Line 783:	}
 
 L_374:
 	ret
@@ -1742,19 +1738,19 @@ L_374:
 }
  .method public hidebysig static uint8 'bsGetUChar'() cil managed
 {
-// Line 797:	UChar bsGetUChar ( void )
+// Line 787:	UChar bsGetUChar ( void )
 
-// Line 798:	{
+// Line 788:	{
 
 	.maxstack	1
 L_388:
-// Line 799:	   return (UChar)bsR(8);
+// Line 789:	   return (UChar)bsR(8);
 
 	ldc.i4	8
 	call	uint32 'bsR'(int32)
 	conv.u1
 	conv.i4
-// Line 800:	}
+// Line 790:	}
 
 L_389:
 	ret
@@ -1762,19 +1758,19 @@ L_389:
 }
  .method public hidebysig static void 'bsPutUChar'(uint8 'c' ) cil managed
 {
-// Line 804:	void bsPutUChar ( UChar c )
+// Line 794:	void bsPutUChar ( UChar c )
 
-// Line 805:	{
+// Line 795:	{
 
 	.maxstack	2
 L_396:
-// Line 806:	   bsW(8, (UInt32)c );
+// Line 796:	   bsW(8, (UInt32)c );
 
 	ldc.i4	8
 	ldarg	'c'
 	conv.u4
 	call	void 'bsW'(int32, uint32)
-// Line 807:	}
+// Line 797:	}
 
 L_397:
 	ret
@@ -1782,9 +1778,9 @@ L_397:
 }
  .method public hidebysig static int32 'bsGetUInt32'() cil managed
 {
-// Line 811:	Int32 bsGetUInt32 ( void )
+// Line 801:	Int32 bsGetUInt32 ( void )
 
-// Line 812:	{
+// Line 802:	{
 
 	.locals
 	(
@@ -1792,13 +1788,13 @@ L_397:
 	)
 	.maxstack	3
 L_404:
-// Line 813:	   UInt32 u;
+// Line 803:	   UInt32 u;
 
-// Line 814:	   u = 0;
+// Line 804:	   u = 0;
 
 	ldc.i4	0
 	stloc	'u/0'
-// Line 815:	   u = (u << 8) | bsR(8);
+// Line 805:	   u = (u << 8) | bsR(8);
 
 	ldc.i4	8
 	call	uint32 'bsR'(int32)
@@ -1807,7 +1803,7 @@ L_404:
 	shl
 	or
 	stloc	'u/0'
-// Line 816:	   u = (u << 8) | bsR(8);
+// Line 806:	   u = (u << 8) | bsR(8);
 
 	ldc.i4	8
 	call	uint32 'bsR'(int32)
@@ -1816,7 +1812,7 @@ L_404:
 	shl
 	or
 	stloc	'u/0'
-// Line 817:	   u = (u << 8) | bsR(8);
+// Line 807:	   u = (u << 8) | bsR(8);
 
 	ldc.i4	8
 	call	uint32 'bsR'(int32)
@@ -1825,7 +1821,7 @@ L_404:
 	shl
 	or
 	stloc	'u/0'
-// Line 818:	   u = (u << 8) | bsR(8);
+// Line 808:	   u = (u << 8) | bsR(8);
 
 	ldc.i4	8
 	call	uint32 'bsR'(int32)
@@ -1834,11 +1830,11 @@ L_404:
 	shl
 	or
 	stloc	'u/0'
-// Line 819:	   return u;
+// Line 809:	   return u;
 
 	ldloc	'u/0'
 	conv.i4
-// Line 820:	}
+// Line 810:	}
 
 L_405:
 	ret
@@ -1846,18 +1842,18 @@ L_405:
 }
  .method public hidebysig static uint32 'bsGetIntVS'(uint32 'numBits' ) cil managed
 {
-// Line 824:	UInt32 bsGetIntVS ( UInt32 numBits )
+// Line 814:	UInt32 bsGetIntVS ( UInt32 numBits )
 
-// Line 825:	{
+// Line 815:	{
 
 	.maxstack	1
 L_412:
-// Line 826:	   return (UInt32)bsR(numBits);
+// Line 816:	   return (UInt32)bsR(numBits);
 
 	ldarg	'numBits'
 	conv.i4
 	call	uint32 'bsR'(int32)
-// Line 827:	}
+// Line 817:	}
 
 L_413:
 	ret
@@ -1865,17 +1861,17 @@ L_413:
 }
  .method public hidebysig static uint32 'bsGetInt32'() cil managed
 {
-// Line 831:	UInt32 bsGetInt32 ( void )
+// Line 821:	UInt32 bsGetInt32 ( void )
 
-// Line 832:	{
+// Line 822:	{
 
 	.maxstack	1
 L_420:
-// Line 833:	   return (Int32)bsGetUInt32();
+// Line 823:	   return (Int32)bsGetUInt32();
 
 	call	int32 'bsGetUInt32'()
 	conv.u4
-// Line 834:	}
+// Line 824:	}
 
 L_421:
 	ret
@@ -1883,13 +1879,13 @@ L_421:
 }
  .method public hidebysig static void 'bsPutUInt32'(uint32 'u' ) cil managed
 {
-// Line 838:	void bsPutUInt32 ( UInt32 u )
+// Line 828:	void bsPutUInt32 ( UInt32 u )
 
-// Line 839:	{
+// Line 829:	{
 
 	.maxstack	3
 L_428:
-// Line 840:	   bsW ( 8, (u >> 24) & 0xffL );
+// Line 830:	   bsW ( 8, (u >> 24) & 0xffL );
 
 	ldc.i4	8
 	ldarg	'u'
@@ -1900,7 +1896,7 @@ L_428:
 	and
 	conv.u4
 	call	void 'bsW'(int32, uint32)
-// Line 841:	   bsW ( 8, (u >> 16) & 0xffL );
+// Line 831:	   bsW ( 8, (u >> 16) & 0xffL );
 
 	ldc.i4	8
 	ldarg	'u'
@@ -1911,7 +1907,7 @@ L_428:
 	and
 	conv.u4
 	call	void 'bsW'(int32, uint32)
-// Line 842:	   bsW ( 8, (u >>  8) & 0xffL );
+// Line 832:	   bsW ( 8, (u >>  8) & 0xffL );
 
 	ldc.i4	8
 	ldarg	'u'
@@ -1922,7 +1918,7 @@ L_428:
 	and
 	conv.u4
 	call	void 'bsW'(int32, uint32)
-// Line 843:	   bsW ( 8,  u        & 0xffL );
+// Line 833:	   bsW ( 8,  u        & 0xffL );
 
 	ldc.i4	8
 	ldarg	'u'
@@ -1931,7 +1927,7 @@ L_428:
 	and
 	conv.u4
 	call	void 'bsW'(int32, uint32)
-// Line 844:	}
+// Line 834:	}
 
 L_429:
 	ret
@@ -1939,18 +1935,18 @@ L_429:
 }
  .method public hidebysig static void 'bsPutInt32'(int32 'c' ) cil managed
 {
-// Line 848:	void bsPutInt32 ( Int32 c )
+// Line 838:	void bsPutInt32 ( Int32 c )
 
-// Line 849:	{
+// Line 839:	{
 
 	.maxstack	1
 L_436:
-// Line 850:	   bsPutUInt32 ( (UInt32)c );
+// Line 840:	   bsPutUInt32 ( (UInt32)c );
 
 	ldarg	'c'
 	conv.u4
 	call	void 'bsPutUInt32'(uint32)
-// Line 851:	}
+// Line 841:	}
 
 L_437:
 	ret
@@ -1958,18 +1954,18 @@ L_437:
 }
  .method public hidebysig static void 'bsPutIntVS'(int32 'numBits' , uint32 'c' ) cil managed
 {
-// Line 855:	void bsPutIntVS ( Int32 numBits, UInt32 c )
+// Line 845:	void bsPutIntVS ( Int32 numBits, UInt32 c )
 
-// Line 856:	{
+// Line 846:	{
 
 	.maxstack	2
 L_444:
-// Line 857:	   bsW ( numBits, c );
+// Line 847:	   bsW ( numBits, c );
 
 	ldarg	'numBits'
 	ldarg	'c'
 	call	void 'bsW'(int32, uint32)
-// Line 858:	}
+// Line 848:	}
 
 L_445:
 	ret
@@ -1977,15 +1973,15 @@ L_445:
 }
  .method public hidebysig static void 'hbMakeCodeLengths'(void* 'len' , void* 'freq' , int32 'alphaSize' , int32 'maxLen' ) cil managed
 {
-// Line 903:	void hbMakeCodeLengths ( UChar *len,
+// Line 893:	void hbMakeCodeLengths ( UChar *len,
 
-// Line 904:	                         Int32 *freq,
+// Line 894:	                         Int32 *freq,
 
-// Line 905:	                         Int32 alphaSize,
+// Line 895:	                         Int32 alphaSize,
 
-// Line 906:	                         Int32 maxLen )
+// Line 896:	                         Int32 maxLen )
 
-// Line 907:	{
+// Line 897:	{
 
 	.locals
 	(
@@ -2013,19 +2009,19 @@ L_445:
 	)
 	.maxstack	7
 L_452:
-// Line 917:	   Int32 parent [ MAX_ALPHA_SIZE * 2 ];
+// Line 907:	   Int32 parent [ MAX_ALPHA_SIZE * 2 ];
 
-// Line 918:	
+// Line 908:	
 
-// Line 919:	   PRINTLOC;
+// Line 909:	   PRINTLOC;
 
-// Line 920:	
+// Line 910:	
 
 	ldc.i4	0
 	stloc	'i/4'
 	br	'L_456'
 L_455:
-// Line 922:	      weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
+// Line 912:	      weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
 
 	ldloc	'i/4'
 	ldc.i4	1
@@ -2060,7 +2056,7 @@ L_458:
 	ldc.i4	1
 	add
 	stloc	'i/4'
-// Line 921:	   for (i = 0; i < alphaSize; i++)
+// Line 911:	   for (i = 0; i < alphaSize; i++)
 
 L_456:
 	ldloc	'i/4'
@@ -2068,40 +2064,40 @@ L_456:
 	blt	'L_455'
 L_457:
 L_459:
-// Line 925:	
+// Line 915:	
 
-// Line 926:	      nNodes = alphaSize;
+// Line 916:	      nNodes = alphaSize;
 
 	ldarg	'alphaSize'
 	stloc	'nNodes/0'
-// Line 927:	      nHeap = 0;
+// Line 917:	      nHeap = 0;
 
 	ldc.i4	0
 	stloc	'nHeap/1'
-// Line 928:	
+// Line 918:	
 
-// Line 929:	      heap[0] = 0;
+// Line 919:	      heap[0] = 0;
 
 	ldloca	'heap/8'
 	ldc.i4	0
 	stind.i4
-// Line 930:	      weight[0] = 0;
+// Line 920:	      weight[0] = 0;
 
 	ldloca	'weight/9'
 	ldc.i4	0
 	stind.i4
-// Line 931:	      parent[0] = -2;
+// Line 921:	      parent[0] = -2;
 
 	ldloca	'parent/10'
 	ldc.i4	-2
 	stind.i4
-// Line 932:	
+// Line 922:	
 
 	ldc.i4	1
 	stloc	'i/4'
 	br	'L_464'
 L_463:
-// Line 934:	         parent[i] = -1;
+// Line 924:	         parent[i] = -1;
 
 	ldloc	'i/4'
 	ldc.i4	2
@@ -2110,13 +2106,13 @@ L_463:
 	add
 	ldc.i4	-1
 	stind.i4
-// Line 935:	         nHeap++;
+// Line 925:	         nHeap++;
 
 	ldloc	'nHeap/1'
 	ldc.i4	1
 	add
 	stloc	'nHeap/1'
-// Line 936:	         heap[nHeap] = i;
+// Line 926:	         heap[nHeap] = i;
 
 	ldloc	'nHeap/1'
 	ldc.i4	2
@@ -2125,7 +2121,7 @@ L_463:
 	add
 	ldloc	'i/4'
 	stind.i4
-// Line 937:	         UPHEAP(nHeap);
+// Line 927:	         UPHEAP(nHeap);
 
 	ldloc	'nHeap/1'
 	stloc	'zz/19'
@@ -2190,21 +2186,21 @@ L_466:
 	ldc.i4	1
 	add
 	stloc	'i/4'
-// Line 933:	      for (i = 1; i <= alphaSize; i++) {
+// Line 923:	      for (i = 1; i <= alphaSize; i++) {
 
 L_464:
 	ldloc	'i/4'
 	ldarg	'alphaSize'
 	ble	'L_463'
 L_465:
-// Line 938:	      }
+// Line 928:	      }
 
-// Line 939:	      if (!(nHeap < (MAX_ALPHA_SIZE+2)))
+// Line 929:	      if (!(nHeap < (MAX_ALPHA_SIZE+2)))
 
 	ldloc	'nHeap/1'
 	ldc.i4	260
 	blt	'L_479'
-// Line 940:	         panic ( "hbMakeCodeLengths(1)" );
+// Line 930:	         panic ( "hbMakeCodeLengths(1)" );
 
 	ldsflda	valuetype 'int8[]' 'L_2'
 
@@ -2212,7 +2208,7 @@ L_465:
 L_476:
 	br	'L_479'
 L_477:
-// Line 943:	         n1 = heap[1]; heap[1] = heap[nHeap]; nHeap--; DOWNHEAP(1);
+// Line 933:	         n1 = heap[1]; heap[1] = heap[nHeap]; nHeap--; DOWNHEAP(1);
 
 	ldloca	'heap/8'
 	ldc.i4	4
@@ -2327,7 +2323,7 @@ L_483:
 	add
 	ldloc	'tmp/18'
 	stind.i4
-// Line 944:	         n2 = heap[1]; heap[1] = heap[nHeap]; nHeap--; DOWNHEAP(1);
+// Line 934:	         n2 = heap[1]; heap[1] = heap[nHeap]; nHeap--; DOWNHEAP(1);
 
 	ldloca	'heap/8'
 	ldc.i4	4
@@ -2442,13 +2438,13 @@ L_493:
 	add
 	ldloc	'tmp/15'
 	stind.i4
-// Line 945:	         nNodes++;
+// Line 935:	         nNodes++;
 
 	ldloc	'nNodes/0'
 	ldc.i4	1
 	add
 	stloc	'nNodes/0'
-// Line 946:	         parent[n1] = parent[n2] = nNodes;
+// Line 936:	         parent[n1] = parent[n2] = nNodes;
 
 	ldloc	'n1/2'
 	ldc.i4	2
@@ -2469,7 +2465,7 @@ L_493:
 	add
 	ldind.i4
 	stind.i4
-// Line 947:	         weight[nNodes] = ADDWEIGHTS(weight[n1], weight[n2]);
+// Line 937:	         weight[nNodes] = ADDWEIGHTS(weight[n1], weight[n2]);
 
 	ldloc	'nNodes/0'
 	ldc.i4	2
@@ -2537,7 +2533,7 @@ L_535:
 	or
 	conv.i4
 	stind.i4
-// Line 948:	         parent[nNodes] = -1;
+// Line 938:	         parent[nNodes] = -1;
 
 	ldloc	'nNodes/0'
 	ldc.i4	2
@@ -2546,13 +2542,13 @@ L_535:
 	add
 	ldc.i4	-1
 	stind.i4
-// Line 949:	         nHeap++;
+// Line 939:	         nHeap++;
 
 	ldloc	'nHeap/1'
 	ldc.i4	1
 	add
 	stloc	'nHeap/1'
-// Line 950:	         heap[nHeap] = nNodes;
+// Line 940:	         heap[nHeap] = nNodes;
 
 	ldloc	'nHeap/1'
 	ldc.i4	2
@@ -2561,7 +2557,7 @@ L_535:
 	add
 	ldloc	'nNodes/0'
 	stind.i4
-// Line 951:	         UPHEAP(nHeap);
+// Line 941:	         UPHEAP(nHeap);
 
 	ldloc	'nHeap/1'
 	stloc	'zz/11'
@@ -2622,30 +2618,30 @@ L_503:
 	ldloc	'tmp/12'
 	stind.i4
 L_479:
-// Line 941:	
+// Line 931:	
 
-// Line 942:	      while (nHeap > 1) {
+// Line 932:	      while (nHeap > 1) {
 
 	ldloc	'nHeap/1'
 	ldc.i4	1
 	bgt	'L_477'
 L_478:
-// Line 952:	      }
+// Line 942:	      }
 
-// Line 953:	      if (!(nNodes < (MAX_ALPHA_SIZE * 2)))
+// Line 943:	      if (!(nNodes < (MAX_ALPHA_SIZE * 2)))
 
 	ldloc	'nNodes/0'
 	ldc.i4	516
 	blt	'L_509'
-// Line 954:	         panic ( "hbMakeCodeLengths(2)" );
+// Line 944:	         panic ( "hbMakeCodeLengths(2)" );
 
 	ldsflda	valuetype 'int8[]' 'L_3'
 
 	call	void 'panic'(void*)
 L_509:
-// Line 955:	
+// Line 945:	
 
-// Line 956:	      tooLong = False;
+// Line 946:	      tooLong = False;
 
 	ldc.i4	0
 	stloc	'tooLong/7'
@@ -2653,11 +2649,11 @@ L_509:
 	stloc	'i/4'
 	br	'L_511'
 L_510:
-// Line 958:	         j = 0;
+// Line 948:	         j = 0;
 
 	ldc.i4	0
 	stloc	'j/5'
-// Line 959:	         k = i;
+// Line 949:	         k = i;
 
 	ldloc	'i/4'
 	stloc	'k/6'
@@ -2675,7 +2671,7 @@ L_515:
 	add
 	stloc	'j/5'
 L_517:
-// Line 960:	         while (parent[k] >= 0) { k = parent[k]; j++; }
+// Line 950:	         while (parent[k] >= 0) { k = parent[k]; j++; }
 
 	ldloc	'k/6'
 	ldc.i4	2
@@ -2686,7 +2682,7 @@ L_517:
 	ldc.i4	0
 	bge	'L_515'
 L_516:
-// Line 961:	         len[i-1] = j;
+// Line 951:	         len[i-1] = j;
 
 	ldloc	'i/4'
 	ldc.i4	1
@@ -2696,7 +2692,7 @@ L_516:
 	ldloc	'j/5'
 	conv.u1
 	stind.i1
-// Line 962:	         if (j > maxLen) tooLong = True;
+// Line 952:	         if (j > maxLen) tooLong = True;
 
 	ldloc	'j/5'
 	ldarg	'maxLen'
@@ -2709,30 +2705,30 @@ L_513:
 	ldc.i4	1
 	add
 	stloc	'i/4'
-// Line 957:	      for (i = 1; i <= alphaSize; i++) {
+// Line 947:	      for (i = 1; i <= alphaSize; i++) {
 
 L_511:
 	ldloc	'i/4'
 	ldarg	'alphaSize'
 	ble	'L_510'
 L_512:
-// Line 963:	      }
+// Line 953:	      }
 
-// Line 964:	
+// Line 954:	
 
-// Line 965:	      if (! tooLong) break;
+// Line 955:	      if (! tooLong) break;
 
 	ldloc	'tooLong/7'
 	ldc.i4	0
 	beq	'L_460'
 L_522:
-// Line 966:	
+// Line 956:	
 
 	ldc.i4	1
 	stloc	'i/4'
 	br	'L_524'
 L_523:
-// Line 968:	         j = weight[i] >> 8;
+// Line 958:	         j = weight[i] >> 8;
 
 	ldloc	'i/4'
 	ldc.i4	2
@@ -2743,7 +2739,7 @@ L_523:
 	ldc.i4	8
 	shr
 	stloc	'j/5'
-// Line 969:	         j = 1 + (j / 2);
+// Line 959:	         j = 1 + (j / 2);
 
 	ldloc	'j/5'
 	ldc.i4	1
@@ -2751,7 +2747,7 @@ L_523:
 	ldc.i4	1
 	add
 	stloc	'j/5'
-// Line 970:	         weight[i] = j << 8;
+// Line 960:	         weight[i] = j << 8;
 
 	ldloc	'i/4'
 	ldc.i4	2
@@ -2767,25 +2763,25 @@ L_526:
 	ldc.i4	1
 	add
 	stloc	'i/4'
-// Line 967:	      for (i = 1; i < alphaSize; i++) {
+// Line 957:	      for (i = 1; i < alphaSize; i++) {
 
 L_524:
 	ldloc	'i/4'
 	ldarg	'alphaSize'
 	blt	'L_523'
 L_525:
-// Line 971:	      }
+// Line 961:	      }
 
 L_461:
-// Line 923:	
+// Line 913:	
 
-// Line 924:	   while (True) {
+// Line 914:	   while (True) {
 
 	br	'L_459'
 L_460:
-// Line 972:	   }
+// Line 962:	   }
 
-// Line 973:	}
+// Line 963:	}
 
 L_453:
 	ret
@@ -2793,17 +2789,17 @@ L_453:
 }
  .method public hidebysig static void 'hbAssignCodes'(void* 'code' , void* 'length' , int32 'minLen' , int32 'maxLen' , int32 'alphaSize' ) cil managed
 {
-// Line 977:	void hbAssignCodes ( Int32 *code,
+// Line 967:	void hbAssignCodes ( Int32 *code,
 
-// Line 978:	                     UChar *length,
+// Line 968:	                     UChar *length,
 
-// Line 979:	                     Int32 minLen,
+// Line 969:	                     Int32 minLen,
 
-// Line 980:	                     Int32 maxLen,
+// Line 970:	                     Int32 maxLen,
 
-// Line 981:	                     Int32 alphaSize )
+// Line 971:	                     Int32 alphaSize )
 
-// Line 982:	{
+// Line 972:	{
 
 	.locals
 	(
@@ -2813,17 +2809,17 @@ L_453:
 	)
 	.maxstack	2
 L_539:
-// Line 983:	   Int32 n, vec, i;
+// Line 973:	   Int32 n, vec, i;
 
-// Line 984:	
+// Line 974:	
 
-// Line 985:	
+// Line 975:	
 
-// Line 986:	   PRINTLOC;
+// Line 976:	   PRINTLOC;
 
-// Line 987:	
+// Line 977:	
 
-// Line 988:	   vec = 0;
+// Line 978:	   vec = 0;
 
 	ldc.i4	0
 	stloc	'vec/1'
@@ -2835,7 +2831,7 @@ L_542:
 	stloc	'i/2'
 	br	'L_548'
 L_547:
-// Line 991:	         if (length[i] == n) { code[i] = vec; vec++; };
+// Line 981:	         if (length[i] == n) { code[i] = vec; vec++; };
 
 	ldloc	'i/2'
 	ldarg	'length'
@@ -2861,14 +2857,14 @@ L_550:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 990:	      for (i = 0; i < alphaSize; i++)
+// Line 980:	      for (i = 0; i < alphaSize; i++)
 
 L_548:
 	ldloc	'i/2'
 	ldarg	'alphaSize'
 	blt	'L_547'
 L_549:
-// Line 992:	      vec <<= 1;
+// Line 982:	      vec <<= 1;
 
 	ldloc	'vec/1'
 	ldc.i4	1
@@ -2879,16 +2875,16 @@ L_545:
 	ldc.i4	1
 	add
 	stloc	'n/0'
-// Line 989:	   for (n = minLen; n <= maxLen; n++) {
+// Line 979:	   for (n = minLen; n <= maxLen; n++) {
 
 L_543:
 	ldloc	'n/0'
 	ldarg	'maxLen'
 	ble	'L_542'
 L_544:
-// Line 993:	   }
+// Line 983:	   }
 
-// Line 994:	}
+// Line 984:	}
 
 L_540:
 	ret
@@ -2896,21 +2892,21 @@ L_540:
 }
  .method public hidebysig static void 'hbCreateDecodeTables'(void* 'limit' , void* 'base' , void* 'perm' , void* 'length' , int32 'minLen' , int32 'maxLen' , int32 'alphaSize' ) cil managed
 {
-// Line 998:	void hbCreateDecodeTables ( Int32 *limit,
+// Line 988:	void hbCreateDecodeTables ( Int32 *limit,
 
-// Line 999:	                            Int32 *base,
+// Line 989:	                            Int32 *base,
 
-// Line 1000:	                            Int32 *perm,
+// Line 990:	                            Int32 *perm,
 
-// Line 1001:	                            UChar *length,
+// Line 991:	                            UChar *length,
 
-// Line 1002:	                            Int32 minLen,
+// Line 992:	                            Int32 minLen,
 
-// Line 1003:	                            Int32 maxLen,
+// Line 993:	                            Int32 maxLen,
 
-// Line 1004:	                            Int32 alphaSize )
+// Line 994:	                            Int32 alphaSize )
 
-// Line 1005:	{
+// Line 995:	{
 
 	.locals
 	(
@@ -2921,17 +2917,17 @@ L_540:
 	)
 	.maxstack	4
 L_560:
-// Line 1006:	   Int32 pp, i, j, vec;
+// Line 996:	   Int32 pp, i, j, vec;
 
-// Line 1007:	
+// Line 997:	
 
-// Line 1008:	
+// Line 998:	
 
-// Line 1009:	   PRINTLOC;
+// Line 999:	   PRINTLOC;
 
-// Line 1010:	
+// Line 1000:	
 
-// Line 1011:	   pp = 0;
+// Line 1001:	   pp = 0;
 
 	ldc.i4	0
 	stloc	'pp/0'
@@ -2943,7 +2939,7 @@ L_563:
 	stloc	'j/2'
 	br	'L_568'
 L_567:
-// Line 1014:	         if (length[j] == i) { perm[pp] = j; pp++; };
+// Line 1004:	         if (length[j] == i) { perm[pp] = j; pp++; };
 
 	ldloc	'j/2'
 	ldarg	'length'
@@ -2969,7 +2965,7 @@ L_570:
 	ldc.i4	1
 	add
 	stloc	'j/2'
-// Line 1013:	      for (j = 0; j < alphaSize; j++)
+// Line 1003:	      for (j = 0; j < alphaSize; j++)
 
 L_568:
 	ldloc	'j/2'
@@ -2981,14 +2977,14 @@ L_566:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1012:	   for (i = minLen; i <= maxLen; i++)
+// Line 1002:	   for (i = minLen; i <= maxLen; i++)
 
 L_564:
 	ldloc	'i/1'
 	ldarg	'maxLen'
 	ble	'L_563'
 L_565:
-// Line 1015:	
+// Line 1005:	
 
 	ldc.i4	0
 	stloc	'i/1'
@@ -3006,7 +3002,7 @@ L_577:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1016:	   for (i = 0; i < MAX_CODE_LEN; i++) base[i] = 0;
+// Line 1006:	   for (i = 0; i < MAX_CODE_LEN; i++) base[i] = 0;
 
 L_575:
 	ldloc	'i/1'
@@ -3048,14 +3044,14 @@ L_581:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1017:	   for (i = 0; i < alphaSize; i++) base[length[i]+1]++;
+// Line 1007:	   for (i = 0; i < alphaSize; i++) base[length[i]+1]++;
 
 L_579:
 	ldloc	'i/1'
 	ldarg	'alphaSize'
 	blt	'L_578'
 L_580:
-// Line 1018:	
+// Line 1008:	
 
 	ldc.i4	1
 	stloc	'i/1'
@@ -3087,14 +3083,14 @@ L_585:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1019:	   for (i = 1; i < MAX_CODE_LEN; i++) base[i] += base[i-1];
+// Line 1009:	   for (i = 1; i < MAX_CODE_LEN; i++) base[i] += base[i-1];
 
 L_583:
 	ldloc	'i/1'
 	ldc.i4	23
 	blt	'L_582'
 L_584:
-// Line 1020:	
+// Line 1010:	
 
 	ldc.i4	0
 	stloc	'i/1'
@@ -3112,24 +3108,24 @@ L_589:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1021:	   for (i = 0; i < MAX_CODE_LEN; i++) limit[i] = 0;
+// Line 1011:	   for (i = 0; i < MAX_CODE_LEN; i++) limit[i] = 0;
 
 L_587:
 	ldloc	'i/1'
 	ldc.i4	23
 	blt	'L_586'
 L_588:
-// Line 1022:	   vec = 0;
+// Line 1012:	   vec = 0;
 
 	ldc.i4	0
 	stloc	'vec/3'
-// Line 1023:	
+// Line 1013:	
 
 	ldarg	'minLen'
 	stloc	'i/1'
 	br	'L_591'
 L_590:
-// Line 1025:	      vec += (base[i+1] - base[i]);
+// Line 1015:	      vec += (base[i+1] - base[i]);
 
 	ldloc	'i/1'
 	ldc.i4	1
@@ -3149,7 +3145,7 @@ L_590:
 	ldloc	'vec/3'
 	add
 	stloc	'vec/3'
-// Line 1026:	      limit[i] = vec-1;
+// Line 1016:	      limit[i] = vec-1;
 
 	ldloc	'i/1'
 	ldc.i4	2
@@ -3160,7 +3156,7 @@ L_590:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 1027:	      vec <<= 1;
+// Line 1017:	      vec <<= 1;
 
 	ldloc	'vec/3'
 	ldc.i4	1
@@ -3171,14 +3167,14 @@ L_593:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1024:	   for (i = minLen; i <= maxLen; i++) {
+// Line 1014:	   for (i = minLen; i <= maxLen; i++) {
 
 L_591:
 	ldloc	'i/1'
 	ldarg	'maxLen'
 	ble	'L_590'
 L_592:
-// Line 1028:	   }
+// Line 1018:	   }
 
 	ldarg	'minLen'
 	ldc.i4	1
@@ -3186,7 +3182,7 @@ L_592:
 	stloc	'i/1'
 	br	'L_597'
 L_596:
-// Line 1030:	      base[i] = ((limit[i-1] + 1) << 1) - base[i];
+// Line 1020:	      base[i] = ((limit[i-1] + 1) << 1) - base[i];
 
 	ldloc	'i/1'
 	ldc.i4	2
@@ -3218,14 +3214,14 @@ L_599:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1029:	   for (i = minLen + 1; i <= maxLen; i++)
+// Line 1019:	   for (i = minLen + 1; i <= maxLen; i++)
 
 L_597:
 	ldloc	'i/1'
 	ldarg	'maxLen'
 	ble	'L_596'
 L_598:
-// Line 1031:	}
+// Line 1021:	}
 
 L_561:
 	ret
@@ -3233,9 +3229,9 @@ L_561:
 }
  .method public hidebysig static void 'allocateCompressStructures'() cil managed
 {
-// Line 1075:	void allocateCompressStructures ( void )
+// Line 1065:	void allocateCompressStructures ( void )
 
-// Line 1076:	{
+// Line 1066:	{
 
 	.locals
 	(
@@ -3244,7 +3240,7 @@ L_561:
 	)
 	.maxstack	4
 L_605:
-// Line 1077:	   Int32 n  = 100000 * blockSize100k;
+// Line 1067:	   Int32 n  = 100000 * blockSize100k;
 
 	ldloca	'n/0'
 	ldsfld	int32 'blockSize100k'
@@ -3252,7 +3248,7 @@ L_605:
 	ldc.i4	100000
 	mul
 	stind.i4
-// Line 1078:	   block    = malloc ( (n + 1 + NUM_OVERSHOOT_BYTES) * sizeof(UChar) );
+// Line 1068:	   block    = malloc ( (n + 1 + NUM_OVERSHOOT_BYTES) * sizeof(UChar) );
 
 	ldloc	'n/0'
 	ldc.i4	21
@@ -3261,7 +3257,7 @@ L_605:
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'block'
 
-// Line 1079:	   quadrant = malloc ( (n     + NUM_OVERSHOOT_BYTES) * sizeof(Int16) );
+// Line 1069:	   quadrant = malloc ( (n     + NUM_OVERSHOOT_BYTES) * sizeof(Int16) );
 
 	ldloc	'n/0'
 	ldc.i4	20
@@ -3272,7 +3268,7 @@ L_605:
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'quadrant'
 
-// Line 1080:	   zptr     = malloc ( n                             * sizeof(Int32) );
+// Line 1070:	   zptr     = malloc ( n                             * sizeof(Int32) );
 
 	ldloc	'n/0'
 	ldc.i4	2
@@ -3281,24 +3277,24 @@ L_605:
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'zptr'
 
-// Line 1081:	   ftab     = malloc ( 65537                         * sizeof(Int32) );
+// Line 1071:	   ftab     = malloc ( 65537                         * sizeof(Int32) );
 
 	ldc.i4	262148
 	conv.u4
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'ftab'
 
-// Line 1082:	
+// Line 1072:	
 
-// Line 1083:	
+// Line 1073:	
 
-// Line 1084:	   PRINTLOC;
+// Line 1074:	   PRINTLOC;
 
-// Line 1085:	
+// Line 1075:	
 
-// Line 1086:	   if (block == NULL || quadrant == NULL ||
+// Line 1076:	   if (block == NULL || quadrant == NULL ||
 
-// Line 1087:	       zptr == NULL  || ftab == NULL) {
+// Line 1077:	       zptr == NULL  || ftab == NULL) {
 
 	ldsfld	void* 'block'
 
@@ -3317,9 +3313,9 @@ L_605:
 	ldc.i4	0
 	bne.un	'L_608'
 L_613:
-// Line 1088:	      Int32 totalDraw
+// Line 1078:	      Int32 totalDraw
 
-// Line 1089:	         = (n + 1 + NUM_OVERSHOOT_BYTES) * sizeof(UChar) +
+// Line 1079:	         = (n + 1 + NUM_OVERSHOOT_BYTES) * sizeof(UChar) +
 
 	ldloca	'totalDraw/1'
 	ldloc	'n/0'
@@ -3338,27 +3334,27 @@ L_613:
 	ldc.i4	262148
 	add
 	stind.i4
-// Line 1092:	           65537                         * sizeof(Int32);
+// Line 1082:	           65537                         * sizeof(Int32);
 
-// Line 1093:	
+// Line 1083:	
 
-// Line 1094:	      compressOutOfMemory ( totalDraw, n );
+// Line 1084:	      compressOutOfMemory ( totalDraw, n );
 
 	ldloc	'totalDraw/1'
 	ldloc	'n/0'
 	call	void 'compressOutOfMemory'(int32, int32)
 L_608:
-// Line 1095:	   }
+// Line 1085:	   }
 
-// Line 1096:	
+// Line 1086:	
 
-// Line 1097:	    
-// Line 1098:	
-// Line 1099:	
-// Line 1100:	
-// Line 1101:	
+// Line 1087:	    
+// Line 1088:	
+// Line 1089:	
+// Line 1090:	
+// Line 1091:	
 
-// Line 1102:	   block++;
+// Line 1092:	   block++;
 
 	ldsfld	void* 'block'
 
@@ -3366,26 +3362,26 @@ L_608:
 	add
 	stsfld	void* 'block'
 
+// Line 1093:	
+
+// Line 1094:	    
+// Line 1095:	
+// Line 1096:	
+// Line 1097:	
+// Line 1098:	
+// Line 1099:	
+// Line 1100:	
+// Line 1101:	
+// Line 1102:	
 // Line 1103:	
 
-// Line 1104:	    
-// Line 1105:	
-// Line 1106:	
-// Line 1107:	
-// Line 1108:	
-// Line 1109:	
-// Line 1110:	
-// Line 1111:	
-// Line 1112:	
-// Line 1113:	
-
-// Line 1114:	   szptr = (UInt16*)zptr;
+// Line 1104:	   szptr = (UInt16*)zptr;
 
 	ldsfld	void* 'zptr'
 
 	stsfld	void* 'szptr'
 
-// Line 1115:	}
+// Line 1105:	}
 
 L_606:
 	ret
@@ -3393,9 +3389,9 @@ L_606:
 }
  .method public hidebysig static void 'setDecompressStructureSizes'(int32 'newSize100k' ) cil managed
 {
-// Line 1119:	void setDecompressStructureSizes ( Int32 newSize100k )
+// Line 1109:	void setDecompressStructureSizes ( Int32 newSize100k )
 
-// Line 1120:	{
+// Line 1110:	{
 
 	.locals
 	(
@@ -3406,15 +3402,15 @@ L_606:
 	)
 	.maxstack	4
 L_617:
-// Line 1121:	
+// Line 1111:	
 
-// Line 1122:	   PRINTLOC;
+// Line 1112:	   PRINTLOC;
 
-// Line 1123:	
+// Line 1113:	
 
-// Line 1124:	   if (! (0 <= newSize100k   && newSize100k   <= 9 &&
+// Line 1114:	   if (! (0 <= newSize100k   && newSize100k   <= 9 &&
 
-// Line 1125:	          0 <= blockSize100k && blockSize100k <= 9))
+// Line 1115:	          0 <= blockSize100k && blockSize100k <= 9))
 
 	ldc.i4	0
 	ldarg	'newSize100k'
@@ -3431,31 +3427,31 @@ L_617:
 	ldc.i4	9
 	ble	'L_620'
 L_641:
-// Line 1126:	      panic ( "setDecompressStructureSizes" );
+// Line 1116:	      panic ( "setDecompressStructureSizes" );
 
 	ldsflda	valuetype 'int8[]' 'L_4'
 
 	call	void 'panic'(void*)
 L_620:
-// Line 1127:	
+// Line 1117:	
 
-// Line 1128:	   if (newSize100k == blockSize100k) return;
+// Line 1118:	   if (newSize100k == blockSize100k) return;
 
 	ldarg	'newSize100k'
 	ldsfld	int32 'blockSize100k'
 
 	beq	'L_618'
 L_621:
-// Line 1129:	
+// Line 1119:	
 
-// Line 1130:	   blockSize100k = newSize100k;
+// Line 1120:	   blockSize100k = newSize100k;
 
 	ldarg	'newSize100k'
 	stsfld	int32 'blockSize100k'
 
-// Line 1131:	
+// Line 1121:	
 
-// Line 1132:	   if (ll16  != NULL) free ( ll16  );
+// Line 1122:	   if (ll16  != NULL) free ( ll16  );
 
 	ldsfld	void* 'll16'
 
@@ -3465,7 +3461,7 @@ L_621:
 
 	call	void 'free'(void*)
 L_622:
-// Line 1133:	   if (ll4   != NULL) free ( ll4   );
+// Line 1123:	   if (ll4   != NULL) free ( ll4   );
 
 	ldsfld	void* 'll4'
 
@@ -3475,7 +3471,7 @@ L_622:
 
 	call	void 'free'(void*)
 L_623:
-// Line 1134:	   if (ll8   != NULL) free ( ll8   );
+// Line 1124:	   if (ll8   != NULL) free ( ll8   );
 
 	ldsfld	void* 'll8'
 
@@ -3485,7 +3481,7 @@ L_623:
 
 	call	void 'free'(void*)
 L_624:
-// Line 1135:	   if (tt    != NULL) free ( tt    );
+// Line 1125:	   if (tt    != NULL) free ( tt    );
 
 	ldsfld	void* 'tt'
 
@@ -3495,32 +3491,32 @@ L_624:
 
 	call	void 'free'(void*)
 L_625:
-// Line 1136:	
+// Line 1126:	
 
-// Line 1137:	   if (newSize100k == 0) return;
+// Line 1127:	   if (newSize100k == 0) return;
 
 	ldarg	'newSize100k'
 	ldc.i4	0
 	beq	'L_618'
 L_626:
-// Line 1138:	
+// Line 1128:	
 
-// Line 1139:	   if (smallMode) {
+// Line 1129:	   if (smallMode) {
 
 	ldsfld	uint8 'smallMode'
 
 	ldc.i4	0
 	beq	'L_627'
-// Line 1140:	
+// Line 1130:	
 
-// Line 1141:	      Int32 n = 100000 * newSize100k;
+// Line 1131:	      Int32 n = 100000 * newSize100k;
 
 	ldloca	'n/2'
 	ldarg	'newSize100k'
 	ldc.i4	100000
 	mul
 	stind.i4
-// Line 1142:	      ll16    = malloc ( n * sizeof(UInt16) );
+// Line 1132:	      ll16    = malloc ( n * sizeof(UInt16) );
 
 	ldloc	'n/2'
 	ldc.i4	1
@@ -3529,7 +3525,7 @@ L_626:
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'll16'
 
-// Line 1143:	      ll4     = malloc ( ((n+1) >> 1) * sizeof(UChar) );
+// Line 1133:	      ll4     = malloc ( ((n+1) >> 1) * sizeof(UChar) );
 
 	ldloc	'n/2'
 	ldc.i4	1
@@ -3540,9 +3536,9 @@ L_626:
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'll4'
 
-// Line 1144:	
+// Line 1134:	
 
-// Line 1145:	      if (ll4 == NULL || ll16 == NULL) {
+// Line 1135:	      if (ll4 == NULL || ll16 == NULL) {
 
 	ldsfld	void* 'll4'
 
@@ -3553,9 +3549,9 @@ L_626:
 	ldc.i4	0
 	bne.un	'L_633'
 L_642:
-// Line 1146:	         Int32 totalDraw
+// Line 1136:	         Int32 totalDraw
 
-// Line 1147:	            = n * sizeof(Int16) + ((n+1) >> 1) * sizeof(UChar);
+// Line 1137:	            = n * sizeof(Int16) + ((n+1) >> 1) * sizeof(UChar);
 
 	ldloca	'totalDraw/3'
 	ldloc	'n/2'
@@ -3568,37 +3564,37 @@ L_642:
 	shl
 	add
 	stind.i4
-// Line 1148:	         uncompressOutOfMemory ( totalDraw, n );
+// Line 1138:	         uncompressOutOfMemory ( totalDraw, n );
 
 	ldloc	'totalDraw/3'
 	ldloc	'n/2'
 	call	void 'uncompressOutOfMemory'(int32, int32)
 L_629:
-// Line 1149:	      }
+// Line 1139:	      }
 
-// Line 1150:	
+// Line 1140:	
 
 	br	'L_633'
 L_627:
-// Line 1151:	   } else {
+// Line 1141:	   } else {
 
-// Line 1152:	
+// Line 1142:	
 
-// Line 1153:	      Int32 n = 100000 * newSize100k;
+// Line 1143:	      Int32 n = 100000 * newSize100k;
 
 	ldloca	'n/0'
 	ldarg	'newSize100k'
 	ldc.i4	100000
 	mul
 	stind.i4
-// Line 1154:	      ll8     = malloc ( n * sizeof(UChar) );
+// Line 1144:	      ll8     = malloc ( n * sizeof(UChar) );
 
 	ldloc	'n/0'
 	conv.u4
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'll8'
 
-// Line 1155:	      tt      = malloc ( n * sizeof(Int32) );
+// Line 1145:	      tt      = malloc ( n * sizeof(Int32) );
 
 	ldloc	'n/0'
 	ldc.i4	2
@@ -3607,9 +3603,9 @@ L_627:
 	call	void* 'malloc'(uint32)
 	stsfld	void* 'tt'
 
-// Line 1156:	
+// Line 1146:	
 
-// Line 1157:	      if (ll8 == NULL || tt == NULL) {
+// Line 1147:	      if (ll8 == NULL || tt == NULL) {
 
 	ldsfld	void* 'll8'
 
@@ -3620,9 +3616,9 @@ L_627:
 	ldc.i4	0
 	bne.un	'L_635'
 L_643:
-// Line 1158:	         Int32 totalDraw
+// Line 1148:	         Int32 totalDraw
 
-// Line 1159:	            = n * sizeof(UChar) + n * sizeof(UInt32);
+// Line 1149:	            = n * sizeof(UChar) + n * sizeof(UInt32);
 
 	ldloca	'totalDraw/1'
 	ldloc	'n/0'
@@ -3631,20 +3627,20 @@ L_643:
 	ldloc	'n/0'
 	add
 	stind.i4
-// Line 1160:	         uncompressOutOfMemory ( totalDraw, n );
+// Line 1150:	         uncompressOutOfMemory ( totalDraw, n );
 
 	ldloc	'totalDraw/1'
 	ldloc	'n/0'
 	call	void 'uncompressOutOfMemory'(int32, int32)
 L_635:
-// Line 1161:	      }
+// Line 1151:	      }
 
-// Line 1162:	
+// Line 1152:	
 
 L_633:
-// Line 1163:	   }
+// Line 1153:	   }
 
-// Line 1164:	}
+// Line 1154:	}
 
 L_618:
 	ret
@@ -3652,9 +3648,9 @@ L_618:
 }
  .method public hidebysig static void 'makeMaps'() cil managed
 {
-// Line 1173:	void makeMaps ( void )
+// Line 1163:	void makeMaps ( void )
 
-// Line 1174:	{
+// Line 1164:	{
 
 	.locals
 	(
@@ -3662,15 +3658,15 @@ L_618:
 	)
 	.maxstack	2
 L_647:
-// Line 1175:	   Int32 i;
+// Line 1165:	   Int32 i;
 
-// Line 1176:	
+// Line 1166:	
 
-// Line 1177:	   PRINTLOC;
+// Line 1167:	   PRINTLOC;
 
-// Line 1178:	
+// Line 1168:	
 
-// Line 1179:	   nInUse = 0;
+// Line 1169:	   nInUse = 0;
 
 	ldc.i4	0
 	stsfld	int32 'nInUse'
@@ -3679,7 +3675,7 @@ L_647:
 	stloc	'i/0'
 	br	'L_651'
 L_650:
-// Line 1181:	      if (inUse[i]) {
+// Line 1171:	      if (inUse[i]) {
 
 	ldloc	'i/0'
 	ldsflda	valuetype 'uint8[256]' 'inUse'
@@ -3688,7 +3684,7 @@ L_650:
 	ldind.u1
 	ldc.i4	0
 	beq	'L_654'
-// Line 1182:	         seqToUnseq[nInUse] = i;
+// Line 1172:	         seqToUnseq[nInUse] = i;
 
 	ldsfld	int32 'nInUse'
 
@@ -3698,7 +3694,7 @@ L_650:
 	ldloc	'i/0'
 	conv.u1
 	stind.i1
-// Line 1183:	         unseqToSeq[i] = nInUse;
+// Line 1173:	         unseqToSeq[i] = nInUse;
 
 	ldloc	'i/0'
 	ldsflda	valuetype 'uint8[256]' 'unseqToSeq'
@@ -3708,7 +3704,7 @@ L_650:
 
 	conv.u1
 	stind.i1
-// Line 1184:	         nInUse++;
+// Line 1174:	         nInUse++;
 
 	ldsfld	int32 'nInUse'
 
@@ -3722,16 +3718,16 @@ L_653:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1180:	   for (i = 0; i < 256; i++)
+// Line 1170:	   for (i = 0; i < 256; i++)
 
 L_651:
 	ldloc	'i/0'
 	ldc.i4	256
 	blt	'L_650'
 L_652:
-// Line 1185:	      }
+// Line 1175:	      }
 
-// Line 1186:	}
+// Line 1176:	}
 
 L_648:
 	ret
@@ -3739,9 +3735,9 @@ L_648:
 }
  .method public hidebysig static void 'generateMTFValues'() cil managed
 {
-// Line 1190:	void generateMTFValues ( void )
+// Line 1180:	void generateMTFValues ( void )
 
-// Line 1191:	{
+// Line 1181:	{
 
 	.locals
 	(
@@ -3759,25 +3755,25 @@ L_648:
 	)
 	.maxstack	3
 L_662:
-// Line 1198:	   Int32  EOB;
+// Line 1188:	   Int32  EOB;
 
-// Line 1199:	
+// Line 1189:	
 
-// Line 1200:	   PRINTLOC;
+// Line 1190:	   PRINTLOC;
 
-// Line 1201:	
+// Line 1191:	
 
-// Line 1202:	   makeMaps();
+// Line 1192:	   makeMaps();
 
 	call	void 'makeMaps'()
-// Line 1203:	   EOB = nInUse+1;
+// Line 1193:	   EOB = nInUse+1;
 
 	ldsfld	int32 'nInUse'
 
 	ldc.i4	1
 	add
 	stloc	'EOB/9'
-// Line 1204:	
+// Line 1194:	
 
 	ldc.i4	0
 	stloc	'i/3'
@@ -3796,20 +3792,20 @@ L_668:
 	ldc.i4	1
 	add
 	stloc	'i/3'
-// Line 1205:	   for (i = 0; i <= EOB; i++) mtfFreq[i] = 0;
+// Line 1195:	   for (i = 0; i <= EOB; i++) mtfFreq[i] = 0;
 
 L_666:
 	ldloc	'i/3'
 	ldloc	'EOB/9'
 	ble	'L_665'
 L_667:
-// Line 1206:	
+// Line 1196:	
 
-// Line 1207:	   wr = 0;
+// Line 1197:	   wr = 0;
 
 	ldc.i4	0
 	stloc	'wr/8'
-// Line 1208:	   zPend = 0;
+// Line 1198:	   zPend = 0;
 
 	ldc.i4	0
 	stloc	'zPend/7'
@@ -3828,7 +3824,7 @@ L_672:
 	ldc.i4	1
 	add
 	stloc	'i/3'
-// Line 1209:	   for (i = 0; i < nInUse; i++) yy[i] = (UChar) i;
+// Line 1199:	   for (i = 0; i < nInUse; i++) yy[i] = (UChar) i;
 
 L_670:
 	ldloc	'i/3'
@@ -3836,27 +3832,27 @@ L_670:
 
 	blt	'L_669'
 L_671:
-// Line 1210:	
+// Line 1200:	
 
-// Line 1211:	
+// Line 1201:	
 
 	ldc.i4	0
 	stloc	'i/3'
 	br	'L_674'
 L_673:
-// Line 1213:	      UChar ll_i;
+// Line 1203:	      UChar ll_i;
 
-// Line 1214:	
+// Line 1204:	
 
-// Line 1215:	      #if DEBUG
+// Line 1205:	      #if DEBUG
 
-// Line 1216:	         assert (wr <= i);
+// Line 1206:	         assert (wr <= i);
 
-// Line 1217:	      #endif
+// Line 1207:	      #endif
 
-// Line 1218:	
+// Line 1208:	
 
-// Line 1219:	      ll_i = unseqToSeq[block[zptr[i] - 1]];
+// Line 1209:	      ll_i = unseqToSeq[block[zptr[i] - 1]];
 
 	ldloc	'i/3'
 	ldc.i4	2
@@ -3877,17 +3873,17 @@ L_673:
 	add
 	ldind.u1
 	stloc	'll_i/10'
-// Line 1220:	      #if DEBUG
+// Line 1210:	      #if DEBUG
 
-// Line 1221:	         assert (ll_i < nInUse);
+// Line 1211:	         assert (ll_i < nInUse);
 
-// Line 1222:	      #endif
+// Line 1212:	      #endif
 
-// Line 1223:	      j = 0;
+// Line 1213:	      j = 0;
 
 	ldc.i4	0
 	stloc	'j/4'
-// Line 1224:	      tmp = yy[j];
+// Line 1214:	      tmp = yy[j];
 
 	ldc.i4	0
 	ldloca	'yy/2'
@@ -3896,24 +3892,24 @@ L_673:
 	stloc	'tmp/5'
 	br	'L_680'
 L_678:
-// Line 1226:	         j++;
+// Line 1216:	         j++;
 
 	ldloc	'j/4'
 	ldc.i4	1
 	add
 	stloc	'j/4'
-// Line 1227:	         tmp2 = tmp;
+// Line 1217:	         tmp2 = tmp;
 
 	ldloc	'tmp/5'
 	stloc	'tmp2/6'
-// Line 1228:	         tmp = yy[j];
+// Line 1218:	         tmp = yy[j];
 
 	ldloc	'j/4'
 	ldloca	'yy/2'
 	add
 	ldind.u1
 	stloc	'tmp/5'
-// Line 1229:	         yy[j] = tmp2;
+// Line 1219:	         yy[j] = tmp2;
 
 	ldloc	'j/4'
 	ldloca	'yy/2'
@@ -3921,7 +3917,7 @@ L_678:
 	ldloc	'tmp2/6'
 	stind.i1
 L_680:
-// Line 1225:	      while ( ll_i != tmp ) {
+// Line 1215:	      while ( ll_i != tmp ) {
 
 	ldloc	'll_i/10'
 	conv.i4
@@ -3929,19 +3925,19 @@ L_680:
 	conv.i4
 	bne.un	'L_678'
 L_679:
-// Line 1230:	      };
+// Line 1220:	      };
 
-// Line 1231:	      yy[0] = tmp;
+// Line 1221:	      yy[0] = tmp;
 
 	ldloca	'yy/2'
 	ldloc	'tmp/5'
 	stind.i1
-// Line 1232:		  if (j == 0) {
+// Line 1222:		  if (j == 0) {
 
 	ldloc	'j/4'
 	ldc.i4	0
 	bne.un	'L_683'
-// Line 1233:	         zPend++;
+// Line 1223:	         zPend++;
 
 	ldloc	'zPend/7'
 	ldc.i4	1
@@ -3949,21 +3945,21 @@ L_679:
 	stloc	'zPend/7'
 	br	'L_686'
 L_683:
-// Line 1234:	      } else {
+// Line 1224:	      } else {
 
-// Line 1235:	         if (zPend > 0) {
+// Line 1225:	         if (zPend > 0) {
 
 	ldloc	'zPend/7'
 	ldc.i4	0
 	ble	'L_688'
-// Line 1236:	            zPend--;
+// Line 1226:	            zPend--;
 
 	ldloc	'zPend/7'
 	ldc.i4	1
 	sub
 	stloc	'zPend/7'
 L_690:
-// Line 1238:	               switch (zPend % 2) {
+// Line 1228:	               switch (zPend % 2) {
 
 	ldloc	'zPend/7'
 	ldc.i4	1
@@ -3978,7 +3974,7 @@ L_690:
 	beq	'L_697'
 	br	'L_699'
 L_696:
-// Line 1239:	                  case 0: szptr[wr] = RUNA; wr++; mtfFreq[RUNA]++; break;
+// Line 1229:	                  case 0: szptr[wr] = RUNA; wr++; mtfFreq[RUNA]++; break;
 
 	ldloc	'wr/8'
 	ldc.i4	1
@@ -4002,7 +3998,7 @@ L_696:
 	stind.i4
 	br	'L_694'
 L_697:
-// Line 1240:	                  case 1: szptr[wr] = RUNB; wr++; mtfFreq[RUNB]++; break;
+// Line 1230:	                  case 1: szptr[wr] = RUNB; wr++; mtfFreq[RUNB]++; break;
 
 	ldloc	'wr/8'
 	ldc.i4	1
@@ -4030,15 +4026,15 @@ L_697:
 	stind.i4
 L_699:
 L_694:
-// Line 1241:	               };
+// Line 1231:	               };
 
-// Line 1242:	               if (zPend < 2) break;
+// Line 1232:	               if (zPend < 2) break;
 
 	ldloc	'zPend/7'
 	ldc.i4	2
 	blt	'L_691'
 L_700:
-// Line 1243:	               zPend = (zPend - 2) / 2;
+// Line 1233:	               zPend = (zPend - 2) / 2;
 
 	ldloc	'zPend/7'
 	ldc.i4	2
@@ -4047,20 +4043,20 @@ L_700:
 	shr.un
 	stloc	'zPend/7'
 L_692:
-// Line 1237:	            while (True) {
+// Line 1227:	            while (True) {
 
 	br	'L_690'
 L_691:
-// Line 1244:	            };
+// Line 1234:	            };
 
-// Line 1245:	            zPend = 0;
+// Line 1235:	            zPend = 0;
 
 	ldc.i4	0
 	stloc	'zPend/7'
 L_688:
-// Line 1246:	         }
+// Line 1236:	         }
 
-// Line 1247:	         szptr[wr] = j+1; wr++; mtfFreq[j+1]++;
+// Line 1237:	         szptr[wr] = j+1; wr++; mtfFreq[j+1]++;
 
 	ldloc	'wr/8'
 	ldc.i4	1
@@ -4098,14 +4094,14 @@ L_688:
 	add
 	stind.i4
 L_686:
-// Line 1248:	      }
+// Line 1238:	      }
 
 L_676:
 	ldloc	'i/3'
 	ldc.i4	1
 	add
 	stloc	'i/3'
-// Line 1212:	   for (i = 0; i <= last; i++) {
+// Line 1202:	   for (i = 0; i <= last; i++) {
 
 L_674:
 	ldloc	'i/3'
@@ -4113,23 +4109,23 @@ L_674:
 
 	ble	'L_673'
 L_675:
-// Line 1249:	   }
+// Line 1239:	   }
 
-// Line 1250:	
+// Line 1240:	
 
-// Line 1251:	   if (zPend > 0) {
+// Line 1241:	   if (zPend > 0) {
 
 	ldloc	'zPend/7'
 	ldc.i4	0
 	ble	'L_705'
-// Line 1252:	      zPend--;
+// Line 1242:	      zPend--;
 
 	ldloc	'zPend/7'
 	ldc.i4	1
 	sub
 	stloc	'zPend/7'
 L_707:
-// Line 1254:	         switch (zPend % 2) {
+// Line 1244:	         switch (zPend % 2) {
 
 	ldloc	'zPend/7'
 	ldc.i4	1
@@ -4144,7 +4140,7 @@ L_707:
 	beq	'L_714'
 	br	'L_716'
 L_713:
-// Line 1255:	            case 0:  szptr[wr] = RUNA; wr++; mtfFreq[RUNA]++; break;
+// Line 1245:	            case 0:  szptr[wr] = RUNA; wr++; mtfFreq[RUNA]++; break;
 
 	ldloc	'wr/8'
 	ldc.i4	1
@@ -4168,7 +4164,7 @@ L_713:
 	stind.i4
 	br	'L_711'
 L_714:
-// Line 1256:	            case 1:  szptr[wr] = RUNB; wr++; mtfFreq[RUNB]++; break;
+// Line 1246:	            case 1:  szptr[wr] = RUNB; wr++; mtfFreq[RUNB]++; break;
 
 	ldloc	'wr/8'
 	ldc.i4	1
@@ -4196,15 +4192,15 @@ L_714:
 	stind.i4
 L_716:
 L_711:
-// Line 1257:	         };
+// Line 1247:	         };
 
-// Line 1258:	         if (zPend < 2) break;
+// Line 1248:	         if (zPend < 2) break;
 
 	ldloc	'zPend/7'
 	ldc.i4	2
 	blt	'L_708'
 L_717:
-// Line 1259:	         zPend = (zPend - 2) / 2;
+// Line 1249:	         zPend = (zPend - 2) / 2;
 
 	ldloc	'zPend/7'
 	ldc.i4	2
@@ -4213,18 +4209,18 @@ L_717:
 	shr.un
 	stloc	'zPend/7'
 L_709:
-// Line 1253:	      while (True) {
+// Line 1243:	      while (True) {
 
 	br	'L_707'
 L_708:
-// Line 1260:	      };
+// Line 1250:	      };
 
 L_705:
-// Line 1261:	   }
+// Line 1251:	   }
 
-// Line 1262:	
+// Line 1252:	
 
-// Line 1263:	   szptr[wr] = EOB; wr++; mtfFreq[EOB]++;
+// Line 1253:	   szptr[wr] = EOB; wr++; mtfFreq[EOB]++;
 
 	ldloc	'wr/8'
 	ldc.i4	1
@@ -4255,14 +4251,14 @@ L_705:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 1264:	
+// Line 1254:	
 
-// Line 1265:	   nMTF = wr;
+// Line 1255:	   nMTF = wr;
 
 	ldloc	'wr/8'
 	stsfld	int32 'nMTF'
 
-// Line 1266:	}
+// Line 1256:	}
 
 L_663:
 	ret
@@ -4270,9 +4266,9 @@ L_663:
 }
  .method public hidebysig static void 'sendMTFValues'() cil managed
 {
-// Line 1272:	void sendMTFValues ( void )
+// Line 1262:	void sendMTFValues ( void )
 
-// Line 1273:	{
+// Line 1263:	{
 
 	.locals
 	(
@@ -4316,31 +4312,30 @@ L_663:
 	)
 	.maxstack	8
 L_725:
-// Line 1290:	   Int32  fave[N_GROUPS];
+// Line 1280:	   Int32  fave[N_GROUPS];
 
-// Line 1291:	
+// Line 1281:	
 
-// Line 1292:	
+// Line 1282:	
 
-// Line 1293:	   PRINTLOC;
+// Line 1283:	   PRINTLOC;
 
-// Line 1294:	
+// Line 1284:	
 
-// Line 1295:	   if (verbosity >= 3)
+// Line 1285:	   if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_728'
-// Line 1296:	      fprintf ( stderr,
+// Line 1286:	      fprintf ( stderr,
 
-// Line 1297:	                "      %d in block, %d after MTF & 1-2 coding, %d+2 syms in use\n",
+// Line 1287:	                "      %d in block, %d after MTF & 1-2 coding, %d+2 syms in use\n",
 
-// Line 1298:	                last+1, nMTF, nInUse );
+// Line 1288:	                last+1, nMTF, nInUse );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_5'
 
 	ldsfld	int32 'last'
@@ -4354,9 +4349,9 @@ L_725:
 	call	vararg int32 'fprintf'(void*, void*, ..., int32, int32, int32)
 	pop
 L_728:
-// Line 1299:	
+// Line 1289:	
 
-// Line 1300:	   alphaSize = nInUse+2;
+// Line 1290:	   alphaSize = nInUse+2;
 
 	ldsfld	int32 'nInUse'
 
@@ -4371,7 +4366,7 @@ L_729:
 	stloc	'v/0'
 	br	'L_734'
 L_733:
-// Line 1303:	         len[t][v] = GREATER_ICOST;
+// Line 1293:	         len[t][v] = GREATER_ICOST;
 
 	ldloc	't/1'
 	ldc.i4	258
@@ -4388,7 +4383,7 @@ L_736:
 	ldc.i4	1
 	add
 	stloc	'v/0'
-// Line 1302:	      for (v = 0; v < alphaSize; v++)
+// Line 1292:	      for (v = 0; v < alphaSize; v++)
 
 L_734:
 	ldloc	'v/0'
@@ -4400,18 +4395,18 @@ L_732:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1301:	   for (t = 0; t < N_GROUPS; t++)
+// Line 1291:	   for (t = 0; t < N_GROUPS; t++)
 
 L_730:
 	ldloc	't/1'
 	ldc.i4	6
 	blt	'L_729'
 L_731:
-// Line 1304:	
+// Line 1294:	
 
-// Line 1305:	    
+// Line 1295:	    
 
-// Line 1306:	   if (nMTF <= 0) panic ( "sendMTFValues(0)" );
+// Line 1296:	   if (nMTF <= 0) panic ( "sendMTFValues(0)" );
 
 	ldsfld	int32 'nMTF'
 
@@ -4421,7 +4416,7 @@ L_731:
 
 	call	void 'panic'(void*)
 L_737:
-// Line 1307:	   if (nMTF < 200) nGroups = 2; else
+// Line 1297:	   if (nMTF < 200) nGroups = 2; else
 
 	ldsfld	int32 'nMTF'
 
@@ -4431,7 +4426,7 @@ L_737:
 	stloc	'nGroups/15'
 	br	'L_739'
 L_738:
-// Line 1308:	   if (nMTF < 800) nGroups = 4; else
+// Line 1298:	   if (nMTF < 800) nGroups = 4; else
 
 	ldsfld	int32 'nMTF'
 
@@ -4441,62 +4436,62 @@ L_738:
 	stloc	'nGroups/15'
 	br	'L_741'
 L_740:
-// Line 1309:	                   nGroups = 6;
+// Line 1299:	                   nGroups = 6;
 
 	ldc.i4	6
 	stloc	'nGroups/15'
 L_741:
 L_739:
-// Line 1310:	
+// Line 1300:	
 
-// Line 1311:	    
+// Line 1301:	    
 
-// Line 1312:	   {
+// Line 1302:	   {
 
-// Line 1313:	      Int32 nPart, remF, tFreq, aFreq;
+// Line 1303:	      Int32 nPart, remF, tFreq, aFreq;
 
-// Line 1314:	
+// Line 1304:	
 
-// Line 1315:	      nPart = nGroups;
+// Line 1305:	      nPart = nGroups;
 
 	ldloc	'nGroups/15'
 	stloc	'nPart/33'
-// Line 1316:	      remF  = nMTF;
+// Line 1306:	      remF  = nMTF;
 
 	ldsfld	int32 'nMTF'
 
 	stloc	'remF/34'
-// Line 1317:	      gs = 0;
+// Line 1307:	      gs = 0;
 
 	ldc.i4	0
 	stloc	'gs/4'
 	br	'L_745'
 L_743:
-// Line 1319:	         tFreq = remF / nPart;
+// Line 1309:	         tFreq = remF / nPart;
 
 	ldloc	'remF/34'
 	ldloc	'nPart/33'
 	div
 	stloc	'tFreq/35'
-// Line 1320:	         ge = gs-1;
+// Line 1310:	         ge = gs-1;
 
 	ldloc	'gs/4'
 	ldc.i4	1
 	sub
 	stloc	'ge/5'
-// Line 1321:	         aFreq = 0;
+// Line 1311:	         aFreq = 0;
 
 	ldc.i4	0
 	stloc	'aFreq/36'
 	br	'L_749'
 L_747:
-// Line 1323:	            ge++;
+// Line 1313:	            ge++;
 
 	ldloc	'ge/5'
 	ldc.i4	1
 	add
 	stloc	'ge/5'
-// Line 1324:	            aFreq += mtfFreq[ge];
+// Line 1314:	            aFreq += mtfFreq[ge];
 
 	ldloc	'ge/5'
 	ldc.i4	2
@@ -4509,7 +4504,7 @@ L_747:
 	add
 	stloc	'aFreq/36'
 L_749:
-// Line 1322:	         while (aFreq < tFreq && ge < alphaSize-1) {
+// Line 1312:	         while (aFreq < tFreq && ge < alphaSize-1) {
 
 	ldloc	'aFreq/36'
 	ldloc	'tFreq/35'
@@ -4521,13 +4516,13 @@ L_749:
 	blt	'L_747'
 L_954:
 L_748:
-// Line 1325:	         }
+// Line 1315:	         }
 
-// Line 1326:	         if (ge > gs
+// Line 1316:	         if (ge > gs
 
-// Line 1327:	             && nPart != nGroups && nPart != 1
+// Line 1317:	             && nPart != nGroups && nPart != 1
 
-// Line 1328:	             && ((nGroups-nPart) % 2 == 1)) {
+// Line 1318:	             && ((nGroups-nPart) % 2 == 1)) {
 
 	ldloc	'ge/5'
 	ldloc	'gs/4'
@@ -4545,7 +4540,7 @@ L_748:
 	and
 	ldc.i4	1
 	bne.un	'L_752'
-// Line 1329:	            aFreq -= mtfFreq[ge];
+// Line 1319:	            aFreq -= mtfFreq[ge];
 
 	ldloc	'ge/5'
 	ldc.i4	2
@@ -4558,34 +4553,33 @@ L_748:
 	ldloc	'aFreq/36'
 	add
 	stloc	'aFreq/36'
-// Line 1330:	            ge--;
+// Line 1320:	            ge--;
 
 	ldloc	'ge/5'
 	ldc.i4	1
 	sub
 	stloc	'ge/5'
 L_752:
-// Line 1331:	         }
+// Line 1321:	         }
 
-// Line 1332:	
+// Line 1322:	
 
-// Line 1333:	         if (verbosity >= 3)
+// Line 1323:	         if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_755'
-// Line 1334:	            fprintf ( stderr,
+// Line 1324:	            fprintf ( stderr,
 
-// Line 1335:	                      "      initial group %d, [%d .. %d], has %d syms (%4.1f%%)\n",
+// Line 1325:	                      "      initial group %d, [%d .. %d], has %d syms (%4.1f%%)\n",
 
-// Line 1336:	                              nPart, gs, ge, aFreq,
+// Line 1326:	                              nPart, gs, ge, aFreq,
 
-// Line 1337:	                              (100.0 * (float)aFreq) / (float)nMTF );
+// Line 1327:	                              (100.0 * (float)aFreq) / (float)nMTF );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_7'
 
 	ldloc	'nPart/33'
@@ -4605,13 +4599,13 @@ L_752:
 	call	vararg int32 'fprintf'(void*, void*, ..., int32, int32, int32, int32, float64)
 	pop
 L_755:
-// Line 1338:	
+// Line 1328:	
 
 	ldc.i4	0
 	stloc	'v/0'
 	br	'L_757'
 L_756:
-// Line 1340:	            if (v >= gs && v <= ge)
+// Line 1330:	            if (v >= gs && v <= ge)
 
 	ldloc	'v/0'
 	ldloc	'gs/4'
@@ -4619,7 +4613,7 @@ L_756:
 	ldloc	'v/0'
 	ldloc	'ge/5'
 	bgt	'L_760'
-// Line 1341:	               len[nPart-1][v] = LESSER_ICOST; else
+// Line 1331:	               len[nPart-1][v] = LESSER_ICOST; else
 
 	ldloc	'nPart/33'
 	ldc.i4	1
@@ -4635,7 +4629,7 @@ L_756:
 	stind.i1
 	br	'L_761'
 L_760:
-// Line 1342:	               len[nPart-1][v] = GREATER_ICOST;
+// Line 1332:	               len[nPart-1][v] = GREATER_ICOST;
 
 	ldloc	'nPart/33'
 	ldc.i4	1
@@ -4655,55 +4649,55 @@ L_759:
 	ldc.i4	1
 	add
 	stloc	'v/0'
-// Line 1339:	         for (v = 0; v < alphaSize; v++)
+// Line 1329:	         for (v = 0; v < alphaSize; v++)
 
 L_757:
 	ldloc	'v/0'
 	ldloc	'alphaSize/11'
 	blt	'L_756'
 L_758:
-// Line 1343:	
+// Line 1333:	
 
-// Line 1344:	         nPart--;
+// Line 1334:	         nPart--;
 
 	ldloc	'nPart/33'
 	ldc.i4	1
 	sub
 	stloc	'nPart/33'
-// Line 1345:	         gs = ge+1;
+// Line 1335:	         gs = ge+1;
 
 	ldloc	'ge/5'
 	ldc.i4	1
 	add
 	stloc	'gs/4'
-// Line 1346:	         remF -= aFreq;
+// Line 1336:	         remF -= aFreq;
 
 	ldloc	'remF/34'
 	ldloc	'aFreq/36'
 	sub
 	stloc	'remF/34'
 L_745:
-// Line 1318:	      while (nPart > 0) {
+// Line 1308:	      while (nPart > 0) {
 
 	ldloc	'nPart/33'
 	ldc.i4	0
 	bgt	'L_743'
 L_744:
-// Line 1347:	      }
+// Line 1337:	      }
 
-// Line 1348:	   }
+// Line 1338:	   }
 
-// Line 1349:	
+// Line 1339:	
 
-// Line 1350:	    
-// Line 1351:	
-// Line 1352:	
+// Line 1340:	    
+// Line 1341:	
+// Line 1342:	
 
 	ldc.i4	0
 	stloc	'iter/9'
 	br	'L_765'
 L_764:
-// Line 1354:	
+// Line 1344:	
 
 	ldc.i4	0
 	stloc	't/1'
@@ -4721,14 +4715,14 @@ L_772:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1355:	      for (t = 0; t < nGroups; t++) fave[t] = 0;
+// Line 1345:	      for (t = 0; t < nGroups; t++) fave[t] = 0;
 
 L_770:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_769'
 L_771:
-// Line 1356:	
+// Line 1346:	
 
 	ldc.i4	0
 	stloc	't/1'
@@ -4738,7 +4732,7 @@ L_773:
 	stloc	'v/0'
 	br	'L_778'
 L_777:
-// Line 1359:	            rfreq[t][v] = 0;
+// Line 1349:	            rfreq[t][v] = 0;
 
 	ldloc	't/1'
 	ldc.i4	1032
@@ -4757,7 +4751,7 @@ L_780:
 	ldc.i4	1
 	add
 	stloc	'v/0'
-// Line 1358:	         for (v = 0; v < alphaSize; v++)
+// Line 1348:	         for (v = 0; v < alphaSize; v++)
 
 L_778:
 	ldloc	'v/0'
@@ -4769,46 +4763,46 @@ L_776:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1357:	      for (t = 0; t < nGroups; t++)
+// Line 1347:	      for (t = 0; t < nGroups; t++)
 
 L_774:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_773'
 L_775:
-// Line 1360:	
+// Line 1350:	
 
-// Line 1361:	      nSelectors = 0;
+// Line 1351:	      nSelectors = 0;
 
 	ldc.i4	0
 	stloc	'nSelectors/10'
-// Line 1362:	      totc = 0;
+// Line 1352:	      totc = 0;
 
 	ldc.i4	0
 	stloc	'totc/6'
-// Line 1363:	      gs = 0;
+// Line 1353:	      gs = 0;
 
 	ldc.i4	0
 	stloc	'gs/4'
 L_781:
-// Line 1365:	
+// Line 1355:	
 
-// Line 1366:	          
+// Line 1356:	          
 
-// Line 1367:	         if (gs >= nMTF) break;
+// Line 1357:	         if (gs >= nMTF) break;
 
 	ldloc	'gs/4'
 	ldsfld	int32 'nMTF'
 
 	bge	'L_782'
 L_785:
-// Line 1368:	         ge = gs + G_SIZE - 1;
+// Line 1358:	         ge = gs + G_SIZE - 1;
 
 	ldloc	'gs/4'
 	ldc.i4	49
 	add
 	stloc	'ge/5'
-// Line 1369:	         if (ge >= nMTF) ge = nMTF-1;
+// Line 1359:	         if (ge >= nMTF) ge = nMTF-1;
 
 	ldloc	'ge/5'
 	ldsfld	int32 'nMTF'
@@ -4820,12 +4814,12 @@ L_785:
 	sub
 	stloc	'ge/5'
 L_786:
-// Line 1370:	
+// Line 1360:	
 
-// Line 1371:	          
-// Line 1372:	
-// Line 1373:	
-// Line 1374:	
+// Line 1361:	          
+// Line 1362:	
+// Line 1363:	
+// Line 1364:	
 
 	ldc.i4	0
 	stloc	't/1'
@@ -4843,25 +4837,25 @@ L_790:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1375:	         for (t = 0; t < nGroups; t++) cost[t] = 0;
+// Line 1365:	         for (t = 0; t < nGroups; t++) cost[t] = 0;
 
 L_788:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_787'
 L_789:
-// Line 1376:	
+// Line 1366:	
 
-// Line 1377:			
+// Line 1367:			
 
-// Line 1378:	         if (nGroups == 6) {
+// Line 1368:	         if (nGroups == 6) {
 
 	ldloc	'nGroups/15'
 	ldc.i4	6
 	bne.un	'L_791'
-// Line 1379:	            register UInt16 cost0, cost1, cost2, cost3, cost4, cost5;
+// Line 1369:	            register UInt16 cost0, cost1, cost2, cost3, cost4, cost5;
 
-// Line 1380:	            cost0 = cost1 = cost2 = cost3 = cost4 = cost5 = 0;
+// Line 1370:	            cost0 = cost1 = cost2 = cost3 = cost4 = cost5 = 0;
 
 	ldc.i4	0
 	stloc	'cost5/31'
@@ -4879,7 +4873,7 @@ L_789:
 	stloc	'i/2'
 	br	'L_794'
 L_793:
-// Line 1382:	               UInt16 icv = szptr[i];
+// Line 1372:	               UInt16 icv = szptr[i];
 
 	ldloca	'icv/32'
 	ldloc	'i/2'
@@ -4890,7 +4884,7 @@ L_793:
 	add
 	ldind.u2
 	stind.i2
-// Line 1383:	               cost0 += len[0][icv];
+// Line 1373:	               cost0 += len[0][icv];
 
 	ldloc	'icv/32'
 	conv.i4
@@ -4904,7 +4898,7 @@ L_793:
 	add
 	conv.u2
 	stloc	'cost0/26'
-// Line 1384:	               cost1 += len[1][icv];
+// Line 1374:	               cost1 += len[1][icv];
 
 	ldloc	'icv/32'
 	conv.i4
@@ -4920,7 +4914,7 @@ L_793:
 	add
 	conv.u2
 	stloc	'cost1/27'
-// Line 1385:	               cost2 += len[2][icv];
+// Line 1375:	               cost2 += len[2][icv];
 
 	ldloc	'icv/32'
 	conv.i4
@@ -4936,7 +4930,7 @@ L_793:
 	add
 	conv.u2
 	stloc	'cost2/28'
-// Line 1386:	               cost3 += len[3][icv];
+// Line 1376:	               cost3 += len[3][icv];
 
 	ldloc	'icv/32'
 	conv.i4
@@ -4952,7 +4946,7 @@ L_793:
 	add
 	conv.u2
 	stloc	'cost3/29'
-// Line 1387:	               cost4 += len[4][icv];
+// Line 1377:	               cost4 += len[4][icv];
 
 	ldloc	'icv/32'
 	conv.i4
@@ -4968,7 +4962,7 @@ L_793:
 	add
 	conv.u2
 	stloc	'cost4/30'
-// Line 1388:	               cost5 += len[5][icv];
+// Line 1378:	               cost5 += len[5][icv];
 
 	ldloc	'icv/32'
 	conv.i4
@@ -4989,16 +4983,16 @@ L_796:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1381:	            for (i = gs; i <= ge; i++) {
+// Line 1371:	            for (i = gs; i <= ge; i++) {
 
 L_794:
 	ldloc	'i/2'
 	ldloc	'ge/5'
 	ble	'L_793'
 L_795:
-// Line 1389:	            }
+// Line 1379:	            }
 
-// Line 1390:	            cost[0] = cost0; cost[1] = cost1; cost[2] = cost2;
+// Line 1380:	            cost[0] = cost0; cost[1] = cost1; cost[2] = cost2;
 
 	ldloca	'cost/17'
 	ldloc	'cost0/26'
@@ -5013,7 +5007,7 @@ L_795:
 	add
 	ldloc	'cost2/28'
 	stind.i2
-// Line 1391:	            cost[3] = cost3; cost[4] = cost4; cost[5] = cost5;
+// Line 1381:	            cost[3] = cost3; cost[4] = cost4; cost[5] = cost5;
 
 	ldloca	'cost/17'
 	ldc.i4	6
@@ -5032,13 +5026,13 @@ L_795:
 	stind.i2
 	br	'L_800'
 L_791:
-// Line 1392:	         } else {
+// Line 1382:	         } else {
 
 	ldloc	'gs/4'
 	stloc	'i/2'
 	br	'L_803'
 L_802:
-// Line 1394:	               UInt16 icv = szptr[i];
+// Line 1384:	               UInt16 icv = szptr[i];
 
 	ldloca	'icv/25'
 	ldloc	'i/2'
@@ -5084,7 +5078,7 @@ L_810:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1395:	               for (t = 0; t < nGroups; t++) cost[t] += len[t][icv];
+// Line 1385:	               for (t = 0; t < nGroups; t++) cost[t] += len[t][icv];
 
 L_808:
 	ldloc	't/1'
@@ -5096,24 +5090,24 @@ L_805:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1393:	            for (i = gs; i <= ge; i++) {
+// Line 1383:	            for (i = gs; i <= ge; i++) {
 
 L_803:
 	ldloc	'i/2'
 	ldloc	'ge/5'
 	ble	'L_802'
 L_804:
-// Line 1396:	            }
+// Line 1386:	            }
 
 L_800:
-// Line 1397:	         }
+// Line 1387:	         }
 
-// Line 1398:	          
-// Line 1399:	
-// Line 1400:	
-// Line 1401:	
+// Line 1388:	          
+// Line 1389:	
+// Line 1390:	
+// Line 1391:	
 
-// Line 1402:	         bc = 999999999; bt = -1;
+// Line 1392:	         bc = 999999999; bt = -1;
 
 	ldc.i4	999999999
 	stloc	'bc/8'
@@ -5123,7 +5117,7 @@ L_800:
 	stloc	't/1'
 	br	'L_814'
 L_813:
-// Line 1404:	            if (cost[t] < bc) { bc = cost[t]; bt = t; };
+// Line 1394:	            if (cost[t] < bc) { bc = cost[t]; bt = t; };
 
 	ldloc	't/1'
 	ldc.i4	1
@@ -5150,20 +5144,20 @@ L_816:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1403:	         for (t = 0; t < nGroups; t++)
+// Line 1393:	         for (t = 0; t < nGroups; t++)
 
 L_814:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_813'
 L_815:
-// Line 1405:	         totc += bc;
+// Line 1395:	         totc += bc;
 
 	ldloc	'totc/6'
 	ldloc	'bc/8'
 	add
 	stloc	'totc/6'
-// Line 1406:	         fave[bt]++;
+// Line 1396:	         fave[bt]++;
 
 	ldloc	'bt/7'
 	ldc.i4	2
@@ -5179,7 +5173,7 @@ L_815:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 1407:	         selector[nSelectors] = bt;
+// Line 1397:	         selector[nSelectors] = bt;
 
 	ldloc	'nSelectors/10'
 	ldsflda	valuetype 'uint8[18002]' 'selector'
@@ -5188,23 +5182,23 @@ L_815:
 	ldloc	'bt/7'
 	conv.u1
 	stind.i1
-// Line 1408:	         nSelectors++;
+// Line 1398:	         nSelectors++;
 
 	ldloc	'nSelectors/10'
 	ldc.i4	1
 	add
 	stloc	'nSelectors/10'
-// Line 1409:	
+// Line 1399:	
 
-// Line 1410:	          
-// Line 1411:	
-// Line 1412:	
+// Line 1400:	          
+// Line 1401:	
+// Line 1402:	
 
 	ldloc	'gs/4'
 	stloc	'i/2'
 	br	'L_821'
 L_820:
-// Line 1414:	            rfreq[bt][ szptr[i] ]++;
+// Line 1404:	            rfreq[bt][ szptr[i] ]++;
 
 	ldloc	'i/2'
 	ldc.i4	1
@@ -5249,43 +5243,42 @@ L_823:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1413:	         for (i = gs; i <= ge; i++)
+// Line 1403:	         for (i = gs; i <= ge; i++)
 
 L_821:
 	ldloc	'i/2'
 	ldloc	'ge/5'
 	ble	'L_820'
 L_822:
-// Line 1415:	
+// Line 1405:	
 
-// Line 1416:	         gs = ge+1;
+// Line 1406:	         gs = ge+1;
 
 	ldloc	'ge/5'
 	ldc.i4	1
 	add
 	stloc	'gs/4'
 L_783:
-// Line 1364:	      while (True) {
+// Line 1354:	      while (True) {
 
 	br	'L_781'
 L_782:
-// Line 1417:	      }
+// Line 1407:	      }
 
-// Line 1418:	      if (verbosity >= 3) {
+// Line 1408:	      if (verbosity >= 3) {
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_825'
-// Line 1419:	         fprintf ( stderr,
+// Line 1409:	         fprintf ( stderr,
 
-// Line 1420:	                   "      pass %d: size is %d, grp uses are ",
+// Line 1410:	                   "      pass %d: size is %d, grp uses are ",
 
-// Line 1421:	                   iter+1, totc/8 );
+// Line 1411:	                   iter+1, totc/8 );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_8'
 
 	ldloc	'iter/9'
@@ -5300,11 +5293,10 @@ L_782:
 	stloc	't/1'
 	br	'L_828'
 L_827:
-// Line 1423:	            fprintf ( stderr, "%d ", fave[t] );
+// Line 1413:	            fprintf ( stderr, "%d ", fave[t] );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_9'
 
 	ldloc	't/1'
@@ -5320,36 +5312,35 @@ L_830:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1422:	         for (t = 0; t < nGroups; t++)
+// Line 1412:	         for (t = 0; t < nGroups; t++)
 
 L_828:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_827'
 L_829:
-// Line 1424:	         fprintf ( stderr, "\n" );
+// Line 1414:	         fprintf ( stderr, "\n" );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_10'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_825:
-// Line 1425:	      }
+// Line 1415:	      }
 
-// Line 1426:	
+// Line 1416:	
 
-// Line 1427:	       
-// Line 1428:	
-// Line 1429:	
+// Line 1417:	       
+// Line 1418:	
+// Line 1419:	
 
 	ldc.i4	0
 	stloc	't/1'
 	br	'L_833'
 L_832:
-// Line 1431:	         hbMakeCodeLengths ( &len[t][0], &rfreq[t][0], alphaSize, 20 );
+// Line 1421:	         hbMakeCodeLengths ( &len[t][0], &rfreq[t][0], alphaSize, 20 );
 
 	ldloc	't/1'
 	ldc.i4	258
@@ -5371,7 +5362,7 @@ L_835:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1430:	      for (t = 0; t < nGroups; t++)
+// Line 1420:	      for (t = 0; t < nGroups; t++)
 
 L_833:
 	ldloc	't/1'
@@ -5383,20 +5374,20 @@ L_767:
 	ldc.i4	1
 	add
 	stloc	'iter/9'
-// Line 1353:	   for (iter = 0; iter < N_ITERS; iter++) {
+// Line 1343:	   for (iter = 0; iter < N_ITERS; iter++) {
 
 L_765:
 	ldloc	'iter/9'
 	ldc.i4	4
 	blt	'L_764'
 L_766:
-// Line 1432:	   }
+// Line 1422:	   }
 
-// Line 1433:	
+// Line 1423:	
 
-// Line 1434:	
+// Line 1424:	
 
-// Line 1435:	   if (!(nGroups < 8)) panic ( "sendMTFValues(1)" );
+// Line 1425:	   if (!(nGroups < 8)) panic ( "sendMTFValues(1)" );
 
 	ldloc	'nGroups/15'
 	ldc.i4	8
@@ -5405,9 +5396,9 @@ L_766:
 
 	call	void 'panic'(void*)
 L_837:
-// Line 1436:	   if (!(nSelectors < 32768 &&
+// Line 1426:	   if (!(nSelectors < 32768 &&
 
-// Line 1437:	         nSelectors <= (2 + (900000 / G_SIZE))))
+// Line 1427:	         nSelectors <= (2 + (900000 / G_SIZE))))
 
 	ldloc	'nSelectors/10'
 	ldc.i4	32768
@@ -5416,21 +5407,21 @@ L_837:
 	ldc.i4	18002
 	ble	'L_838'
 L_955:
-// Line 1438:	                       panic ( "sendMTFValues(2)" );
+// Line 1428:	                       panic ( "sendMTFValues(2)" );
 
 	ldsflda	valuetype 'int8[]' 'L_12'
 
 	call	void 'panic'(void*)
 L_838:
-// Line 1439:	
+// Line 1429:	
 
-// Line 1440:	
+// Line 1430:	
 
-// Line 1441:	    
+// Line 1431:	    
 
-// Line 1442:	   {
+// Line 1432:	   {
 
-// Line 1443:	      UChar pos[N_GROUPS], ll_i, tmp2, tmp;
+// Line 1433:	      UChar pos[N_GROUPS], ll_i, tmp2, tmp;
 
 	ldc.i4	0
 	stloc	'i/2'
@@ -5447,7 +5438,7 @@ L_843:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1444:	      for (i = 0; i < nGroups; i++) pos[i] = i;
+// Line 1434:	      for (i = 0; i < nGroups; i++) pos[i] = i;
 
 L_841:
 	ldloc	'i/2'
@@ -5458,7 +5449,7 @@ L_842:
 	stloc	'i/2'
 	br	'L_845'
 L_844:
-// Line 1446:	         ll_i = selector[i];
+// Line 1436:	         ll_i = selector[i];
 
 	ldloc	'i/2'
 	ldsflda	valuetype 'uint8[18002]' 'selector'
@@ -5466,11 +5457,11 @@ L_844:
 	add
 	ldind.u1
 	stloc	'll_i/22'
-// Line 1447:	         j = 0;
+// Line 1437:	         j = 0;
 
 	ldc.i4	0
 	stloc	'j/3'
-// Line 1448:	         tmp = pos[j];
+// Line 1438:	         tmp = pos[j];
 
 	ldc.i4	0
 	ldloca	'pos/21'
@@ -5479,24 +5470,24 @@ L_844:
 	stloc	'tmp/24'
 	br	'L_851'
 L_849:
-// Line 1450:	            j++;
+// Line 1440:	            j++;
 
 	ldloc	'j/3'
 	ldc.i4	1
 	add
 	stloc	'j/3'
-// Line 1451:	            tmp2 = tmp;
+// Line 1441:	            tmp2 = tmp;
 
 	ldloc	'tmp/24'
 	stloc	'tmp2/23'
-// Line 1452:	            tmp = pos[j];
+// Line 1442:	            tmp = pos[j];
 
 	ldloc	'j/3'
 	ldloca	'pos/21'
 	add
 	ldind.u1
 	stloc	'tmp/24'
-// Line 1453:	            pos[j] = tmp2;
+// Line 1443:	            pos[j] = tmp2;
 
 	ldloc	'j/3'
 	ldloca	'pos/21'
@@ -5504,7 +5495,7 @@ L_849:
 	ldloc	'tmp2/23'
 	stind.i1
 L_851:
-// Line 1449:	         while ( ll_i != tmp ) {
+// Line 1439:	         while ( ll_i != tmp ) {
 
 	ldloc	'll_i/22'
 	conv.i4
@@ -5512,14 +5503,14 @@ L_851:
 	conv.i4
 	bne.un	'L_849'
 L_850:
-// Line 1454:	         };
+// Line 1444:	         };
 
-// Line 1455:	         pos[0] = tmp;
+// Line 1445:	         pos[0] = tmp;
 
 	ldloca	'pos/21'
 	ldloc	'tmp/24'
 	stind.i1
-// Line 1456:	         selectorMtf[i] = j;
+// Line 1446:	         selectorMtf[i] = j;
 
 	ldloc	'i/2'
 	ldsflda	valuetype 'uint8[18002]' 'selectorMtf'
@@ -5533,30 +5524,30 @@ L_847:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1445:	      for (i = 0; i < nSelectors; i++) {
+// Line 1435:	      for (i = 0; i < nSelectors; i++) {
 
 L_845:
 	ldloc	'i/2'
 	ldloc	'nSelectors/10'
 	blt	'L_844'
 L_846:
-// Line 1457:	      }
+// Line 1447:	      }
 
-// Line 1458:	   };
+// Line 1448:	   };
 
-// Line 1459:	
+// Line 1449:	
 
-// Line 1460:	    
+// Line 1450:	    
 
 	ldc.i4	0
 	stloc	't/1'
 	br	'L_857'
 L_856:
-// Line 1462:	      minLen = 32;
+// Line 1452:	      minLen = 32;
 
 	ldc.i4	32
 	stloc	'minLen/12'
-// Line 1463:	      maxLen = 0;
+// Line 1453:	      maxLen = 0;
 
 	ldc.i4	0
 	stloc	'maxLen/13'
@@ -5564,7 +5555,7 @@ L_856:
 	stloc	'i/2'
 	br	'L_862'
 L_861:
-// Line 1465:	         if (len[t][i] > maxLen) maxLen = len[t][i];
+// Line 1455:	         if (len[t][i] > maxLen) maxLen = len[t][i];
 
 	ldloc	't/1'
 	ldc.i4	258
@@ -5590,7 +5581,7 @@ L_861:
 	conv.i4
 	stloc	'maxLen/13'
 L_866:
-// Line 1466:	         if (len[t][i] < minLen) minLen = len[t][i];
+// Line 1456:	         if (len[t][i] < minLen) minLen = len[t][i];
 
 	ldloc	't/1'
 	ldc.i4	258
@@ -5621,16 +5612,16 @@ L_864:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1464:	      for (i = 0; i < alphaSize; i++) {
+// Line 1454:	      for (i = 0; i < alphaSize; i++) {
 
 L_862:
 	ldloc	'i/2'
 	ldloc	'alphaSize/11'
 	blt	'L_861'
 L_863:
-// Line 1467:	      }
+// Line 1457:	      }
 
-// Line 1468:	      if (maxLen > 20) panic ( "sendMTFValues(3)" );
+// Line 1458:	      if (maxLen > 20) panic ( "sendMTFValues(3)" );
 
 	ldloc	'maxLen/13'
 	ldc.i4	20
@@ -5639,7 +5630,7 @@ L_863:
 
 	call	void 'panic'(void*)
 L_869:
-// Line 1469:	      if (minLen < 1)  panic ( "sendMTFValues(4)" );
+// Line 1459:	      if (minLen < 1)  panic ( "sendMTFValues(4)" );
 
 	ldloc	'minLen/12'
 	ldc.i4	1
@@ -5648,9 +5639,9 @@ L_869:
 
 	call	void 'panic'(void*)
 L_870:
-// Line 1470:	      hbAssignCodes ( &code[t][0], &len[t][0],
+// Line 1460:	      hbAssignCodes ( &code[t][0], &len[t][0],
 
-// Line 1471:	                      minLen, maxLen, alphaSize );
+// Line 1461:	                      minLen, maxLen, alphaSize );
 
 	ldloc	't/1'
 	ldc.i4	1032
@@ -5673,28 +5664,28 @@ L_859:
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1461:	   for (t = 0; t < nGroups; t++) {
+// Line 1451:	   for (t = 0; t < nGroups; t++) {
 
 L_857:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_856'
 L_858:
-// Line 1472:	   }
+// Line 1462:	   }
 
-// Line 1473:	
+// Line 1463:	
 
-// Line 1474:	    
+// Line 1464:	    
 
-// Line 1475:	   {
+// Line 1465:	   {
 
-// Line 1476:	      Bool inUse16[16];
+// Line 1466:	      Bool inUse16[16];
 
 	ldc.i4	0
 	stloc	'i/2'
 	br	'L_874'
 L_873:
-// Line 1478:	          inUse16[i] = False;
+// Line 1468:	          inUse16[i] = False;
 
 	ldloc	'i/2'
 	ldloca	'inUse16/20'
@@ -5705,7 +5696,7 @@ L_873:
 	stloc	'j/3'
 	br	'L_879'
 L_878:
-// Line 1480:	             if (inUse[i * 16 + j]) inUse16[i] = True;
+// Line 1470:	             if (inUse[i * 16 + j]) inUse16[i] = True;
 
 	ldloc	'i/2'
 	ldc.i4	4
@@ -5729,7 +5720,7 @@ L_881:
 	ldc.i4	1
 	add
 	stloc	'j/3'
-// Line 1479:	          for (j = 0; j < 16; j++)
+// Line 1469:	          for (j = 0; j < 16; j++)
 
 L_879:
 	ldloc	'j/3'
@@ -5741,18 +5732,18 @@ L_876:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1477:	      for (i = 0; i < 16; i++) {
+// Line 1467:	      for (i = 0; i < 16; i++) {
 
 L_874:
 	ldloc	'i/2'
 	ldc.i4	16
 	blt	'L_873'
 L_875:
-// Line 1481:	      }
+// Line 1471:	      }
 
-// Line 1482:	
+// Line 1472:	
 
-// Line 1483:	      nBytes = bytesOut;
+// Line 1473:	      nBytes = bytesOut;
 
 	ldsfld	uint32 'bytesOut'
 
@@ -5762,7 +5753,7 @@ L_875:
 	stloc	'i/2'
 	br	'L_885'
 L_884:
-// Line 1485:	         if (inUse16[i]) bsW(1,1); else bsW(1,0);
+// Line 1475:	         if (inUse16[i]) bsW(1,1); else bsW(1,0);
 
 	ldloc	'i/2'
 	ldloca	'inUse16/20'
@@ -5786,20 +5777,20 @@ L_887:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1484:	      for (i = 0; i < 16; i++)
+// Line 1474:	      for (i = 0; i < 16; i++)
 
 L_885:
 	ldloc	'i/2'
 	ldc.i4	16
 	blt	'L_884'
 L_886:
-// Line 1486:	
+// Line 1476:	
 
 	ldc.i4	0
 	stloc	'i/2'
 	br	'L_891'
 L_890:
-// Line 1488:	         if (inUse16[i])
+// Line 1478:	         if (inUse16[i])
 
 	ldloc	'i/2'
 	ldloca	'inUse16/20'
@@ -5811,7 +5802,7 @@ L_890:
 	stloc	'j/3'
 	br	'L_896'
 L_895:
-// Line 1490:	               if (inUse[i * 16 + j]) bsW(1,1); else bsW(1,0);
+// Line 1480:	               if (inUse[i * 16 + j]) bsW(1,1); else bsW(1,0);
 
 	ldloc	'i/2'
 	ldc.i4	4
@@ -5840,7 +5831,7 @@ L_898:
 	ldc.i4	1
 	add
 	stloc	'j/3'
-// Line 1489:	            for (j = 0; j < 16; j++)
+// Line 1479:	            for (j = 0; j < 16; j++)
 
 L_896:
 	ldloc	'j/3'
@@ -5853,26 +5844,25 @@ L_893:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1487:	      for (i = 0; i < 16; i++)
+// Line 1477:	      for (i = 0; i < 16; i++)
 
 L_891:
 	ldloc	'i/2'
 	ldc.i4	16
 	blt	'L_890'
 L_892:
-// Line 1491:	
+// Line 1481:	
 
-// Line 1492:	      if (verbosity >= 3)
+// Line 1482:	      if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_901'
-// Line 1493:	         fprintf ( stderr, "      bytes: mapping %d, ", bytesOut-nBytes );
+// Line 1483:	         fprintf ( stderr, "      bytes: mapping %d, ", bytesOut-nBytes );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_15'
 
 	ldloc	'nBytes/16'
@@ -5884,25 +5874,25 @@ L_892:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32)
 	pop
 L_901:
-// Line 1494:	   }
+// Line 1484:	   }
 
-// Line 1495:	
+// Line 1485:	
 
-// Line 1496:	    
+// Line 1486:	    
 
-// Line 1497:	   nBytes = bytesOut;
+// Line 1487:	   nBytes = bytesOut;
 
 	ldsfld	uint32 'bytesOut'
 
 	conv.i4
 	stloc	'nBytes/16'
-// Line 1498:	   bsW ( 3, nGroups );
+// Line 1488:	   bsW ( 3, nGroups );
 
 	ldc.i4	3
 	ldloc	'nGroups/15'
 	conv.u4
 	call	void 'bsW'(int32, uint32)
-// Line 1499:	   bsW ( 15, nSelectors );
+// Line 1489:	   bsW ( 15, nSelectors );
 
 	ldc.i4	15
 	ldloc	'nSelectors/10'
@@ -5925,7 +5915,7 @@ L_911:
 	ldc.i4	1
 	add
 	stloc	'j/3'
-// Line 1501:	      for (j = 0; j < selectorMtf[i]; j++) bsW(1,1);
+// Line 1491:	      for (j = 0; j < selectorMtf[i]; j++) bsW(1,1);
 
 L_909:
 	ldloc	'j/3'
@@ -5937,7 +5927,7 @@ L_909:
 	conv.i4
 	blt	'L_908'
 L_910:
-// Line 1502:	      bsW(1,0);
+// Line 1492:	      bsW(1,0);
 
 	ldc.i4	1
 	ldc.i4	0
@@ -5948,26 +5938,25 @@ L_906:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1500:	   for (i = 0; i < nSelectors; i++) {
+// Line 1490:	   for (i = 0; i < nSelectors; i++) {
 
 L_904:
 	ldloc	'i/2'
 	ldloc	'nSelectors/10'
 	blt	'L_903'
 L_905:
-// Line 1503:	   }
+// Line 1493:	   }
 
-// Line 1504:	   if (verbosity >= 3)
+// Line 1494:	   if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_913'
-// Line 1505:	      fprintf ( stderr, "selectors %d, ", bytesOut-nBytes );
+// Line 1495:	      fprintf ( stderr, "selectors %d, ", bytesOut-nBytes );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_16'
 
 	ldloc	'nBytes/16'
@@ -5979,23 +5968,23 @@ L_905:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32)
 	pop
 L_913:
-// Line 1506:	
+// Line 1496:	
 
-// Line 1507:	    
+// Line 1497:	    
 
-// Line 1508:	   nBytes = bytesOut;
+// Line 1498:	   nBytes = bytesOut;
 
 	ldsfld	uint32 'bytesOut'
 
 	conv.i4
 	stloc	'nBytes/16'
-// Line 1509:	
+// Line 1499:	
 
 	ldc.i4	0
 	stloc	't/1'
 	br	'L_915'
 L_914:
-// Line 1511:	      Int32 curr = len[t][0];
+// Line 1501:	      Int32 curr = len[t][0];
 
 	ldloca	'curr/19'
 	ldloc	't/1'
@@ -6007,7 +5996,7 @@ L_914:
 	ldind.u1
 	conv.i4
 	stind.i4
-// Line 1512:	      bsW ( 5, curr );
+// Line 1502:	      bsW ( 5, curr );
 
 	ldc.i4	5
 	ldloc	'curr/19'
@@ -6028,7 +6017,7 @@ L_924:
 	add
 	stloc	'curr/19'
 L_926:
-// Line 1514:	         while (curr < len[t][i]) { bsW(2,2); curr++;   };
+// Line 1504:	         while (curr < len[t][i]) { bsW(2,2); curr++;   };
 
 	ldloc	'curr/19'
 	ldloc	't/1'
@@ -6054,7 +6043,7 @@ L_929:
 	sub
 	stloc	'curr/19'
 L_931:
-// Line 1515:	         while (curr > len[t][i]) { bsW(2,3); curr--;   };
+// Line 1505:	         while (curr > len[t][i]) { bsW(2,3); curr--;   };
 
 	ldloc	'curr/19'
 	ldloc	't/1'
@@ -6069,7 +6058,7 @@ L_931:
 	conv.i4
 	bgt	'L_929'
 L_930:
-// Line 1516:	         bsW ( 1, 0 );
+// Line 1506:	         bsW ( 1, 0 );
 
 	ldc.i4	1
 	ldc.i4	0
@@ -6080,42 +6069,41 @@ L_922:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1513:	      for (i = 0; i < alphaSize; i++) {
+// Line 1503:	      for (i = 0; i < alphaSize; i++) {
 
 L_920:
 	ldloc	'i/2'
 	ldloc	'alphaSize/11'
 	blt	'L_926'
 L_921:
-// Line 1517:	      }
+// Line 1507:	      }
 
 L_917:
 	ldloc	't/1'
 	ldc.i4	1
 	add
 	stloc	't/1'
-// Line 1510:	   for (t = 0; t < nGroups; t++) {
+// Line 1500:	   for (t = 0; t < nGroups; t++) {
 
 L_915:
 	ldloc	't/1'
 	ldloc	'nGroups/15'
 	blt	'L_914'
 L_916:
-// Line 1518:	   }
+// Line 1508:	   }
 
-// Line 1519:	
+// Line 1509:	
 
-// Line 1520:	   if (verbosity >= 3)
+// Line 1510:	   if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_936'
-// Line 1521:	      fprintf ( stderr, "code lengths %d, ", bytesOut-nBytes );
+// Line 1511:	      fprintf ( stderr, "code lengths %d, ", bytesOut-nBytes );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_17'
 
 	ldloc	'nBytes/16'
@@ -6127,39 +6115,39 @@ L_916:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32)
 	pop
 L_936:
-// Line 1522:	
+// Line 1512:	
 
-// Line 1523:	    
+// Line 1513:	    
 
-// Line 1524:	   nBytes = bytesOut;
+// Line 1514:	   nBytes = bytesOut;
 
 	ldsfld	uint32 'bytesOut'
 
 	conv.i4
 	stloc	'nBytes/16'
-// Line 1525:	   selCtr = 0;
+// Line 1515:	   selCtr = 0;
 
 	ldc.i4	0
 	stloc	'selCtr/14'
-// Line 1526:	   gs = 0;
+// Line 1516:	   gs = 0;
 
 	ldc.i4	0
 	stloc	'gs/4'
 L_937:
-// Line 1528:	      if (gs >= nMTF) break;
+// Line 1518:	      if (gs >= nMTF) break;
 
 	ldloc	'gs/4'
 	ldsfld	int32 'nMTF'
 
 	bge	'L_938'
 L_941:
-// Line 1529:	      ge = gs + G_SIZE - 1;
+// Line 1519:	      ge = gs + G_SIZE - 1;
 
 	ldloc	'gs/4'
 	ldc.i4	49
 	add
 	stloc	'ge/5'
-// Line 1530:	      if (ge >= nMTF) ge = nMTF-1;
+// Line 1520:	      if (ge >= nMTF) ge = nMTF-1;
 
 	ldloc	'ge/5'
 	ldsfld	int32 'nMTF'
@@ -6175,15 +6163,15 @@ L_942:
 	stloc	'i/2'
 	br	'L_944'
 L_943:
-// Line 1532:	         #if DEBUG
+// Line 1522:	         #if DEBUG
 
-// Line 1533:	            assert (selector[selCtr] < nGroups);
+// Line 1523:	            assert (selector[selCtr] < nGroups);
 
-// Line 1534:	         #endif
+// Line 1524:	         #endif
 
-// Line 1535:	         bsW ( len  [selector[selCtr]] [szptr[i]],
+// Line 1525:	         bsW ( len  [selector[selCtr]] [szptr[i]],
 
-// Line 1536:	               code [selector[selCtr]] [szptr[i]] );
+// Line 1526:	               code [selector[selCtr]] [szptr[i]] );
 
 	ldloc	'selCtr/14'
 	ldsflda	valuetype 'uint8[18002]' 'selector'
@@ -6237,37 +6225,37 @@ L_946:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 1531:	      for (i = gs; i <= ge; i++) {
+// Line 1521:	      for (i = gs; i <= ge; i++) {
 
 L_944:
 	ldloc	'i/2'
 	ldloc	'ge/5'
 	ble	'L_943'
 L_945:
-// Line 1537:	      }
+// Line 1527:	      }
 
-// Line 1538:	
+// Line 1528:	
 
-// Line 1539:	      gs = ge+1;
+// Line 1529:	      gs = ge+1;
 
 	ldloc	'ge/5'
 	ldc.i4	1
 	add
 	stloc	'gs/4'
-// Line 1540:	      selCtr++;
+// Line 1530:	      selCtr++;
 
 	ldloc	'selCtr/14'
 	ldc.i4	1
 	add
 	stloc	'selCtr/14'
 L_939:
-// Line 1527:	   while (True) {
+// Line 1517:	   while (True) {
 
 	br	'L_937'
 L_938:
-// Line 1541:	   }
+// Line 1531:	   }
 
-// Line 1542:	   if (!(selCtr == nSelectors)) panic ( "sendMTFValues(5)" );
+// Line 1532:	   if (!(selCtr == nSelectors)) panic ( "sendMTFValues(5)" );
 
 	ldloc	'selCtr/14'
 	ldloc	'nSelectors/10'
@@ -6276,19 +6264,18 @@ L_938:
 
 	call	void 'panic'(void*)
 L_950:
-// Line 1543:	
+// Line 1533:	
 
-// Line 1544:	   if (verbosity >= 3)
+// Line 1534:	   if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_951'
-// Line 1545:	      fprintf ( stderr, "codes %d\n", bytesOut-nBytes );
+// Line 1535:	      fprintf ( stderr, "codes %d\n", bytesOut-nBytes );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_19'
 
 	ldloc	'nBytes/16'
@@ -6300,7 +6287,7 @@ L_950:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32)
 	pop
 L_951:
-// Line 1546:	}
+// Line 1536:	}
 
 L_726:
 	ret
@@ -6308,32 +6295,32 @@ L_726:
 }
  .method public hidebysig static void 'moveToFrontCodeAndSend'() cil managed
 {
-// Line 1550:	void moveToFrontCodeAndSend ( void )
+// Line 1540:	void moveToFrontCodeAndSend ( void )
 
-// Line 1551:	{
+// Line 1541:	{
 
 	.maxstack	2
 L_959:
-// Line 1552:	
+// Line 1542:	
 
-// Line 1553:	   PRINTLOC;
+// Line 1543:	   PRINTLOC;
 
-// Line 1554:	
+// Line 1544:	
 
-// Line 1555:	   bsPutIntVS ( 24, origPtr );
+// Line 1545:	   bsPutIntVS ( 24, origPtr );
 
 	ldc.i4	24
 	ldsfld	int32 'origPtr'
 
 	conv.u4
 	call	void 'bsPutIntVS'(int32, uint32)
-// Line 1556:	   generateMTFValues();
+// Line 1546:	   generateMTFValues();
 
 	call	void 'generateMTFValues'()
-// Line 1557:	   sendMTFValues();
+// Line 1547:	   sendMTFValues();
 
 	call	void 'sendMTFValues'()
-// Line 1558:	}
+// Line 1548:	}
 
 L_960:
 	ret
@@ -6341,9 +6328,9 @@ L_960:
 }
  .method public hidebysig static void 'recvDecodingTables'() cil managed
 {
-// Line 1562:	void recvDecodingTables ( void )
+// Line 1552:	void recvDecodingTables ( void )
 
-// Line 1563:	{
+// Line 1553:	{
 
 	.locals
 	(
@@ -6363,29 +6350,29 @@ L_960:
 	)
 	.maxstack	7
 L_967:
-// Line 1566:	   Bool inUse16[16];
+// Line 1556:	   Bool inUse16[16];
 
-// Line 1567:	
+// Line 1557:	
 
-// Line 1568:	
+// Line 1558:	
 
-// Line 1569:	   PRINTLOC;
+// Line 1559:	   PRINTLOC;
 
-// Line 1570:	
+// Line 1560:	
 
-// Line 1571:	    
+// Line 1561:	    
 
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_971'
 L_970:
-// Line 1573:	      if (bsR(1) == 1)
+// Line 1563:	      if (bsR(1) == 1)
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
 	ldc.i4	1
 	bne.un	'L_974'
-// Line 1574:	         inUse16[i] = True; else
+// Line 1564:	         inUse16[i] = True; else
 
 	ldloc	'i/0'
 	ldloca	'inUse16/8'
@@ -6394,7 +6381,7 @@ L_970:
 	stind.i1
 	br	'L_975'
 L_974:
-// Line 1575:	         inUse16[i] = False;
+// Line 1565:	         inUse16[i] = False;
 
 	ldloc	'i/0'
 	ldloca	'inUse16/8'
@@ -6407,14 +6394,14 @@ L_973:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1572:	   for (i = 0; i < 16; i++)
+// Line 1562:	   for (i = 0; i < 16; i++)
 
 L_971:
 	ldloc	'i/0'
 	ldc.i4	16
 	blt	'L_970'
 L_972:
-// Line 1576:	
+// Line 1566:	
 
 	ldc.i4	0
 	stloc	'i/0'
@@ -6431,20 +6418,20 @@ L_979:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1577:	   for (i = 0; i < 256; i++) inUse[i] = False;
+// Line 1567:	   for (i = 0; i < 256; i++) inUse[i] = False;
 
 L_977:
 	ldloc	'i/0'
 	ldc.i4	256
 	blt	'L_976'
 L_978:
-// Line 1578:	
+// Line 1568:	
 
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_981'
 L_980:
-// Line 1580:	      if (inUse16[i])
+// Line 1570:	      if (inUse16[i])
 
 	ldloc	'i/0'
 	ldloca	'inUse16/8'
@@ -6456,7 +6443,7 @@ L_980:
 	stloc	'j/1'
 	br	'L_986'
 L_985:
-// Line 1582:	            if (bsR(1) == 1) inUse[i * 16 + j] = True;
+// Line 1572:	            if (bsR(1) == 1) inUse[i * 16 + j] = True;
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
@@ -6478,7 +6465,7 @@ L_988:
 	ldc.i4	1
 	add
 	stloc	'j/1'
-// Line 1581:	         for (j = 0; j < 16; j++)
+// Line 1571:	         for (j = 0; j < 16; j++)
 
 L_986:
 	ldloc	'j/1'
@@ -6491,36 +6478,36 @@ L_983:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1579:	   for (i = 0; i < 16; i++)
+// Line 1569:	   for (i = 0; i < 16; i++)
 
 L_981:
 	ldloc	'i/0'
 	ldc.i4	16
 	blt	'L_980'
 L_982:
-// Line 1583:	
+// Line 1573:	
 
-// Line 1584:	   makeMaps();
+// Line 1574:	   makeMaps();
 
 	call	void 'makeMaps'()
-// Line 1585:	   alphaSize = nInUse+2;
+// Line 1575:	   alphaSize = nInUse+2;
 
 	ldsfld	int32 'nInUse'
 
 	ldc.i4	2
 	add
 	stloc	'alphaSize/5'
-// Line 1586:	
+// Line 1576:	
 
-// Line 1587:	    
+// Line 1577:	    
 
-// Line 1588:	   nGroups = bsR ( 3 );
+// Line 1578:	   nGroups = bsR ( 3 );
 
 	ldc.i4	3
 	call	uint32 'bsR'(int32)
 	conv.i4
 	stloc	'nGroups/3'
-// Line 1589:	   nSelectors = bsR ( 15 );
+// Line 1579:	   nSelectors = bsR ( 15 );
 
 	ldc.i4	15
 	call	uint32 'bsR'(int32)
@@ -6530,7 +6517,7 @@ L_982:
 	stloc	'i/0'
 	br	'L_991'
 L_990:
-// Line 1591:	      j = 0;
+// Line 1581:	      j = 0;
 
 	ldc.i4	0
 	stloc	'j/1'
@@ -6541,14 +6528,14 @@ L_995:
 	add
 	stloc	'j/1'
 L_997:
-// Line 1592:	      while (bsR(1) == 1) j++;
+// Line 1582:	      while (bsR(1) == 1) j++;
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
 	ldc.i4	1
 	beq	'L_995'
 L_996:
-// Line 1593:	      selectorMtf[i] = j;
+// Line 1583:	      selectorMtf[i] = j;
 
 	ldloc	'i/0'
 	ldsflda	valuetype 'uint8[18002]' 'selectorMtf'
@@ -6562,22 +6549,22 @@ L_993:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1590:	   for (i = 0; i < nSelectors; i++) {
+// Line 1580:	   for (i = 0; i < nSelectors; i++) {
 
 L_991:
 	ldloc	'i/0'
 	ldloc	'nSelectors/4'
 	blt	'L_990'
 L_992:
-// Line 1594:	   }
+// Line 1584:	   }
 
-// Line 1595:	
+// Line 1585:	
 
-// Line 1596:	    
+// Line 1586:	    
 
-// Line 1597:	   {
+// Line 1587:	   {
 
-// Line 1598:	      UChar pos[N_GROUPS], tmp, v;
+// Line 1588:	      UChar pos[N_GROUPS], tmp, v;
 
 	ldc.i4	0
 	stloc	'v/12'
@@ -6594,7 +6581,7 @@ L_1003:
 	ldc.i4	1
 	add
 	stloc	'v/12'
-// Line 1599:	      for (v = 0; v < nGroups; v++) pos[v] = v;
+// Line 1589:	      for (v = 0; v < nGroups; v++) pos[v] = v;
 
 L_1001:
 	ldloc	'v/12'
@@ -6602,13 +6589,13 @@ L_1001:
 	ldloc	'nGroups/3'
 	blt	'L_1000'
 L_1002:
-// Line 1600:	
+// Line 1590:	
 
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_1005'
 L_1004:
-// Line 1602:	         v = selectorMtf[i];
+// Line 1592:	         v = selectorMtf[i];
 
 	ldloc	'i/0'
 	ldsflda	valuetype 'uint8[18002]' 'selectorMtf'
@@ -6616,7 +6603,7 @@ L_1004:
 	add
 	ldind.u1
 	stloc	'v/12'
-// Line 1603:	         tmp = pos[v];
+// Line 1593:	         tmp = pos[v];
 
 	ldloc	'v/12'
 	conv.i4
@@ -6643,19 +6630,19 @@ L_1009:
 	sub
 	stloc	'v/12'
 L_1011:
-// Line 1604:	         while (v > 0) { pos[v] = pos[v-1]; v--; }
+// Line 1594:	         while (v > 0) { pos[v] = pos[v-1]; v--; }
 
 	ldloc	'v/12'
 	conv.i4
 	ldc.i4	0
 	bgt	'L_1009'
 L_1010:
-// Line 1605:	         pos[0] = tmp;
+// Line 1595:	         pos[0] = tmp;
 
 	ldloca	'pos/10'
 	ldloc	'tmp/11'
 	stind.i1
-// Line 1606:	         selector[i] = tmp;
+// Line 1596:	         selector[i] = tmp;
 
 	ldloc	'i/0'
 	ldsflda	valuetype 'uint8[18002]' 'selector'
@@ -6668,26 +6655,26 @@ L_1007:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1601:	      for (i = 0; i < nSelectors; i++) {
+// Line 1591:	      for (i = 0; i < nSelectors; i++) {
 
 L_1005:
 	ldloc	'i/0'
 	ldloc	'nSelectors/4'
 	blt	'L_1004'
 L_1006:
-// Line 1607:	      }
+// Line 1597:	      }
 
-// Line 1608:	   }
+// Line 1598:	   }
 
-// Line 1609:	
+// Line 1599:	
 
-// Line 1610:	    
+// Line 1600:	    
 
 	ldc.i4	0
 	stloc	't/2'
 	br	'L_1017'
 L_1016:
-// Line 1612:	      Int32 curr = bsR ( 5 );
+// Line 1602:	      Int32 curr = bsR ( 5 );
 
 	ldloca	'curr/9'
 	ldc.i4	5
@@ -6700,7 +6687,7 @@ L_1016:
 L_1021:
 	br	'L_1028'
 L_1026:
-// Line 1615:	            if (bsR(1) == 0) curr++; else curr--;
+// Line 1605:	            if (bsR(1) == 0) curr++; else curr--;
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
@@ -6718,16 +6705,16 @@ L_1030:
 	stloc	'curr/9'
 L_1031:
 L_1028:
-// Line 1614:	         while (bsR(1) == 1) {
+// Line 1604:	         while (bsR(1) == 1) {
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
 	ldc.i4	1
 	beq	'L_1026'
 L_1027:
-// Line 1616:	         }
+// Line 1606:	         }
 
-// Line 1617:	         len[t][i] = curr;
+// Line 1607:	         len[t][i] = curr;
 
 	ldloc	't/2'
 	ldc.i4	258
@@ -6745,42 +6732,42 @@ L_1024:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1613:	      for (i = 0; i < alphaSize; i++) {
+// Line 1603:	      for (i = 0; i < alphaSize; i++) {
 
 L_1022:
 	ldloc	'i/0'
 	ldloc	'alphaSize/5'
 	blt	'L_1028'
 L_1023:
-// Line 1618:	      }
+// Line 1608:	      }
 
 L_1019:
 	ldloc	't/2'
 	ldc.i4	1
 	add
 	stloc	't/2'
-// Line 1611:	   for (t = 0; t < nGroups; t++) {
+// Line 1601:	   for (t = 0; t < nGroups; t++) {
 
 L_1017:
 	ldloc	't/2'
 	ldloc	'nGroups/3'
 	blt	'L_1016'
 L_1018:
-// Line 1619:	   }
+// Line 1609:	   }
 
-// Line 1620:	
+// Line 1610:	
 
-// Line 1621:	    
+// Line 1611:	    
 
 	ldc.i4	0
 	stloc	't/2'
 	br	'L_1036'
 L_1035:
-// Line 1623:	      minLen = 32;
+// Line 1613:	      minLen = 32;
 
 	ldc.i4	32
 	stloc	'minLen/6'
-// Line 1624:	      maxLen = 0;
+// Line 1614:	      maxLen = 0;
 
 	ldc.i4	0
 	stloc	'maxLen/7'
@@ -6788,7 +6775,7 @@ L_1035:
 	stloc	'i/0'
 	br	'L_1041'
 L_1040:
-// Line 1626:	         if (len[t][i] > maxLen) maxLen = len[t][i];
+// Line 1616:	         if (len[t][i] > maxLen) maxLen = len[t][i];
 
 	ldloc	't/2'
 	ldc.i4	258
@@ -6814,7 +6801,7 @@ L_1040:
 	conv.i4
 	stloc	'maxLen/7'
 L_1045:
-// Line 1627:	         if (len[t][i] < minLen) minLen = len[t][i];
+// Line 1617:	         if (len[t][i] < minLen) minLen = len[t][i];
 
 	ldloc	't/2'
 	ldc.i4	258
@@ -6845,22 +6832,22 @@ L_1043:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1625:	      for (i = 0; i < alphaSize; i++) {
+// Line 1615:	      for (i = 0; i < alphaSize; i++) {
 
 L_1041:
 	ldloc	'i/0'
 	ldloc	'alphaSize/5'
 	blt	'L_1040'
 L_1042:
-// Line 1628:	      }
+// Line 1618:	      }
 
-// Line 1629:	      hbCreateDecodeTables (
+// Line 1619:	      hbCreateDecodeTables (
 
-// Line 1630:	         &limit[t][0], &base[t][0], &perm[t][0], &len[t][0],
+// Line 1620:	         &limit[t][0], &base[t][0], &perm[t][0], &len[t][0],
 
-// Line 1631:	         minLen, maxLen, alphaSize
+// Line 1621:	         minLen, maxLen, alphaSize
 
-// Line 1632:	      );
+// Line 1622:	      );
 
 	ldloc	't/2'
 	ldc.i4	1032
@@ -6890,7 +6877,7 @@ L_1042:
 	ldloc	'maxLen/7'
 	ldloc	'alphaSize/5'
 	call	void 'hbCreateDecodeTables'(void*, void*, void*, void*, int32, int32, int32)
-// Line 1633:	      minLens[t] = minLen;
+// Line 1623:	      minLens[t] = minLen;
 
 	ldloc	't/2'
 	ldc.i4	2
@@ -6905,16 +6892,16 @@ L_1038:
 	ldc.i4	1
 	add
 	stloc	't/2'
-// Line 1622:	   for (t = 0; t < nGroups; t++) {
+// Line 1612:	   for (t = 0; t < nGroups; t++) {
 
 L_1036:
 	ldloc	't/2'
 	ldloc	'nGroups/3'
 	blt	'L_1035'
 L_1037:
-// Line 1634:	   }
+// Line 1624:	   }
 
-// Line 1635:	}
+// Line 1625:	}
 
 L_968:
 	ret
@@ -6922,9 +6909,9 @@ L_968:
 }
  .method public hidebysig static void 'getAndMoveToFrontDecode'() cil managed
 {
-// Line 1659:	void getAndMoveToFrontDecode ( void )
+// Line 1649:	void getAndMoveToFrontDecode ( void )
 
-// Line 1660:	{
+// Line 1650:	{
 
 	.locals
 	(
@@ -6958,24 +6945,24 @@ L_968:
 	)
 	.maxstack	4
 L_1054:
-// Line 1663:	   Int32  EOB, groupNo, groupPos;
+// Line 1653:	   Int32  EOB, groupNo, groupPos;
 
-// Line 1664:	
+// Line 1654:	
 
-// Line 1665:	
+// Line 1655:	
 
-// Line 1666:	   PRINTLOC;
+// Line 1656:	   PRINTLOC;
 
-// Line 1667:	
+// Line 1657:	
 
-// Line 1668:	   limitLast = 100000 * blockSize100k;
+// Line 1658:	   limitLast = 100000 * blockSize100k;
 
 	ldsfld	int32 'blockSize100k'
 
 	ldc.i4	100000
 	mul
 	stloc	'limitLast/4'
-// Line 1669:	   origPtr   = bsGetIntVS ( 24 );
+// Line 1659:	   origPtr   = bsGetIntVS ( 24 );
 
 	ldc.i4	24
 	conv.u4
@@ -6983,34 +6970,34 @@ L_1054:
 	conv.i4
 	stsfld	int32 'origPtr'
 
-// Line 1670:	
+// Line 1660:	
 
-// Line 1671:	   recvDecodingTables();
+// Line 1661:	   recvDecodingTables();
 
 	call	void 'recvDecodingTables'()
-// Line 1672:	   EOB      = nInUse+1;
+// Line 1662:	   EOB      = nInUse+1;
 
 	ldsfld	int32 'nInUse'
 
 	ldc.i4	1
 	add
 	stloc	'EOB/5'
-// Line 1673:	   groupNo  = -1;
+// Line 1663:	   groupNo  = -1;
 
 	ldc.i4	-1
 	stloc	'groupNo/6'
-// Line 1674:	   groupPos = 0;
+// Line 1664:	   groupPos = 0;
 
 	ldc.i4	0
 	stloc	'groupPos/7'
-// Line 1675:	
+// Line 1665:	
 
-// Line 1676:	    
-// Line 1677:	
-// Line 1678:	
-// Line 1679:	
-// Line 1680:	
-// Line 1681:	
+// Line 1666:	    
+// Line 1667:	
+// Line 1668:	
+// Line 1669:	
+// Line 1670:	
+// Line 1671:	
 
 	ldc.i4	0
 	stloc	'i/1'
@@ -7029,14 +7016,14 @@ L_1060:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1682:	   for (i = 0; i <= 255; i++) unzftab[i] = 0;
+// Line 1672:	   for (i = 0; i <= 255; i++) unzftab[i] = 0;
 
 L_1058:
 	ldloc	'i/1'
 	ldc.i4	255
 	ble	'L_1057'
 L_1059:
-// Line 1683:	
+// Line 1673:	
 
 	ldc.i4	0
 	stloc	'i/1'
@@ -7053,23 +7040,23 @@ L_1064:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 1684:	   for (i = 0; i <= 255; i++) yy[i] = (UChar) i;
+// Line 1674:	   for (i = 0; i <= 255; i++) yy[i] = (UChar) i;
 
 L_1062:
 	ldloc	'i/1'
 	ldc.i4	255
 	ble	'L_1061'
 L_1063:
-// Line 1685:	
+// Line 1675:	
 
-// Line 1686:	   last = -1;
+// Line 1676:	   last = -1;
 
 	ldc.i4	-1
 	stsfld	int32 'last'
 
-// Line 1687:	
+// Line 1677:	
 
-// Line 1688:	   GET_MTF_VAL(nextSym);
+// Line 1678:	   GET_MTF_VAL(nextSym);
 
 	ldc.i4	0
 	stloc	'groupNo/6'
@@ -7206,15 +7193,15 @@ L_1070:
 	ldind.i4
 	stloc	'nextSym/3'
 L_1085:
-// Line 1690:	
+// Line 1680:	
 
-// Line 1691:	      if (nextSym == EOB) break;
+// Line 1681:	      if (nextSym == EOB) break;
 
 	ldloc	'nextSym/3'
 	ldloc	'EOB/5'
 	beq	'L_1086'
 L_1089:
-// Line 1692:	      if (nextSym == RUNA || nextSym == RUNB) {
+// Line 1682:	      if (nextSym == RUNA || nextSym == RUNB) {
 
 	ldloc	'nextSym/3'
 	ldc.i4	0
@@ -7223,22 +7210,22 @@ L_1089:
 	ldc.i4	1
 	bne.un	'L_1090'
 L_1173:
-// Line 1693:	         UChar ch;
+// Line 1683:	         UChar ch;
 
-// Line 1694:	         Int32 s = -1;
+// Line 1684:	         Int32 s = -1;
 
 	ldloca	's/15'
 	ldc.i4	-1
 	stind.i4
-// Line 1695:	         Int32 N = 1;
+// Line 1685:	         Int32 N = 1;
 
 	ldloca	'N/16'
 	ldc.i4	1
 	stind.i4
-// Line 1696:	         do {
+// Line 1686:	         do {
 
 L_1092:
-// Line 1697:	            if (nextSym == RUNA) s = s + (0+1) * N; else
+// Line 1687:	            if (nextSym == RUNA) s = s + (0+1) * N; else
 
 	ldloc	'nextSym/3'
 	ldc.i4	0
@@ -7249,7 +7236,7 @@ L_1092:
 	stloc	's/15'
 	br	'L_1097'
 L_1096:
-// Line 1698:	            if (nextSym == RUNB) s = s + (1+1) * N;
+// Line 1688:	            if (nextSym == RUNB) s = s + (1+1) * N;
 
 	ldloc	'nextSym/3'
 	ldc.i4	1
@@ -7262,13 +7249,13 @@ L_1096:
 	stloc	's/15'
 L_1098:
 L_1097:
-// Line 1699:	            N = N * 2;
+// Line 1689:	            N = N * 2;
 
 	ldloc	'N/16'
 	ldc.i4	1
 	shl
 	stloc	'N/16'
-// Line 1700:	            GET_MTF_VAL(nextSym);
+// Line 1690:	            GET_MTF_VAL(nextSym);
 
 	ldloc	'groupPos/7'
 	ldc.i4	0
@@ -7410,9 +7397,9 @@ L_1104:
 	ldind.i4
 	stloc	'nextSym/3'
 L_1094:
-// Line 1701:	         }
+// Line 1691:	         }
 
-// Line 1702:	            while (nextSym == RUNA || nextSym == RUNB);
+// Line 1692:	            while (nextSym == RUNA || nextSym == RUNB);
 
 	ldloc	'nextSym/3'
 	ldc.i4	0
@@ -7421,15 +7408,15 @@ L_1094:
 	ldc.i4	1
 	beq	'L_1092'
 L_1093:
-// Line 1703:	
+// Line 1693:	
 
-// Line 1704:	         s++;
+// Line 1694:	         s++;
 
 	ldloc	's/15'
 	ldc.i4	1
 	add
 	stloc	's/15'
-// Line 1705:	         ch = seqToUnseq[yy[0]];
+// Line 1695:	         ch = seqToUnseq[yy[0]];
 
 	ldloca	'yy/0'
 	ldind.u1
@@ -7439,7 +7426,7 @@ L_1093:
 	add
 	ldind.u1
 	stloc	'ch/14'
-// Line 1706:	         unzftab[ch] += s;
+// Line 1696:	         unzftab[ch] += s;
 
 	ldloc	'ch/14'
 	conv.i4
@@ -7459,7 +7446,7 @@ L_1093:
 	ldloc	's/15'
 	add
 	stind.i4
-// Line 1707:	         if (smallMode)
+// Line 1697:	         if (smallMode)
 
 	ldsfld	uint8 'smallMode'
 
@@ -7467,7 +7454,7 @@ L_1093:
 	beq	'L_1129'
 	br	'L_1123'
 L_1121:
-// Line 1709:	               last++;
+// Line 1699:	               last++;
 
 	ldsfld	int32 'last'
 
@@ -7475,7 +7462,7 @@ L_1121:
 	add
 	stsfld	int32 'last'
 
-// Line 1710:	               ll16[last] = ch;
+// Line 1700:	               ll16[last] = ch;
 
 	ldsfld	int32 'last'
 
@@ -7487,14 +7474,14 @@ L_1121:
 	ldloc	'ch/14'
 	conv.u2
 	stind.i2
-// Line 1711:	               s--;
+// Line 1701:	               s--;
 
 	ldloc	's/15'
 	ldc.i4	1
 	sub
 	stloc	's/15'
 L_1123:
-// Line 1708:	            while (s > 0) {
+// Line 1698:	            while (s > 0) {
 
 	ldloc	's/15'
 	ldc.i4	0
@@ -7502,13 +7489,13 @@ L_1123:
 L_1122:
 	br	'L_1126'
 L_1120:
-// Line 1712:	            }
+// Line 1702:	            }
 
-// Line 1713:	         else
+// Line 1703:	         else
 
 	br	'L_1129'
 L_1127:
-// Line 1715:	               last++;
+// Line 1705:	               last++;
 
 	ldsfld	int32 'last'
 
@@ -7516,7 +7503,7 @@ L_1127:
 	add
 	stsfld	int32 'last'
 
-// Line 1716:	               ll8[last] = ch;
+// Line 1706:	               ll8[last] = ch;
 
 	ldsfld	int32 'last'
 
@@ -7525,25 +7512,25 @@ L_1127:
 	add
 	ldloc	'ch/14'
 	stind.i1
-// Line 1717:	               s--;
+// Line 1707:	               s--;
 
 	ldloc	's/15'
 	ldc.i4	1
 	sub
 	stloc	's/15'
 L_1129:
-// Line 1714:	            while (s > 0) {
+// Line 1704:	            while (s > 0) {
 
 	ldloc	's/15'
 	ldc.i4	0
 	bgt	'L_1127'
 L_1128:
 L_1126:
-// Line 1718:	            };
+// Line 1708:	            };
 
-// Line 1719:	
+// Line 1709:	
 
-// Line 1720:	         if (last >= limitLast) blockOverrun();
+// Line 1710:	         if (last >= limitLast) blockOverrun();
 
 	ldsfld	int32 'last'
 
@@ -7551,15 +7538,15 @@ L_1126:
 	blt	'L_1087'
 	call	void 'blockOverrun'()
 L_1132:
-// Line 1721:	         continue;
+// Line 1711:	         continue;
 
 	br	'L_1085'
 L_1090:
-// Line 1723:	      } else {
+// Line 1713:	      } else {
 
-// Line 1725:	         UChar tmp;
+// Line 1715:	         UChar tmp;
 
-// Line 1726:	         last++; if (last >= limitLast) blockOverrun();
+// Line 1716:	         last++; if (last >= limitLast) blockOverrun();
 
 	ldsfld	int32 'last'
 
@@ -7573,9 +7560,9 @@ L_1090:
 	blt	'L_1136'
 	call	void 'blockOverrun'()
 L_1136:
-// Line 1727:	
+// Line 1717:	
 
-// Line 1728:	         tmp = yy[nextSym-1];
+// Line 1718:	         tmp = yy[nextSym-1];
 
 	ldloc	'nextSym/3'
 	ldc.i4	1
@@ -7584,7 +7571,7 @@ L_1136:
 	add
 	ldind.u1
 	stloc	'tmp/8'
-// Line 1729:	         unzftab[seqToUnseq[tmp]]++;
+// Line 1719:	         unzftab[seqToUnseq[tmp]]++;
 
 	ldloc	'tmp/8'
 	conv.i4
@@ -7614,13 +7601,13 @@ L_1136:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 1730:	         if (smallMode)
+// Line 1720:	         if (smallMode)
 
 	ldsfld	uint8 'smallMode'
 
 	ldc.i4	0
 	beq	'L_1137'
-// Line 1731:	            ll16[last] = seqToUnseq[tmp]; else
+// Line 1721:	            ll16[last] = seqToUnseq[tmp]; else
 
 	ldsfld	int32 'last'
 
@@ -7639,7 +7626,7 @@ L_1136:
 	stind.i2
 	br	'L_1138'
 L_1137:
-// Line 1732:	            ll8[last]  = seqToUnseq[tmp];
+// Line 1722:	            ll8[last]  = seqToUnseq[tmp];
 
 	ldsfld	int32 'last'
 
@@ -7654,18 +7641,18 @@ L_1137:
 	ldind.u1
 	stind.i1
 L_1138:
-// Line 1733:	
+// Line 1723:	
 
-// Line 1734:	          
-// Line 1735:	
-// Line 1736:	
-// Line 1737:	
-// Line 1738:	
-// Line 1739:	
+// Line 1724:	          
+// Line 1725:	
+// Line 1726:	
+// Line 1727:	
+// Line 1728:	
+// Line 1729:	
 
-// Line 1740:	
+// Line 1730:	
 
-// Line 1741:	         j = nextSym-1;
+// Line 1731:	         j = nextSym-1;
 
 	ldloc	'nextSym/3'
 	ldc.i4	1
@@ -7673,7 +7660,7 @@ L_1138:
 	stloc	'j/2'
 	br	'L_1140'
 L_1139:
-// Line 1743:	            yy[j]   = yy[j-1];
+// Line 1733:	            yy[j]   = yy[j-1];
 
 	ldloc	'j/2'
 	ldloca	'yy/0'
@@ -7685,7 +7672,7 @@ L_1139:
 	add
 	ldind.u1
 	stind.i1
-// Line 1744:	            yy[j-1] = yy[j-2];
+// Line 1734:	            yy[j-1] = yy[j-2];
 
 	ldloc	'j/2'
 	ldc.i4	1
@@ -7699,7 +7686,7 @@ L_1139:
 	add
 	ldind.u1
 	stind.i1
-// Line 1745:	            yy[j-2] = yy[j-3];
+// Line 1735:	            yy[j-2] = yy[j-3];
 
 	ldloc	'j/2'
 	ldc.i4	2
@@ -7713,7 +7700,7 @@ L_1139:
 	add
 	ldind.u1
 	stind.i1
-// Line 1746:	            yy[j-3] = yy[j-4];
+// Line 1736:	            yy[j-3] = yy[j-4];
 
 	ldloc	'j/2'
 	ldc.i4	3
@@ -7732,14 +7719,14 @@ L_1142:
 	ldc.i4	4
 	sub
 	stloc	'j/2'
-// Line 1742:	         for (; j > 3; j -= 4) {
+// Line 1732:	         for (; j > 3; j -= 4) {
 
 L_1140:
 	ldloc	'j/2'
 	ldc.i4	3
 	bgt	'L_1139'
 L_1141:
-// Line 1747:	         }
+// Line 1737:	         }
 
 	br	'L_1146'
 L_1145:
@@ -7758,21 +7745,21 @@ L_1148:
 	ldc.i4	1
 	sub
 	stloc	'j/2'
-// Line 1748:	         for (; j > 0; j--) yy[j] = yy[j-1];
+// Line 1738:	         for (; j > 0; j--) yy[j] = yy[j-1];
 
 L_1146:
 	ldloc	'j/2'
 	ldc.i4	0
 	bgt	'L_1145'
 L_1147:
-// Line 1749:	
+// Line 1739:	
 
-// Line 1750:	         yy[0] = tmp;
+// Line 1740:	         yy[0] = tmp;
 
 	ldloca	'yy/0'
 	ldloc	'tmp/8'
 	stind.i1
-// Line 1751:	         GET_MTF_VAL(nextSym);
+// Line 1741:	         GET_MTF_VAL(nextSym);
 
 	ldloc	'groupPos/7'
 	ldc.i4	0
@@ -7913,17 +7900,17 @@ L_1154:
 	add
 	ldind.i4
 	stloc	'nextSym/3'
-// Line 1752:	         continue;
+// Line 1742:	         continue;
 
 L_1134:
 L_1087:
-// Line 1689:	   while (True) {
+// Line 1679:	   while (True) {
 
 	br	'L_1085'
 L_1086:
-// Line 1754:	   }
+// Line 1744:	   }
 
-// Line 1755:	}
+// Line 1745:	}
 
 L_1055:
 	ret
@@ -7931,9 +7918,9 @@ L_1055:
 }
  .method public hidebysig static uint8 'fullGtU'(int32 'i1' , int32 'i2' ) cil managed
 {
-// Line 1772:	INLINE Bool fullGtU ( Int32 i1, Int32 i2 )
+// Line 1762:	INLINE Bool fullGtU ( Int32 i1, Int32 i2 )
 
-// Line 1773:	{
+// Line 1763:	{
 
 	.locals
 	(
@@ -7945,27 +7932,115 @@ L_1055:
 	)
 	.maxstack	16
 L_1177:
-// Line 1776:	   UInt16 s1, s2;
+// Line 1766:	   UInt16 s1, s2;
 
-// Line 1777:	
+// Line 1767:	
+
+// Line 1768:	
+
+// Line 1769:	   PRINTLOC;
+
+// Line 1770:	
+
+// Line 1771:	   #if DEBUG
+
+// Line 1772:	       
+// Line 1773:	
+// Line 1774:	
+// Line 1775:	
+
+// Line 1776:	      assert (i1 != i2);
+
+// Line 1777:	   #endif
 
 // Line 1778:	
 
-// Line 1779:	   PRINTLOC;
+// Line 1779:	   c1 = block[i1];
 
-// Line 1780:	
+	ldarg	'i1'
+	ldsfld	void* 'block'
 
-// Line 1781:	   #if DEBUG
+	add
+	ldind.u1
+	stloc	'c1/1'
+// Line 1780:	   c2 = block[i2];
 
-// Line 1782:	       
+	ldarg	'i2'
+	ldsfld	void* 'block'
+
+	add
+	ldind.u1
+	stloc	'c2/2'
+// Line 1781:	   if (c1 != c2) return (c1 > c2);
+
+	ldloc	'c1/1'
+	conv.i4
+	ldloc	'c2/2'
+	conv.i4
+	beq	'L_1180'
+	ldloc	'c1/1'
+	conv.i4
+	ldloc	'c2/2'
+	conv.i4
+	cgt
+	conv.u1
+	conv.i4
+	br	'L_1178'
+L_1180:
+// Line 1782:	   i1++; i2++;
+
+	ldarg	'i1'
+	ldc.i4	1
+	add
+	starg	'i1'
+	ldarg	'i2'
+	ldc.i4	1
+	add
+	starg	'i2'
 // Line 1783:	
-// Line 1784:	
-// Line 1785:	
 
-// Line 1786:	      assert (i1 != i2);
+// Line 1784:	   c1 = block[i1];
 
-// Line 1787:	   #endif
+	ldarg	'i1'
+	ldsfld	void* 'block'
 
+	add
+	ldind.u1
+	stloc	'c1/1'
+// Line 1785:	   c2 = block[i2];
+
+	ldarg	'i2'
+	ldsfld	void* 'block'
+
+	add
+	ldind.u1
+	stloc	'c2/2'
+// Line 1786:	   if (c1 != c2) return (c1 > c2);
+
+	ldloc	'c1/1'
+	conv.i4
+	ldloc	'c2/2'
+	conv.i4
+	beq	'L_1181'
+	ldloc	'c1/1'
+	conv.i4
+	ldloc	'c2/2'
+	conv.i4
+	cgt
+	conv.u1
+	conv.i4
+	br	'L_1178'
+L_1181:
+// Line 1787:	   i1++; i2++;
+
+	ldarg	'i1'
+	ldc.i4	1
+	add
+	starg	'i1'
+	ldarg	'i2'
+	ldc.i4	1
+	add
+	starg	'i2'
 // Line 1788:	
 
 // Line 1789:	   c1 = block[i1];
@@ -7990,7 +8065,7 @@ L_1177:
 	conv.i4
 	ldloc	'c2/2'
 	conv.i4
-	beq	'L_1180'
+	beq	'L_1182'
 	ldloc	'c1/1'
 	conv.i4
 	ldloc	'c2/2'
@@ -7999,7 +8074,7 @@ L_1177:
 	conv.u1
 	conv.i4
 	br	'L_1178'
-L_1180:
+L_1182:
 // Line 1792:	   i1++; i2++;
 
 	ldarg	'i1'
@@ -8034,7 +8109,7 @@ L_1180:
 	conv.i4
 	ldloc	'c2/2'
 	conv.i4
-	beq	'L_1181'
+	beq	'L_1183'
 	ldloc	'c1/1'
 	conv.i4
 	ldloc	'c2/2'
@@ -8043,7 +8118,7 @@ L_1180:
 	conv.u1
 	conv.i4
 	br	'L_1178'
-L_1181:
+L_1183:
 // Line 1797:	   i1++; i2++;
 
 	ldarg	'i1'
@@ -8078,7 +8153,7 @@ L_1181:
 	conv.i4
 	ldloc	'c2/2'
 	conv.i4
-	beq	'L_1182'
+	beq	'L_1184'
 	ldloc	'c1/1'
 	conv.i4
 	ldloc	'c2/2'
@@ -8087,7 +8162,7 @@ L_1181:
 	conv.u1
 	conv.i4
 	br	'L_1178'
-L_1182:
+L_1184:
 // Line 1802:	   i1++; i2++;
 
 	ldarg	'i1'
@@ -8122,7 +8197,7 @@ L_1182:
 	conv.i4
 	ldloc	'c2/2'
 	conv.i4
-	beq	'L_1183'
+	beq	'L_1185'
 	ldloc	'c1/1'
 	conv.i4
 	ldloc	'c2/2'
@@ -8131,7 +8206,7 @@ L_1182:
 	conv.u1
 	conv.i4
 	br	'L_1178'
-L_1183:
+L_1185:
 // Line 1807:	   i1++; i2++;
 
 	ldarg	'i1'
@@ -8144,109 +8219,21 @@ L_1183:
 	starg	'i2'
 // Line 1808:	
 
-// Line 1809:	   c1 = block[i1];
-
-	ldarg	'i1'
-	ldsfld	void* 'block'
-
-	add
-	ldind.u1
-	stloc	'c1/1'
-// Line 1810:	   c2 = block[i2];
-
-	ldarg	'i2'
-	ldsfld	void* 'block'
-
-	add
-	ldind.u1
-	stloc	'c2/2'
-// Line 1811:	   if (c1 != c2) return (c1 > c2);
-
-	ldloc	'c1/1'
-	conv.i4
-	ldloc	'c2/2'
-	conv.i4
-	beq	'L_1184'
-	ldloc	'c1/1'
-	conv.i4
-	ldloc	'c2/2'
-	conv.i4
-	cgt
-	conv.u1
-	conv.i4
-	br	'L_1178'
-L_1184:
-// Line 1812:	   i1++; i2++;
-
-	ldarg	'i1'
-	ldc.i4	1
-	add
-	starg	'i1'
-	ldarg	'i2'
-	ldc.i4	1
-	add
-	starg	'i2'
-// Line 1813:	
-
-// Line 1814:	   c1 = block[i1];
-
-	ldarg	'i1'
-	ldsfld	void* 'block'
-
-	add
-	ldind.u1
-	stloc	'c1/1'
-// Line 1815:	   c2 = block[i2];
-
-	ldarg	'i2'
-	ldsfld	void* 'block'
-
-	add
-	ldind.u1
-	stloc	'c2/2'
-// Line 1816:	   if (c1 != c2) return (c1 > c2);
-
-	ldloc	'c1/1'
-	conv.i4
-	ldloc	'c2/2'
-	conv.i4
-	beq	'L_1185'
-	ldloc	'c1/1'
-	conv.i4
-	ldloc	'c2/2'
-	conv.i4
-	cgt
-	conv.u1
-	conv.i4
-	br	'L_1178'
-L_1185:
-// Line 1817:	   i1++; i2++;
-
-	ldarg	'i1'
-	ldc.i4	1
-	add
-	starg	'i1'
-	ldarg	'i2'
-	ldc.i4	1
-	add
-	starg	'i2'
-// Line 1818:	
-
-// Line 1819:	   k = last + 1;
+// Line 1809:	   k = last + 1;
 
 	ldsfld	int32 'last'
 
 	ldc.i4	1
 	add
 	stloc	'k/0'
-// Line 1820:	
+// Line 1810:	
 
-// Line 1821:	   do {
+// Line 1811:	   do {
 
 L_1186:
-// Line 1822:	
+// Line 1812:	
 
-// Line 1823:	      c1 = block[i1];
+// Line 1813:	      c1 = block[i1];
 
 	ldarg	'i1'
 	ldsfld	void* 'block'
@@ -8254,7 +8241,7 @@ L_1186:
 	add
 	ldind.u1
 	stloc	'c1/1'
-// Line 1824:	      c2 = block[i2];
+// Line 1814:	      c2 = block[i2];
 
 	ldarg	'i2'
 	ldsfld	void* 'block'
@@ -8262,7 +8249,7 @@ L_1186:
 	add
 	ldind.u1
 	stloc	'c2/2'
-// Line 1825:	      if (c1 != c2) return (c1 > c2);
+// Line 1815:	      if (c1 != c2) return (c1 > c2);
 
 	ldloc	'c1/1'
 	conv.i4
@@ -8278,7 +8265,7 @@ L_1186:
 	conv.i4
 	br	'L_1178'
 L_1190:
-// Line 1826:	      s1 = quadrant[i1];
+// Line 1816:	      s1 = quadrant[i1];
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8288,7 +8275,7 @@ L_1190:
 	add
 	ldind.u2
 	stloc	's1/3'
-// Line 1827:	      s2 = quadrant[i2];
+// Line 1817:	      s2 = quadrant[i2];
 
 	ldarg	'i2'
 	ldc.i4	1
@@ -8298,7 +8285,7 @@ L_1190:
 	add
 	ldind.u2
 	stloc	's2/4'
-// Line 1828:	      if (s1 != s2) return (s1 > s2);
+// Line 1818:	      if (s1 != s2) return (s1 > s2);
 
 	ldloc	's1/3'
 	conv.i4
@@ -8314,7 +8301,7 @@ L_1190:
 	conv.i4
 	br	'L_1178'
 L_1191:
-// Line 1829:	      i1++; i2++;
+// Line 1819:	      i1++; i2++;
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8324,9 +8311,9 @@ L_1191:
 	ldc.i4	1
 	add
 	starg	'i2'
-// Line 1830:	
+// Line 1820:	
 
-// Line 1831:	      c1 = block[i1];
+// Line 1821:	      c1 = block[i1];
 
 	ldarg	'i1'
 	ldsfld	void* 'block'
@@ -8334,7 +8321,7 @@ L_1191:
 	add
 	ldind.u1
 	stloc	'c1/1'
-// Line 1832:	      c2 = block[i2];
+// Line 1822:	      c2 = block[i2];
 
 	ldarg	'i2'
 	ldsfld	void* 'block'
@@ -8342,7 +8329,7 @@ L_1191:
 	add
 	ldind.u1
 	stloc	'c2/2'
-// Line 1833:	      if (c1 != c2) return (c1 > c2);
+// Line 1823:	      if (c1 != c2) return (c1 > c2);
 
 	ldloc	'c1/1'
 	conv.i4
@@ -8358,7 +8345,7 @@ L_1191:
 	conv.i4
 	br	'L_1178'
 L_1192:
-// Line 1834:	      s1 = quadrant[i1];
+// Line 1824:	      s1 = quadrant[i1];
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8368,7 +8355,7 @@ L_1192:
 	add
 	ldind.u2
 	stloc	's1/3'
-// Line 1835:	      s2 = quadrant[i2];
+// Line 1825:	      s2 = quadrant[i2];
 
 	ldarg	'i2'
 	ldc.i4	1
@@ -8378,7 +8365,7 @@ L_1192:
 	add
 	ldind.u2
 	stloc	's2/4'
-// Line 1836:	      if (s1 != s2) return (s1 > s2);
+// Line 1826:	      if (s1 != s2) return (s1 > s2);
 
 	ldloc	's1/3'
 	conv.i4
@@ -8394,7 +8381,7 @@ L_1192:
 	conv.i4
 	br	'L_1178'
 L_1193:
-// Line 1837:	      i1++; i2++;
+// Line 1827:	      i1++; i2++;
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8404,9 +8391,9 @@ L_1193:
 	ldc.i4	1
 	add
 	starg	'i2'
-// Line 1838:	
+// Line 1828:	
 
-// Line 1839:	      c1 = block[i1];
+// Line 1829:	      c1 = block[i1];
 
 	ldarg	'i1'
 	ldsfld	void* 'block'
@@ -8414,7 +8401,7 @@ L_1193:
 	add
 	ldind.u1
 	stloc	'c1/1'
-// Line 1840:	      c2 = block[i2];
+// Line 1830:	      c2 = block[i2];
 
 	ldarg	'i2'
 	ldsfld	void* 'block'
@@ -8422,7 +8409,7 @@ L_1193:
 	add
 	ldind.u1
 	stloc	'c2/2'
-// Line 1841:	      if (c1 != c2) return (c1 > c2);
+// Line 1831:	      if (c1 != c2) return (c1 > c2);
 
 	ldloc	'c1/1'
 	conv.i4
@@ -8438,7 +8425,7 @@ L_1193:
 	conv.i4
 	br	'L_1178'
 L_1194:
-// Line 1842:	      s1 = quadrant[i1];
+// Line 1832:	      s1 = quadrant[i1];
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8448,7 +8435,7 @@ L_1194:
 	add
 	ldind.u2
 	stloc	's1/3'
-// Line 1843:	      s2 = quadrant[i2];
+// Line 1833:	      s2 = quadrant[i2];
 
 	ldarg	'i2'
 	ldc.i4	1
@@ -8458,7 +8445,7 @@ L_1194:
 	add
 	ldind.u2
 	stloc	's2/4'
-// Line 1844:	      if (s1 != s2) return (s1 > s2);
+// Line 1834:	      if (s1 != s2) return (s1 > s2);
 
 	ldloc	's1/3'
 	conv.i4
@@ -8474,7 +8461,7 @@ L_1194:
 	conv.i4
 	br	'L_1178'
 L_1195:
-// Line 1845:	      i1++; i2++;
+// Line 1835:	      i1++; i2++;
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8484,9 +8471,9 @@ L_1195:
 	ldc.i4	1
 	add
 	starg	'i2'
-// Line 1846:	
+// Line 1836:	
 
-// Line 1847:	      c1 = block[i1];
+// Line 1837:	      c1 = block[i1];
 
 	ldarg	'i1'
 	ldsfld	void* 'block'
@@ -8494,7 +8481,7 @@ L_1195:
 	add
 	ldind.u1
 	stloc	'c1/1'
-// Line 1848:	      c2 = block[i2];
+// Line 1838:	      c2 = block[i2];
 
 	ldarg	'i2'
 	ldsfld	void* 'block'
@@ -8502,7 +8489,7 @@ L_1195:
 	add
 	ldind.u1
 	stloc	'c2/2'
-// Line 1849:	      if (c1 != c2) return (c1 > c2);
+// Line 1839:	      if (c1 != c2) return (c1 > c2);
 
 	ldloc	'c1/1'
 	conv.i4
@@ -8518,7 +8505,7 @@ L_1195:
 	conv.i4
 	br	'L_1178'
 L_1196:
-// Line 1850:	      s1 = quadrant[i1];
+// Line 1840:	      s1 = quadrant[i1];
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8528,7 +8515,7 @@ L_1196:
 	add
 	ldind.u2
 	stloc	's1/3'
-// Line 1851:	      s2 = quadrant[i2];
+// Line 1841:	      s2 = quadrant[i2];
 
 	ldarg	'i2'
 	ldc.i4	1
@@ -8538,7 +8525,7 @@ L_1196:
 	add
 	ldind.u2
 	stloc	's2/4'
-// Line 1852:	      if (s1 != s2) return (s1 > s2);
+// Line 1842:	      if (s1 != s2) return (s1 > s2);
 
 	ldloc	's1/3'
 	conv.i4
@@ -8554,7 +8541,7 @@ L_1196:
 	conv.i4
 	br	'L_1178'
 L_1197:
-// Line 1853:	      i1++; i2++;
+// Line 1843:	      i1++; i2++;
 
 	ldarg	'i1'
 	ldc.i4	1
@@ -8564,9 +8551,9 @@ L_1197:
 	ldc.i4	1
 	add
 	starg	'i2'
-// Line 1854:	
+// Line 1844:	
 
-// Line 1855:	      if (i1 > last) { i1 -= last; i1--; };
+// Line 1845:	      if (i1 > last) { i1 -= last; i1--; };
 
 	ldarg	'i1'
 	ldsfld	int32 'last'
@@ -8582,7 +8569,7 @@ L_1197:
 	sub
 	starg	'i1'
 L_1198:
-// Line 1856:	      if (i2 > last) { i2 -= last; i2--; };
+// Line 1846:	      if (i2 > last) { i2 -= last; i2--; };
 
 	ldarg	'i2'
 	ldsfld	int32 'last'
@@ -8598,15 +8585,15 @@ L_1198:
 	sub
 	starg	'i2'
 L_1201:
-// Line 1857:	
+// Line 1847:	
 
-// Line 1858:	      k -= 4;
+// Line 1848:	      k -= 4;
 
 	ldloc	'k/0'
 	ldc.i4	4
 	sub
 	stloc	'k/0'
-// Line 1859:	      workDone++;
+// Line 1849:	      workDone++;
 
 	ldsfld	int32 'workDone'
 
@@ -8615,22 +8602,22 @@ L_1201:
 	stsfld	int32 'workDone'
 
 L_1188:
-// Line 1860:	   }
+// Line 1850:	   }
 
-// Line 1861:	      while (k >= 0);
+// Line 1851:	      while (k >= 0);
 
 	ldloc	'k/0'
 	ldc.i4	0
 	bge	'L_1186'
 L_1187:
-// Line 1862:	
+// Line 1852:	
 
-// Line 1863:	   return False;
+// Line 1853:	   return False;
 
 	ldc.i4	0
 	conv.u1
 	conv.i4
-// Line 1864:	}
+// Line 1854:	}
 
 L_1178:
 	ret
@@ -8638,9 +8625,9 @@ L_1178:
 }
  .method public hidebysig static void 'simpleSort'(int32 'lo' , int32 'hi' , int32 'd' ) cil managed
 {
-// Line 1877:	void simpleSort ( Int32 lo, Int32 hi, Int32 d )
+// Line 1867:	void simpleSort ( Int32 lo, Int32 hi, Int32 d )
 
-// Line 1878:	{
+// Line 1868:	{
 
 	.locals
 	(
@@ -8653,17 +8640,17 @@ L_1178:
 	)
 	.maxstack	3
 L_1210:
-// Line 1880:	   Int32 v;
+// Line 1870:	   Int32 v;
 
-// Line 1881:	
+// Line 1871:	
 
-// Line 1882:	
+// Line 1872:	
 
-// Line 1883:	   PRINTLOC;
+// Line 1873:	   PRINTLOC;
 
-// Line 1884:	
+// Line 1874:	
 
-// Line 1885:	   bigN = hi - lo + 1;
+// Line 1875:	   bigN = hi - lo + 1;
 
 	ldarg	'hi'
 	ldarg	'lo'
@@ -8671,15 +8658,15 @@ L_1210:
 	ldc.i4	1
 	add
 	stloc	'bigN/3'
-// Line 1886:	   if (bigN < 2) return;
+// Line 1876:	   if (bigN < 2) return;
 
 	ldloc	'bigN/3'
 	ldc.i4	2
 	blt	'L_1211'
 L_1213:
-// Line 1887:	
+// Line 1877:	
 
-// Line 1888:	   hp = 0;
+// Line 1878:	   hp = 0;
 
 	ldc.i4	0
 	stloc	'hp/4'
@@ -8690,7 +8677,7 @@ L_1214:
 	add
 	stloc	'hp/4'
 L_1216:
-// Line 1889:	   while (incs[hp] < bigN) hp++;
+// Line 1879:	   while (incs[hp] < bigN) hp++;
 
 	ldloc	'hp/4'
 	ldc.i4	2
@@ -8702,17 +8689,17 @@ L_1216:
 	ldloc	'bigN/3'
 	blt	'L_1214'
 L_1215:
-// Line 1890:	   hp--;
+// Line 1880:	   hp--;
 
 	ldloc	'hp/4'
 	ldc.i4	1
 	sub
 	stloc	'hp/4'
-// Line 1891:	
+// Line 1881:	
 
 	br	'L_1218'
 L_1217:
-// Line 1893:	      h = incs[hp];
+// Line 1883:	      h = incs[hp];
 
 	ldloc	'hp/4'
 	ldc.i4	2
@@ -8722,43 +8709,42 @@ L_1217:
 	add
 	ldind.i4
 	stloc	'h/2'
-// Line 1894:	      if (verbosity >= 5)
+// Line 1884:	      if (verbosity >= 5)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	5
 	blt	'L_1222'
-// Line 1895:	         fprintf ( stderr, "          shell increment %d\n", h );
+// Line 1885:	         fprintf ( stderr, "          shell increment %d\n", h );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_20'
 
 	ldloc	'h/2'
 	call	vararg int32 'fprintf'(void*, void*, ..., int32)
 	pop
 L_1222:
-// Line 1896:	
+// Line 1886:	
 
-// Line 1897:	      i = lo + h;
+// Line 1887:	      i = lo + h;
 
 	ldarg	'lo'
 	ldloc	'h/2'
 	add
 	stloc	'i/0'
 L_1223:
-// Line 1899:	
+// Line 1889:	
 
-// Line 1900:	          
+// Line 1890:	          
 
-// Line 1901:	         if (i > hi) break;
+// Line 1891:	         if (i > hi) break;
 
 	ldloc	'i/0'
 	ldarg	'hi'
 	bgt	'L_1224'
 L_1227:
-// Line 1902:	         v = zptr[i];
+// Line 1892:	         v = zptr[i];
 
 	ldloc	'i/0'
 	ldc.i4	2
@@ -8768,13 +8754,13 @@ L_1227:
 	add
 	ldind.i4
 	stloc	'v/5'
-// Line 1903:	         j = i;
+// Line 1893:	         j = i;
 
 	ldloc	'i/0'
 	stloc	'j/1'
 	br	'L_1230'
 L_1228:
-// Line 1905:	            zptr[j] = zptr[j-h];
+// Line 1895:	            zptr[j] = zptr[j-h];
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -8792,13 +8778,13 @@ L_1228:
 	add
 	ldind.i4
 	stind.i4
-// Line 1906:	            j = j - h;
+// Line 1896:	            j = j - h;
 
 	ldloc	'j/1'
 	ldloc	'h/2'
 	sub
 	stloc	'j/1'
-// Line 1907:	            if (j <= (lo + h - 1)) break;
+// Line 1897:	            if (j <= (lo + h - 1)) break;
 
 	ldloc	'j/1'
 	ldarg	'lo'
@@ -8809,7 +8795,7 @@ L_1228:
 	ble	'L_1229'
 L_1232:
 L_1230:
-// Line 1904:	         while ( fullGtU ( zptr[j-h]+d, v+d ) ) {
+// Line 1894:	         while ( fullGtU ( zptr[j-h]+d, v+d ) ) {
 
 	ldloc	'j/1'
 	ldloc	'h/2'
@@ -8829,9 +8815,9 @@ L_1230:
 	ldc.i4	0
 	bne.un	'L_1228'
 L_1229:
-// Line 1908:	         }
+// Line 1898:	         }
 
-// Line 1909:	         zptr[j] = v;
+// Line 1899:	         zptr[j] = v;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -8841,23 +8827,23 @@ L_1229:
 	add
 	ldloc	'v/5'
 	stind.i4
-// Line 1910:	         i++;
+// Line 1900:	         i++;
 
 	ldloc	'i/0'
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1911:	
+// Line 1901:	
 
-// Line 1912:	          
+// Line 1902:	          
 
-// Line 1913:	         if (i > hi) break;
+// Line 1903:	         if (i > hi) break;
 
 	ldloc	'i/0'
 	ldarg	'hi'
 	bgt	'L_1224'
 L_1234:
-// Line 1914:	         v = zptr[i];
+// Line 1904:	         v = zptr[i];
 
 	ldloc	'i/0'
 	ldc.i4	2
@@ -8867,13 +8853,13 @@ L_1234:
 	add
 	ldind.i4
 	stloc	'v/5'
-// Line 1915:	         j = i;
+// Line 1905:	         j = i;
 
 	ldloc	'i/0'
 	stloc	'j/1'
 	br	'L_1237'
 L_1235:
-// Line 1917:	            zptr[j] = zptr[j-h];
+// Line 1907:	            zptr[j] = zptr[j-h];
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -8891,13 +8877,13 @@ L_1235:
 	add
 	ldind.i4
 	stind.i4
-// Line 1918:	            j = j - h;
+// Line 1908:	            j = j - h;
 
 	ldloc	'j/1'
 	ldloc	'h/2'
 	sub
 	stloc	'j/1'
-// Line 1919:	            if (j <= (lo + h - 1)) break;
+// Line 1909:	            if (j <= (lo + h - 1)) break;
 
 	ldloc	'j/1'
 	ldarg	'lo'
@@ -8908,7 +8894,7 @@ L_1235:
 	ble	'L_1236'
 L_1239:
 L_1237:
-// Line 1916:	         while ( fullGtU ( zptr[j-h]+d, v+d ) ) {
+// Line 1906:	         while ( fullGtU ( zptr[j-h]+d, v+d ) ) {
 
 	ldloc	'j/1'
 	ldloc	'h/2'
@@ -8928,9 +8914,9 @@ L_1237:
 	ldc.i4	0
 	bne.un	'L_1235'
 L_1236:
-// Line 1920:	         }
+// Line 1910:	         }
 
-// Line 1921:	         zptr[j] = v;
+// Line 1911:	         zptr[j] = v;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -8940,23 +8926,23 @@ L_1236:
 	add
 	ldloc	'v/5'
 	stind.i4
-// Line 1922:	         i++;
+// Line 1912:	         i++;
 
 	ldloc	'i/0'
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1923:	
+// Line 1913:	
 
-// Line 1924:	          
+// Line 1914:	          
 
-// Line 1925:	         if (i > hi) break;
+// Line 1915:	         if (i > hi) break;
 
 	ldloc	'i/0'
 	ldarg	'hi'
 	bgt	'L_1224'
 L_1241:
-// Line 1926:	         v = zptr[i];
+// Line 1916:	         v = zptr[i];
 
 	ldloc	'i/0'
 	ldc.i4	2
@@ -8966,13 +8952,13 @@ L_1241:
 	add
 	ldind.i4
 	stloc	'v/5'
-// Line 1927:	         j = i;
+// Line 1917:	         j = i;
 
 	ldloc	'i/0'
 	stloc	'j/1'
 	br	'L_1244'
 L_1242:
-// Line 1929:	            zptr[j] = zptr[j-h];
+// Line 1919:	            zptr[j] = zptr[j-h];
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -8990,13 +8976,13 @@ L_1242:
 	add
 	ldind.i4
 	stind.i4
-// Line 1930:	            j = j - h;
+// Line 1920:	            j = j - h;
 
 	ldloc	'j/1'
 	ldloc	'h/2'
 	sub
 	stloc	'j/1'
-// Line 1931:	            if (j <= (lo + h - 1)) break;
+// Line 1921:	            if (j <= (lo + h - 1)) break;
 
 	ldloc	'j/1'
 	ldarg	'lo'
@@ -9007,7 +8993,7 @@ L_1242:
 	ble	'L_1243'
 L_1246:
 L_1244:
-// Line 1928:	         while ( fullGtU ( zptr[j-h]+d, v+d ) ) {
+// Line 1918:	         while ( fullGtU ( zptr[j-h]+d, v+d ) ) {
 
 	ldloc	'j/1'
 	ldloc	'h/2'
@@ -9027,9 +9013,9 @@ L_1244:
 	ldc.i4	0
 	bne.un	'L_1242'
 L_1243:
-// Line 1932:	         }
+// Line 1922:	         }
 
-// Line 1933:	         zptr[j] = v;
+// Line 1923:	         zptr[j] = v;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -9039,15 +9025,15 @@ L_1243:
 	add
 	ldloc	'v/5'
 	stind.i4
-// Line 1934:	         i++;
+// Line 1924:	         i++;
 
 	ldloc	'i/0'
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 1935:	
+// Line 1925:	
 
-// Line 1936:	         if (workDone > workLimit && firstAttempt) return;
+// Line 1926:	         if (workDone > workLimit && firstAttempt) return;
 
 	ldsfld	int32 'workDone'
 
@@ -9060,27 +9046,27 @@ L_1243:
 	bne.un	'L_1211'
 L_1248:
 L_1225:
-// Line 1898:	      while (True) {
+// Line 1888:	      while (True) {
 
 	br	'L_1223'
 L_1224:
-// Line 1937:	      }
+// Line 1927:	      }
 
 L_1220:
 	ldloc	'hp/4'
 	ldc.i4	1
 	sub
 	stloc	'hp/4'
-// Line 1892:	   for (; hp >= 0; hp--) {
+// Line 1882:	   for (; hp >= 0; hp--) {
 
 L_1218:
 	ldloc	'hp/4'
 	ldc.i4	0
 	bge	'L_1217'
 L_1219:
-// Line 1938:	   }
+// Line 1928:	   }
 
-// Line 1939:	}
+// Line 1929:	}
 
 L_1211:
 	ret
@@ -9088,9 +9074,9 @@ L_1211:
 }
  .method public hidebysig static void 'vswap'(int32 'p1' , int32 'p2' , int32 'n' ) cil managed
 {
-// Line 1954:	INLINE void vswap ( Int32 p1, Int32 p2, Int32 n )
+// Line 1944:	INLINE void vswap ( Int32 p1, Int32 p2, Int32 n )
 
-// Line 1955:	{
+// Line 1945:	{
 
 	.locals
 	(
@@ -9100,7 +9086,7 @@ L_1211:
 L_1256:
 	br	'L_1261'
 L_1259:
-// Line 1957:	      swap(zptr[p1], zptr[p2]);
+// Line 1947:	      swap(zptr[p1], zptr[p2]);
 
 	ldloca	'tmp/0'
 	ldarg	'p1'
@@ -9133,7 +9119,7 @@ L_1259:
 	add
 	ldloc	'tmp/0'
 	stind.i4
-// Line 1958:	      p1++; p2++; n--;
+// Line 1948:	      p1++; p2++; n--;
 
 	ldarg	'p1'
 	ldc.i4	1
@@ -9148,15 +9134,15 @@ L_1259:
 	sub
 	starg	'n'
 L_1261:
-// Line 1956:	   while (n > 0) {
+// Line 1946:	   while (n > 0) {
 
 	ldarg	'n'
 	ldc.i4	0
 	bgt	'L_1259'
 L_1260:
-// Line 1959:	   }
+// Line 1949:	   }
 
-// Line 1960:	}
+// Line 1950:	}
 
 L_1257:
 	ret
@@ -9164,9 +9150,9 @@ L_1257:
 }
  .method public hidebysig static uint8 'med3'(uint8 'a' , uint8 'b' , uint8 'c' ) cil managed
 {
-// Line 1962:	INLINE UChar med3 ( UChar a, UChar b, UChar c )
+// Line 1952:	INLINE UChar med3 ( UChar a, UChar b, UChar c )
 
-// Line 1963:	{
+// Line 1953:	{
 
 	.locals
 	(
@@ -9174,9 +9160,9 @@ L_1257:
 	)
 	.maxstack	2
 L_1271:
-// Line 1964:	   UChar t;
+// Line 1954:	   UChar t;
 
-// Line 1965:	   if (a > b) { t = a; a = b; b = t; };
+// Line 1955:	   if (a > b) { t = a; a = b; b = t; };
 
 	ldarg	'a'
 	conv.i4
@@ -9190,7 +9176,7 @@ L_1271:
 	ldloc	't/0'
 	starg	'b'
 L_1274:
-// Line 1966:	   if (b > c) { t = b; b = c; c = t; };
+// Line 1956:	   if (b > c) { t = b; b = c; c = t; };
 
 	ldarg	'b'
 	conv.i4
@@ -9204,7 +9190,7 @@ L_1274:
 	ldloc	't/0'
 	starg	'c'
 L_1277:
-// Line 1967:	   if (a > b)          b = a;
+// Line 1957:	   if (a > b)          b = a;
 
 	ldarg	'a'
 	conv.i4
@@ -9214,11 +9200,11 @@ L_1277:
 	ldarg	'a'
 	starg	'b'
 L_1280:
-// Line 1968:	   return b;
+// Line 1958:	   return b;
 
 	ldarg	'b'
 	conv.i4
-// Line 1969:	}
+// Line 1959:	}
 
 L_1272:
 	ret
@@ -9226,9 +9212,9 @@ L_1272:
 }
  .method public hidebysig static void 'qSort3'(int32 'loSt' , int32 'hiSt' , int32 'dSt' ) cil managed
 {
-// Line 2002:	void qSort3 ( Int32 loSt, Int32 hiSt, Int32 dSt )
+// Line 1992:	void qSort3 ( Int32 loSt, Int32 hiSt, Int32 dSt )
 
-// Line 2003:	{
+// Line 1993:	{
 
 	.locals
 	(
@@ -9243,28 +9229,28 @@ L_1272:
 		[8] int32 'lo/8',
 		[9] int32 'hi/9',
 		[10] int32 'd/10',
-		[11] valuetype '__anontype_3191770589_0[1000]' 'stack/11',
+		[11] valuetype '__anontype_400306509_0[1000]' 'stack/11',
 		[12] int32 'tmp/12',
 		[13] int32 'tmp/13',
 		[14] int32 'tmp/14'
 	)
 	.maxstack	5
 L_1286:
-// Line 2006:	   StackElem stack[QSORT_STACK_SIZE];
+// Line 1996:	   StackElem stack[QSORT_STACK_SIZE];
 
-// Line 2007:	
+// Line 1997:	
 
-// Line 2008:	
+// Line 1998:	
 
-// Line 2009:	   PRINTLOC;
+// Line 1999:	   PRINTLOC;
 
-// Line 2010:	
+// Line 2000:	
 
-// Line 2011:	   sp = 0;
+// Line 2001:	   sp = 0;
 
 	ldc.i4	0
 	stloc	'sp/7'
-// Line 2012:	   push ( loSt, hiSt, dSt );
+// Line 2002:	   push ( loSt, hiSt, dSt );
 
 	ldc.i4	0
 	ldloca	'stack/11'
@@ -9289,9 +9275,9 @@ L_1286:
 	stloc	'sp/7'
 	br	'L_1293'
 L_1291:
-// Line 2015:	
+// Line 2005:	
 
-// Line 2016:	      if (sp >= QSORT_STACK_SIZE) panic ( "stack overflow in qSort3" );
+// Line 2006:	      if (sp >= QSORT_STACK_SIZE) panic ( "stack overflow in qSort3" );
 
 	ldloc	'sp/7'
 	ldc.i4	1000
@@ -9300,9 +9286,9 @@ L_1291:
 
 	call	void 'panic'(void*)
 L_1295:
-// Line 2017:	
+// Line 2007:	
 
-// Line 2018:	      pop ( lo, hi, d );
+// Line 2008:	      pop ( lo, hi, d );
 
 	ldloc	'sp/7'
 	ldc.i4	1
@@ -9333,9 +9319,9 @@ L_1295:
 	add
 	ldind.i4
 	stloc	'd/10'
-// Line 2019:	
+// Line 2009:	
 
-// Line 2020:	      if (hi - lo < SMALL_THRESH || d > DEPTH_THRESH) {
+// Line 2010:	      if (hi - lo < SMALL_THRESH || d > DEPTH_THRESH) {
 
 	ldloc	'hi/9'
 	ldloc	'lo/8'
@@ -9346,13 +9332,13 @@ L_1295:
 	ldc.i4	10
 	ble	'L_1298'
 L_1348:
-// Line 2021:	         simpleSort ( lo, hi, d );
+// Line 2011:	         simpleSort ( lo, hi, d );
 
 	ldloc	'lo/8'
 	ldloc	'hi/9'
 	ldloc	'd/10'
 	call	void 'simpleSort'(int32, int32, int32)
-// Line 2022:	         if (workDone > workLimit && firstAttempt) return;
+// Line 2012:	         if (workDone > workLimit && firstAttempt) return;
 
 	ldsfld	int32 'workDone'
 
@@ -9364,19 +9350,19 @@ L_1348:
 	ldc.i4	0
 	bne.un	'L_1287'
 L_1300:
-// Line 2023:	         continue;
+// Line 2013:	         continue;
 
 	br	'L_1293'
 L_1298:
-// Line 2024:	      }
+// Line 2014:	      }
 
-// Line 2025:	
+// Line 2015:	
 
-// Line 2026:	      med = med3 ( block[zptr[ lo         ]+d],
+// Line 2016:	      med = med3 ( block[zptr[ lo         ]+d],
 
-// Line 2027:	                   block[zptr[ hi         ]+d],
+// Line 2017:	                   block[zptr[ hi         ]+d],
 
-// Line 2028:	                   block[zptr[ (lo+hi)>>1 ]+d] );
+// Line 2018:	                   block[zptr[ (lo+hi)>>1 ]+d] );
 
 	ldloc	'lo/8'
 	ldc.i4	2
@@ -9424,15 +9410,15 @@ L_1298:
 	call	uint8 'med3'(uint8, uint8, uint8)
 	conv.i4
 	stloc	'med/4'
-// Line 2029:	
+// Line 2019:	
 
-// Line 2030:	      unLo = ltLo = lo;
+// Line 2020:	      unLo = ltLo = lo;
 
 	ldloc	'lo/8'
 	stloc	'ltLo/2'
 	ldloc	'ltLo/2'
 	stloc	'unLo/0'
-// Line 2031:	      unHi = gtHi = hi;
+// Line 2021:	      unHi = gtHi = hi;
 
 	ldloc	'hi/9'
 	stloc	'gtHi/3'
@@ -9441,13 +9427,13 @@ L_1298:
 	br	'L_1308'
 L_1302:
 L_1306:
-// Line 2035:	            if (unLo > unHi) break;
+// Line 2025:	            if (unLo > unHi) break;
 
 	ldloc	'unLo/0'
 	ldloc	'unHi/1'
 	bgt	'L_1320'
 L_1310:
-// Line 2036:	            n = ((Int32)block[zptr[unLo]+d]) - med;
+// Line 2026:	            n = ((Int32)block[zptr[unLo]+d]) - med;
 
 	ldloc	'unLo/0'
 	ldc.i4	2
@@ -9466,7 +9452,7 @@ L_1310:
 	ldloc	'med/4'
 	sub
 	stloc	'n/5'
-// Line 2037:	            if (n == 0) { swap(zptr[unLo], zptr[ltLo]); ltLo++; unLo++; continue; };
+// Line 2027:	            if (n == 0) { swap(zptr[unLo], zptr[ltLo]); ltLo++; unLo++; continue; };
 
 	ldloc	'n/5'
 	ldc.i4	0
@@ -9512,31 +9498,31 @@ L_1310:
 	stloc	'unLo/0'
 	br	'L_1306'
 L_1311:
-// Line 2038:	            if (n >  0) break;
+// Line 2028:	            if (n >  0) break;
 
 	ldloc	'n/5'
 	ldc.i4	0
 	bgt	'L_1320'
 L_1316:
-// Line 2039:	            unLo++;
+// Line 2029:	            unLo++;
 
 	ldloc	'unLo/0'
 	ldc.i4	1
 	add
 	stloc	'unLo/0'
 L_1308:
-// Line 2034:	         while (True) {
+// Line 2024:	         while (True) {
 
 	br	'L_1306'
 L_1307:
 L_1318:
-// Line 2042:	            if (unLo > unHi) break;
+// Line 2032:	            if (unLo > unHi) break;
 
 	ldloc	'unLo/0'
 	ldloc	'unHi/1'
 	bgt	'L_1319'
 L_1322:
-// Line 2043:	            n = ((Int32)block[zptr[unHi]+d]) - med;
+// Line 2033:	            n = ((Int32)block[zptr[unHi]+d]) - med;
 
 	ldloc	'unHi/1'
 	ldc.i4	2
@@ -9555,7 +9541,7 @@ L_1322:
 	ldloc	'med/4'
 	sub
 	stloc	'n/5'
-// Line 2044:	            if (n == 0) { swap(zptr[unHi], zptr[gtHi]); gtHi--; unHi--; continue; };
+// Line 2034:	            if (n == 0) { swap(zptr[unHi], zptr[gtHi]); gtHi--; unHi--; continue; };
 
 	ldloc	'n/5'
 	ldc.i4	0
@@ -9601,34 +9587,34 @@ L_1322:
 	stloc	'unHi/1'
 	br	'L_1318'
 L_1323:
-// Line 2045:	            if (n <  0) break;
+// Line 2035:	            if (n <  0) break;
 
 	ldloc	'n/5'
 	ldc.i4	0
 	blt	'L_1319'
 L_1328:
-// Line 2046:	            unHi--;
+// Line 2036:	            unHi--;
 
 	ldloc	'unHi/1'
 	ldc.i4	1
 	sub
 	stloc	'unHi/1'
 L_1320:
-// Line 2040:	         }
+// Line 2030:	         }
 
-// Line 2041:	         while (True) {
+// Line 2031:	         while (True) {
 
 	br	'L_1318'
 L_1319:
-// Line 2047:	         }
+// Line 2037:	         }
 
-// Line 2048:	         if (unLo > unHi) break;
+// Line 2038:	         if (unLo > unHi) break;
 
 	ldloc	'unLo/0'
 	ldloc	'unHi/1'
 	bgt	'L_1303'
 L_1330:
-// Line 2049:	         swap(zptr[unLo], zptr[unHi]); unLo++; unHi--;
+// Line 2039:	         swap(zptr[unLo], zptr[unHi]); unLo++; unHi--;
 
 	ldloca	'tmp/12'
 	ldloc	'unLo/0'
@@ -9670,28 +9656,28 @@ L_1330:
 	sub
 	stloc	'unHi/1'
 L_1304:
-// Line 2032:	
+// Line 2022:	
 
-// Line 2033:	      while (True) {
+// Line 2023:	      while (True) {
 
 	br	'L_1308'
 L_1303:
-// Line 2050:	      }
+// Line 2040:	      }
 
-// Line 2051:	      #if DEBUG
+// Line 2041:	      #if DEBUG
 
-// Line 2052:	         assert (unHi == unLo-1);
+// Line 2042:	         assert (unHi == unLo-1);
 
-// Line 2053:	      #endif
+// Line 2043:	      #endif
 
-// Line 2054:	
+// Line 2044:	
 
-// Line 2055:	      if (gtHi < ltLo) {
+// Line 2045:	      if (gtHi < ltLo) {
 
 	ldloc	'gtHi/3'
 	ldloc	'ltLo/2'
 	bge	'L_1334'
-// Line 2056:	         push(lo, hi, d+1 );
+// Line 2046:	         push(lo, hi, d+1 );
 
 	ldloc	'sp/7'
 	ldc.i4	12
@@ -9724,15 +9710,15 @@ L_1303:
 	ldc.i4	1
 	add
 	stloc	'sp/7'
-// Line 2057:	         continue;
+// Line 2047:	         continue;
 
 	br	'L_1293'
 L_1334:
-// Line 2058:	      }
+// Line 2048:	      }
 
-// Line 2059:	
+// Line 2049:	
 
-// Line 2060:	      n = min(ltLo-lo, unLo-ltLo); vswap(lo, unLo-n, n);
+// Line 2050:	      n = min(ltLo-lo, unLo-ltLo); vswap(lo, unLo-n, n);
 
 	ldloc	'ltLo/2'
 	ldloc	'lo/8'
@@ -9757,7 +9743,7 @@ L_1350:
 	sub
 	ldloc	'n/5'
 	call	void 'vswap'(int32, int32, int32)
-// Line 2061:	      m = min(hi-gtHi, gtHi-unHi); vswap(unLo, hi-m+1, m);
+// Line 2051:	      m = min(hi-gtHi, gtHi-unHi); vswap(unLo, hi-m+1, m);
 
 	ldloc	'hi/9'
 	ldloc	'gtHi/3'
@@ -9784,9 +9770,9 @@ L_1352:
 	add
 	ldloc	'm/6'
 	call	void 'vswap'(int32, int32, int32)
-// Line 2062:	
+// Line 2052:	
 
-// Line 2063:	      n = lo + unLo - ltLo - 1;
+// Line 2053:	      n = lo + unLo - ltLo - 1;
 
 	ldloc	'lo/8'
 	ldloc	'unLo/0'
@@ -9796,7 +9782,7 @@ L_1352:
 	ldc.i4	1
 	sub
 	stloc	'n/5'
-// Line 2064:	      m = hi - (gtHi - unHi) + 1;
+// Line 2054:	      m = hi - (gtHi - unHi) + 1;
 
 	ldloc	'gtHi/3'
 	ldloc	'unHi/1'
@@ -9807,9 +9793,9 @@ L_1352:
 	ldc.i4	1
 	add
 	stloc	'm/6'
-// Line 2065:	
+// Line 2055:	
 
-// Line 2066:	      push ( lo, n, d );
+// Line 2056:	      push ( lo, n, d );
 
 	ldloc	'sp/7'
 	ldc.i4	12
@@ -9840,7 +9826,7 @@ L_1352:
 	ldc.i4	1
 	add
 	stloc	'sp/7'
-// Line 2067:	      push ( n+1, m-1, d+1 );
+// Line 2057:	      push ( n+1, m-1, d+1 );
 
 	ldloc	'sp/7'
 	ldc.i4	12
@@ -9877,7 +9863,7 @@ L_1352:
 	ldc.i4	1
 	add
 	stloc	'sp/7'
-// Line 2068:	      push ( m, hi, d );
+// Line 2058:	      push ( m, hi, d );
 
 	ldloc	'sp/7'
 	ldc.i4	12
@@ -9909,17 +9895,17 @@ L_1352:
 	add
 	stloc	'sp/7'
 L_1293:
-// Line 2013:	
+// Line 2003:	
 
-// Line 2014:	   while (sp > 0) {
+// Line 2004:	   while (sp > 0) {
 
 	ldloc	'sp/7'
 	ldc.i4	0
 	bgt	'L_1291'
 L_1292:
-// Line 2069:	   }
+// Line 2059:	   }
 
-// Line 2070:	}
+// Line 2060:	}
 
 L_1287:
 	ret
@@ -9927,9 +9913,9 @@ L_1287:
 }
  .method public hidebysig static void 'sortIt'() cil managed
 {
-// Line 2080:	void sortIt ( void )
+// Line 2070:	void sortIt ( void )
 
-// Line 2081:	{
+// Line 2071:	{
 
 	.locals
 	(
@@ -9955,33 +9941,32 @@ L_1287:
 	)
 	.maxstack	7
 L_1356:
-// Line 2087:	   Int32 numQSorted;
+// Line 2077:	   Int32 numQSorted;
 
-// Line 2088:	
+// Line 2078:	
 
-// Line 2089:	
+// Line 2079:	
 
-// Line 2090:	   PRINTLOC;
+// Line 2080:	   PRINTLOC;
 
-// Line 2091:	
+// Line 2081:	
 
-// Line 2092:	    
-// Line 2093:	
-// Line 2094:	
-// Line 2095:	
-// Line 2096:	
+// Line 2082:	    
+// Line 2083:	
+// Line 2084:	
+// Line 2085:	
+// Line 2086:	
 
-// Line 2097:	
+// Line 2087:	
 
-// Line 2098:	   if (verbosity >= 4) fprintf ( stderr, "        sort initialise ...\n" );
+// Line 2088:	   if (verbosity >= 4) fprintf ( stderr, "        sort initialise ...\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	4
 	blt	'L_1359'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_22'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
@@ -9991,7 +9976,7 @@ L_1359:
 	stloc	'i/0'
 	br	'L_1361'
 L_1360:
-// Line 2100:	       block[last+i+1] = block[i % (last+1)];
+// Line 2090:	       block[last+i+1] = block[i % (last+1)];
 
 	ldsfld	int32 'last'
 
@@ -10018,7 +10003,7 @@ L_1363:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2099:	   for (i = 0; i < NUM_OVERSHOOT_BYTES; i++)
+// Line 2089:	   for (i = 0; i < NUM_OVERSHOOT_BYTES; i++)
 
 L_1361:
 	ldloc	'i/0'
@@ -10029,7 +10014,7 @@ L_1362:
 	stloc	'i/0'
 	br	'L_1365'
 L_1364:
-// Line 2102:	       quadrant[i] = 0;
+// Line 2092:	       quadrant[i] = 0;
 
 	ldloc	'i/0'
 	ldc.i4	1
@@ -10044,7 +10029,7 @@ L_1367:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2101:	   for (i = 0; i <= last+NUM_OVERSHOOT_BYTES; i++)
+// Line 2091:	   for (i = 0; i <= last+NUM_OVERSHOOT_BYTES; i++)
 
 L_1365:
 	ldloc	'i/0'
@@ -10054,9 +10039,9 @@ L_1365:
 	add
 	ble	'L_1364'
 L_1366:
-// Line 2103:	
+// Line 2093:	
 
-// Line 2104:	   block[-1] = block[last];
+// Line 2094:	   block[-1] = block[last];
 
 	ldsfld	void* 'block'
 
@@ -10069,30 +10054,29 @@ L_1366:
 	add
 	ldind.u1
 	stind.i1
-// Line 2105:	
+// Line 2095:	
 
-// Line 2106:	   if (last < 4000) {
+// Line 2096:	   if (last < 4000) {
 
 	ldsfld	int32 'last'
 
 	ldc.i4	4000
 	bge	'L_1368'
-// Line 2107:	
+// Line 2097:	
 
-// Line 2108:	       
-// Line 2109:	
-// Line 2110:	
-// Line 2111:	
+// Line 2098:	       
+// Line 2099:	
+// Line 2100:	
+// Line 2101:	
 
-// Line 2112:	      if (verbosity >= 4) fprintf ( stderr, "        simpleSort ...\n" );
+// Line 2102:	      if (verbosity >= 4) fprintf ( stderr, "        simpleSort ...\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	4
 	blt	'L_1370'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_23'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
@@ -10115,7 +10099,7 @@ L_1374:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2113:	      for (i = 0; i <= last; i++) zptr[i] = i;
+// Line 2103:	      for (i = 0; i <= last; i++) zptr[i] = i;
 
 L_1372:
 	ldloc	'i/0'
@@ -10123,12 +10107,12 @@ L_1372:
 
 	ble	'L_1371'
 L_1373:
-// Line 2114:	      firstAttempt = False;
+// Line 2104:	      firstAttempt = False;
 
 	ldc.i4	0
 	stsfld	uint8 'firstAttempt'
 
-// Line 2115:	      workDone = workLimit = 0;
+// Line 2105:	      workDone = workLimit = 0;
 
 	ldc.i4	0
 	stsfld	int32 'workLimit'
@@ -10137,34 +10121,33 @@ L_1373:
 
 	stsfld	int32 'workDone'
 
-// Line 2116:	      simpleSort ( 0, last, 0 );
+// Line 2106:	      simpleSort ( 0, last, 0 );
 
 	ldc.i4	0
 	ldsfld	int32 'last'
 
 	ldc.i4	0
 	call	void 'simpleSort'(int32, int32, int32)
-// Line 2117:	      if (verbosity >= 4) fprintf ( stderr, "        simpleSort done.\n" );
+// Line 2107:	      if (verbosity >= 4) fprintf ( stderr, "        simpleSort done.\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	4
 	blt	'L_1377'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_24'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1375:
-// Line 2118:	
+// Line 2108:	
 
 	br	'L_1377'
 L_1368:
-// Line 2119:	   } else {
+// Line 2109:	   } else {
 
-// Line 2120:	      numQSorted = 0;
+// Line 2110:	      numQSorted = 0;
 
 	ldc.i4	0
 	stloc	'numQSorted/9'
@@ -10182,30 +10165,29 @@ L_1382:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2121:	      for (i = 0; i <= 255; i++) bigDone[i] = False;
+// Line 2111:	      for (i = 0; i <= 255; i++) bigDone[i] = False;
 
 L_1380:
 	ldloc	'i/0'
 	ldc.i4	255
 	ble	'L_1379'
 L_1381:
-// Line 2122:	
+// Line 2112:	
 
-// Line 2123:	      if (verbosity >= 4) fprintf ( stderr, "        bucket sorting ...\n" );
+// Line 2113:	      if (verbosity >= 4) fprintf ( stderr, "        bucket sorting ...\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	4
 	blt	'L_1383'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_25'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1383:
-// Line 2124:	
+// Line 2114:	
 
 	ldc.i4	0
 	stloc	'i/0'
@@ -10224,16 +10206,16 @@ L_1387:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2125:	      for (i = 0; i <= 65536; i++) ftab[i] = 0;
+// Line 2115:	      for (i = 0; i <= 65536; i++) ftab[i] = 0;
 
 L_1385:
 	ldloc	'i/0'
 	ldc.i4	65536
 	ble	'L_1384'
 L_1386:
-// Line 2126:	
+// Line 2116:	
 
-// Line 2127:	      c1 = block[-1];
+// Line 2117:	      c1 = block[-1];
 
 	ldsfld	void* 'block'
 
@@ -10245,7 +10227,7 @@ L_1386:
 	stloc	'i/0'
 	br	'L_1389'
 L_1388:
-// Line 2129:	         c2 = block[i];
+// Line 2119:	         c2 = block[i];
 
 	ldloc	'i/0'
 	ldsfld	void* 'block'
@@ -10253,7 +10235,7 @@ L_1388:
 	add
 	ldind.u1
 	stloc	'c2/8'
-// Line 2130:	         ftab[(c1 << 8) + c2]++;
+// Line 2120:	         ftab[(c1 << 8) + c2]++;
 
 	ldloc	'c1/7'
 	conv.i4
@@ -10283,7 +10265,7 @@ L_1388:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 2131:	         c1 = c2;
+// Line 2121:	         c1 = c2;
 
 	ldloc	'c2/8'
 	stloc	'c1/7'
@@ -10292,7 +10274,7 @@ L_1391:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2128:	      for (i = 0; i <= last; i++) {
+// Line 2118:	      for (i = 0; i <= last; i++) {
 
 L_1389:
 	ldloc	'i/0'
@@ -10300,9 +10282,9 @@ L_1389:
 
 	ble	'L_1388'
 L_1390:
-// Line 2132:	      }
+// Line 2122:	      }
 
-// Line 2133:	
+// Line 2123:	
 
 	ldc.i4	1
 	stloc	'i/0'
@@ -10337,16 +10319,16 @@ L_1397:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2134:	      for (i = 1; i <= 65536; i++) ftab[i] += ftab[i-1];
+// Line 2124:	      for (i = 1; i <= 65536; i++) ftab[i] += ftab[i-1];
 
 L_1395:
 	ldloc	'i/0'
 	ldc.i4	65536
 	ble	'L_1394'
 L_1396:
-// Line 2135:	
+// Line 2125:	
 
-// Line 2136:	      c1 = block[0];
+// Line 2126:	      c1 = block[0];
 
 	ldsfld	void* 'block'
 
@@ -10356,7 +10338,7 @@ L_1396:
 	stloc	'i/0'
 	br	'L_1399'
 L_1398:
-// Line 2138:	         c2 = block[i+1];
+// Line 2128:	         c2 = block[i+1];
 
 	ldloc	'i/0'
 	ldc.i4	1
@@ -10366,7 +10348,7 @@ L_1398:
 	add
 	ldind.u1
 	stloc	'c2/8'
-// Line 2139:	         j = (c1 << 8) + c2;
+// Line 2129:	         j = (c1 << 8) + c2;
 
 	ldloc	'c1/7'
 	conv.i4
@@ -10376,11 +10358,11 @@ L_1398:
 	conv.i4
 	add
 	stloc	'j/1'
-// Line 2140:	         c1 = c2;
+// Line 2130:	         c1 = c2;
 
 	ldloc	'c2/8'
 	stloc	'c1/7'
-// Line 2141:	         ftab[j]--;
+// Line 2131:	         ftab[j]--;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -10398,7 +10380,7 @@ L_1398:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 2142:	         zptr[ftab[j]] = i;
+// Line 2132:	         zptr[ftab[j]] = i;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -10419,7 +10401,7 @@ L_1401:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2137:	      for (i = 0; i < last; i++) {
+// Line 2127:	      for (i = 0; i < last; i++) {
 
 L_1399:
 	ldloc	'i/0'
@@ -10427,9 +10409,9 @@ L_1399:
 
 	blt	'L_1398'
 L_1400:
-// Line 2143:	      }
+// Line 2133:	      }
 
-// Line 2144:	      j = (block[last] << 8) + block[0];
+// Line 2134:	      j = (block[last] << 8) + block[0];
 
 	ldsfld	int32 'last'
 
@@ -10446,7 +10428,7 @@ L_1400:
 	conv.i4
 	add
 	stloc	'j/1'
-// Line 2145:	      ftab[j]--;
+// Line 2135:	      ftab[j]--;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -10464,7 +10446,7 @@ L_1400:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 2146:	      zptr[ftab[j]] = last;
+// Line 2136:	      zptr[ftab[j]] = last;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -10481,13 +10463,13 @@ L_1400:
 	ldsfld	int32 'last'
 
 	stind.i4
-// Line 2147:	
+// Line 2137:	
 
-// Line 2148:	       
-// Line 2149:	
-// Line 2150:	
-// Line 2151:	
-// Line 2152:	
+// Line 2138:	       
+// Line 2139:	
+// Line 2140:	
+// Line 2141:	
+// Line 2142:	
 
 	ldc.i4	0
 	stloc	'i/0'
@@ -10505,25 +10487,25 @@ L_1407:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2153:	      for (i = 0; i <= 255; i++) runningOrder[i] = i;
+// Line 2143:	      for (i = 0; i <= 255; i++) runningOrder[i] = i;
 
 L_1405:
 	ldloc	'i/0'
 	ldc.i4	255
 	ble	'L_1404'
 L_1406:
-// Line 2154:	
+// Line 2144:	
 
-// Line 2155:	      {
+// Line 2145:	      {
 
-// Line 2156:	         Int32 vv;
+// Line 2146:	         Int32 vv;
 
-// Line 2157:	         Int32 h = 1;
+// Line 2147:	         Int32 h = 1;
 
 	ldloca	'h/18'
 	ldc.i4	1
 	stind.i4
-// Line 2158:	         do h = 3 * h + 1; while (h <= 256);
+// Line 2148:	         do h = 3 * h + 1; while (h <= 256);
 
 L_1409:
 	ldloc	'h/18'
@@ -10537,10 +10519,10 @@ L_1411:
 	ldc.i4	256
 	ble	'L_1409'
 L_1410:
-// Line 2159:	         do {
+// Line 2149:	         do {
 
 L_1412:
-// Line 2160:	            h = h / 3;
+// Line 2150:	            h = h / 3;
 
 	ldloc	'h/18'
 	ldc.i4	3
@@ -10550,7 +10532,7 @@ L_1412:
 	stloc	'i/0'
 	br	'L_1417'
 L_1416:
-// Line 2162:	               vv = runningOrder[i];
+// Line 2152:	               vv = runningOrder[i];
 
 	ldloc	'i/0'
 	ldc.i4	2
@@ -10559,13 +10541,13 @@ L_1416:
 	add
 	ldind.i4
 	stloc	'vv/17'
-// Line 2163:	               j = i;
+// Line 2153:	               j = i;
 
 	ldloc	'i/0'
 	stloc	'j/1'
 	br	'L_1423'
 L_1421:
-// Line 2165:	                  runningOrder[j] = runningOrder[j-h];
+// Line 2155:	                  runningOrder[j] = runningOrder[j-h];
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -10581,13 +10563,13 @@ L_1421:
 	add
 	ldind.i4
 	stind.i4
-// Line 2166:	                  j = j - h;
+// Line 2156:	                  j = j - h;
 
 	ldloc	'j/1'
 	ldloc	'h/18'
 	sub
 	stloc	'j/1'
-// Line 2167:	                  if (j <= (h - 1)) goto zero;
+// Line 2157:	                  if (j <= (h - 1)) goto zero;
 
 	ldloc	'j/1'
 	ldloc	'h/18'
@@ -10596,7 +10578,7 @@ L_1421:
 	ble	'L_1426'
 L_1425:
 L_1423:
-// Line 2164:	               while ( BIGFREQ(runningOrder[j-h]) > BIGFREQ(vv) ) {
+// Line 2154:	               while ( BIGFREQ(runningOrder[j-h]) > BIGFREQ(vv) ) {
 
 	ldloc	'j/1'
 	ldloc	'h/18'
@@ -10657,11 +10639,11 @@ L_1423:
 	bgt	'L_1421'
 L_1422:
 L_1426:
-// Line 2168:	               }
+// Line 2158:	               }
 
-// Line 2169:	               zero:
+// Line 2159:	               zero:
 
-// Line 2170:	               runningOrder[j] = vv;
+// Line 2160:	               runningOrder[j] = vv;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -10675,39 +10657,39 @@ L_1419:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2161:	            for (i = h; i <= 255; i++) {
+// Line 2151:	            for (i = h; i <= 255; i++) {
 
 L_1417:
 	ldloc	'i/0'
 	ldc.i4	255
 	ble	'L_1416'
 L_1418:
-// Line 2171:	            }
+// Line 2161:	            }
 
 L_1414:
-// Line 2172:	         } while (h != 1);
+// Line 2162:	         } while (h != 1);
 
 	ldloc	'h/18'
 	ldc.i4	1
 	bne.un	'L_1412'
 L_1413:
-// Line 2173:	      }
+// Line 2163:	      }
 
-// Line 2174:	
+// Line 2164:	
 
-// Line 2175:	       
-// Line 2176:	
-// Line 2177:	
+// Line 2165:	       
+// Line 2166:	
+// Line 2167:	
 
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_1432'
 L_1431:
-// Line 2179:	          
-// Line 2180:	
-// Line 2181:	
+// Line 2169:	          
+// Line 2170:	
+// Line 2171:	
 
-// Line 2182:	         ss = runningOrder[i];
+// Line 2172:	         ss = runningOrder[i];
 
 	ldloc	'i/0'
 	ldc.i4	2
@@ -10716,21 +10698,21 @@ L_1431:
 	add
 	ldind.i4
 	stloc	'ss/2'
-// Line 2183:	
+// Line 2173:	
 
-// Line 2184:	          
-// Line 2185:	
-// Line 2186:	
-// Line 2187:	
-// Line 2188:	
-// Line 2189:	
-// Line 2190:	
+// Line 2174:	          
+// Line 2175:	
+// Line 2176:	
+// Line 2177:	
+// Line 2178:	
+// Line 2179:	
+// Line 2180:	
 
 	ldc.i4	0
 	stloc	'j/1'
 	br	'L_1437'
 L_1436:
-// Line 2192:	            sb = (ss << 8) + j;
+// Line 2182:	            sb = (ss << 8) + j;
 
 	ldloc	'ss/2'
 	ldc.i4	8
@@ -10738,7 +10720,7 @@ L_1436:
 	ldloc	'j/1'
 	add
 	stloc	'sb/3'
-// Line 2193:	            if ( ! (ftab[sb] & SETMASK) ) {
+// Line 2183:	            if ( ! (ftab[sb] & SETMASK) ) {
 
 	ldloc	'sb/3'
 	ldc.i4	2
@@ -10751,7 +10733,7 @@ L_1436:
 	and
 	ldc.i4	0
 	bne.un	'L_1441'
-// Line 2194:	               Int32 lo = ftab[sb]   & CLEARMASK;
+// Line 2184:	               Int32 lo = ftab[sb]   & CLEARMASK;
 
 	ldloca	'lo/15'
 	ldloc	'sb/3'
@@ -10764,7 +10746,7 @@ L_1436:
 	ldc.i4	-2097153
 	and
 	stind.i4
-// Line 2195:	               Int32 hi = (ftab[sb+1] & CLEARMASK) - 1;
+// Line 2185:	               Int32 hi = (ftab[sb+1] & CLEARMASK) - 1;
 
 	ldloca	'hi/16'
 	ldloc	'sb/3'
@@ -10781,26 +10763,25 @@ L_1436:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 2196:	               if (hi > lo) {
+// Line 2186:	               if (hi > lo) {
 
 	ldloc	'hi/16'
 	ldloc	'lo/15'
 	ble	'L_1443'
-// Line 2197:	                  if (verbosity >= 4)
+// Line 2187:	                  if (verbosity >= 4)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	4
 	blt	'L_1445'
-// Line 2198:	                     fprintf ( stderr,
+// Line 2188:	                     fprintf ( stderr,
 
-// Line 2199:	                               "        qsort [0x%x, 0x%x]   done %d   this %d\n",
+// Line 2189:	                               "        qsort [0x%x, 0x%x]   done %d   this %d\n",
 
-// Line 2200:	                               ss, j, numQSorted, hi - lo + 1 );
+// Line 2190:	                               ss, j, numQSorted, hi - lo + 1 );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_26'
 
 	ldloc	'ss/2'
@@ -10814,13 +10795,13 @@ L_1436:
 	call	vararg int32 'fprintf'(void*, void*, ..., int32, int32, int32, int32)
 	pop
 L_1445:
-// Line 2201:	                  qSort3 ( lo, hi, 2 );
+// Line 2191:	                  qSort3 ( lo, hi, 2 );
 
 	ldloc	'lo/15'
 	ldloc	'hi/16'
 	ldc.i4	2
 	call	void 'qSort3'(int32, int32, int32)
-// Line 2202:	                  numQSorted += ( hi - lo + 1 );
+// Line 2192:	                  numQSorted += ( hi - lo + 1 );
 
 	ldloc	'hi/16'
 	ldloc	'lo/15'
@@ -10830,7 +10811,7 @@ L_1445:
 	ldloc	'numQSorted/9'
 	add
 	stloc	'numQSorted/9'
-// Line 2203:	                  if (workDone > workLimit && firstAttempt) return;
+// Line 2193:	                  if (workDone > workLimit && firstAttempt) return;
 
 	ldsfld	int32 'workDone'
 
@@ -10843,9 +10824,9 @@ L_1445:
 	bne.un	'L_1357'
 L_1446:
 L_1443:
-// Line 2204:	               }
+// Line 2194:	               }
 
-// Line 2205:	               ftab[sb] |= SETMASK;
+// Line 2195:	               ftab[sb] |= SETMASK;
 
 	ldloc	'sb/3'
 	ldc.i4	2
@@ -10864,48 +10845,48 @@ L_1443:
 	or
 	stind.i4
 L_1441:
-// Line 2206:	            }
+// Line 2196:	            }
 
 L_1439:
 	ldloc	'j/1'
 	ldc.i4	1
 	add
 	stloc	'j/1'
-// Line 2191:	         for (j = 0; j <= 255; j++) {
+// Line 2181:	         for (j = 0; j <= 255; j++) {
 
 L_1437:
 	ldloc	'j/1'
 	ldc.i4	255
 	ble	'L_1436'
 L_1438:
-// Line 2207:	         }
+// Line 2197:	         }
 
-// Line 2208:	
+// Line 2198:	
 
-// Line 2209:	          
-// Line 2210:	
-// Line 2211:	
-// Line 2212:	
-// Line 2213:	
-// Line 2214:	
-// Line 2215:	
-// Line 2216:	
+// Line 2199:	          
+// Line 2200:	
+// Line 2201:	
+// Line 2202:	
+// Line 2203:	
+// Line 2204:	
+// Line 2205:	
+// Line 2206:	
 
-// Line 2217:	         bigDone[ss] = True;
+// Line 2207:	         bigDone[ss] = True;
 
 	ldloc	'ss/2'
 	ldloca	'bigDone/6'
 	add
 	ldc.i4	1
 	stind.i1
-// Line 2218:	
+// Line 2208:	
 
-// Line 2219:	         if (i < 255) {
+// Line 2209:	         if (i < 255) {
 
 	ldloc	'i/0'
 	ldc.i4	255
 	bge	'L_1450'
-// Line 2220:	            Int32 bbStart  = ftab[ss << 8] & CLEARMASK;
+// Line 2210:	            Int32 bbStart  = ftab[ss << 8] & CLEARMASK;
 
 	ldloca	'bbStart/10'
 	ldloc	'ss/2'
@@ -10920,7 +10901,7 @@ L_1438:
 	ldc.i4	-2097153
 	and
 	stind.i4
-// Line 2221:	            Int32 bbSize   = (ftab[(ss+1) << 8] & CLEARMASK) - bbStart;
+// Line 2211:	            Int32 bbSize   = (ftab[(ss+1) << 8] & CLEARMASK) - bbStart;
 
 	ldloca	'bbSize/11'
 	ldloc	'ss/2'
@@ -10939,12 +10920,12 @@ L_1438:
 	ldloc	'bbStart/10'
 	sub
 	stind.i4
-// Line 2222:	            Int32 shifts   = 0;
+// Line 2212:	            Int32 shifts   = 0;
 
 	ldloca	'shifts/12'
 	ldc.i4	0
 	stind.i4
-// Line 2223:	
+// Line 2213:	
 
 	br	'L_1454'
 L_1452:
@@ -10953,7 +10934,7 @@ L_1452:
 	add
 	stloc	'shifts/12'
 L_1454:
-// Line 2224:	            while ((bbSize >> shifts) > 65534) shifts++;
+// Line 2214:	            while ((bbSize >> shifts) > 65534) shifts++;
 
 	ldloc	'bbSize/11'
 	ldloc	'shifts/12'
@@ -10961,13 +10942,13 @@ L_1454:
 	ldc.i4	65534
 	bgt	'L_1452'
 L_1453:
-// Line 2225:	
+// Line 2215:	
 
 	ldc.i4	0
 	stloc	'j/1'
 	br	'L_1456'
 L_1455:
-// Line 2227:	               Int32 a2update     = zptr[bbStart + j];
+// Line 2217:	               Int32 a2update     = zptr[bbStart + j];
 
 	ldloca	'a2update/13'
 	ldloc	'bbStart/10'
@@ -10980,7 +10961,7 @@ L_1455:
 	add
 	ldind.i4
 	stind.i4
-// Line 2228:	               UInt16 qVal        = (UInt16)(j >> shifts);
+// Line 2218:	               UInt16 qVal        = (UInt16)(j >> shifts);
 
 	ldloca	'qVal/14'
 	ldloc	'j/1'
@@ -10988,7 +10969,7 @@ L_1455:
 	shr
 	conv.u2
 	stind.i2
-// Line 2229:	               quadrant[a2update] = qVal;
+// Line 2219:	               quadrant[a2update] = qVal;
 
 	ldloc	'a2update/13'
 	ldc.i4	1
@@ -10998,12 +10979,12 @@ L_1455:
 	add
 	ldloc	'qVal/14'
 	stind.i2
-// Line 2230:	               if (a2update < NUM_OVERSHOOT_BYTES)
+// Line 2220:	               if (a2update < NUM_OVERSHOOT_BYTES)
 
 	ldloc	'a2update/13'
 	ldc.i4	20
 	bge	'L_1460'
-// Line 2231:	                  quadrant[a2update + last + 1] = qVal;
+// Line 2221:	                  quadrant[a2update + last + 1] = qVal;
 
 	ldloc	'a2update/13'
 	ldsfld	int32 'last'
@@ -11024,16 +11005,16 @@ L_1458:
 	ldc.i4	1
 	add
 	stloc	'j/1'
-// Line 2226:	            for (j = 0; j < bbSize; j++) {
+// Line 2216:	            for (j = 0; j < bbSize; j++) {
 
 L_1456:
 	ldloc	'j/1'
 	ldloc	'bbSize/11'
 	blt	'L_1455'
 L_1457:
-// Line 2232:	            }
+// Line 2222:	            }
 
-// Line 2233:	            if (! ( ((bbSize-1) >> shifts) <= 65535 )) panic ( "sortIt" );
+// Line 2223:	            if (! ( ((bbSize-1) >> shifts) <= 65535 )) panic ( "sortIt" );
 
 	ldloc	'bbSize/11'
 	ldc.i4	1
@@ -11047,20 +11028,20 @@ L_1457:
 	call	void 'panic'(void*)
 L_1462:
 L_1450:
-// Line 2234:	         }
+// Line 2224:	         }
 
-// Line 2235:		
+// Line 2225:		
 
-// Line 2236:	          
-// Line 2237:	
-// Line 2238:	
-// Line 2239:	
+// Line 2226:	          
+// Line 2227:	
+// Line 2228:	
+// Line 2229:	
 
 	ldc.i4	0
 	stloc	'j/1'
 	br	'L_1465'
 L_1464:
-// Line 2241:	            copy[j] = ftab[(j << 8) + ss] & CLEARMASK;
+// Line 2231:	            copy[j] = ftab[(j << 8) + ss] & CLEARMASK;
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -11086,14 +11067,14 @@ L_1467:
 	ldc.i4	1
 	add
 	stloc	'j/1'
-// Line 2240:	         for (j = 0; j <= 255; j++)
+// Line 2230:	         for (j = 0; j <= 255; j++)
 
 L_1465:
 	ldloc	'j/1'
 	ldc.i4	255
 	ble	'L_1464'
 L_1466:
-// Line 2242:	
+// Line 2232:	
 
 	ldloc	'ss/2'
 	ldc.i4	8
@@ -11109,11 +11090,11 @@ L_1466:
 	stloc	'j/1'
 	br	'L_1469'
 L_1468:
-// Line 2244:	              j < (ftab[(ss+1) << 8] & CLEARMASK);
+// Line 2234:	              j < (ftab[(ss+1) << 8] & CLEARMASK);
 
-// Line 2245:	              j++) {
+// Line 2235:	              j++) {
 
-// Line 2246:	            c1 = block[zptr[j]-1];
+// Line 2236:	            c1 = block[zptr[j]-1];
 
 	ldloc	'j/1'
 	ldc.i4	2
@@ -11129,7 +11110,7 @@ L_1468:
 	add
 	ldind.u1
 	stloc	'c1/7'
-// Line 2247:	            if ( ! bigDone[c1] ) {
+// Line 2237:	            if ( ! bigDone[c1] ) {
 
 	ldloc	'c1/7'
 	conv.i4
@@ -11138,7 +11119,7 @@ L_1468:
 	ldind.u1
 	ldc.i4	0
 	bne.un	'L_1473'
-// Line 2248:	               zptr[copy[c1]] = zptr[j] == 0 ? last : zptr[j] - 1;
+// Line 2238:	               zptr[copy[c1]] = zptr[j] == 0 ? last : zptr[j] - 1;
 
 	ldloc	'c1/7'
 	conv.i4
@@ -11176,7 +11157,7 @@ L_1486:
 	sub
 L_1487:
 	stind.i4
-// Line 2249:	               copy[c1] ++;
+// Line 2239:	               copy[c1] ++;
 
 	ldloc	'c1/7'
 	conv.i4
@@ -11195,14 +11176,14 @@ L_1487:
 	add
 	stind.i4
 L_1473:
-// Line 2250:	            }
+// Line 2240:	            }
 
 L_1471:
 	ldloc	'j/1'
 	ldc.i4	1
 	add
 	stloc	'j/1'
-// Line 2243:	         for (j = ftab[ss << 8] & CLEARMASK;
+// Line 2233:	         for (j = ftab[ss << 8] & CLEARMASK;
 
 L_1469:
 	ldloc	'j/1'
@@ -11221,9 +11202,9 @@ L_1469:
 	and
 	blt	'L_1468'
 L_1470:
-// Line 2251:	         }
+// Line 2241:	         }
 
-// Line 2252:	
+// Line 2242:	
 
 	ldc.i4	0
 	stloc	'j/1'
@@ -11258,7 +11239,7 @@ L_1480:
 	ldc.i4	1
 	add
 	stloc	'j/1'
-// Line 2253:	         for (j = 0; j <= 255; j++) ftab[(j << 8) + ss] |= SETMASK;
+// Line 2243:	         for (j = 0; j <= 255; j++) ftab[(j << 8) + ss] |= SETMASK;
 
 L_1478:
 	ldloc	'j/1'
@@ -11270,28 +11251,27 @@ L_1434:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2178:	      for (i = 0; i <= 255; i++) {
+// Line 2168:	      for (i = 0; i <= 255; i++) {
 
 L_1432:
 	ldloc	'i/0'
 	ldc.i4	255
 	ble	'L_1431'
 L_1433:
-// Line 2254:	      }
+// Line 2244:	      }
 
-// Line 2255:	      if (verbosity >= 4)
+// Line 2245:	      if (verbosity >= 4)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	4
 	blt	'L_1482'
-// Line 2256:	         fprintf ( stderr, "        %d pointers, %d sorted, %d scanned\n",
+// Line 2246:	         fprintf ( stderr, "        %d pointers, %d sorted, %d scanned\n",
 
-// Line 2257:	                           last+1, numQSorted, (last+1) - numQSorted );
+// Line 2247:	                           last+1, numQSorted, (last+1) - numQSorted );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_28'
 
 	ldsfld	int32 'last'
@@ -11309,9 +11289,9 @@ L_1433:
 	pop
 L_1482:
 L_1377:
-// Line 2258:	   }
+// Line 2248:	   }
 
-// Line 2259:	}
+// Line 2249:	}
 
 L_1357:
 	ret
@@ -11319,9 +11299,9 @@ L_1357:
 }
  .method public hidebysig static void 'randomiseBlock'() cil managed
 {
-// Line 2343:	void randomiseBlock ( void )
+// Line 2333:	void randomiseBlock ( void )
 
-// Line 2344:	{
+// Line 2334:	{
 
 	.locals
 	(
@@ -11331,9 +11311,9 @@ L_1357:
 	)
 	.maxstack	4
 L_1491:
-// Line 2345:	   Int32 i;
+// Line 2335:	   Int32 i;
 
-// Line 2346:	   RAND_DECLS;
+// Line 2336:	   RAND_DECLS;
 
 	ldloca	'rNToGo/1'
 	ldc.i4	0
@@ -11356,20 +11336,20 @@ L_1497:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2347:	   for (i = 0; i < 256; i++) inUse[i] = False;
+// Line 2337:	   for (i = 0; i < 256; i++) inUse[i] = False;
 
 L_1495:
 	ldloc	'i/0'
 	ldc.i4	256
 	blt	'L_1494'
 L_1496:
-// Line 2348:	
+// Line 2338:	
 
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_1499'
 L_1498:
-// Line 2350:	      RAND_UPD_MASK;
+// Line 2340:	      RAND_UPD_MASK;
 
 	ldloc	'rNToGo/1'
 	ldc.i4	0
@@ -11397,7 +11377,7 @@ L_1503:
 	ldc.i4	1
 	sub
 	stloc	'rNToGo/1'
-// Line 2351:	      block[i] ^= RAND_MASK;
+// Line 2341:	      block[i] ^= RAND_MASK;
 
 	ldloc	'i/0'
 	ldsfld	void* 'block'
@@ -11420,7 +11400,7 @@ L_1511:
 	xor
 	conv.u1
 	stind.i1
-// Line 2352:	      inUse[block[i]] = True;
+// Line 2342:	      inUse[block[i]] = True;
 
 	ldloc	'i/0'
 	ldsfld	void* 'block'
@@ -11438,7 +11418,7 @@ L_1501:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2349:	   for (i = 0; i <= last; i++) {
+// Line 2339:	   for (i = 0; i <= last; i++) {
 
 L_1499:
 	ldloc	'i/0'
@@ -11446,9 +11426,9 @@ L_1499:
 
 	ble	'L_1498'
 L_1500:
-// Line 2353:	   }
+// Line 2343:	   }
 
-// Line 2354:	}
+// Line 2344:	}
 
 L_1492:
 	ret
@@ -11456,9 +11436,9 @@ L_1492:
 }
  .method public hidebysig static void 'doReversibleTransformation'() cil managed
 {
-// Line 2358:	void doReversibleTransformation ( void )
+// Line 2348:	void doReversibleTransformation ( void )
 
-// Line 2359:	{
+// Line 2349:	{
 
 	.locals
 	(
@@ -11466,33 +11446,32 @@ L_1492:
 	)
 	.maxstack	6
 L_1515:
-// Line 2360:	   Int32 i;
+// Line 2350:	   Int32 i;
 
-// Line 2361:	
+// Line 2351:	
 
-// Line 2362:	
+// Line 2352:	
 
-// Line 2363:	   PRINTLOC;
+// Line 2353:	   PRINTLOC;
 
-// Line 2364:	
+// Line 2354:	
 
-// Line 2365:	   if (verbosity >= 2) fprintf ( stderr, "\n" );
+// Line 2355:	   if (verbosity >= 2) fprintf ( stderr, "\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1518'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_10'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1518:
-// Line 2366:	
+// Line 2356:	
 
-// Line 2367:	   workLimit       = workFactor * last;
+// Line 2357:	   workLimit       = workFactor * last;
 
 	ldsfld	int32 'workFactor'
 
@@ -11501,41 +11480,40 @@ L_1518:
 	mul
 	stsfld	int32 'workLimit'
 
-// Line 2368:	   workDone        = 0;
+// Line 2358:	   workDone        = 0;
 
 	ldc.i4	0
 	stsfld	int32 'workDone'
 
-// Line 2369:	   blockRandomised = False;
+// Line 2359:	   blockRandomised = False;
 
 	ldc.i4	0
 	stsfld	uint8 'blockRandomised'
 
-// Line 2370:	   firstAttempt    = True;
+// Line 2360:	   firstAttempt    = True;
 
 	ldc.i4	1
 	stsfld	uint8 'firstAttempt'
 
-// Line 2371:	
+// Line 2361:	
 
-// Line 2372:	   sortIt ();
+// Line 2362:	   sortIt ();
 
 	call	void 'sortIt'()
-// Line 2373:	
+// Line 2363:	
 
-// Line 2374:	   if (verbosity >= 3)
+// Line 2364:	   if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_1519'
-// Line 2375:	      fprintf ( stderr, "      %d work, %d block, ratio %5.2f\n",
+// Line 2365:	      fprintf ( stderr, "      %d work, %d block, ratio %5.2f\n",
 
-// Line 2376:	                        workDone, last, (float)workDone / (float)(last) );
+// Line 2366:	                        workDone, last, (float)workDone / (float)(last) );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_29'
 
 	ldsfld	int32 'workDone'
@@ -11553,9 +11531,9 @@ L_1518:
 	call	vararg int32 'fprintf'(void*, void*, ..., int32, int32, float64)
 	pop
 L_1519:
-// Line 2377:	
+// Line 2367:	
 
-// Line 2378:	   if (workDone > workLimit && firstAttempt) {
+// Line 2368:	   if (workDone > workLimit && firstAttempt) {
 
 	ldsfld	int32 'workDone'
 
@@ -11566,26 +11544,25 @@ L_1519:
 
 	ldc.i4	0
 	beq	'L_1520'
-// Line 2379:	      if (verbosity >= 2)
+// Line 2369:	      if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1522'
-// Line 2380:	         fprintf ( stderr, "    sorting aborted; randomising block\n" );
+// Line 2370:	         fprintf ( stderr, "    sorting aborted; randomising block\n" );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_30'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1522:
-// Line 2381:	      randomiseBlock ();
+// Line 2371:	      randomiseBlock ();
 
 	call	void 'randomiseBlock'()
-// Line 2382:	      workLimit = workDone = 0;
+// Line 2372:	      workLimit = workDone = 0;
 
 	ldc.i4	0
 	stsfld	int32 'workDone'
@@ -11594,32 +11571,31 @@ L_1522:
 
 	stsfld	int32 'workLimit'
 
-// Line 2383:	      blockRandomised = True;
+// Line 2373:	      blockRandomised = True;
 
 	ldc.i4	1
 	stsfld	uint8 'blockRandomised'
 
-// Line 2384:	      firstAttempt = False;
+// Line 2374:	      firstAttempt = False;
 
 	ldc.i4	0
 	stsfld	uint8 'firstAttempt'
 
-// Line 2385:	      sortIt();
+// Line 2375:	      sortIt();
 
 	call	void 'sortIt'()
-// Line 2386:	      if (verbosity >= 3)
+// Line 2376:	      if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_1523'
-// Line 2387:	         fprintf ( stderr, "      %d work, %d block, ratio %f\n",
+// Line 2377:	         fprintf ( stderr, "      %d work, %d block, ratio %f\n",
 
-// Line 2388:	                           workDone, last, (float)workDone / (float)(last) );
+// Line 2378:	                           workDone, last, (float)workDone / (float)(last) );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_31'
 
 	ldsfld	int32 'workDone'
@@ -11638,11 +11614,11 @@ L_1522:
 	pop
 L_1523:
 L_1520:
-// Line 2389:	   }
+// Line 2379:	   }
 
-// Line 2390:	
+// Line 2380:	
 
-// Line 2391:	   origPtr = -1;
+// Line 2381:	   origPtr = -1;
 
 	ldc.i4	-1
 	stsfld	int32 'origPtr'
@@ -11651,7 +11627,7 @@ L_1520:
 	stloc	'i/0'
 	br	'L_1526'
 L_1525:
-// Line 2393:	       if (zptr[i] == 0)
+// Line 2383:	       if (zptr[i] == 0)
 
 	ldloc	'i/0'
 	ldc.i4	2
@@ -11662,7 +11638,7 @@ L_1525:
 	ldind.i4
 	ldc.i4	0
 	bne.un	'L_1529'
-// Line 2394:	          { origPtr = i; break; };
+// Line 2384:	          { origPtr = i; break; };
 
 	ldloc	'i/0'
 	stsfld	int32 'origPtr'
@@ -11674,7 +11650,7 @@ L_1528:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 2392:	   for (i = 0; i <= last; i++)
+// Line 2382:	   for (i = 0; i <= last; i++)
 
 L_1526:
 	ldloc	'i/0'
@@ -11682,9 +11658,9 @@ L_1526:
 
 	ble	'L_1525'
 L_1527:
-// Line 2395:	
+// Line 2385:	
 
-// Line 2396:	   if (origPtr == -1) panic ( "doReversibleTransformation" );
+// Line 2386:	   if (origPtr == -1) panic ( "doReversibleTransformation" );
 
 	ldsfld	int32 'origPtr'
 
@@ -11694,7 +11670,7 @@ L_1527:
 
 	call	void 'panic'(void*)
 L_1532:
-// Line 2397:	}
+// Line 2387:	}
 
 L_1516:
 	ret
@@ -11702,9 +11678,9 @@ L_1516:
 }
  .method public hidebysig static int32 'indexIntoF'(int32 'indx' , void* 'cftab' ) cil managed
 {
-// Line 2402:	INLINE Int32 indexIntoF ( Int32 indx, Int32 *cftab )
+// Line 2392:	INLINE Int32 indexIntoF ( Int32 indx, Int32 *cftab )
 
-// Line 2403:	{
+// Line 2393:	{
 
 	.locals
 	(
@@ -11714,20 +11690,20 @@ L_1516:
 	)
 	.maxstack	3
 L_1538:
-// Line 2404:	   Int32 nb, na, mid;
+// Line 2394:	   Int32 nb, na, mid;
 
-// Line 2405:	   nb = 0;
+// Line 2395:	   nb = 0;
 
 	ldc.i4	0
 	stloc	'nb/0'
-// Line 2406:	   na = 256;
+// Line 2396:	   na = 256;
 
 	ldc.i4	256
 	stloc	'na/1'
-// Line 2407:	   do {
+// Line 2397:	   do {
 
 L_1541:
-// Line 2408:	      mid = (nb + na) >> 1;
+// Line 2398:	      mid = (nb + na) >> 1;
 
 	ldloc	'nb/0'
 	ldloc	'na/1'
@@ -11735,7 +11711,7 @@ L_1541:
 	ldc.i4	1
 	shr
 	stloc	'mid/2'
-// Line 2409:	      if (indx >= cftab[mid]) nb = mid; else na = mid;
+// Line 2399:	      if (indx >= cftab[mid]) nb = mid; else na = mid;
 
 	ldarg	'indx'
 	ldloc	'mid/2'
@@ -11753,9 +11729,9 @@ L_1545:
 	stloc	'na/1'
 L_1546:
 L_1543:
-// Line 2410:	   }
+// Line 2400:	   }
 
-// Line 2411:	   while (na - nb != 1);
+// Line 2401:	   while (na - nb != 1);
 
 	ldloc	'na/1'
 	ldloc	'nb/0'
@@ -11763,10 +11739,10 @@ L_1543:
 	ldc.i4	1
 	bne.un	'L_1541'
 L_1542:
-// Line 2412:	   return nb;
+// Line 2402:	   return nb;
 
 	ldloc	'nb/0'
-// Line 2413:	}
+// Line 2403:	}
 
 L_1539:
 	ret
@@ -11774,9 +11750,9 @@ L_1539:
 }
  .method public hidebysig static void 'undoReversibleTransformation_small'(void* 'dst' ) cil managed
 {
-// Line 2422:	void undoReversibleTransformation_small ( FILE* dst )
+// Line 2412:	void undoReversibleTransformation_small ( FILE* dst )
 
-// Line 2423:	{
+// Line 2413:	{
 
 	.locals
 	(
@@ -11800,27 +11776,27 @@ L_1539:
 	)
 	.maxstack	5
 L_1553:
-// Line 2426:	   UChar  ch;
+// Line 2416:	   UChar  ch;
 
-// Line 2427:	
+// Line 2417:	
 
-// Line 2428:	
+// Line 2418:	
 
-// Line 2429:	   PRINTLOC;
+// Line 2419:	   PRINTLOC;
 
-// Line 2430:	
+// Line 2420:	
 
-// Line 2431:	    
-// Line 2432:	
-// Line 2433:	
-// Line 2434:	
-// Line 2435:	
+// Line 2421:	    
+// Line 2422:	
+// Line 2423:	
+// Line 2424:	
+// Line 2425:	
 
-// Line 2436:	
+// Line 2426:	
 
-// Line 2437:	    
+// Line 2427:	    
 
-// Line 2438:	   cftab[0] = 0;
+// Line 2428:	   cftab[0] = 0;
 
 	ldloca	'cftab/0'
 	ldc.i4	0
@@ -11849,7 +11825,7 @@ L_1559:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 2439:	   for (i = 1; i <= 256; i++) cftab[i] = unzftab[i-1];
+// Line 2429:	   for (i = 1; i <= 256; i++) cftab[i] = unzftab[i-1];
 
 L_1557:
 	ldloc	'i/2'
@@ -11886,16 +11862,16 @@ L_1563:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 2440:	   for (i = 1; i <= 256; i++) cftab[i] += cftab[i-1];
+// Line 2430:	   for (i = 1; i <= 256; i++) cftab[i] += cftab[i-1];
 
 L_1561:
 	ldloc	'i/2'
 	ldc.i4	256
 	ble	'L_1560'
 L_1562:
-// Line 2441:	
+// Line 2431:	
 
-// Line 2442:	    
+// Line 2432:	    
 
 	ldc.i4	0
 	stloc	'i/2'
@@ -11918,22 +11894,22 @@ L_1567:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 2443:	   for (i = 0; i <= 256; i++) cftabAlso[i] = cftab[i];
+// Line 2433:	   for (i = 0; i <= 256; i++) cftabAlso[i] = cftab[i];
 
 L_1565:
 	ldloc	'i/2'
 	ldc.i4	256
 	ble	'L_1564'
 L_1566:
-// Line 2444:	
+// Line 2434:	
 
-// Line 2445:	    
+// Line 2435:	    
 
 	ldc.i4	0
 	stloc	'i/2'
 	br	'L_1569'
 L_1568:
-// Line 2447:	      ch = (UChar)ll16[i];
+// Line 2437:	      ch = (UChar)ll16[i];
 
 	ldloc	'i/2'
 	ldc.i4	1
@@ -11944,7 +11920,7 @@ L_1568:
 	ldind.u2
 	conv.u1
 	stloc	'ch/6'
-// Line 2448:	      SET_LL(i, cftabAlso[ch]);
+// Line 2438:	      SET_LL(i, cftabAlso[ch]);
 
 	ldloc	'i/2'
 	ldc.i4	1
@@ -12029,7 +12005,7 @@ L_1575:
 	conv.u1
 	stind.i1
 L_1576:
-// Line 2449:	      cftabAlso[ch]++;
+// Line 2439:	      cftabAlso[ch]++;
 
 	ldloc	'ch/6'
 	conv.i4
@@ -12052,7 +12028,7 @@ L_1571:
 	ldc.i4	1
 	add
 	stloc	'i/2'
-// Line 2446:	   for (i = 0; i <= last; i++) {
+// Line 2436:	   for (i = 0; i <= last; i++) {
 
 L_1569:
 	ldloc	'i/2'
@@ -12060,34 +12036,34 @@ L_1569:
 
 	ble	'L_1568'
 L_1570:
-// Line 2450:	   }
+// Line 2440:	   }
 
+// Line 2441:	
+
+// Line 2442:	    
+// Line 2443:	
+// Line 2444:	
+// Line 2445:	
+// Line 2446:	
+// Line 2447:	
+// Line 2448:	
+// Line 2449:	
+// Line 2450:	
 // Line 2451:	
-
-// Line 2452:	    
+// Line 2452:	
 // Line 2453:	
 // Line 2454:	
 // Line 2455:	
 // Line 2456:	
 // Line 2457:	
 // Line 2458:	
-// Line 2459:	
-// Line 2460:	
-// Line 2461:	
-// Line 2462:	
-// Line 2463:	
-// Line 2464:	
-// Line 2465:	
-// Line 2466:	
-// Line 2467:	
-// Line 2468:	
 
-// Line 2469:	   i = origPtr;
+// Line 2459:	   i = origPtr;
 
 	ldsfld	int32 'origPtr'
 
 	stloc	'i/2'
-// Line 2470:	   j = GET_LL(i);
+// Line 2460:	   j = GET_LL(i);
 
 	ldloc	'i/2'
 	ldc.i4	1
@@ -12118,10 +12094,10 @@ L_1570:
 	or
 	conv.i4
 	stloc	'j/3'
-// Line 2471:	   do {
+// Line 2461:	   do {
 
 L_1580:
-// Line 2472:	      tmp = GET_LL(j);
+// Line 2462:	      tmp = GET_LL(j);
 
 	ldloc	'j/3'
 	ldc.i4	1
@@ -12152,7 +12128,7 @@ L_1580:
 	or
 	conv.i4
 	stloc	'tmp/4'
-// Line 2473:	      SET_LL(j, i);
+// Line 2463:	      SET_LL(j, i);
 
 	ldloc	'j/3'
 	ldc.i4	1
@@ -12219,82 +12195,82 @@ L_1586:
 	conv.u1
 	stind.i1
 L_1587:
-// Line 2474:	      i = j;
+// Line 2464:	      i = j;
 
 	ldloc	'j/3'
 	stloc	'i/2'
-// Line 2475:	      j = tmp;
+// Line 2465:	      j = tmp;
 
 	ldloc	'tmp/4'
 	stloc	'j/3'
 L_1582:
-// Line 2476:	   }
+// Line 2466:	   }
 
-// Line 2477:	      while (i != origPtr);
+// Line 2467:	      while (i != origPtr);
 
 	ldloc	'i/2'
 	ldsfld	int32 'origPtr'
 
 	bne.un	'L_1580'
 L_1581:
-// Line 2478:	
+// Line 2468:	
 
-// Line 2479:	    
+// Line 2469:	    
+// Line 2470:	
+// Line 2471:	
+// Line 2472:	
+// Line 2473:	
+// Line 2474:	
+
+// Line 2475:	   tPos   = origPtr;
+
+	ldsfld	int32 'origPtr'
+
+	stloc	'tPos/5'
+// Line 2476:	
+
+// Line 2477:	    
+
+// Line 2478:	    
+// Line 2479:	
 // Line 2480:	
 // Line 2481:	
 // Line 2482:	
 // Line 2483:	
 // Line 2484:	
-
-// Line 2485:	   tPos   = origPtr;
-
-	ldsfld	int32 'origPtr'
-
-	stloc	'tPos/5'
+// Line 2485:	
 // Line 2486:	
-
-// Line 2487:	    
-
-// Line 2488:	    
+// Line 2487:	
+// Line 2488:	
 // Line 2489:	
-// Line 2490:	
-// Line 2491:	
-// Line 2492:	
-// Line 2493:	
+
+// Line 2490:	   {
+
+// Line 2493:	      UInt32    localCrc;
+
 // Line 2494:	
-// Line 2495:	
-// Line 2496:	
-// Line 2497:	
-// Line 2498:	
-// Line 2499:	
 
-// Line 2500:	   {
-
-// Line 2503:	      UInt32    localCrc;
-
-// Line 2504:	
-
-// Line 2505:	      count    = 0;
+// Line 2495:	      count    = 0;
 
 	ldc.i4	0
 	stloc	'count/9'
-// Line 2506:	      i2       = 0;
+// Line 2496:	      i2       = 0;
 
 	ldc.i4	0
 	stloc	'i2/8'
-// Line 2507:	      ch2      = 256;    
+// Line 2497:	      ch2      = 256;    
 
 	ldc.i4	256
 	stloc	'ch2/11'
-// Line 2508:	      localCrc = getGlobalCRC();
+// Line 2498:	      localCrc = getGlobalCRC();
 
 	call	uint32 'getGlobalCRC'()
 	stloc	'localCrc/12'
-// Line 2509:	
+// Line 2499:	
 
-// Line 2510:	      {
+// Line 2500:	      {
 
-// Line 2511:	         RAND_DECLS;
+// Line 2501:	         RAND_DECLS;
 
 	ldloca	'rNToGo/13'
 	ldc.i4	0
@@ -12304,11 +12280,11 @@ L_1581:
 	stind.i4
 	br	'L_1595'
 L_1593:
-// Line 2513:	            chPrev = ch2;
+// Line 2503:	            chPrev = ch2;
 
 	ldloc	'ch2/11'
 	stloc	'chPrev/10'
-// Line 2514:	            GET_SMALL(ch2);
+// Line 2504:	            GET_SMALL(ch2);
 
 	ldloc	'tPos/5'
 	ldloca	'cftab/0'
@@ -12343,13 +12319,13 @@ L_1593:
 	or
 	conv.i4
 	stloc	'tPos/5'
-// Line 2515:	            if (blockRandomised) {
+// Line 2505:	            if (blockRandomised) {
 
 	ldsfld	uint8 'blockRandomised'
 
 	ldc.i4	0
 	beq	'L_1597'
-// Line 2516:	               RAND_UPD_MASK;
+// Line 2506:	               RAND_UPD_MASK;
 
 	ldloc	'rNToGo/13'
 	ldc.i4	0
@@ -12377,7 +12353,7 @@ L_1599:
 	ldc.i4	1
 	sub
 	stloc	'rNToGo/13'
-// Line 2517:	               ch2 ^= (UInt32)RAND_MASK;
+// Line 2507:	               ch2 ^= (UInt32)RAND_MASK;
 
 	ldloc	'rNToGo/13'
 	ldc.i4	1
@@ -12394,31 +12370,31 @@ L_1638:
 	conv.i4
 	stloc	'ch2/11'
 L_1597:
-// Line 2518:	            }
+// Line 2508:	            }
 
-// Line 2519:	            i2++;
+// Line 2509:	            i2++;
 
 	ldloc	'i2/8'
 	ldc.i4	1
 	add
 	stloc	'i2/8'
-// Line 2520:	
+// Line 2510:	
 
-// Line 2521:	            if (dst)
+// Line 2511:	            if (dst)
 
 	ldarg	'dst'
 	ldc.i4	0
 	beq	'L_1604'
-// Line 2522:	               retVal = putc ( ch2, dst );
+// Line 2512:	               retVal = putc ( ch2, dst );
 
 	ldloc	'ch2/11'
 	ldarg	'dst'
-	call	int32 'putc'(int32, void*)
+	call	int32 'fputc'(int32, void*)
 	stloc	'retVal/7'
 L_1604:
-// Line 2523:	
+// Line 2513:	
 
-// Line 2524:	            UPDATE_CRC ( localCrc, (UChar)ch2 );
+// Line 2514:	            UPDATE_CRC ( localCrc, (UChar)ch2 );
 
 	ldloc	'ch2/11'
 	conv.u1
@@ -12439,35 +12415,35 @@ L_1604:
 	shl
 	xor
 	stloc	'localCrc/12'
-// Line 2525:	
+// Line 2515:	
 
-// Line 2526:	            if (ch2 != chPrev) {
+// Line 2516:	            if (ch2 != chPrev) {
 
 	ldloc	'ch2/11'
 	ldloc	'chPrev/10'
 	beq	'L_1607'
-// Line 2527:	               count = 1;
+// Line 2517:	               count = 1;
 
 	ldc.i4	1
 	stloc	'count/9'
 	br	'L_1610'
 L_1607:
-// Line 2528:	            } else {
+// Line 2518:	            } else {
 
-// Line 2529:	               count++;
+// Line 2519:	               count++;
 
 	ldloc	'count/9'
 	ldc.i4	1
 	add
 	stloc	'count/9'
-// Line 2530:	               if (count >= 4) {
+// Line 2520:	               if (count >= 4) {
 
 	ldloc	'count/9'
 	ldc.i4	4
 	blt	'L_1612'
-// Line 2532:	                  UChar z;
+// Line 2522:	                  UChar z;
 
-// Line 2533:	                  GET_SMALL(z);
+// Line 2523:	                  GET_SMALL(z);
 
 	ldloc	'tPos/5'
 	ldloca	'cftab/0'
@@ -12503,13 +12479,13 @@ L_1607:
 	or
 	conv.i4
 	stloc	'tPos/5'
-// Line 2534:	                  if (blockRandomised) {
+// Line 2524:	                  if (blockRandomised) {
 
 	ldsfld	uint8 'blockRandomised'
 
 	ldc.i4	0
 	beq	'L_1614'
-// Line 2535:	                     RAND_UPD_MASK;
+// Line 2525:	                     RAND_UPD_MASK;
 
 	ldloc	'rNToGo/13'
 	ldc.i4	0
@@ -12537,7 +12513,7 @@ L_1616:
 	ldc.i4	1
 	sub
 	stloc	'rNToGo/13'
-// Line 2536:	                     z ^= RAND_MASK;
+// Line 2526:	                     z ^= RAND_MASK;
 
 	ldloc	'rNToGo/13'
 	ldc.i4	1
@@ -12553,23 +12529,23 @@ L_1640:
 	conv.u1
 	stloc	'z/16'
 L_1614:
-// Line 2537:	                  }
+// Line 2527:	                  }
 
 	ldc.i4	0
 	stloc	'j2/15'
 	br	'L_1622'
 L_1621:
-// Line 2539:	                     if (dst) retVal = putc (ch2, dst);
+// Line 2529:	                     if (dst) retVal = putc (ch2, dst);
 
 	ldarg	'dst'
 	ldc.i4	0
 	beq	'L_1626'
 	ldloc	'ch2/11'
 	ldarg	'dst'
-	call	int32 'putc'(int32, void*)
+	call	int32 'fputc'(int32, void*)
 	stloc	'retVal/7'
 L_1626:
-// Line 2540:	                     UPDATE_CRC ( localCrc, (UChar)ch2 );
+// Line 2530:	                     UPDATE_CRC ( localCrc, (UChar)ch2 );
 
 	ldloc	'ch2/11'
 	conv.u1
@@ -12595,7 +12571,7 @@ L_1624:
 	ldc.i4	1
 	add
 	stloc	'j2/15'
-// Line 2538:	                  for (j2 = 0;  j2 < (Int32)z;  j2++) {
+// Line 2528:	                  for (j2 = 0;  j2 < (Int32)z;  j2++) {
 
 L_1622:
 	ldloc	'j2/15'
@@ -12603,47 +12579,47 @@ L_1622:
 	conv.i4
 	blt	'L_1621'
 L_1623:
-// Line 2541:	                  }
+// Line 2531:	                  }
 
-// Line 2542:	                  i2++;
+// Line 2532:	                  i2++;
 
 	ldloc	'i2/8'
 	ldc.i4	1
 	add
 	stloc	'i2/8'
-// Line 2543:	                  count = 0;
+// Line 2533:	                  count = 0;
 
 	ldc.i4	0
 	stloc	'count/9'
 L_1612:
-// Line 2544:	               }
+// Line 2534:	               }
 
 L_1610:
-// Line 2545:	            }
+// Line 2535:	            }
 
 L_1595:
-// Line 2512:	         while ( i2 <= last ) {
+// Line 2502:	         while ( i2 <= last ) {
 
 	ldloc	'i2/8'
 	ldsfld	int32 'last'
 
 	ble	'L_1593'
 L_1594:
-// Line 2546:	         }
+// Line 2536:	         }
 
-// Line 2547:	      }
+// Line 2537:	      }
 
-// Line 2548:	
+// Line 2538:	
 
-// Line 2549:	      setGlobalCRC ( localCrc );
+// Line 2539:	      setGlobalCRC ( localCrc );
 
 	ldloc	'localCrc/12'
 	call	void 'setGlobalCRC'(uint32)
-// Line 2550:	   }
+// Line 2540:	   }
 
-// Line 2551:	    
+// Line 2541:	    
 
-// Line 2552:	}
+// Line 2542:	}
 
 L_1554:
 	ret
@@ -12651,9 +12627,9 @@ L_1554:
 }
  .method public hidebysig static void 'undoReversibleTransformation_fast'(void* 'dst' ) cil managed
 {
-// Line 2564:	void undoReversibleTransformation_fast ( FILE* dst )
+// Line 2554:	void undoReversibleTransformation_fast ( FILE* dst )
 
-// Line 2565:	{
+// Line 2555:	{
 
 	.locals
 	(
@@ -12676,27 +12652,27 @@ L_1554:
 	)
 	.maxstack	5
 L_1644:
-// Line 2568:	   UChar  ch;
+// Line 2558:	   UChar  ch;
 
-// Line 2569:	
+// Line 2559:	
 
-// Line 2570:	
+// Line 2560:	
 
-// Line 2571:	   PRINTLOC;
+// Line 2561:	   PRINTLOC;
 
-// Line 2572:	
+// Line 2562:	
 
-// Line 2573:	    
-// Line 2574:	
-// Line 2575:	
-// Line 2576:	
-// Line 2577:	
+// Line 2563:	    
+// Line 2564:	
+// Line 2565:	
+// Line 2566:	
+// Line 2567:	
 
-// Line 2578:	
+// Line 2568:	
 
-// Line 2579:	    
+// Line 2569:	    
 
-// Line 2580:	   cftab[0] = 0;
+// Line 2570:	   cftab[0] = 0;
 
 	ldloca	'cftab/0'
 	ldc.i4	0
@@ -12725,7 +12701,7 @@ L_1650:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 2581:	   for (i = 1; i <= 256; i++) { cftab[i] = unzftab[i-1];  }
+// Line 2571:	   for (i = 1; i <= 256; i++) { cftab[i] = unzftab[i-1];  }
 
 L_1648:
 	ldloc	'i/1'
@@ -12762,22 +12738,22 @@ L_1656:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 2582:	   for (i = 1; i <= 256; i++) cftab[i] += cftab[i-1];
+// Line 2572:	   for (i = 1; i <= 256; i++) cftab[i] += cftab[i-1];
 
 L_1654:
 	ldloc	'i/1'
 	ldc.i4	256
 	ble	'L_1653'
 L_1655:
-// Line 2583:	
+// Line 2573:	
 
-// Line 2584:	    
+// Line 2574:	    
 
 	ldc.i4	0
 	stloc	'i/1'
 	br	'L_1658'
 L_1657:
-// Line 2586:	      ch = (UChar)ll8[i];
+// Line 2576:	      ch = (UChar)ll8[i];
 
 	ldloc	'i/1'
 	ldsfld	void* 'll8'
@@ -12785,7 +12761,7 @@ L_1657:
 	add
 	ldind.u1
 	stloc	'ch/3'
-// Line 2587:	      tt[cftab[ch]] = i;
+// Line 2577:	      tt[cftab[ch]] = i;
 
 	ldloc	'ch/3'
 	conv.i4
@@ -12801,7 +12777,7 @@ L_1657:
 	add
 	ldloc	'i/1'
 	stind.i4
-// Line 2588:	      cftab[ch]++;
+// Line 2578:	      cftab[ch]++;
 
 	ldloc	'ch/3'
 	conv.i4
@@ -12824,7 +12800,7 @@ L_1660:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 2585:	   for (i = 0; i <= last; i++) {
+// Line 2575:	   for (i = 0; i <= last; i++) {
 
 L_1658:
 	ldloc	'i/1'
@@ -12832,16 +12808,16 @@ L_1658:
 
 	ble	'L_1657'
 L_1659:
-// Line 2589:	   }
+// Line 2579:	   }
 
-// Line 2590:	    
-// Line 2591:	
-// Line 2592:	
-// Line 2593:	
-// Line 2594:	
-// Line 2595:	
+// Line 2580:	    
+// Line 2581:	
+// Line 2582:	
+// Line 2583:	
+// Line 2584:	
+// Line 2585:	
 
-// Line 2596:	   tPos   = tt[origPtr];
+// Line 2586:	   tPos   = tt[origPtr];
 
 	ldsfld	int32 'origPtr'
 
@@ -12852,46 +12828,46 @@ L_1659:
 	add
 	ldind.i4
 	stloc	'tPos/2'
-// Line 2597:	    
+// Line 2587:	    
 
-// Line 2598:	    
-// Line 2599:	
+// Line 2588:	    
+// Line 2589:	
+// Line 2590:	
+// Line 2591:	
+// Line 2592:	
+// Line 2593:	
+// Line 2594:	
+// Line 2595:	
+
+// Line 2596:	   {
+
+// Line 2599:	      UInt32    localCrc;
+
 // Line 2600:	
-// Line 2601:	
-// Line 2602:	
-// Line 2603:	
-// Line 2604:	
-// Line 2605:	
 
-// Line 2606:	   {
-
-// Line 2609:	      UInt32    localCrc;
-
-// Line 2610:	
-
-// Line 2611:	      count    = 0;
+// Line 2601:	      count    = 0;
 
 	ldc.i4	0
 	stloc	'count/6'
-// Line 2612:	      i2       = 0;
+// Line 2602:	      i2       = 0;
 
 	ldc.i4	0
 	stloc	'i2/5'
-// Line 2613:	      ch2      = 256;    
+// Line 2603:	      ch2      = 256;    
 
 	ldc.i4	256
 	stloc	'ch2/8'
-// Line 2614:	      localCrc = getGlobalCRC();
+// Line 2604:	      localCrc = getGlobalCRC();
 
 	call	uint32 'getGlobalCRC'()
 	stloc	'localCrc/9'
-// Line 2615:	      if (blockRandomised) {
+// Line 2605:	      if (blockRandomised) {
 
 	ldsfld	uint8 'blockRandomised'
 
 	ldc.i4	0
 	beq	'L_1703'
-// Line 2616:	         RAND_DECLS;
+// Line 2606:	         RAND_DECLS;
 
 	ldloca	'rNToGo/12'
 	ldc.i4	0
@@ -12901,11 +12877,11 @@ L_1659:
 	stind.i4
 	br	'L_1668'
 L_1666:
-// Line 2618:	            chPrev = ch2;
+// Line 2608:	            chPrev = ch2;
 
 	ldloc	'ch2/8'
 	stloc	'chPrev/7'
-// Line 2619:	            GET_FAST(ch2);
+// Line 2609:	            GET_FAST(ch2);
 
 	ldloc	'tPos/2'
 	ldsfld	void* 'll8'
@@ -12922,7 +12898,7 @@ L_1666:
 	add
 	ldind.i4
 	stloc	'tPos/2'
-// Line 2620:	            RAND_UPD_MASK;
+// Line 2610:	            RAND_UPD_MASK;
 
 	ldloc	'rNToGo/12'
 	ldc.i4	0
@@ -12950,7 +12926,7 @@ L_1670:
 	ldc.i4	1
 	sub
 	stloc	'rNToGo/12'
-// Line 2621:	            ch2 ^= (UInt32)RAND_MASK;
+// Line 2611:	            ch2 ^= (UInt32)RAND_MASK;
 
 	ldloc	'rNToGo/12'
 	ldc.i4	1
@@ -12966,19 +12942,19 @@ L_1730:
 	xor
 	conv.i4
 	stloc	'ch2/8'
-// Line 2622:	            i2++;
+// Line 2612:	            i2++;
 
 	ldloc	'i2/5'
 	ldc.i4	1
 	add
 	stloc	'i2/5'
-// Line 2623:	            retVal = putc ( ch2, dst );
+// Line 2613:	            retVal = putc ( ch2, dst );
 
 	ldloc	'ch2/8'
 	ldarg	'dst'
-	call	int32 'putc'(int32, void*)
+	call	int32 'fputc'(int32, void*)
 	stloc	'retVal/4'
-// Line 2624:	            UPDATE_CRC ( localCrc, (UChar)ch2 );
+// Line 2614:	            UPDATE_CRC ( localCrc, (UChar)ch2 );
 
 	ldloc	'ch2/8'
 	conv.u1
@@ -12999,35 +12975,35 @@ L_1730:
 	shl
 	xor
 	stloc	'localCrc/9'
-// Line 2625:	
+// Line 2615:	
 
-// Line 2626:	            if (ch2 != chPrev) {
+// Line 2616:	            if (ch2 != chPrev) {
 
 	ldloc	'ch2/8'
 	ldloc	'chPrev/7'
 	beq	'L_1676'
-// Line 2627:	               count = 1;
+// Line 2617:	               count = 1;
 
 	ldc.i4	1
 	stloc	'count/6'
 	br	'L_1679'
 L_1676:
-// Line 2628:	            } else {
+// Line 2618:	            } else {
 
-// Line 2629:	               count++;
+// Line 2619:	               count++;
 
 	ldloc	'count/6'
 	ldc.i4	1
 	add
 	stloc	'count/6'
-// Line 2630:	               if (count >= 4) {
+// Line 2620:	               if (count >= 4) {
 
 	ldloc	'count/6'
 	ldc.i4	4
 	blt	'L_1681'
-// Line 2632:	                  UChar z;
+// Line 2622:	                  UChar z;
 
-// Line 2633:	                  GET_FAST(z);
+// Line 2623:	                  GET_FAST(z);
 
 	ldloc	'tPos/2'
 	ldsfld	void* 'll8'
@@ -13043,7 +13019,7 @@ L_1676:
 	add
 	ldind.i4
 	stloc	'tPos/2'
-// Line 2634:	                  RAND_UPD_MASK;
+// Line 2624:	                  RAND_UPD_MASK;
 
 	ldloc	'rNToGo/12'
 	ldc.i4	0
@@ -13071,7 +13047,7 @@ L_1683:
 	ldc.i4	1
 	sub
 	stloc	'rNToGo/12'
-// Line 2635:	                  z ^= RAND_MASK;
+// Line 2625:	                  z ^= RAND_MASK;
 
 	ldloc	'rNToGo/12'
 	ldc.i4	1
@@ -13090,13 +13066,13 @@ L_1732:
 	stloc	'j2/14'
 	br	'L_1688'
 L_1687:
-// Line 2637:	                     retVal = putc (ch2, dst);
+// Line 2627:	                     retVal = putc (ch2, dst);
 
 	ldloc	'ch2/8'
 	ldarg	'dst'
-	call	int32 'putc'(int32, void*)
+	call	int32 'fputc'(int32, void*)
 	stloc	'retVal/4'
-// Line 2638:	                     UPDATE_CRC ( localCrc, (UChar)ch2 );
+// Line 2628:	                     UPDATE_CRC ( localCrc, (UChar)ch2 );
 
 	ldloc	'ch2/8'
 	conv.u1
@@ -13122,7 +13098,7 @@ L_1690:
 	ldc.i4	1
 	add
 	stloc	'j2/14'
-// Line 2636:	                  for (j2 = 0;  j2 < (Int32)z;  j2++) {
+// Line 2626:	                  for (j2 = 0;  j2 < (Int32)z;  j2++) {
 
 L_1688:
 	ldloc	'j2/14'
@@ -13130,45 +13106,45 @@ L_1688:
 	conv.i4
 	blt	'L_1687'
 L_1689:
-// Line 2639:	                  }
+// Line 2629:	                  }
 
-// Line 2640:	                  i2++;
+// Line 2630:	                  i2++;
 
 	ldloc	'i2/5'
 	ldc.i4	1
 	add
 	stloc	'i2/5'
-// Line 2641:	                  count = 0;
+// Line 2631:	                  count = 0;
 
 	ldc.i4	0
 	stloc	'count/6'
 L_1681:
-// Line 2642:	               }
+// Line 2632:	               }
 
 L_1679:
-// Line 2643:	            }
+// Line 2633:	            }
 
 L_1668:
-// Line 2617:	         while ( i2 <= last ) {
+// Line 2607:	         while ( i2 <= last ) {
 
 	ldloc	'i2/5'
 	ldsfld	int32 'last'
 
 	ble	'L_1666'
 L_1667:
-// Line 2644:	         }
+// Line 2634:	         }
 
 	br	'L_1699'
 L_1664:
-// Line 2645:	      } else {
+// Line 2635:	      } else {
 
 	br	'L_1703'
 L_1701:
-// Line 2647:	            chPrev = ch2;
+// Line 2637:	            chPrev = ch2;
 
 	ldloc	'ch2/8'
 	stloc	'chPrev/7'
-// Line 2648:	            GET_FAST(ch2);
+// Line 2638:	            GET_FAST(ch2);
 
 	ldloc	'tPos/2'
 	ldsfld	void* 'll8'
@@ -13185,21 +13161,21 @@ L_1701:
 	add
 	ldind.i4
 	stloc	'tPos/2'
-// Line 2649:	            i2++;
+// Line 2639:	            i2++;
 
 	ldloc	'i2/5'
 	ldc.i4	1
 	add
 	stloc	'i2/5'
-// Line 2650:	
+// Line 2640:	
 
-// Line 2651:	            retVal = putc ( ch2, dst );
+// Line 2641:	            retVal = putc ( ch2, dst );
 
 	ldloc	'ch2/8'
 	ldarg	'dst'
-	call	int32 'putc'(int32, void*)
+	call	int32 'fputc'(int32, void*)
 	stloc	'retVal/4'
-// Line 2652:	            UPDATE_CRC ( localCrc, (UChar)ch2 );
+// Line 2642:	            UPDATE_CRC ( localCrc, (UChar)ch2 );
 
 	ldloc	'ch2/8'
 	conv.u1
@@ -13220,35 +13196,35 @@ L_1701:
 	shl
 	xor
 	stloc	'localCrc/9'
-// Line 2653:	
+// Line 2643:	
 
-// Line 2654:	            if (ch2 != chPrev) {
+// Line 2644:	            if (ch2 != chPrev) {
 
 	ldloc	'ch2/8'
 	ldloc	'chPrev/7'
 	beq	'L_1707'
-// Line 2655:	               count = 1;
+// Line 2645:	               count = 1;
 
 	ldc.i4	1
 	stloc	'count/6'
 	br	'L_1710'
 L_1707:
-// Line 2656:	            } else {
+// Line 2646:	            } else {
 
-// Line 2657:	               count++;
+// Line 2647:	               count++;
 
 	ldloc	'count/6'
 	ldc.i4	1
 	add
 	stloc	'count/6'
-// Line 2658:	               if (count >= 4) {
+// Line 2648:	               if (count >= 4) {
 
 	ldloc	'count/6'
 	ldc.i4	4
 	blt	'L_1712'
-// Line 2660:	                  UChar z;
+// Line 2650:	                  UChar z;
 
-// Line 2661:	                  GET_FAST(z);
+// Line 2651:	                  GET_FAST(z);
 
 	ldloc	'tPos/2'
 	ldsfld	void* 'll8'
@@ -13268,13 +13244,13 @@ L_1707:
 	stloc	'j2/10'
 	br	'L_1715'
 L_1714:
-// Line 2663:	                     retVal = putc (ch2, dst);
+// Line 2653:	                     retVal = putc (ch2, dst);
 
 	ldloc	'ch2/8'
 	ldarg	'dst'
-	call	int32 'putc'(int32, void*)
+	call	int32 'fputc'(int32, void*)
 	stloc	'retVal/4'
-// Line 2664:	                     UPDATE_CRC ( localCrc, (UChar)ch2 );
+// Line 2654:	                     UPDATE_CRC ( localCrc, (UChar)ch2 );
 
 	ldloc	'ch2/8'
 	conv.u1
@@ -13300,7 +13276,7 @@ L_1717:
 	ldc.i4	1
 	add
 	stloc	'j2/10'
-// Line 2662:	                  for (j2 = 0;  j2 < (Int32)z;  j2++) {
+// Line 2652:	                  for (j2 = 0;  j2 < (Int32)z;  j2++) {
 
 L_1715:
 	ldloc	'j2/10'
@@ -13308,46 +13284,46 @@ L_1715:
 	conv.i4
 	blt	'L_1714'
 L_1716:
-// Line 2665:	                  }
+// Line 2655:	                  }
 
-// Line 2666:	                  i2++;
+// Line 2656:	                  i2++;
 
 	ldloc	'i2/5'
 	ldc.i4	1
 	add
 	stloc	'i2/5'
-// Line 2667:	                  count = 0;
+// Line 2657:	                  count = 0;
 
 	ldc.i4	0
 	stloc	'count/6'
 L_1712:
-// Line 2668:	               }
+// Line 2658:	               }
 
 L_1710:
-// Line 2669:	            }
+// Line 2659:	            }
 
 L_1703:
-// Line 2646:	         while ( i2 <= last ) {
+// Line 2636:	         while ( i2 <= last ) {
 
 	ldloc	'i2/5'
 	ldsfld	int32 'last'
 
 	ble	'L_1701'
 L_1702:
-// Line 2670:	         }
+// Line 2660:	         }
 
 L_1699:
-// Line 2671:	      }    
+// Line 2661:	      }    
 
-// Line 2672:	      setGlobalCRC ( localCrc );
+// Line 2662:	      setGlobalCRC ( localCrc );
 
 	ldloc	'localCrc/9'
 	call	void 'setGlobalCRC'(uint32)
-// Line 2673:	   }
+// Line 2663:	   }
 
-// Line 2674:	    
+// Line 2664:	    
 
-// Line 2675:	}
+// Line 2665:	}
 
 L_1645:
 	ret
@@ -13355,9 +13331,9 @@ L_1645:
 }
  .method public hidebysig static int32 'getRLEpair'(void* 'src' ) cil managed
 {
-// Line 2690:	INLINE Int32 getRLEpair ( FILE* src )
+// Line 2680:	INLINE Int32 getRLEpair ( FILE* src )
 
-// Line 2691:	{
+// Line 2681:	{
 
 	.locals
 	(
@@ -13368,31 +13344,31 @@ L_1645:
 	)
 	.maxstack	5
 L_1736:
-// Line 2693:	   IntNative ch, chLatest;
+// Line 2683:	   IntNative ch, chLatest;
 
-// Line 2694:	
+// Line 2684:	
 
-// Line 2695:	
+// Line 2685:	
 
-// Line 2696:	   PRINTLOC;
+// Line 2686:	   PRINTLOC;
 
-// Line 2697:	
+// Line 2687:	
 
-// Line 2698:	   ch = getc ( src );
+// Line 2688:	   ch = getc ( src );
 
 	ldarg	'src'
-	call	int32 'getc'(void*)
+	call	int32 'fgetc'(void*)
 	stloc	'ch/1'
-// Line 2699:	
+// Line 2689:	
 
-// Line 2700:	    
+// Line 2690:	    
 
-// Line 2701:	   if (ch == EOF) {
+// Line 2691:	   if (ch == EOF) {
 
 	ldloc	'ch/1'
 	ldc.i4	-1
 	bne.un	'L_1739'
-// Line 2702:	      ERROR_IF_NOT_ZERO ( ferror(src));
+// Line 2692:	      ERROR_IF_NOT_ZERO ( ferror(src));
 
 	ldarg	'src'
 	call	int32 'ferror'(void*)
@@ -13400,34 +13376,34 @@ L_1736:
 	beq	'L_1742'
 	call	void 'ioError'()
 L_1742:
-// Line 2703:	      return (1 << 16) | MY_EOF;
+// Line 2693:	      return (1 << 16) | MY_EOF;
 
 	ldc.i4	65793
 	br	'L_1737'
 L_1739:
-// Line 2704:	   }
+// Line 2694:	   }
 
-// Line 2705:	
+// Line 2695:	
 
-// Line 2706:	   runLength = 0;
+// Line 2696:	   runLength = 0;
 
 	ldc.i4	0
 	stloc	'runLength/0'
-// Line 2707:	   do {
+// Line 2697:	   do {
 
 L_1745:
-// Line 2708:	      chLatest = getc ( src );
+// Line 2698:	      chLatest = getc ( src );
 
 	ldarg	'src'
-	call	int32 'getc'(void*)
+	call	int32 'fgetc'(void*)
 	stloc	'chLatest/2'
-// Line 2709:	      runLength++;
+// Line 2699:	      runLength++;
 
 	ldloc	'runLength/0'
 	ldc.i4	1
 	add
 	stloc	'runLength/0'
-// Line 2710:	      bytesIn++;
+// Line 2700:	      bytesIn++;
 
 	ldsfld	uint32 'bytesIn'
 
@@ -13436,9 +13412,9 @@ L_1745:
 	stsfld	uint32 'bytesIn'
 
 L_1747:
-// Line 2711:	   }
+// Line 2701:	   }
 
-// Line 2712:	      while (ch == chLatest && runLength < 255);
+// Line 2702:	      while (ch == chLatest && runLength < 255);
 
 	ldloc	'ch/1'
 	ldloc	'chLatest/2'
@@ -13448,21 +13424,21 @@ L_1747:
 	blt	'L_1745'
 L_1776:
 L_1746:
-// Line 2713:	
+// Line 2703:	
 
-// Line 2714:	   if ( chLatest != EOF ) {
+// Line 2704:	   if ( chLatest != EOF ) {
 
 	ldloc	'chLatest/2'
 	ldc.i4	-1
 	beq	'L_1750'
-// Line 2715:	      if ( ungetc ( chLatest, src ) == EOF )
+// Line 2705:	      if ( ungetc ( chLatest, src ) == EOF )
 
 	ldloc	'chLatest/2'
 	ldarg	'src'
 	call	int32 'ungetc'(int32, void*)
 	ldc.i4	-1
 	bne.un	'L_1754'
-// Line 2716:	         panic ( "getRLEpair: ungetc failed" );
+// Line 2706:	         panic ( "getRLEpair: ungetc failed" );
 
 	ldsflda	valuetype 'int8[]' 'L_33'
 
@@ -13470,9 +13446,9 @@ L_1746:
 L_1752:
 	br	'L_1754'
 L_1750:
-// Line 2717:	   } else {
+// Line 2707:	   } else {
 
-// Line 2718:	      ERROR_IF_NOT_ZERO ( ferror(src) );
+// Line 2708:	      ERROR_IF_NOT_ZERO ( ferror(src) );
 
 	ldarg	'src'
 	call	int32 'ferror'(void*)
@@ -13481,18 +13457,18 @@ L_1750:
 	call	void 'ioError'()
 L_1757:
 L_1754:
-// Line 2719:	   }
+// Line 2709:	   }
 
-// Line 2720:	
+// Line 2710:	
 
-// Line 2721:	    
+// Line 2711:	    
 
-// Line 2722:	   if (runLength == 1) {
+// Line 2712:	   if (runLength == 1) {
 
 	ldloc	'runLength/0'
 	ldc.i4	1
 	bne.un	'L_1760'
-// Line 2723:	      UPDATE_CRC ( globalCrc, (UChar)ch );
+// Line 2713:	      UPDATE_CRC ( globalCrc, (UChar)ch );
 
 	ldloc	'ch/1'
 	conv.u1
@@ -13516,22 +13492,22 @@ L_1754:
 	xor
 	stsfld	uint32 'globalCrc'
 
-// Line 2724:	      return (1 << 16) | ch;
+// Line 2714:	      return (1 << 16) | ch;
 
 	ldloc	'ch/1'
 	ldc.i4	65536
 	or
 	br	'L_1737'
 L_1760:
-// Line 2725:	   } else {
+// Line 2715:	   } else {
 
-// Line 2726:	      Int32 i;
+// Line 2716:	      Int32 i;
 
 	ldc.i4	1
 	stloc	'i/3'
 	br	'L_1768'
 L_1767:
-// Line 2728:	         UPDATE_CRC ( globalCrc, (UChar)ch );
+// Line 2718:	         UPDATE_CRC ( globalCrc, (UChar)ch );
 
 	ldloc	'ch/1'
 	conv.u1
@@ -13560,14 +13536,14 @@ L_1770:
 	ldc.i4	1
 	add
 	stloc	'i/3'
-// Line 2727:	      for (i = 1; i <= runLength; i++)
+// Line 2717:	      for (i = 1; i <= runLength; i++)
 
 L_1768:
 	ldloc	'i/3'
 	ldloc	'runLength/0'
 	ble	'L_1767'
 L_1769:
-// Line 2729:	      return (runLength << 16) | ch;
+// Line 2719:	      return (runLength << 16) | ch;
 
 	ldloc	'runLength/0'
 	ldc.i4	16
@@ -13575,9 +13551,9 @@ L_1769:
 	ldloc	'ch/1'
 	or
 L_1765:
-// Line 2730:	   }
+// Line 2720:	   }
 
-// Line 2731:	}
+// Line 2721:	}
 
 L_1737:
 	ret
@@ -13585,9 +13561,9 @@ L_1737:
 }
  .method public hidebysig static void 'loadAndRLEsource'(void* 'src' ) cil managed
 {
-// Line 2735:	void loadAndRLEsource ( FILE* src )
+// Line 2725:	void loadAndRLEsource ( FILE* src )
 
-// Line 2736:	{
+// Line 2726:	{
 
 	.locals
 	(
@@ -13600,26 +13576,26 @@ L_1737:
 	)
 	.maxstack	3
 L_1780:
-// Line 2737:	   Int32 ch, allowableBlockSize, i;
+// Line 2727:	   Int32 ch, allowableBlockSize, i;
 
-// Line 2738:	
+// Line 2728:	
 
-// Line 2739:	
+// Line 2729:	
 
-// Line 2740:	   PRINTLOC;
+// Line 2730:	   PRINTLOC;
 
-// Line 2741:	
+// Line 2731:	
 
-// Line 2742:	   last = -1;
+// Line 2732:	   last = -1;
 
 	ldc.i4	-1
 	stsfld	int32 'last'
 
-// Line 2743:	   ch   = 0;
+// Line 2733:	   ch   = 0;
 
 	ldc.i4	0
 	stloc	'ch/1'
-// Line 2744:	
+// Line 2734:	
 
 	ldc.i4	0
 	stloc	'i/3'
@@ -13636,18 +13612,18 @@ L_1786:
 	ldc.i4	1
 	add
 	stloc	'i/3'
-// Line 2745:	   for (i = 0; i < 256; i++) inUse[i] = False;
+// Line 2735:	   for (i = 0; i < 256; i++) inUse[i] = False;
 
 L_1784:
 	ldloc	'i/3'
 	ldc.i4	256
 	blt	'L_1783'
 L_1785:
-// Line 2746:	
+// Line 2736:	
 
-// Line 2747:	    
+// Line 2737:	    
 
-// Line 2748:	   allowableBlockSize = 100000 * blockSize100k - 20;
+// Line 2738:	   allowableBlockSize = 100000 * blockSize100k - 20;
 
 	ldsfld	int32 'blockSize100k'
 
@@ -13658,20 +13634,20 @@ L_1785:
 	stloc	'allowableBlockSize/2'
 	br	'L_1789'
 L_1787:
-// Line 2751:	      Int32 rlePair, runLen;
+// Line 2741:	      Int32 rlePair, runLen;
 
-// Line 2752:	      rlePair = getRLEpair ( src );
+// Line 2742:	      rlePair = getRLEpair ( src );
 
 	ldarg	'src'
 	call	int32 'getRLEpair'(void*)
 	stloc	'rlePair/4'
-// Line 2753:	      ch      = rlePair & 0xFFFF;
+// Line 2743:	      ch      = rlePair & 0xFFFF;
 
 	ldloc	'rlePair/4'
 	ldc.i4	65535
 	and
 	stloc	'ch/1'
-// Line 2754:	      runLen  = (UInt32)rlePair >> 16;
+// Line 2744:	      runLen  = (UInt32)rlePair >> 16;
 
 	ldloc	'rlePair/4'
 	conv.u4
@@ -13679,22 +13655,22 @@ L_1787:
 	shr.un
 	conv.i4
 	stloc	'runLen/5'
-// Line 2755:	
+// Line 2745:	
 
-// Line 2756:	      #if DEBUG
+// Line 2746:	      #if DEBUG
 
-// Line 2757:	         assert (runLen >= 1 && runLen <= 255);
+// Line 2747:	         assert (runLen >= 1 && runLen <= 255);
 
-// Line 2758:	      #endif
+// Line 2748:	      #endif
 
-// Line 2759:	
+// Line 2749:	
 
-// Line 2760:	      if (ch != MY_EOF) {
+// Line 2750:	      if (ch != MY_EOF) {
 
 	ldloc	'ch/1'
 	ldc.i4	257
 	beq	'L_1791'
-// Line 2761:	         inUse[ch] = True;
+// Line 2751:	         inUse[ch] = True;
 
 	ldloc	'ch/1'
 	ldsflda	valuetype 'uint8[256]' 'inUse'
@@ -13702,7 +13678,7 @@ L_1787:
 	add
 	ldc.i4	1
 	stind.i1
-// Line 2762:	         switch (runLen) {
+// Line 2752:	         switch (runLen) {
 
 	ldloc	'runLen/5'
 	stloc	'$anontemp4/0'
@@ -13717,9 +13693,9 @@ L_1787:
 	beq	'L_1797'
 	br	'L_1798'
 L_1795:
-// Line 2763:	            case 1:
+// Line 2753:	            case 1:
 
-// Line 2764:	               last++; block[last] = (UChar)ch; break;
+// Line 2754:	               last++; block[last] = (UChar)ch; break;
 
 	ldsfld	int32 'last'
 
@@ -13737,9 +13713,9 @@ L_1795:
 	stind.i1
 	br	'L_1793'
 L_1796:
-// Line 2765:	            case 2:
+// Line 2755:	            case 2:
 
-// Line 2766:	               last++; block[last] = (UChar)ch;
+// Line 2756:	               last++; block[last] = (UChar)ch;
 
 	ldsfld	int32 'last'
 
@@ -13755,7 +13731,7 @@ L_1796:
 	ldloc	'ch/1'
 	conv.u1
 	stind.i1
-// Line 2767:	               last++; block[last] = (UChar)ch; break;
+// Line 2757:	               last++; block[last] = (UChar)ch; break;
 
 	ldsfld	int32 'last'
 
@@ -13773,25 +13749,9 @@ L_1796:
 	stind.i1
 	br	'L_1793'
 L_1797:
-// Line 2768:	            case 3:
+// Line 2758:	            case 3:
 
-// Line 2769:	               last++; block[last] = (UChar)ch;
-
-	ldsfld	int32 'last'
-
-	ldc.i4	1
-	add
-	stsfld	int32 'last'
-
-	ldsfld	int32 'last'
-
-	ldsfld	void* 'block'
-
-	add
-	ldloc	'ch/1'
-	conv.u1
-	stind.i1
-// Line 2770:	               last++; block[last] = (UChar)ch;
+// Line 2759:	               last++; block[last] = (UChar)ch;
 
 	ldsfld	int32 'last'
 
@@ -13807,7 +13767,23 @@ L_1797:
 	ldloc	'ch/1'
 	conv.u1
 	stind.i1
-// Line 2771:	               last++; block[last] = (UChar)ch; break;
+// Line 2760:	               last++; block[last] = (UChar)ch;
+
+	ldsfld	int32 'last'
+
+	ldc.i4	1
+	add
+	stsfld	int32 'last'
+
+	ldsfld	int32 'last'
+
+	ldsfld	void* 'block'
+
+	add
+	ldloc	'ch/1'
+	conv.u1
+	stind.i1
+// Line 2761:	               last++; block[last] = (UChar)ch; break;
 
 	ldsfld	int32 'last'
 
@@ -13825,9 +13801,9 @@ L_1797:
 	stind.i1
 	br	'L_1793'
 L_1798:
-// Line 2772:	            default:
+// Line 2762:	            default:
 
-// Line 2773:	               inUse[runLen-4] = True;
+// Line 2763:	               inUse[runLen-4] = True;
 
 	ldloc	'runLen/5'
 	ldc.i4	4
@@ -13837,7 +13813,7 @@ L_1798:
 	add
 	ldc.i4	1
 	stind.i1
-// Line 2774:	               last++; block[last] = (UChar)ch;
+// Line 2764:	               last++; block[last] = (UChar)ch;
 
 	ldsfld	int32 'last'
 
@@ -13853,7 +13829,7 @@ L_1798:
 	ldloc	'ch/1'
 	conv.u1
 	stind.i1
-// Line 2775:	               last++; block[last] = (UChar)ch;
+// Line 2765:	               last++; block[last] = (UChar)ch;
 
 	ldsfld	int32 'last'
 
@@ -13869,7 +13845,7 @@ L_1798:
 	ldloc	'ch/1'
 	conv.u1
 	stind.i1
-// Line 2776:	               last++; block[last] = (UChar)ch;
+// Line 2766:	               last++; block[last] = (UChar)ch;
 
 	ldsfld	int32 'last'
 
@@ -13885,7 +13861,7 @@ L_1798:
 	ldloc	'ch/1'
 	conv.u1
 	stind.i1
-// Line 2777:	               last++; block[last] = (UChar)ch;
+// Line 2767:	               last++; block[last] = (UChar)ch;
 
 	ldsfld	int32 'last'
 
@@ -13901,7 +13877,7 @@ L_1798:
 	ldloc	'ch/1'
 	conv.u1
 	stind.i1
-// Line 2778:	               last++; block[last] = (UChar)(runLen-4); break;
+// Line 2768:	               last++; block[last] = (UChar)(runLen-4); break;
 
 	ldsfld	int32 'last'
 
@@ -13920,15 +13896,15 @@ L_1798:
 	conv.u1
 	stind.i1
 L_1793:
-// Line 2779:	         }
+// Line 2769:	         }
 
 L_1791:
-// Line 2780:	      }
+// Line 2770:	      }
 
 L_1789:
-// Line 2749:	
+// Line 2739:	
 
-// Line 2750:	   while (last < allowableBlockSize && ch != MY_EOF) {
+// Line 2740:	   while (last < allowableBlockSize && ch != MY_EOF) {
 
 	ldsfld	int32 'last'
 
@@ -13939,9 +13915,9 @@ L_1789:
 	bne.un	'L_1787'
 L_1804:
 L_1788:
-// Line 2781:	   }
+// Line 2771:	   }
 
-// Line 2782:	}
+// Line 2772:	}
 
 L_1781:
 	ret
@@ -13949,9 +13925,9 @@ L_1781:
 }
  .method public hidebysig static void 'compressStream'(void* 'stream' , void* 'zStream' ) cil managed
 {
-// Line 2790:	void compressStream ( FILE *stream, FILE *zStream )
+// Line 2780:	void compressStream ( FILE *stream, FILE *zStream )
 
-// Line 2791:	{
+// Line 2781:	{
 
 	.locals
 	(
@@ -13964,45 +13940,43 @@ L_1781:
 	)
 	.maxstack	8
 L_1808:
-// Line 2794:	   Int32      blockNo;
+// Line 2784:	   Int32      blockNo;
 
-// Line 2795:	
+// Line 2785:	
 
-// Line 2796:	
+// Line 2786:	
 
-// Line 2797:	   PRINTLOC;
+// Line 2787:	   PRINTLOC;
 
-// Line 2798:	
+// Line 2788:	
 
-// Line 2799:	   blockNo  = 0;
+// Line 2789:	   blockNo  = 0;
 
 	ldc.i4	0
 	stloc	'blockNo/3'
-// Line 2800:	   bytesIn  = 0;
+// Line 2790:	   bytesIn  = 0;
 
 	ldc.i4	0
 	stsfld	uint32 'bytesIn'
 
-// Line 2801:	   bytesOut = 0;
+// Line 2791:	   bytesOut = 0;
 
 	ldc.i4	0
 	stsfld	uint32 'bytesOut'
 
-// Line 2802:	   nBlocksRandomised = 0;
+// Line 2792:	   nBlocksRandomised = 0;
 
 	ldc.i4	0
 	stsfld	int32 'nBlocksRandomised'
 
-// Line 2803:	
+// Line 2793:	
 
-// Line 2804:	   SET_BINARY_MODE(stream);
+// Line 2794:	   SET_BINARY_MODE(stream);
 
 L_1811:
 	ldloca	'retVal/5'
 	ldarg	'stream'
-	ldc.i4	8
-	add
-	ldind.i4
+	call	int32 '_fileno'(void*)
 	ldc.i4	32768
 	call	int32 '_setmode'(int32, int32)
 	stind.i4
@@ -14013,14 +13987,12 @@ L_1811:
 L_1816:
 L_1813:
 L_1812:
-// Line 2805:	   SET_BINARY_MODE(zStream);
+// Line 2795:	   SET_BINARY_MODE(zStream);
 
 L_1819:
 	ldloca	'retVal/4'
 	ldarg	'zStream'
-	ldc.i4	8
-	add
-	ldind.i4
+	call	int32 '_fileno'(void*)
 	ldc.i4	32768
 	call	int32 '_setmode'(int32, int32)
 	stind.i4
@@ -14031,9 +14003,9 @@ L_1819:
 L_1824:
 L_1821:
 L_1820:
-// Line 2806:	
+// Line 2796:	
 
-// Line 2807:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
+// Line 2797:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
 
 	ldarg	'stream'
 	call	int32 'ferror'(void*)
@@ -14041,7 +14013,7 @@ L_1820:
 	beq	'L_1828'
 	call	void 'ioError'()
 L_1828:
-// Line 2808:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 2798:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -14049,37 +14021,37 @@ L_1828:
 	beq	'L_1831'
 	call	void 'ioError'()
 L_1831:
-// Line 2809:	
+// Line 2799:	
 
-// Line 2810:	   bsSetStream ( zStream, True );
+// Line 2800:	   bsSetStream ( zStream, True );
 
 	ldarg	'zStream'
 	ldc.i4	1
 	conv.u1
 	call	void 'bsSetStream'(void*, uint8)
-// Line 2811:	
+// Line 2801:	
 
-// Line 2812:	    
-// Line 2813:	
-// Line 2814:	
-// Line 2815:	
+// Line 2802:	    
+// Line 2803:	
+// Line 2804:	
+// Line 2805:	
 
-// Line 2816:	   bsPutUChar ( 'B' );
+// Line 2806:	   bsPutUChar ( 'B' );
 
 	ldc.i4	66
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2817:	   bsPutUChar ( 'Z' );
+// Line 2807:	   bsPutUChar ( 'Z' );
 
 	ldc.i4	90
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2818:	   bsPutUChar ( 'h' );
+// Line 2808:	   bsPutUChar ( 'h' );
 
 	ldc.i4	104
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2819:	   bsPutUChar ( '0' + blockSize100k );
+// Line 2809:	   bsPutUChar ( '0' + blockSize100k );
 
 	ldsfld	int32 'blockSize100k'
 
@@ -14087,45 +14059,44 @@ L_1831:
 	add
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2820:	
+// Line 2810:	
 
-// Line 2821:	   combinedCRC = 0;
+// Line 2811:	   combinedCRC = 0;
 
 	ldc.i4	0
 	stloc	'combinedCRC/2'
-// Line 2822:	
+// Line 2812:	
 
-// Line 2823:	   if (verbosity >= 2) fprintf ( stderr, "\n" );
+// Line 2813:	   if (verbosity >= 2) fprintf ( stderr, "\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1836'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_10'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1833:
 L_1834:
-// Line 2826:	
+// Line 2816:	
 
-// Line 2827:	      blockNo++;
+// Line 2817:	      blockNo++;
 
 	ldloc	'blockNo/3'
 	ldc.i4	1
 	add
 	stloc	'blockNo/3'
-// Line 2828:	      initialiseCRC ();
+// Line 2818:	      initialiseCRC ();
 
 	call	void 'initialiseCRC'()
-// Line 2829:	      loadAndRLEsource ( stream );
+// Line 2819:	      loadAndRLEsource ( stream );
 
 	ldarg	'stream'
 	call	void 'loadAndRLEsource'(void*)
-// Line 2830:	      ERROR_IF_NOT_ZERO ( ferror(stream) );
+// Line 2820:	      ERROR_IF_NOT_ZERO ( ferror(stream) );
 
 	ldarg	'stream'
 	call	int32 'ferror'(void*)
@@ -14133,20 +14104,20 @@ L_1834:
 	beq	'L_1839'
 	call	void 'ioError'()
 L_1839:
-// Line 2831:	      if (last == -1) break;
+// Line 2821:	      if (last == -1) break;
 
 	ldsfld	int32 'last'
 
 	ldc.i4	-1
 	beq	'L_1835'
 L_1841:
-// Line 2832:	
+// Line 2822:	
 
-// Line 2833:	      blockCRC = getFinalCRC ();
+// Line 2823:	      blockCRC = getFinalCRC ();
 
 	call	uint32 'getFinalCRC'()
 	stloc	'blockCRC/1'
-// Line 2834:	      combinedCRC = (combinedCRC << 1) | (combinedCRC >> 31);
+// Line 2824:	      combinedCRC = (combinedCRC << 1) | (combinedCRC >> 31);
 
 	ldloc	'combinedCRC/2'
 	ldc.i4	1
@@ -14156,27 +14127,26 @@ L_1841:
 	shr.un
 	or
 	stloc	'combinedCRC/2'
-// Line 2835:	      combinedCRC ^= blockCRC;
+// Line 2825:	      combinedCRC ^= blockCRC;
 
 	ldloc	'combinedCRC/2'
 	ldloc	'blockCRC/1'
 	xor
 	stloc	'combinedCRC/2'
-// Line 2836:	
+// Line 2826:	
 
-// Line 2837:	      if (verbosity >= 2)
+// Line 2827:	      if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1842'
-// Line 2838:	         fprintf ( stderr, "    block %d: crc = 0x%8x, combined CRC = 0x%8x, size = %d",
+// Line 2828:	         fprintf ( stderr, "    block %d: crc = 0x%8x, combined CRC = 0x%8x, size = %d",
 
-// Line 2839:	                           blockNo, blockCRC, combinedCRC, last+1 );
+// Line 2829:	                           blockNo, blockCRC, combinedCRC, last+1 );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_34'
 
 	ldloc	'blockNo/3'
@@ -14189,30 +14159,30 @@ L_1841:
 	call	vararg int32 'fprintf'(void*, void*, ..., int32, uint32, uint32, int32)
 	pop
 L_1842:
-// Line 2840:	
+// Line 2830:	
 
-// Line 2841:	       
+// Line 2831:	       
 
-// Line 2842:	      doReversibleTransformation ();
+// Line 2832:	      doReversibleTransformation ();
 
 	call	void 'doReversibleTransformation'()
-// Line 2843:	
+// Line 2833:	
 
-// Line 2844:	       
+// Line 2834:	       
+// Line 2835:	
+// Line 2836:	
+// Line 2837:	
+// Line 2838:	
+// Line 2839:	
+// Line 2840:	
+// Line 2841:	
+// Line 2842:	
+// Line 2843:	
+// Line 2844:	
 // Line 2845:	
 // Line 2846:	
-// Line 2847:	
-// Line 2848:	
-// Line 2849:	
-// Line 2850:	
-// Line 2851:	
-// Line 2852:	
-// Line 2853:	
-// Line 2854:	
-// Line 2855:	
-// Line 2856:	
 
-// Line 2857:	      bsPutUChar ( 0x31 ); bsPutUChar ( 0x41 );
+// Line 2847:	      bsPutUChar ( 0x31 ); bsPutUChar ( 0x41 );
 
 	ldc.i4	49
 	conv.u1
@@ -14220,7 +14190,7 @@ L_1842:
 	ldc.i4	65
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2858:	      bsPutUChar ( 0x59 ); bsPutUChar ( 0x26 );
+// Line 2848:	      bsPutUChar ( 0x59 ); bsPutUChar ( 0x26 );
 
 	ldc.i4	89
 	conv.u1
@@ -14228,7 +14198,7 @@ L_1842:
 	ldc.i4	38
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2859:	      bsPutUChar ( 0x53 ); bsPutUChar ( 0x59 );
+// Line 2849:	      bsPutUChar ( 0x53 ); bsPutUChar ( 0x59 );
 
 	ldc.i4	83
 	conv.u1
@@ -14236,25 +14206,25 @@ L_1842:
 	ldc.i4	89
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2860:	
+// Line 2850:	
 
-// Line 2861:	       
+// Line 2851:	       
 
-// Line 2862:	      bsPutUInt32 ( blockCRC );
+// Line 2852:	      bsPutUInt32 ( blockCRC );
 
 	ldloc	'blockCRC/1'
 	call	void 'bsPutUInt32'(uint32)
-// Line 2863:	
+// Line 2853:	
 
-// Line 2864:	       
+// Line 2854:	       
 
-// Line 2865:	      if (blockRandomised) {
+// Line 2855:	      if (blockRandomised) {
 
 	ldsfld	uint8 'blockRandomised'
 
 	ldc.i4	0
 	beq	'L_1843'
-// Line 2866:	         bsW(1,1); nBlocksRandomised++;
+// Line 2856:	         bsW(1,1); nBlocksRandomised++;
 
 	ldc.i4	1
 	ldc.i4	1
@@ -14268,25 +14238,25 @@ L_1842:
 
 	br	'L_1846'
 L_1843:
-// Line 2867:	      } else
+// Line 2857:	      } else
 
-// Line 2868:	         bsW(1,0);
+// Line 2858:	         bsW(1,0);
 
 	ldc.i4	1
 	ldc.i4	0
 	conv.u4
 	call	void 'bsW'(int32, uint32)
 L_1846:
-// Line 2869:	
+// Line 2859:	
 
-// Line 2870:	       
+// Line 2860:	       
 
-// Line 2871:	      moveToFrontCodeAndSend ();
+// Line 2861:	      moveToFrontCodeAndSend ();
 
 	call	void 'moveToFrontCodeAndSend'()
-// Line 2872:	
+// Line 2862:	
 
-// Line 2873:	      ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 2863:	      ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -14295,17 +14265,17 @@ L_1846:
 	call	void 'ioError'()
 L_1848:
 L_1836:
-// Line 2824:	
+// Line 2814:	
 
-// Line 2825:	   while (True) {
+// Line 2815:	   while (True) {
 
 	br	'L_1834'
 L_1835:
-// Line 2874:	   }
+// Line 2864:	   }
 
-// Line 2875:	
+// Line 2865:	
 
-// Line 2876:	   if (verbosity >= 2 && nBlocksRandomised > 0)
+// Line 2866:	   if (verbosity >= 2 && nBlocksRandomised > 0)
 
 	ldsfld	int32 'verbosity'
 
@@ -14315,15 +14285,14 @@ L_1835:
 
 	ldc.i4	0
 	ble	'L_1851'
-// Line 2877:	      fprintf ( stderr, "    %d block%s needed randomisation\n",
+// Line 2867:	      fprintf ( stderr, "    %d block%s needed randomisation\n",
 
-// Line 2878:	                        nBlocksRandomised,
+// Line 2868:	                        nBlocksRandomised,
 
-// Line 2879:	                        nBlocksRandomised == 1 ? "" : "s" );
+// Line 2869:	                        nBlocksRandomised == 1 ? "" : "s" );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_35'
 
 	ldsfld	int32 'nBlocksRandomised'
@@ -14342,19 +14311,19 @@ L_1874:
 	call	vararg int32 'fprintf'(void*, void*, ..., int32, void*)
 	pop
 L_1851:
-// Line 2880:	
+// Line 2870:	
 
-// Line 2881:	    
-// Line 2882:	
-// Line 2883:	
-// Line 2884:	
-// Line 2885:	
-// Line 2886:	
-// Line 2887:	
+// Line 2871:	    
+// Line 2872:	
+// Line 2873:	
+// Line 2874:	
+// Line 2875:	
+// Line 2876:	
+// Line 2877:	
 
-// Line 2888:	
+// Line 2878:	
 
-// Line 2889:	   bsPutUChar ( 0x17 ); bsPutUChar ( 0x72 );
+// Line 2879:	   bsPutUChar ( 0x17 ); bsPutUChar ( 0x72 );
 
 	ldc.i4	23
 	conv.u1
@@ -14362,7 +14331,7 @@ L_1851:
 	ldc.i4	114
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2890:	   bsPutUChar ( 0x45 ); bsPutUChar ( 0x38 );
+// Line 2880:	   bsPutUChar ( 0x45 ); bsPutUChar ( 0x38 );
 
 	ldc.i4	69
 	conv.u1
@@ -14370,7 +14339,7 @@ L_1851:
 	ldc.i4	56
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2891:	   bsPutUChar ( 0x50 ); bsPutUChar ( 0x90 );
+// Line 2881:	   bsPutUChar ( 0x50 ); bsPutUChar ( 0x90 );
 
 	ldc.i4	80
 	conv.u1
@@ -14378,39 +14347,38 @@ L_1851:
 	ldc.i4	144
 	conv.u1
 	call	void 'bsPutUChar'(uint8)
-// Line 2892:	
+// Line 2882:	
 
-// Line 2893:	   bsPutUInt32 ( combinedCRC );
+// Line 2883:	   bsPutUInt32 ( combinedCRC );
 
 	ldloc	'combinedCRC/2'
 	call	void 'bsPutUInt32'(uint32)
-// Line 2894:	   if (verbosity >= 2)
+// Line 2884:	   if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1852'
-// Line 2895:	      fprintf ( stderr, "    final combined CRC = 0x%x\n   ", combinedCRC );
+// Line 2885:	      fprintf ( stderr, "    final combined CRC = 0x%x\n   ", combinedCRC );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_38'
 
 	ldloc	'combinedCRC/2'
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32)
 	pop
 L_1852:
-// Line 2896:	
+// Line 2886:	
 
-// Line 2897:	    
+// Line 2887:	    
 
-// Line 2898:	   bsFinishedWithStream ();
+// Line 2888:	   bsFinishedWithStream ();
 
 	call	void 'bsFinishedWithStream'()
-// Line 2899:	
+// Line 2889:	
 
-// Line 2900:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 2890:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -14418,33 +14386,33 @@ L_1852:
 	beq	'L_1854'
 	call	void 'ioError'()
 L_1854:
-// Line 2901:	   retVal = fflush ( zStream );
+// Line 2891:	   retVal = fflush ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fflush'(void*)
 	stloc	'retVal/0'
-// Line 2902:	   ERROR_IF_EOF ( retVal );
+// Line 2892:	   ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/0'
 	ldc.i4	-1
 	bne.un	'L_1857'
 	call	void 'ioError'()
 L_1857:
-// Line 2903:	   retVal = fclose ( zStream );
+// Line 2893:	   retVal = fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	stloc	'retVal/0'
-// Line 2904:	   ERROR_IF_EOF ( retVal );
+// Line 2894:	   ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/0'
 	ldc.i4	-1
 	bne.un	'L_1860'
 	call	void 'ioError'()
 L_1860:
-// Line 2905:	
+// Line 2895:	
 
-// Line 2906:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
+// Line 2896:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
 
 	ldarg	'stream'
 	call	int32 'ferror'(void*)
@@ -14452,21 +14420,21 @@ L_1860:
 	beq	'L_1863'
 	call	void 'ioError'()
 L_1863:
-// Line 2907:	   retVal = fclose ( stream );
+// Line 2897:	   retVal = fclose ( stream );
 
 	ldarg	'stream'
 	call	int32 'fclose'(void*)
 	stloc	'retVal/0'
-// Line 2908:	   ERROR_IF_EOF ( retVal );
+// Line 2898:	   ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/0'
 	ldc.i4	-1
 	bne.un	'L_1866'
 	call	void 'ioError'()
 L_1866:
-// Line 2909:	
+// Line 2899:	
 
-// Line 2910:	   if (bytesIn == 0) bytesIn = 1;
+// Line 2900:	   if (bytesIn == 0) bytesIn = 1;
 
 	ldsfld	uint32 'bytesIn'
 
@@ -14476,7 +14444,7 @@ L_1866:
 	stsfld	uint32 'bytesIn'
 
 L_1868:
-// Line 2911:	   if (bytesOut == 0) bytesOut = 1;
+// Line 2901:	   if (bytesOut == 0) bytesOut = 1;
 
 	ldsfld	uint32 'bytesOut'
 
@@ -14486,33 +14454,32 @@ L_1868:
 	stsfld	uint32 'bytesOut'
 
 L_1869:
-// Line 2912:	
+// Line 2902:	
 
-// Line 2913:	   if (verbosity >= 1)
+// Line 2903:	   if (verbosity >= 1)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	1
 	blt	'L_1870'
-// Line 2914:	      fprintf ( stderr, "%6.3f:1, %6.3f bits/byte, "
+// Line 2904:	      fprintf ( stderr, "%6.3f:1, %6.3f bits/byte, "
 
-// Line 2915:	                        "%5.2f%% saved, %d in, %d out.\n",
+// Line 2905:	                        "%5.2f%% saved, %d in, %d out.\n",
 
-// Line 2916:	                (float)bytesIn / (float)bytesOut,
+// Line 2906:	                (float)bytesIn / (float)bytesOut,
 
-// Line 2917:	                (8.0 * (float)bytesOut) / (float)bytesIn,
+// Line 2907:	                (8.0 * (float)bytesOut) / (float)bytesIn,
 
-// Line 2918:	                100.0 * (1.0 - (float)bytesOut / (float)bytesIn),
+// Line 2908:	                100.0 * (1.0 - (float)bytesOut / (float)bytesIn),
 
-// Line 2919:	                bytesIn,
+// Line 2909:	                bytesIn,
 
-// Line 2920:	                bytesOut
+// Line 2910:	                bytesOut
 
-// Line 2921:	              );
+// Line 2911:	              );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_39'
 
 	ldsfld	uint32 'bytesIn'
@@ -14554,7 +14521,7 @@ L_1869:
 	call	vararg int32 'fprintf'(void*, void*, ..., float64, float64, float64, uint32, uint32)
 	pop
 L_1870:
-// Line 2922:	}
+// Line 2912:	}
 
 L_1809:
 	ret
@@ -14562,9 +14529,9 @@ L_1809:
 }
  .method public hidebysig static uint8 'uncompressStream'(void* 'zStream' , void* 'stream' ) cil managed
 {
-// Line 2926:	Bool uncompressStream ( FILE *zStream, FILE *stream )
+// Line 2916:	Bool uncompressStream ( FILE *zStream, FILE *stream )
 
-// Line 2927:	{
+// Line 2917:	{
 
 	.locals
 	(
@@ -14585,18 +14552,16 @@ L_1809:
 	)
 	.maxstack	5
 L_1878:
-// Line 2933:	   IntNative  retVal;
+// Line 2923:	   IntNative  retVal;
 
-// Line 2934:	
+// Line 2924:	
 
-// Line 2935:	   SET_BINARY_MODE(stream);
+// Line 2925:	   SET_BINARY_MODE(stream);
 
 L_1881:
 	ldloca	'retVal/13'
 	ldarg	'stream'
-	ldc.i4	8
-	add
-	ldind.i4
+	call	int32 '_fileno'(void*)
 	ldc.i4	32768
 	call	int32 '_setmode'(int32, int32)
 	stind.i4
@@ -14607,14 +14572,12 @@ L_1881:
 L_1886:
 L_1883:
 L_1882:
-// Line 2936:	   SET_BINARY_MODE(zStream);
+// Line 2926:	   SET_BINARY_MODE(zStream);
 
 L_1889:
 	ldloca	'retVal/12'
 	ldarg	'zStream'
-	ldc.i4	8
-	add
-	ldind.i4
+	call	int32 '_fileno'(void*)
 	ldc.i4	32768
 	call	int32 '_setmode'(int32, int32)
 	stind.i4
@@ -14625,9 +14588,9 @@ L_1889:
 L_1894:
 L_1891:
 L_1890:
-// Line 2937:	
+// Line 2927:	
 
-// Line 2938:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
+// Line 2928:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
 
 	ldarg	'stream'
 	call	int32 'ferror'(void*)
@@ -14635,7 +14598,7 @@ L_1890:
 	beq	'L_1898'
 	call	void 'ioError'()
 L_1898:
-// Line 2939:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 2929:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -14643,46 +14606,46 @@ L_1898:
 	beq	'L_1901'
 	call	void 'ioError'()
 L_1901:
-// Line 2940:	
+// Line 2930:	
 
-// Line 2941:	   bsSetStream ( zStream, False );
+// Line 2931:	   bsSetStream ( zStream, False );
 
 	ldarg	'zStream'
 	ldc.i4	0
 	conv.u1
 	call	void 'bsSetStream'(void*, uint8)
-// Line 2942:	
+// Line 2932:	
 
-// Line 2943:	    
-// Line 2944:	
-// Line 2945:	
-// Line 2946:	
+// Line 2933:	    
+// Line 2934:	
+// Line 2935:	
+// Line 2936:	
 
-// Line 2947:	   magic1 = bsGetUChar ();
+// Line 2937:	   magic1 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic1/0'
-// Line 2948:	   magic2 = bsGetUChar ();
+// Line 2938:	   magic2 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic2/1'
-// Line 2949:	   magic3 = bsGetUChar ();
+// Line 2939:	   magic3 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic3/2'
-// Line 2950:	   magic4 = bsGetUChar ();
+// Line 2940:	   magic4 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic4/3'
-// Line 2951:	   if (magic1 != 'B' ||
+// Line 2941:	   if (magic1 != 'B' ||
 
-// Line 2952:	       magic2 != 'Z' ||
+// Line 2942:	       magic2 != 'Z' ||
 
-// Line 2953:	       magic3 != 'h' ||
+// Line 2943:	       magic3 != 'h' ||
 
-// Line 2954:	       magic4 < '1'  ||
+// Line 2944:	       magic4 < '1'  ||
 
-// Line 2955:	       magic4 > '9') {
+// Line 2945:	       magic4 > '9') {
 
 	ldloc	'magic1/0'
 	conv.i4
@@ -14705,93 +14668,92 @@ L_1901:
 	ldc.i4	57
 	ble	'L_1903'
 L_1955:
-// Line 2956:	     bsFinishedWithStream();
+// Line 2946:	     bsFinishedWithStream();
 
 	call	void 'bsFinishedWithStream'()
-// Line 2957:	     retVal = fclose ( stream );
+// Line 2947:	     retVal = fclose ( stream );
 
 	ldarg	'stream'
 	call	int32 'fclose'(void*)
 	stloc	'retVal/11'
-// Line 2958:	     ERROR_IF_EOF ( retVal );
+// Line 2948:	     ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/11'
 	ldc.i4	-1
 	bne.un	'L_1906'
 	call	void 'ioError'()
 L_1906:
-// Line 2959:	     return False;
+// Line 2949:	     return False;
 
 	ldc.i4	0
 	conv.u1
 	conv.i4
 	br	'L_1879'
 L_1903:
-// Line 2960:	   }
+// Line 2950:	   }
 
-// Line 2961:	
+// Line 2951:	
 
-// Line 2962:	   setDecompressStructureSizes ( magic4 - '0' );
+// Line 2952:	   setDecompressStructureSizes ( magic4 - '0' );
 
 	ldloc	'magic4/3'
 	conv.i4
 	ldc.i4	48
 	sub
 	call	void 'setDecompressStructureSizes'(int32)
-// Line 2963:	   computedCombinedCRC = 0;
+// Line 2953:	   computedCombinedCRC = 0;
 
 	ldc.i4	0
 	stloc	'computedCombinedCRC/9'
-// Line 2964:	
+// Line 2954:	
 
-// Line 2965:	   if (verbosity >= 2) fprintf ( stderr, "\n    " );
+// Line 2955:	   if (verbosity >= 2) fprintf ( stderr, "\n    " );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1909'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_40'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1909:
-// Line 2966:	   currBlockNo = 0;
+// Line 2956:	   currBlockNo = 0;
 
 	ldc.i4	0
 	stloc	'currBlockNo/10'
 L_1910:
-// Line 2969:	      magic1 = bsGetUChar ();
+// Line 2959:	      magic1 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic1/0'
-// Line 2970:	      magic2 = bsGetUChar ();
+// Line 2960:	      magic2 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic2/1'
-// Line 2971:	      magic3 = bsGetUChar ();
+// Line 2961:	      magic3 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic3/2'
-// Line 2972:	      magic4 = bsGetUChar ();
+// Line 2962:	      magic4 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic4/3'
-// Line 2973:	      magic5 = bsGetUChar ();
+// Line 2963:	      magic5 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic5/4'
-// Line 2974:	      magic6 = bsGetUChar ();
+// Line 2964:	      magic6 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic6/5'
-// Line 2975:	      if (magic1 == 0x17 && magic2 == 0x72 &&
+// Line 2965:	      if (magic1 == 0x17 && magic2 == 0x72 &&
 
-// Line 2976:	          magic3 == 0x45 && magic4 == 0x38 &&
+// Line 2966:	          magic3 == 0x45 && magic4 == 0x38 &&
 
-// Line 2977:	          magic5 == 0x50 && magic6 == 0x90) break;
+// Line 2967:	          magic5 == 0x50 && magic6 == 0x90) break;
 
 	ldloc	'magic1/0'
 	conv.i4
@@ -14819,13 +14781,13 @@ L_1910:
 	beq	'L_1911'
 L_1956:
 L_1914:
-// Line 2978:	
+// Line 2968:	
 
-// Line 2979:	      if (magic1 != 0x31 || magic2 != 0x41 ||
+// Line 2969:	      if (magic1 != 0x31 || magic2 != 0x41 ||
 
-// Line 2980:	          magic3 != 0x59 || magic4 != 0x26 ||
+// Line 2970:	          magic3 != 0x59 || magic4 != 0x26 ||
 
-// Line 2981:	          magic5 != 0x53 || magic6 != 0x59) badBlockHeader();
+// Line 2971:	          magic5 != 0x53 || magic6 != 0x59) badBlockHeader();
 
 	ldloc	'magic1/0'
 	conv.i4
@@ -14854,63 +14816,62 @@ L_1914:
 L_1957:
 	call	void 'badBlockHeader'()
 L_1915:
-// Line 2982:	
+// Line 2972:	
 
-// Line 2983:	      storedBlockCRC = bsGetUInt32 ();
+// Line 2973:	      storedBlockCRC = bsGetUInt32 ();
 
 	call	int32 'bsGetUInt32'()
 	conv.u4
 	stloc	'storedBlockCRC/6'
-// Line 2984:	
+// Line 2974:	
 
-// Line 2985:	      if (bsR(1) == 1)
+// Line 2975:	      if (bsR(1) == 1)
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
 	ldc.i4	1
 	bne.un	'L_1916'
-// Line 2986:	         blockRandomised = True; else
+// Line 2976:	         blockRandomised = True; else
 
 	ldc.i4	1
 	stsfld	uint8 'blockRandomised'
 
 	br	'L_1917'
 L_1916:
-// Line 2987:	         blockRandomised = False;
+// Line 2977:	         blockRandomised = False;
 
 	ldc.i4	0
 	stsfld	uint8 'blockRandomised'
 
 L_1917:
-// Line 2988:	
+// Line 2978:	
 
-// Line 2989:	      currBlockNo++;
+// Line 2979:	      currBlockNo++;
 
 	ldloc	'currBlockNo/10'
 	ldc.i4	1
 	add
 	stloc	'currBlockNo/10'
-// Line 2990:	      if (verbosity >= 2)
+// Line 2980:	      if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1918'
-// Line 2991:	         fprintf ( stderr, "[%d: huff+mtf ", currBlockNo );
+// Line 2981:	         fprintf ( stderr, "[%d: huff+mtf ", currBlockNo );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_41'
 
 	ldloc	'currBlockNo/10'
 	call	vararg int32 'fprintf'(void*, void*, ..., int32)
 	pop
 L_1918:
-// Line 2992:	      getAndMoveToFrontDecode ();
+// Line 2982:	      getAndMoveToFrontDecode ();
 
 	call	void 'getAndMoveToFrontDecode'()
-// Line 2993:	      ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 2983:	      ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -14918,47 +14879,46 @@ L_1918:
 	beq	'L_1920'
 	call	void 'ioError'()
 L_1920:
-// Line 2994:	
+// Line 2984:	
 
-// Line 2995:	      initialiseCRC();
+// Line 2985:	      initialiseCRC();
 
 	call	void 'initialiseCRC'()
-// Line 2996:	      if (verbosity >= 2) fprintf ( stderr, "rt+rld" );
+// Line 2986:	      if (verbosity >= 2) fprintf ( stderr, "rt+rld" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1922'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_42'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1922:
-// Line 2997:	      if (smallMode)
+// Line 2987:	      if (smallMode)
 
 	ldsfld	uint8 'smallMode'
 
 	ldc.i4	0
 	beq	'L_1923'
-// Line 2998:	         undoReversibleTransformation_small ( stream );
+// Line 2988:	         undoReversibleTransformation_small ( stream );
 
 	ldarg	'stream'
 	call	void 'undoReversibleTransformation_small'(void*)
 	br	'L_1924'
 L_1923:
-// Line 2999:	         else
+// Line 2989:	         else
 
-// Line 3000:	         undoReversibleTransformation_fast  ( stream );
+// Line 2990:	         undoReversibleTransformation_fast  ( stream );
 
 	ldarg	'stream'
 	call	void 'undoReversibleTransformation_fast'(void*)
 L_1924:
-// Line 3001:	
+// Line 2991:	
 
-// Line 3002:	      ERROR_IF_NOT_ZERO ( ferror(stream) );
+// Line 2992:	      ERROR_IF_NOT_ZERO ( ferror(stream) );
 
 	ldarg	'stream'
 	call	int32 'ferror'(void*)
@@ -14966,23 +14926,22 @@ L_1924:
 	beq	'L_1926'
 	call	void 'ioError'()
 L_1926:
-// Line 3003:	
+// Line 2993:	
 
-// Line 3004:	      computedBlockCRC = getFinalCRC();
+// Line 2994:	      computedBlockCRC = getFinalCRC();
 
 	call	uint32 'getFinalCRC'()
 	stloc	'computedBlockCRC/8'
-// Line 3005:	      if (verbosity >= 3)
+// Line 2995:	      if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_1928'
-// Line 3006:	         fprintf ( stderr, " {0x%x, 0x%x}", storedBlockCRC, computedBlockCRC );
+// Line 2996:	         fprintf ( stderr, " {0x%x, 0x%x}", storedBlockCRC, computedBlockCRC );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_43'
 
 	ldloc	'storedBlockCRC/6'
@@ -14990,38 +14949,37 @@ L_1926:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32, uint32)
 	pop
 L_1928:
-// Line 3007:	      if (verbosity >= 2) fprintf ( stderr, "] " );
+// Line 2997:	      if (verbosity >= 2) fprintf ( stderr, "] " );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1929'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_44'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1929:
-// Line 3008:	
+// Line 2998:	
 
-// Line 3009:	       
+// Line 2999:	       
 
-// Line 3010:	      if (storedBlockCRC != computedBlockCRC)
+// Line 3000:	      if (storedBlockCRC != computedBlockCRC)
 
 	ldloc	'storedBlockCRC/6'
 	ldloc	'computedBlockCRC/8'
 	beq	'L_1930'
-// Line 3011:	         crcError ( storedBlockCRC, computedBlockCRC );
+// Line 3001:	         crcError ( storedBlockCRC, computedBlockCRC );
 
 	ldloc	'storedBlockCRC/6'
 	ldloc	'computedBlockCRC/8'
 	call	void 'crcError'(uint32, uint32)
 L_1930:
-// Line 3012:	
+// Line 3002:	
 
-// Line 3013:	      computedCombinedCRC = (computedCombinedCRC << 1) | (computedCombinedCRC >> 31);
+// Line 3003:	      computedCombinedCRC = (computedCombinedCRC << 1) | (computedCombinedCRC >> 31);
 
 	ldloc	'computedCombinedCRC/9'
 	ldc.i4	1
@@ -15031,59 +14989,57 @@ L_1930:
 	shr.un
 	or
 	stloc	'computedCombinedCRC/9'
-// Line 3014:	      computedCombinedCRC ^= computedBlockCRC;
+// Line 3004:	      computedCombinedCRC ^= computedBlockCRC;
 
 	ldloc	'computedCombinedCRC/9'
 	ldloc	'computedBlockCRC/8'
 	xor
 	stloc	'computedCombinedCRC/9'
 L_1912:
-// Line 2967:	
+// Line 2957:	
 
-// Line 2968:	   while (True) {
+// Line 2958:	   while (True) {
 
 	br	'L_1910'
 L_1911:
-// Line 3015:	   };
+// Line 3005:	   };
 
-// Line 3016:	
+// Line 3006:	
 
-// Line 3017:	   if (verbosity >= 2) fprintf ( stderr, "\n    " );
+// Line 3007:	   if (verbosity >= 2) fprintf ( stderr, "\n    " );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1932'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_40'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1932:
-// Line 3018:	
+// Line 3008:	
 
-// Line 3019:	   storedCombinedCRC  = bsGetUInt32 ();
+// Line 3009:	   storedCombinedCRC  = bsGetUInt32 ();
 
 	call	int32 'bsGetUInt32'()
 	conv.u4
 	stloc	'storedCombinedCRC/7'
-// Line 3020:	   if (verbosity >= 2)
+// Line 3010:	   if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1933'
-// Line 3021:	      fprintf ( stderr,
+// Line 3011:	      fprintf ( stderr,
 
-// Line 3022:	                "combined CRCs: stored = 0x%x, computed = 0x%x\n    ",
+// Line 3012:	                "combined CRCs: stored = 0x%x, computed = 0x%x\n    ",
 
-// Line 3023:	                storedCombinedCRC, computedCombinedCRC );
+// Line 3013:	                storedCombinedCRC, computedCombinedCRC );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_45'
 
 	ldloc	'storedCombinedCRC/7'
@@ -15091,25 +15047,25 @@ L_1932:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32, uint32)
 	pop
 L_1933:
-// Line 3024:	   if (storedCombinedCRC != computedCombinedCRC)
+// Line 3014:	   if (storedCombinedCRC != computedCombinedCRC)
 
 	ldloc	'storedCombinedCRC/7'
 	ldloc	'computedCombinedCRC/9'
 	beq	'L_1934'
-// Line 3025:	      crcError ( storedCombinedCRC, computedCombinedCRC );
+// Line 3015:	      crcError ( storedCombinedCRC, computedCombinedCRC );
 
 	ldloc	'storedCombinedCRC/7'
 	ldloc	'computedCombinedCRC/9'
 	call	void 'crcError'(uint32, uint32)
 L_1934:
-// Line 3026:	
+// Line 3016:	
 
-// Line 3027:	
+// Line 3017:	
 
-// Line 3028:	   bsFinishedWithStream ();
+// Line 3018:	   bsFinishedWithStream ();
 
 	call	void 'bsFinishedWithStream'()
-// Line 3029:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 3019:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -15117,21 +15073,21 @@ L_1934:
 	beq	'L_1936'
 	call	void 'ioError'()
 L_1936:
-// Line 3030:	   retVal = fclose ( zStream );
+// Line 3020:	   retVal = fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	stloc	'retVal/11'
-// Line 3031:	   ERROR_IF_EOF ( retVal );
+// Line 3021:	   ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/11'
 	ldc.i4	-1
 	bne.un	'L_1939'
 	call	void 'ioError'()
 L_1939:
-// Line 3032:	
+// Line 3022:	
 
-// Line 3033:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
+// Line 3023:	   ERROR_IF_NOT_ZERO ( ferror(stream) );
 
 	ldarg	'stream'
 	call	int32 'ferror'(void*)
@@ -15139,31 +15095,30 @@ L_1939:
 	beq	'L_1942'
 	call	void 'ioError'()
 L_1942:
-// Line 3034:	   retVal = fflush ( stream );
+// Line 3024:	   retVal = fflush ( stream );
 
 	ldarg	'stream'
 	call	int32 'fflush'(void*)
 	stloc	'retVal/11'
-// Line 3035:	   ERROR_IF_NOT_ZERO ( retVal );
+// Line 3025:	   ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/11'
 	ldc.i4	0
 	beq	'L_1945'
 	call	void 'ioError'()
 L_1945:
-// Line 3036:	   if (stream != stdout) {
+// Line 3026:	   if (stream != stdout) {
 
-	call	void* '__iob_func'()
-	ldc.i4	32
-	add
 	ldarg	'stream'
+	ldsfld	void* '__stdout'
+
 	beq	'L_1947'
-// Line 3037:	      retVal = fclose ( stream );
+// Line 3027:	      retVal = fclose ( stream );
 
 	ldarg	'stream'
 	call	int32 'fclose'(void*)
 	stloc	'retVal/11'
-// Line 3038:	      ERROR_IF_EOF ( retVal );
+// Line 3028:	      ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/11'
 	ldc.i4	-1
@@ -15171,14 +15126,14 @@ L_1945:
 	call	void 'ioError'()
 L_1950:
 L_1947:
-// Line 3039:	   }
+// Line 3029:	   }
 
-// Line 3040:	   return True;
+// Line 3030:	   return True;
 
 	ldc.i4	1
 	conv.u1
 	conv.i4
-// Line 3041:	}
+// Line 3031:	}
 
 L_1879:
 	ret
@@ -15186,9 +15141,9 @@ L_1879:
 }
  .method public hidebysig static uint8 'testStream'(void* 'zStream' ) cil managed
 {
-// Line 3045:	Bool testStream ( FILE *zStream )
+// Line 3035:	Bool testStream ( FILE *zStream )
 
-// Line 3046:	{
+// Line 3036:	{
 
 	.locals
 	(
@@ -15208,24 +15163,22 @@ L_1879:
 	)
 	.maxstack	7
 L_1961:
-// Line 3052:	   IntNative  retVal;
+// Line 3042:	   IntNative  retVal;
 
-// Line 3053:	
+// Line 3043:	
 
-// Line 3054:	
+// Line 3044:	
 
-// Line 3055:	   PRINTLOC;
+// Line 3045:	   PRINTLOC;
 
-// Line 3056:	
+// Line 3046:	
 
-// Line 3057:	   SET_BINARY_MODE(zStream);
+// Line 3047:	   SET_BINARY_MODE(zStream);
 
 L_1964:
 	ldloca	'retVal/12'
 	ldarg	'zStream'
-	ldc.i4	8
-	add
-	ldind.i4
+	call	int32 '_fileno'(void*)
 	ldc.i4	32768
 	call	int32 '_setmode'(int32, int32)
 	stind.i4
@@ -15236,7 +15189,7 @@ L_1964:
 L_1969:
 L_1966:
 L_1965:
-// Line 3058:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 3048:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -15244,41 +15197,41 @@ L_1965:
 	beq	'L_1973'
 	call	void 'ioError'()
 L_1973:
-// Line 3059:	
+// Line 3049:	
 
-// Line 3060:	   bsSetStream ( zStream, False );
+// Line 3050:	   bsSetStream ( zStream, False );
 
 	ldarg	'zStream'
 	ldc.i4	0
 	conv.u1
 	call	void 'bsSetStream'(void*, uint8)
-// Line 3061:	
+// Line 3051:	
 
-// Line 3062:	   magic1 = bsGetUChar ();
+// Line 3052:	   magic1 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic1/0'
-// Line 3063:	   magic2 = bsGetUChar ();
+// Line 3053:	   magic2 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic2/1'
-// Line 3064:	   magic3 = bsGetUChar ();
+// Line 3054:	   magic3 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic3/2'
-// Line 3065:	   magic4 = bsGetUChar ();
+// Line 3055:	   magic4 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic4/3'
-// Line 3066:	   if (magic1 != 'B' ||
+// Line 3056:	   if (magic1 != 'B' ||
 
-// Line 3067:	       magic2 != 'Z' ||
+// Line 3057:	       magic2 != 'Z' ||
 
-// Line 3068:	       magic3 != 'h' ||
+// Line 3058:	       magic3 != 'h' ||
 
-// Line 3069:	       magic4 < '1'  ||
+// Line 3059:	       magic4 < '1'  ||
 
-// Line 3070:	       magic4 > '9') {
+// Line 3060:	       magic4 > '9') {
 
 	ldloc	'magic1/0'
 	conv.i4
@@ -15301,104 +15254,102 @@ L_1973:
 	ldc.i4	57
 	ble	'L_1975'
 L_2013:
-// Line 3071:	     bsFinishedWithStream();
+// Line 3061:	     bsFinishedWithStream();
 
 	call	void 'bsFinishedWithStream'()
-// Line 3072:	     fclose ( zStream );
+// Line 3062:	     fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	pop
-// Line 3073:	     fprintf ( stderr, "\n%s: bad magic number (ie, not created by bzip2)\n",
+// Line 3063:	     fprintf ( stderr, "\n%s: bad magic number (ie, not created by bzip2)\n",
 
-// Line 3074:	                       inName );
+// Line 3064:	                       inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_46'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3075:	     return False;
+// Line 3065:	     return False;
 
 	ldc.i4	0
 	conv.u1
 	conv.i4
 	br	'L_1962'
 L_1975:
-// Line 3076:	   }
+// Line 3066:	   }
 
-// Line 3077:	
+// Line 3067:	
 
-// Line 3078:	   smallMode = True;
+// Line 3068:	   smallMode = True;
 
 	ldc.i4	1
 	stsfld	uint8 'smallMode'
 
-// Line 3079:	   setDecompressStructureSizes ( magic4 - '0' );
+// Line 3069:	   setDecompressStructureSizes ( magic4 - '0' );
 
 	ldloc	'magic4/3'
 	conv.i4
 	ldc.i4	48
 	sub
 	call	void 'setDecompressStructureSizes'(int32)
-// Line 3080:	   computedCombinedCRC = 0;
+// Line 3070:	   computedCombinedCRC = 0;
 
 	ldc.i4	0
 	stloc	'computedCombinedCRC/9'
-// Line 3081:	
+// Line 3071:	
 
-// Line 3082:	   if (verbosity >= 2) fprintf ( stderr, "\n" );
+// Line 3072:	   if (verbosity >= 2) fprintf ( stderr, "\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1978'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_10'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1978:
-// Line 3083:	   currBlockNo = 0;
+// Line 3073:	   currBlockNo = 0;
 
 	ldc.i4	0
 	stloc	'currBlockNo/10'
 L_1979:
-// Line 3086:	      magic1 = bsGetUChar ();
+// Line 3076:	      magic1 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic1/0'
-// Line 3087:	      magic2 = bsGetUChar ();
+// Line 3077:	      magic2 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic2/1'
-// Line 3088:	      magic3 = bsGetUChar ();
+// Line 3078:	      magic3 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic3/2'
-// Line 3089:	      magic4 = bsGetUChar ();
+// Line 3079:	      magic4 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic4/3'
-// Line 3090:	      magic5 = bsGetUChar ();
+// Line 3080:	      magic5 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic5/4'
-// Line 3091:	      magic6 = bsGetUChar ();
+// Line 3081:	      magic6 = bsGetUChar ();
 
 	call	uint8 'bsGetUChar'()
 	stloc	'magic6/5'
-// Line 3092:	      if (magic1 == 0x17 && magic2 == 0x72 &&
+// Line 3082:	      if (magic1 == 0x17 && magic2 == 0x72 &&
 
-// Line 3093:	          magic3 == 0x45 && magic4 == 0x38 &&
+// Line 3083:	          magic3 == 0x45 && magic4 == 0x38 &&
 
-// Line 3094:	          magic5 == 0x50 && magic6 == 0x90) break;
+// Line 3084:	          magic5 == 0x50 && magic6 == 0x90) break;
 
 	ldloc	'magic1/0'
 	conv.i4
@@ -15426,19 +15377,19 @@ L_1979:
 	beq	'L_1980'
 L_2014:
 L_1983:
-// Line 3095:	
+// Line 3085:	
 
-// Line 3096:	      currBlockNo++;
+// Line 3086:	      currBlockNo++;
 
 	ldloc	'currBlockNo/10'
 	ldc.i4	1
 	add
 	stloc	'currBlockNo/10'
-// Line 3097:	      if (magic1 != 0x31 || magic2 != 0x41 ||
+// Line 3087:	      if (magic1 != 0x31 || magic2 != 0x41 ||
 
-// Line 3098:	          magic3 != 0x59 || magic4 != 0x26 ||
+// Line 3088:	          magic3 != 0x59 || magic4 != 0x26 ||
 
-// Line 3099:	          magic5 != 0x53 || magic6 != 0x59) {
+// Line 3089:	          magic5 != 0x53 || magic6 != 0x59) {
 
 	ldloc	'magic1/0'
 	conv.i4
@@ -15465,23 +15416,22 @@ L_1983:
 	ldc.i4	89
 	beq	'L_1984'
 L_2015:
-// Line 3100:	         bsFinishedWithStream();
+// Line 3090:	         bsFinishedWithStream();
 
 	call	void 'bsFinishedWithStream'()
-// Line 3101:	         fclose ( zStream );
+// Line 3091:	         fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	pop
-// Line 3102:	         fprintf ( stderr,
+// Line 3092:	         fprintf ( stderr,
 
-// Line 3103:	                   "\n%s, block %d: bad header (not == 0x314159265359)\n",
+// Line 3093:	                   "\n%s, block %d: bad header (not == 0x314159265359)\n",
 
-// Line 3104:	                   inName, currBlockNo );
+// Line 3094:	                   inName, currBlockNo );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_47'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
@@ -15489,64 +15439,63 @@ L_2015:
 	ldloc	'currBlockNo/10'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, int32)
 	pop
-// Line 3105:	         return False;
+// Line 3095:	         return False;
 
 	ldc.i4	0
 	conv.u1
 	conv.i4
 	br	'L_1962'
 L_1984:
-// Line 3106:	      }
+// Line 3096:	      }
 
-// Line 3107:	      storedBlockCRC = bsGetUInt32 ();
+// Line 3097:	      storedBlockCRC = bsGetUInt32 ();
 
 	call	int32 'bsGetUInt32'()
 	conv.u4
 	stloc	'storedBlockCRC/6'
-// Line 3108:	
+// Line 3098:	
 
-// Line 3109:	      if (bsR(1) == 1)
+// Line 3099:	      if (bsR(1) == 1)
 
 	ldc.i4	1
 	call	uint32 'bsR'(int32)
 	ldc.i4	1
 	bne.un	'L_1987'
-// Line 3110:	         blockRandomised = True; else
+// Line 3100:	         blockRandomised = True; else
 
 	ldc.i4	1
 	stsfld	uint8 'blockRandomised'
 
 	br	'L_1988'
 L_1987:
-// Line 3111:	         blockRandomised = False;
+// Line 3101:	         blockRandomised = False;
 
 	ldc.i4	0
 	stsfld	uint8 'blockRandomised'
 
 L_1988:
-// Line 3112:	
+// Line 3102:	
 
-// Line 3113:	      if (verbosity >= 2)
+// Line 3103:	      if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1989'
-// Line 3114:	         fprintf ( stderr, "    block [%d: huff+mtf ", currBlockNo );
+// Line 3104:	         fprintf ( stderr, "    block [%d: huff+mtf ", currBlockNo );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_48'
 
 	ldloc	'currBlockNo/10'
 	call	vararg int32 'fprintf'(void*, void*, ..., int32)
 	pop
 L_1989:
-// Line 3115:	      getAndMoveToFrontDecode ();
+// Line 3105:	      getAndMoveToFrontDecode ();
 
 	call	void 'getAndMoveToFrontDecode'()
-// Line 3116:	      ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 3106:	      ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -15554,47 +15503,45 @@ L_1989:
 	beq	'L_1991'
 	call	void 'ioError'()
 L_1991:
-// Line 3117:	
+// Line 3107:	
 
-// Line 3118:	      initialiseCRC();
+// Line 3108:	      initialiseCRC();
 
 	call	void 'initialiseCRC'()
-// Line 3119:	      if (verbosity >= 2) fprintf ( stderr, "rt+rld" );
+// Line 3109:	      if (verbosity >= 2) fprintf ( stderr, "rt+rld" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1993'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_42'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1993:
-// Line 3120:	      undoReversibleTransformation_small ( NULL );
+// Line 3110:	      undoReversibleTransformation_small ( NULL );
 
 	ldc.i4	0
 	conv.u4
 	call	void 'undoReversibleTransformation_small'(void*)
-// Line 3121:	
+// Line 3111:	
 
-// Line 3122:	      computedBlockCRC = getFinalCRC();
+// Line 3112:	      computedBlockCRC = getFinalCRC();
 
 	call	uint32 'getFinalCRC'()
 	stloc	'computedBlockCRC/8'
-// Line 3123:	      if (verbosity >= 3)
+// Line 3113:	      if (verbosity >= 3)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	3
 	blt	'L_1994'
-// Line 3124:	         fprintf ( stderr, " {0x%x, 0x%x}", storedBlockCRC, computedBlockCRC );
+// Line 3114:	         fprintf ( stderr, " {0x%x, 0x%x}", storedBlockCRC, computedBlockCRC );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_43'
 
 	ldloc	'storedBlockCRC/6'
@@ -15602,42 +15549,40 @@ L_1993:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32, uint32)
 	pop
 L_1994:
-// Line 3125:	      if (verbosity >= 2) fprintf ( stderr, "] " );
+// Line 3115:	      if (verbosity >= 2) fprintf ( stderr, "] " );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1995'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_44'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1995:
-// Line 3126:	
+// Line 3116:	
 
-// Line 3127:	      if (storedBlockCRC != computedBlockCRC) {
+// Line 3117:	      if (storedBlockCRC != computedBlockCRC) {
 
 	ldloc	'storedBlockCRC/6'
 	ldloc	'computedBlockCRC/8'
 	beq	'L_1996'
-// Line 3128:	         bsFinishedWithStream();
+// Line 3118:	         bsFinishedWithStream();
 
 	call	void 'bsFinishedWithStream'()
-// Line 3129:	         fclose ( zStream );
+// Line 3119:	         fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	pop
-// Line 3130:	         fprintf ( stderr, "\n%s, block %d: computed CRC does not match stored one\n",
+// Line 3120:	         fprintf ( stderr, "\n%s, block %d: computed CRC does not match stored one\n",
 
-// Line 3131:	                           inName, currBlockNo );
+// Line 3121:	                           inName, currBlockNo );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_49'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
@@ -15645,32 +15590,31 @@ L_1995:
 	ldloc	'currBlockNo/10'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, int32)
 	pop
-// Line 3132:	         return False;
+// Line 3122:	         return False;
 
 	ldc.i4	0
 	conv.u1
 	conv.i4
 	br	'L_1962'
 L_1996:
-// Line 3133:	      }
+// Line 3123:	      }
 
-// Line 3134:	
+// Line 3124:	
 
-// Line 3135:	      if (verbosity >= 2) fprintf ( stderr, "ok\n" );
+// Line 3125:	      if (verbosity >= 2) fprintf ( stderr, "ok\n" );
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_1999'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_50'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_1999:
-// Line 3136:	      computedCombinedCRC = (computedCombinedCRC << 1) | (computedCombinedCRC >> 31);
+// Line 3126:	      computedCombinedCRC = (computedCombinedCRC << 1) | (computedCombinedCRC >> 31);
 
 	ldloc	'computedCombinedCRC/9'
 	ldc.i4	1
@@ -15680,43 +15624,42 @@ L_1999:
 	shr.un
 	or
 	stloc	'computedCombinedCRC/9'
-// Line 3137:	      computedCombinedCRC ^= computedBlockCRC;
+// Line 3127:	      computedCombinedCRC ^= computedBlockCRC;
 
 	ldloc	'computedCombinedCRC/9'
 	ldloc	'computedBlockCRC/8'
 	xor
 	stloc	'computedCombinedCRC/9'
 L_1981:
-// Line 3084:	
+// Line 3074:	
 
-// Line 3085:	   while (True) {
+// Line 3075:	   while (True) {
 
 	br	'L_1979'
 L_1980:
-// Line 3138:	   };
+// Line 3128:	   };
 
-// Line 3139:	
+// Line 3129:	
 
-// Line 3140:	   storedCombinedCRC  = bsGetUInt32 ();
+// Line 3130:	   storedCombinedCRC  = bsGetUInt32 ();
 
 	call	int32 'bsGetUInt32'()
 	conv.u4
 	stloc	'storedCombinedCRC/7'
-// Line 3141:	   if (verbosity >= 2)
+// Line 3131:	   if (verbosity >= 2)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	2
 	blt	'L_2001'
-// Line 3142:	      fprintf ( stderr,
+// Line 3132:	      fprintf ( stderr,
 
-// Line 3143:	                "    combined CRCs: stored = 0x%x, computed = 0x%x\n    ",
+// Line 3133:	                "    combined CRCs: stored = 0x%x, computed = 0x%x\n    ",
 
-// Line 3144:	                storedCombinedCRC, computedCombinedCRC );
+// Line 3134:	                storedCombinedCRC, computedCombinedCRC );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_51'
 
 	ldloc	'storedCombinedCRC/7'
@@ -15724,47 +15667,46 @@ L_1980:
 	call	vararg int32 'fprintf'(void*, void*, ..., uint32, uint32)
 	pop
 L_2001:
-// Line 3145:	   if (storedCombinedCRC != computedCombinedCRC) {
+// Line 3135:	   if (storedCombinedCRC != computedCombinedCRC) {
 
 	ldloc	'storedCombinedCRC/7'
 	ldloc	'computedCombinedCRC/9'
 	beq	'L_2002'
-// Line 3146:	      bsFinishedWithStream();
+// Line 3136:	      bsFinishedWithStream();
 
 	call	void 'bsFinishedWithStream'()
-// Line 3147:	      fclose ( zStream );
+// Line 3137:	      fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	pop
-// Line 3148:	      fprintf ( stderr, "\n%s: computed CRC does not match stored one\n",
+// Line 3138:	      fprintf ( stderr, "\n%s: computed CRC does not match stored one\n",
 
-// Line 3149:	                        inName );
+// Line 3139:	                        inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_52'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3150:	      return False;
+// Line 3140:	      return False;
 
 	ldc.i4	0
 	conv.u1
 	conv.i4
 	br	'L_1962'
 L_2002:
-// Line 3151:	   }
+// Line 3141:	   }
 
-// Line 3152:	
+// Line 3142:	
 
-// Line 3153:	   bsFinishedWithStream ();
+// Line 3143:	   bsFinishedWithStream ();
 
 	call	void 'bsFinishedWithStream'()
-// Line 3154:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
+// Line 3144:	   ERROR_IF_NOT_ZERO ( ferror(zStream) );
 
 	ldarg	'zStream'
 	call	int32 'ferror'(void*)
@@ -15772,24 +15714,24 @@ L_2002:
 	beq	'L_2006'
 	call	void 'ioError'()
 L_2006:
-// Line 3155:	   retVal = fclose ( zStream );
+// Line 3145:	   retVal = fclose ( zStream );
 
 	ldarg	'zStream'
 	call	int32 'fclose'(void*)
 	stloc	'retVal/11'
-// Line 3156:	   ERROR_IF_EOF ( retVal );
+// Line 3146:	   ERROR_IF_EOF ( retVal );
 
 	ldloc	'retVal/11'
 	ldc.i4	-1
 	bne.un	'L_2009'
 	call	void 'ioError'()
 L_2009:
-// Line 3157:	   return True;
+// Line 3147:	   return True;
 
 	ldc.i4	1
 	conv.u1
 	conv.i4
-// Line 3158:	}
+// Line 3148:	}
 
 L_1962:
 	ret
@@ -15797,34 +15739,33 @@ L_1962:
 }
  .method public hidebysig static void 'cadvise'() cil managed
 {
-// Line 3167:	void cadvise ( void )
+// Line 3157:	void cadvise ( void )
 
-// Line 3168:	{
+// Line 3158:	{
 
 	.maxstack	2
 L_2019:
-// Line 3169:	   fprintf (
+// Line 3159:	   fprintf (
 
-// Line 3170:	      stderr,
+// Line 3160:	      stderr,
 
-// Line 3171:	      "\nIt is possible that the compressed file(s) have become corrupted.\n"
+// Line 3161:	      "\nIt is possible that the compressed file(s) have become corrupted.\n"
 
-// Line 3172:	        "You can use the -tvv option to test integrity of such files.\n\n"
+// Line 3162:	        "You can use the -tvv option to test integrity of such files.\n\n"
 
-// Line 3173:	        "You can use the `bzip2recover' program to *attempt* to recover\n"
+// Line 3163:	        "You can use the `bzip2recover' program to *attempt* to recover\n"
 
-// Line 3174:	        "data from undamaged sections of corrupted files.\n\n"
+// Line 3164:	        "data from undamaged sections of corrupted files.\n\n"
 
-// Line 3175:	    );
+// Line 3165:	    );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_53'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
-// Line 3176:	}
+// Line 3166:	}
 
 L_2020:
 	ret
@@ -15832,27 +15773,26 @@ L_2020:
 }
  .method public hidebysig static void 'showFileNames'() cil managed
 {
-// Line 3180:	void showFileNames ( void )
+// Line 3170:	void showFileNames ( void )
 
-// Line 3181:	{
+// Line 3171:	{
 
 	.maxstack	6
 L_2027:
-// Line 3182:	   fprintf (
+// Line 3172:	   fprintf (
 
-// Line 3183:	      stderr,
+// Line 3173:	      stderr,
 
-// Line 3184:	      "\tInput file = %s, output file = %s\n",
+// Line 3174:	      "\tInput file = %s, output file = %s\n",
 
-// Line 3185:	      inName==NULL  ? "(null)" : inName,
+// Line 3175:	      inName==NULL  ? "(null)" : inName,
 
-// Line 3186:	      outName==NULL ? "(null)" : outName
+// Line 3176:	      outName==NULL ? "(null)" : outName
 
-// Line 3187:	   );
+// Line 3177:	   );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_54'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
@@ -15879,7 +15819,7 @@ L_2034:
 L_2035:
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3188:	}
+// Line 3178:	}
 
 L_2028:
 	ret
@@ -15887,9 +15827,9 @@ L_2028:
 }
  .method public hidebysig static void 'cleanUpAndFail'(int32 'ec' ) cil managed
 {
-// Line 3192:	void cleanUpAndFail ( Int32 ec )
+// Line 3182:	void cleanUpAndFail ( Int32 ec )
 
-// Line 3193:	{
+// Line 3183:	{
 
 	.locals
 	(
@@ -15897,17 +15837,17 @@ L_2028:
 	)
 	.maxstack	7
 L_2039:
-// Line 3194:	   IntNative retVal;
+// Line 3184:	   IntNative retVal;
 
-// Line 3195:	
+// Line 3185:	
 
-// Line 3196:	
+// Line 3186:	
 
-// Line 3197:	   PRINTLOC;
+// Line 3187:	   PRINTLOC;
 
-// Line 3198:	
+// Line 3188:	
 
-// Line 3199:	   if ( srcMode == SM_F2F && opMode != OM_TEST ) {
+// Line 3189:	   if ( srcMode == SM_F2F && opMode != OM_TEST ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -15917,15 +15857,14 @@ L_2039:
 
 	ldc.i4	3
 	beq	'L_2042'
-// Line 3200:	      fprintf ( stderr, "%s: Deleting output file %s, if it exists.\n",
+// Line 3190:	      fprintf ( stderr, "%s: Deleting output file %s, if it exists.\n",
 
-// Line 3201:	                progName,
+// Line 3191:	                progName,
 
-// Line 3202:	                outName==NULL ? "(null)" : outName );
+// Line 3192:	                outName==NULL ? "(null)" : outName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_56'
 
 	ldsfld	void* 'progName'
@@ -15943,39 +15882,38 @@ L_2052:
 L_2053:
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3203:	      if (outputHandleJustInCase != NULL)
+// Line 3193:	      if (outputHandleJustInCase != NULL)
 
 	ldsfld	void* 'outputHandleJustInCase'
 
 	ldc.i4	0
 	beq	'L_2044'
-// Line 3204:	         fclose ( outputHandleJustInCase );
+// Line 3194:	         fclose ( outputHandleJustInCase );
 
 	ldsfld	void* 'outputHandleJustInCase'
 
 	call	int32 'fclose'(void*)
 	pop
 L_2044:
-// Line 3205:	      retVal = remove ( outName );
+// Line 3195:	      retVal = remove ( outName );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	call	int32 'remove'(void*)
 	stloc	'retVal/0'
-// Line 3206:	      if (retVal != 0)
+// Line 3196:	      if (retVal != 0)
 
 	ldloc	'retVal/0'
 	ldc.i4	0
 	beq	'L_2045'
-// Line 3207:	         fprintf ( stderr,
+// Line 3197:	         fprintf ( stderr,
 
-// Line 3208:	                   "%s: WARNING: deletion of output file (apparently) failed.\n",
+// Line 3198:	                   "%s: WARNING: deletion of output file (apparently) failed.\n",
 
-// Line 3209:	                   progName );
+// Line 3199:	                   progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_57'
 
 	ldsfld	void* 'progName'
@@ -15984,9 +15922,9 @@ L_2044:
 	pop
 L_2045:
 L_2042:
-// Line 3210:	   }
+// Line 3200:	   }
 
-// Line 3211:	   if (numFileNames > 0 && numFilesProcessed < numFileNames) {
+// Line 3201:	   if (numFileNames > 0 && numFilesProcessed < numFileNames) {
 
 	ldsfld	int32 'numFileNames'
 
@@ -15997,19 +15935,18 @@ L_2042:
 	ldsfld	int32 'numFileNames'
 
 	bge	'L_2047'
-// Line 3212:	      fprintf ( stderr,
+// Line 3202:	      fprintf ( stderr,
 
-// Line 3213:	                "%s: WARNING: some files have not been processed:\n"
+// Line 3203:	                "%s: WARNING: some files have not been processed:\n"
 
-// Line 3214:	                "\t%d specified on command line, %d not processed yet.\n\n",
+// Line 3204:	                "\t%d specified on command line, %d not processed yet.\n\n",
 
-// Line 3215:	                progName, numFileNames,
+// Line 3205:	                progName, numFileNames,
 
-// Line 3216:	                          numFileNames - numFilesProcessed );
+// Line 3206:	                          numFileNames - numFilesProcessed );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_58'
 
 	ldsfld	void* 'progName'
@@ -16024,13 +15961,13 @@ L_2042:
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, int32, int32)
 	pop
 L_2047:
-// Line 3217:	   }
+// Line 3207:	   }
 
-// Line 3218:	   exit ( ec );
+// Line 3208:	   exit ( ec );
 
 	ldarg	'ec'
 	call	void 'exit'(int32)
-// Line 3219:	}
+// Line 3209:	}
 
 L_2040:
 	ret
@@ -16038,27 +15975,26 @@ L_2040:
 }
  .method public hidebysig static void 'panic'(void* 's' ) cil managed
 {
-// Line 3223:	void panic ( Char* s )
+// Line 3213:	void panic ( Char* s )
 
-// Line 3224:	{
+// Line 3214:	{
 
 	.maxstack	4
 L_2057:
-// Line 3225:	   fprintf ( stderr,
+// Line 3215:	   fprintf ( stderr,
 
-// Line 3226:	             "\n%s: PANIC -- internal consistency error:\n"
+// Line 3216:	             "\n%s: PANIC -- internal consistency error:\n"
 
-// Line 3227:	             "\t%s\n"
+// Line 3217:	             "\t%s\n"
 
-// Line 3228:	             "\tThis is a BUG.  Please report it to me at:\n"
+// Line 3218:	             "\tThis is a BUG.  Please report it to me at:\n"
 
-// Line 3229:	             "\tjseward@acm.org\n",
+// Line 3219:	             "\tjseward@acm.org\n",
 
-// Line 3230:	             progName, s );
+// Line 3220:	             progName, s );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_59'
 
 	ldsfld	void* 'progName'
@@ -16066,14 +16002,14 @@ L_2057:
 	ldarg	's'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3231:	   showFileNames();
+// Line 3221:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3232:	   cleanUpAndFail( 3 );
+// Line 3222:	   cleanUpAndFail( 3 );
 
 	ldc.i4	3
 	call	void 'cleanUpAndFail'(int32)
-// Line 3233:	}
+// Line 3223:	}
 
 L_2058:
 	ret
@@ -16081,40 +16017,39 @@ L_2058:
 }
  .method public hidebysig static void 'badBGLengths'() cil managed
 {
-// Line 3237:	void badBGLengths ( void )
+// Line 3227:	void badBGLengths ( void )
 
-// Line 3238:	{
+// Line 3228:	{
 
 	.maxstack	3
 L_2065:
-// Line 3239:	   fprintf ( stderr,
+// Line 3229:	   fprintf ( stderr,
 
-// Line 3240:	             "\n%s: error when reading background model code lengths,\n"
+// Line 3230:	             "\n%s: error when reading background model code lengths,\n"
 
-// Line 3241:	             "\twhich probably means the compressed file is corrupted.\n",
+// Line 3231:	             "\twhich probably means the compressed file is corrupted.\n",
 
-// Line 3242:	             progName );
+// Line 3232:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_60'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3243:	   showFileNames();
+// Line 3233:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3244:	   cadvise();
+// Line 3234:	   cadvise();
 
 	call	void 'cadvise'()
-// Line 3245:	   cleanUpAndFail( 2 );
+// Line 3235:	   cleanUpAndFail( 2 );
 
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
-// Line 3246:	}
+// Line 3236:	}
 
 L_2066:
 	ret
@@ -16122,23 +16057,22 @@ L_2066:
 }
  .method public hidebysig static void 'crcError'(uint32 'crcStored' , uint32 'crcComputed' ) cil managed
 {
-// Line 3250:	void crcError ( UInt32 crcStored, UInt32 crcComputed )
+// Line 3240:	void crcError ( UInt32 crcStored, UInt32 crcComputed )
 
-// Line 3251:	{
+// Line 3241:	{
 
 	.maxstack	5
 L_2073:
-// Line 3252:	   fprintf ( stderr,
+// Line 3242:	   fprintf ( stderr,
 
-// Line 3253:	             "\n%s: Data integrity error when decompressing.\n"
+// Line 3243:	             "\n%s: Data integrity error when decompressing.\n"
 
-// Line 3254:	             "\tStored CRC = 0x%x, computed CRC = 0x%x\n",
+// Line 3244:	             "\tStored CRC = 0x%x, computed CRC = 0x%x\n",
 
-// Line 3255:	             progName, crcStored, crcComputed );
+// Line 3245:	             progName, crcStored, crcComputed );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_61'
 
 	ldsfld	void* 'progName'
@@ -16147,17 +16081,17 @@ L_2073:
 	ldarg	'crcComputed'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, uint32, uint32)
 	pop
-// Line 3256:	   showFileNames();
+// Line 3246:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3257:	   cadvise();
+// Line 3247:	   cadvise();
 
 	call	void 'cadvise'()
-// Line 3258:	   cleanUpAndFail( 2 );
+// Line 3248:	   cleanUpAndFail( 2 );
 
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
-// Line 3259:	}
+// Line 3249:	}
 
 L_2074:
 	ret
@@ -16165,45 +16099,44 @@ L_2074:
 }
  .method public hidebysig static void 'compressedStreamEOF'() cil managed
 {
-// Line 3263:	void compressedStreamEOF ( void )
+// Line 3253:	void compressedStreamEOF ( void )
 
-// Line 3264:	{
+// Line 3254:	{
 
 	.maxstack	3
 L_2081:
-// Line 3265:	   fprintf ( stderr,
+// Line 3255:	   fprintf ( stderr,
 
-// Line 3266:	             "\n%s: Compressed file ends unexpectedly;\n\t"
+// Line 3256:	             "\n%s: Compressed file ends unexpectedly;\n\t"
 
-// Line 3267:	             "perhaps it is corrupted?  *Possible* reason follows.\n",
+// Line 3257:	             "perhaps it is corrupted?  *Possible* reason follows.\n",
 
-// Line 3268:	             progName );
+// Line 3258:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_62'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3269:	   perror ( progName );
+// Line 3259:	   perror ( progName );
 
 	ldsfld	void* 'progName'
 
 	call	void 'perror'(void*)
-// Line 3270:	   showFileNames();
+// Line 3260:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3271:	   cadvise();
+// Line 3261:	   cadvise();
 
 	call	void 'cadvise'()
-// Line 3272:	   cleanUpAndFail( 2 );
+// Line 3262:	   cleanUpAndFail( 2 );
 
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
-// Line 3273:	}
+// Line 3263:	}
 
 L_2082:
 	ret
@@ -16211,40 +16144,39 @@ L_2082:
 }
  .method public hidebysig static void 'ioError'() cil managed
 {
-// Line 3277:	void ioError ( )
+// Line 3267:	void ioError ( )
 
-// Line 3278:	{
+// Line 3268:	{
 
 	.maxstack	3
 L_2089:
-// Line 3279:	   fprintf ( stderr,
+// Line 3269:	   fprintf ( stderr,
 
-// Line 3280:	             "\n%s: I/O or other error, bailing out.  Possible reason follows.\n",
+// Line 3270:	             "\n%s: I/O or other error, bailing out.  Possible reason follows.\n",
 
-// Line 3281:	             progName );
+// Line 3271:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_63'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3282:	   perror ( progName );
+// Line 3272:	   perror ( progName );
 
 	ldsfld	void* 'progName'
 
 	call	void 'perror'(void*)
-// Line 3283:	   showFileNames();
+// Line 3273:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3284:	   cleanUpAndFail( 1 );
+// Line 3274:	   cleanUpAndFail( 1 );
 
 	ldc.i4	1
 	call	void 'cleanUpAndFail'(int32)
-// Line 3285:	}
+// Line 3275:	}
 
 L_2090:
 	ret
@@ -16252,42 +16184,41 @@ L_2090:
 }
  .method public hidebysig static void 'blockOverrun'() cil managed
 {
-// Line 3289:	void blockOverrun ()
+// Line 3279:	void blockOverrun ()
 
-// Line 3290:	{
+// Line 3280:	{
 
 	.maxstack	3
 L_2097:
-// Line 3291:	   fprintf ( stderr,
+// Line 3281:	   fprintf ( stderr,
 
-// Line 3292:	             "\n%s: block overrun during decompression,\n"
+// Line 3282:	             "\n%s: block overrun during decompression,\n"
 
-// Line 3293:	             "\twhich probably means the compressed file\n"
+// Line 3283:	             "\twhich probably means the compressed file\n"
 
-// Line 3294:	             "\tis corrupted.\n",
+// Line 3284:	             "\tis corrupted.\n",
 
-// Line 3295:	             progName );
+// Line 3285:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_64'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3296:	   showFileNames();
+// Line 3286:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3297:	   cadvise();
+// Line 3287:	   cadvise();
 
 	call	void 'cadvise'()
-// Line 3298:	   cleanUpAndFail( 2 );
+// Line 3288:	   cleanUpAndFail( 2 );
 
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
-// Line 3299:	}
+// Line 3289:	}
 
 L_2098:
 	ret
@@ -16295,40 +16226,39 @@ L_2098:
 }
  .method public hidebysig static void 'badBlockHeader'() cil managed
 {
-// Line 3303:	void badBlockHeader ()
+// Line 3293:	void badBlockHeader ()
 
-// Line 3304:	{
+// Line 3294:	{
 
 	.maxstack	3
 L_2105:
-// Line 3305:	   fprintf ( stderr,
+// Line 3295:	   fprintf ( stderr,
 
-// Line 3306:	             "\n%s: bad block header in the compressed file,\n"
+// Line 3296:	             "\n%s: bad block header in the compressed file,\n"
 
-// Line 3307:	             "\twhich probably means it is corrupted.\n",
+// Line 3297:	             "\twhich probably means it is corrupted.\n",
 
-// Line 3308:	             progName );
+// Line 3298:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_65'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3309:	   showFileNames();
+// Line 3299:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3310:	   cadvise();
+// Line 3300:	   cadvise();
 
 	call	void 'cadvise'()
-// Line 3311:	   cleanUpAndFail( 2 );
+// Line 3301:	   cleanUpAndFail( 2 );
 
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
-// Line 3312:	}
+// Line 3302:	}
 
 L_2106:
 	ret
@@ -16336,40 +16266,39 @@ L_2106:
 }
  .method public hidebysig static void 'bitStreamEOF'() cil managed
 {
-// Line 3316:	void bitStreamEOF ()
+// Line 3306:	void bitStreamEOF ()
 
-// Line 3317:	{
+// Line 3307:	{
 
 	.maxstack	3
 L_2113:
-// Line 3318:	   fprintf ( stderr,
+// Line 3308:	   fprintf ( stderr,
 
-// Line 3319:	             "\n%s: read past the end of compressed data,\n"
+// Line 3309:	             "\n%s: read past the end of compressed data,\n"
 
-// Line 3320:	             "\twhich probably means it is corrupted.\n",
+// Line 3310:	             "\twhich probably means it is corrupted.\n",
 
-// Line 3321:	             progName );
+// Line 3311:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_66'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3322:	   showFileNames();
+// Line 3312:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3323:	   cadvise();
+// Line 3313:	   cadvise();
 
 	call	void 'cadvise'()
-// Line 3324:	   cleanUpAndFail( 2 );
+// Line 3314:	   cleanUpAndFail( 2 );
 
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
-// Line 3325:	}
+// Line 3315:	}
 
 L_2114:
 	ret
@@ -16377,32 +16306,31 @@ L_2114:
 }
  .method public hidebysig static void 'mySignalCatcher'(int32 'n' ) cil managed
 {
-// Line 3329:	void mySignalCatcher ( IntNative n )
+// Line 3319:	void mySignalCatcher ( IntNative n )
 
-// Line 3330:	{
+// Line 3320:	{
 
 	.maxstack	3
 L_2121:
-// Line 3331:	   fprintf ( stderr,
+// Line 3321:	   fprintf ( stderr,
 
-// Line 3332:	             "\n%s: Control-C (or similar) caught, quitting.\n",
+// Line 3322:	             "\n%s: Control-C (or similar) caught, quitting.\n",
 
-// Line 3333:	             progName );
+// Line 3323:	             progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_67'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3334:	   cleanUpAndFail(1);
+// Line 3324:	   cleanUpAndFail(1);
 
 	ldc.i4	1
 	call	void 'cleanUpAndFail'(int32)
-// Line 3335:	}
+// Line 3325:	}
 
 L_2122:
 	ret
@@ -16410,31 +16338,30 @@ L_2122:
 }
  .method public hidebysig static void 'mySIGSEGVorSIGBUScatcher'(int32 'n' ) cil managed
 {
-// Line 3339:	void mySIGSEGVorSIGBUScatcher ( IntNative n )
+// Line 3329:	void mySIGSEGVorSIGBUScatcher ( IntNative n )
 
-// Line 3340:	{
+// Line 3330:	{
 
 	.maxstack	3
 L_2129:
-// Line 3341:	   if (opMode == OM_Z)
+// Line 3331:	   if (opMode == OM_Z)
 
 	ldsfld	int32 'opMode'
 
 	ldc.i4	1
 	bne.un	'L_2132'
-// Line 3342:	      fprintf ( stderr,
+// Line 3332:	      fprintf ( stderr,
 
-// Line 3343:	                "\n%s: Caught a SIGSEGV or SIGBUS whilst compressing,\n"
+// Line 3333:	                "\n%s: Caught a SIGSEGV or SIGBUS whilst compressing,\n"
 
-// Line 3344:	                "\twhich probably indicates a bug in bzip2.  Please\n"
+// Line 3334:	                "\twhich probably indicates a bug in bzip2.  Please\n"
 
-// Line 3345:	                "\treport it to me at: jseward@acm.org\n",
+// Line 3335:	                "\treport it to me at: jseward@acm.org\n",
 
-// Line 3346:	                progName );
+// Line 3336:	                progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_68'
 
 	ldsfld	void* 'progName'
@@ -16443,21 +16370,20 @@ L_2129:
 	pop
 	br	'L_2133'
 L_2132:
-// Line 3347:	      else
+// Line 3337:	      else
 
-// Line 3348:	      fprintf ( stderr,
+// Line 3338:	      fprintf ( stderr,
 
-// Line 3349:	                "\n%s: Caught a SIGSEGV or SIGBUS whilst decompressing,\n"
+// Line 3339:	                "\n%s: Caught a SIGSEGV or SIGBUS whilst decompressing,\n"
 
-// Line 3350:	                "\twhich probably indicates that the compressed data\n"
+// Line 3340:	                "\twhich probably indicates that the compressed data\n"
 
-// Line 3351:	                "\tis corrupted.\n",
+// Line 3341:	                "\tis corrupted.\n",
 
-// Line 3352:	                progName );
+// Line 3342:	                progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_69'
 
 	ldsfld	void* 'progName'
@@ -16465,30 +16391,30 @@ L_2132:
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
 L_2133:
-// Line 3353:	
+// Line 3343:	
 
-// Line 3354:	   showFileNames();
+// Line 3344:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3355:	   if (opMode == OM_Z)
+// Line 3345:	   if (opMode == OM_Z)
 
 	ldsfld	int32 'opMode'
 
 	ldc.i4	1
 	bne.un	'L_2134'
-// Line 3356:	      cleanUpAndFail( 3 ); else
+// Line 3346:	      cleanUpAndFail( 3 ); else
 
 	ldc.i4	3
 	call	void 'cleanUpAndFail'(int32)
 	br	'L_2135'
 L_2134:
-// Line 3357:	      { cadvise(); cleanUpAndFail( 2 ); }
+// Line 3347:	      { cadvise(); cleanUpAndFail( 2 ); }
 
 	call	void 'cadvise'()
 	ldc.i4	2
 	call	void 'cleanUpAndFail'(int32)
 L_2135:
-// Line 3358:	}
+// Line 3348:	}
 
 L_2130:
 	ret
@@ -16496,27 +16422,26 @@ L_2130:
 }
  .method public hidebysig static void 'uncompressOutOfMemory'(int32 'draw' , int32 'blockSize' ) cil managed
 {
-// Line 3362:	void uncompressOutOfMemory ( Int32 draw, Int32 blockSize )
+// Line 3352:	void uncompressOutOfMemory ( Int32 draw, Int32 blockSize )
 
-// Line 3363:	{
+// Line 3353:	{
 
 	.maxstack	5
 L_2143:
-// Line 3364:	   fprintf ( stderr,
+// Line 3354:	   fprintf ( stderr,
 
-// Line 3365:	             "\n%s: Can't allocate enough memory for decompression.\n"
+// Line 3355:	             "\n%s: Can't allocate enough memory for decompression.\n"
 
-// Line 3366:	             "\tRequested %d bytes for a block size of %d.\n"
+// Line 3356:	             "\tRequested %d bytes for a block size of %d.\n"
 
-// Line 3367:	             "\tTry selecting space-economic decompress (with flag -s)\n"
+// Line 3357:	             "\tTry selecting space-economic decompress (with flag -s)\n"
 
-// Line 3368:	             "\tand failing that, find a machine with more memory.\n",
+// Line 3358:	             "\tand failing that, find a machine with more memory.\n",
 
-// Line 3369:	             progName, draw, blockSize );
+// Line 3359:	             progName, draw, blockSize );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_70'
 
 	ldsfld	void* 'progName'
@@ -16525,14 +16450,14 @@ L_2143:
 	ldarg	'blockSize'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, int32, int32)
 	pop
-// Line 3370:	   showFileNames();
+// Line 3360:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3371:	   cleanUpAndFail(1);
+// Line 3361:	   cleanUpAndFail(1);
 
 	ldc.i4	1
 	call	void 'cleanUpAndFail'(int32)
-// Line 3372:	}
+// Line 3362:	}
 
 L_2144:
 	ret
@@ -16540,25 +16465,24 @@ L_2144:
 }
  .method public hidebysig static void 'compressOutOfMemory'(int32 'draw' , int32 'blockSize' ) cil managed
 {
-// Line 3376:	void compressOutOfMemory ( Int32 draw, Int32 blockSize )
+// Line 3366:	void compressOutOfMemory ( Int32 draw, Int32 blockSize )
 
-// Line 3377:	{
+// Line 3367:	{
 
 	.maxstack	5
 L_2151:
-// Line 3378:	   fprintf ( stderr,
+// Line 3368:	   fprintf ( stderr,
 
-// Line 3379:	             "\n%s: Can't allocate enough memory for compression.\n"
+// Line 3369:	             "\n%s: Can't allocate enough memory for compression.\n"
 
-// Line 3380:	             "\tRequested %d bytes for a block size of %d.\n"
+// Line 3370:	             "\tRequested %d bytes for a block size of %d.\n"
 
-// Line 3381:	             "\tTry selecting a small block size (with flag -s).\n",
+// Line 3371:	             "\tTry selecting a small block size (with flag -s).\n",
 
-// Line 3382:	             progName, draw, blockSize );
+// Line 3372:	             progName, draw, blockSize );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_71'
 
 	ldsfld	void* 'progName'
@@ -16567,14 +16491,14 @@ L_2151:
 	ldarg	'blockSize'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, int32, int32)
 	pop
-// Line 3383:	   showFileNames();
+// Line 3373:	   showFileNames();
 
 	call	void 'showFileNames'()
-// Line 3384:	   cleanUpAndFail(1);
+// Line 3374:	   cleanUpAndFail(1);
 
 	ldc.i4	1
 	call	void 'cleanUpAndFail'(int32)
-// Line 3385:	}
+// Line 3375:	}
 
 L_2152:
 	ret
@@ -16582,9 +16506,9 @@ L_2152:
 }
  .method public hidebysig static void 'pad'(void* 's' ) cil managed
 {
-// Line 3393:	void pad ( Char *s )
+// Line 3383:	void pad ( Char *s )
 
-// Line 3394:	{
+// Line 3384:	{
 
 	.locals
 	(
@@ -16592,15 +16516,15 @@ L_2152:
 	)
 	.maxstack	3
 L_2159:
-// Line 3395:	   Int32 i;
+// Line 3385:	   Int32 i;
 
-// Line 3396:	
+// Line 3386:	
 
-// Line 3397:	   PRINTLOC;
+// Line 3387:	   PRINTLOC;
 
-// Line 3398:	
+// Line 3388:	
 
-// Line 3399:	   if ( (Int32)strlen(s) >= longestFileName ) return;
+// Line 3389:	   if ( (Int32)strlen(s) >= longestFileName ) return;
 
 	ldarg	's'
 	call	uint32 'strlen'(void*)
@@ -16613,11 +16537,10 @@ L_2162:
 	stloc	'i/0'
 	br	'L_2164'
 L_2163:
-// Line 3401:	      fprintf ( stderr, " " );
+// Line 3391:	      fprintf ( stderr, " " );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_72'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
@@ -16627,7 +16550,7 @@ L_2166:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 3400:	   for (i = 1; i <= longestFileName - (Int32)strlen(s); i++)
+// Line 3390:	   for (i = 1; i <= longestFileName - (Int32)strlen(s); i++)
 
 L_2164:
 	ldloc	'i/0'
@@ -16640,7 +16563,7 @@ L_2164:
 	add
 	ble	'L_2163'
 L_2165:
-// Line 3402:	}
+// Line 3392:	}
 
 L_2160:
 	ret
@@ -16648,9 +16571,9 @@ L_2160:
 }
  .method public hidebysig static uint8 'fileExists'(void* 'name' ) cil managed
 {
-// Line 3406:	Bool fileExists ( Char* name )
+// Line 3396:	Bool fileExists ( Char* name )
 
-// Line 3407:	{
+// Line 3397:	{
 
 	.locals
 	(
@@ -16659,7 +16582,7 @@ L_2160:
 	)
 	.maxstack	4
 L_2172:
-// Line 3408:	   FILE *tmp   = fopen ( name, "rb" );
+// Line 3398:	   FILE *tmp   = fopen ( name, "rb" );
 
 	ldloca	'tmp/0'
 	ldarg	'name'
@@ -16667,7 +16590,7 @@ L_2172:
 
 	call	void* 'fopen'(void*, void*)
 	stind.i4
-// Line 3409:	   Bool exists = (tmp != NULL);
+// Line 3399:	   Bool exists = (tmp != NULL);
 
 	ldloca	'exists/1'
 	ldloc	'tmp/0'
@@ -16677,7 +16600,7 @@ L_2172:
 	xor
 	conv.u1
 	stind.i1
-// Line 3410:	   if (tmp != NULL) fclose ( tmp );
+// Line 3400:	   if (tmp != NULL) fclose ( tmp );
 
 	ldloc	'tmp/0'
 	ldc.i4	0
@@ -16686,11 +16609,11 @@ L_2172:
 	call	int32 'fclose'(void*)
 	pop
 L_2175:
-// Line 3411:	   return exists;
+// Line 3401:	   return exists;
 
 	ldloc	'exists/1'
 	conv.i4
-// Line 3412:	}
+// Line 3402:	}
 
 L_2173:
 	ret
@@ -16698,9 +16621,9 @@ L_2173:
 }
  .method public hidebysig static uint8 'notABogStandardFile'(void* 'name' ) cil managed
 {
-// Line 3419:	Bool notABogStandardFile ( Char* name )
+// Line 3409:	Bool notABogStandardFile ( Char* name )
 
-// Line 3420:	{
+// Line 3410:	{
 
 	.locals
 	(
@@ -16709,17 +16632,17 @@ L_2173:
 	)
 	.maxstack	3
 L_2181:
-// Line 3422:	   struct MY_STAT statBuf;
+// Line 3412:	   struct MY_STAT statBuf;
 
-// Line 3423:	
+// Line 3413:	
 
-// Line 3424:	   i = MY_LSTAT ( name, &statBuf );
+// Line 3414:	   i = MY_LSTAT ( name, &statBuf );
 
 	ldarg	'name'
 	ldloca	'statBuf/1'
 	call	int32 '_stat'(void*, void*)
 	stloc	'i/0'
-// Line 3425:	   if (i != 0) return True;
+// Line 3415:	   if (i != 0) return True;
 
 	ldloc	'i/0'
 	ldc.i4	0
@@ -16729,7 +16652,7 @@ L_2181:
 	conv.i4
 	br	'L_2182'
 L_2184:
-// Line 3426:	   if (MY_S_IFREG(statBuf.st_mode)) return False;
+// Line 3416:	   if (MY_S_IFREG(statBuf.st_mode)) return False;
 
 	ldloca	'statBuf/1'
 	ldc.i4	6
@@ -16745,12 +16668,12 @@ L_2184:
 	conv.i4
 	br	'L_2182'
 L_2185:
-// Line 3427:	   return True;
+// Line 3417:	   return True;
 
 	ldc.i4	1
 	conv.u1
 	conv.i4
-// Line 3428:	}
+// Line 3418:	}
 
 L_2182:
 	ret
@@ -16758,9 +16681,9 @@ L_2182:
 }
  .method public hidebysig static void 'copyDateAndPermissions'(void* 'srcName' , void* 'dstName' ) cil managed
 {
-// Line 3432:	void copyDateAndPermissions ( Char *srcName, Char *dstName )
+// Line 3422:	void copyDateAndPermissions ( Char *srcName, Char *dstName )
 
-// Line 3433:	{
+// Line 3423:	{
 
 	.locals
 	(
@@ -16770,24 +16693,24 @@ L_2182:
 	)
 	.maxstack	3
 L_2191:
-// Line 3437:	   struct utimbuf uTimBuf;
+// Line 3427:	   struct utimbuf uTimBuf;
 
-// Line 3438:	
+// Line 3428:	
 
-// Line 3439:	   retVal = MY_LSTAT ( srcName, &statBuf );
+// Line 3429:	   retVal = MY_LSTAT ( srcName, &statBuf );
 
 	ldarg	'srcName'
 	ldloca	'statBuf/1'
 	call	int32 '_stat'(void*, void*)
 	stloc	'retVal/0'
-// Line 3440:	   ERROR_IF_NOT_ZERO ( retVal );
+// Line 3430:	   ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/0'
 	ldc.i4	0
 	beq	'L_2195'
 	call	void 'ioError'()
 L_2195:
-// Line 3441:	   uTimBuf.actime = statBuf.st_atime;
+// Line 3431:	   uTimBuf.actime = statBuf.st_atime;
 
 	ldloca	'uTimBuf/2'
 	ldloca	'statBuf/1'
@@ -16795,7 +16718,7 @@ L_2195:
 	add
 	ldind.i4
 	stind.i4
-// Line 3442:	   uTimBuf.modtime = statBuf.st_mtime;
+// Line 3432:	   uTimBuf.modtime = statBuf.st_mtime;
 
 	ldloca	'uTimBuf/2'
 	ldc.i4	4
@@ -16805,9 +16728,9 @@ L_2195:
 	add
 	ldind.i4
 	stind.i4
-// Line 3443:	
+// Line 3433:	
 
-// Line 3444:	   retVal = chmod ( dstName, statBuf.st_mode );
+// Line 3434:	   retVal = chmod ( dstName, statBuf.st_mode );
 
 	ldarg	'dstName'
 	ldloca	'statBuf/1'
@@ -16817,29 +16740,29 @@ L_2195:
 	conv.i4
 	call	int32 '_chmod'(void*, int32)
 	stloc	'retVal/0'
-// Line 3445:	   ERROR_IF_NOT_ZERO ( retVal );
+// Line 3435:	   ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/0'
 	ldc.i4	0
 	beq	'L_2198'
 	call	void 'ioError'()
 L_2198:
-// Line 3446:	   retVal = utime ( dstName, &uTimBuf );
+// Line 3436:	   retVal = utime ( dstName, &uTimBuf );
 
 	ldarg	'dstName'
 	ldloca	'uTimBuf/2'
 	call	int32 'utime'(void*, void*)
 	stloc	'retVal/0'
-// Line 3447:	   ERROR_IF_NOT_ZERO ( retVal );
+// Line 3437:	   ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/0'
 	ldc.i4	0
 	beq	'L_2201'
 	call	void 'ioError'()
 L_2201:
-// Line 3448:	   #endif
+// Line 3438:	   #endif
 
-// Line 3449:	}
+// Line 3439:	}
 
 L_2192:
 	ret
@@ -16847,9 +16770,9 @@ L_2192:
 }
  .method public hidebysig static uint8 'endsInBz2'(void* 'name' ) cil managed
 {
-// Line 3453:	Bool endsInBz2 ( Char* name )
+// Line 3443:	Bool endsInBz2 ( Char* name )
 
-// Line 3454:	{
+// Line 3444:	{
 
 	.locals
 	(
@@ -16857,14 +16780,14 @@ L_2192:
 	)
 	.maxstack	3
 L_2208:
-// Line 3455:	   Int32 n = strlen ( name );
+// Line 3445:	   Int32 n = strlen ( name );
 
 	ldloca	'n/0'
 	ldarg	'name'
 	call	uint32 'strlen'(void*)
 	conv.i4
 	stind.i4
-// Line 3456:	   if (n <= 4) return False;
+// Line 3446:	   if (n <= 4) return False;
 
 	ldloc	'n/0'
 	ldc.i4	4
@@ -16874,15 +16797,15 @@ L_2208:
 	conv.i4
 	br	'L_2209'
 L_2211:
-// Line 3457:	   return
+// Line 3447:	   return
 
-// Line 3458:	      (name[n-4] == '.' &&
+// Line 3448:	      (name[n-4] == '.' &&
 
-// Line 3459:	       name[n-3] == 'b' &&
+// Line 3449:	       name[n-3] == 'b' &&
 
-// Line 3460:	       name[n-2] == 'z' &&
+// Line 3450:	       name[n-2] == 'z' &&
 
-// Line 3461:	       name[n-1] == '2');
+// Line 3451:	       name[n-1] == '2');
 
 	ldloc	'n/0'
 	ldc.i4	4
@@ -16928,7 +16851,7 @@ L_2214:
 L_2215:
 	conv.u1
 	conv.i4
-// Line 3462:	}
+// Line 3452:	}
 
 L_2209:
 	ret
@@ -16936,9 +16859,9 @@ L_2209:
 }
  .method public hidebysig static uint8 'containsDubiousChars'(void* 'name' ) cil managed
 {
-// Line 3466:	Bool containsDubiousChars ( Char* name )
+// Line 3456:	Bool containsDubiousChars ( Char* name )
 
-// Line 3467:	{
+// Line 3457:	{
 
 	.locals
 	(
@@ -16946,14 +16869,14 @@ L_2209:
 	)
 	.maxstack	2
 L_2220:
-// Line 3468:	   Bool cdc = False;
+// Line 3458:	   Bool cdc = False;
 
 	ldloca	'cdc/0'
 	ldc.i4	0
 	stind.i1
 	br	'L_2224'
 L_2223:
-// Line 3470:	      if (*name == '?' || *name == '*') cdc = True;
+// Line 3460:	      if (*name == '?' || *name == '*') cdc = True;
 
 	ldarg	'name'
 	ldind.i1
@@ -16974,7 +16897,7 @@ L_2226:
 	ldc.i4	1
 	add
 	starg	'name'
-// Line 3469:	   for (; *name != '\0'; name++)
+// Line 3459:	   for (; *name != '\0'; name++)
 
 L_2224:
 	ldarg	'name'
@@ -16983,11 +16906,11 @@ L_2224:
 	ldc.i4	0
 	bne.un	'L_2223'
 L_2225:
-// Line 3471:	   return cdc;
+// Line 3461:	   return cdc;
 
 	ldloc	'cdc/0'
 	conv.i4
-// Line 3472:	}
+// Line 3462:	}
 
 L_2221:
 	ret
@@ -16995,9 +16918,9 @@ L_2221:
 }
  .method public hidebysig static void 'compress'(void* 'name' ) cil managed
 {
-// Line 3476:	void compress ( Char *name )
+// Line 3466:	void compress ( Char *name )
 
-// Line 3477:	{
+// Line 3467:	{
 
 	.locals
 	(
@@ -17009,17 +16932,17 @@ L_2221:
 	)
 	.maxstack	4
 L_2234:
-// Line 3479:	   FILE *outStr;
+// Line 3469:	   FILE *outStr;
 
-// Line 3480:	
+// Line 3470:	
 
-// Line 3481:	
+// Line 3471:	
 
-// Line 3482:	   PRINTLOC;
+// Line 3472:	   PRINTLOC;
 
-// Line 3483:	
+// Line 3473:	
 
-// Line 3484:	   if (name == NULL && srcMode != SM_I2O)
+// Line 3474:	   if (name == NULL && srcMode != SM_I2O)
 
 	ldarg	'name'
 	ldc.i4	0
@@ -17028,15 +16951,15 @@ L_2234:
 
 	ldc.i4	1
 	beq	'L_2237'
-// Line 3485:	      panic ( "compress: bad modes\n" );
+// Line 3475:	      panic ( "compress: bad modes\n" );
 
 	ldsflda	valuetype 'int8[]' 'L_74'
 
 	call	void 'panic'(void*)
 L_2237:
-// Line 3486:	
+// Line 3476:	
 
-// Line 3487:	   switch (srcMode) {
+// Line 3477:	   switch (srcMode) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17052,7 +16975,7 @@ L_2237:
 	beq	'L_2241'
 	br	'L_2244'
 L_2240:
-// Line 3488:	      case SM_I2O: strcpy ( inName, "(stdin)" );
+// Line 3478:	      case SM_I2O: strcpy ( inName, "(stdin)" );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -17060,7 +16983,7 @@ L_2240:
 
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3489:	                   strcpy ( outName, "(stdout)" ); break;
+// Line 3479:	                   strcpy ( outName, "(stdout)" ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17070,21 +16993,21 @@ L_2240:
 	pop
 	br	'L_2238'
 L_2241:
-// Line 3490:	      case SM_F2F: strcpy ( inName, name );
+// Line 3480:	      case SM_F2F: strcpy ( inName, name );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3491:	                   strcpy ( outName, name );
+// Line 3481:	                   strcpy ( outName, name );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3492:	                   strcat ( outName, ".bz2" ); break;
+// Line 3482:	                   strcat ( outName, ".bz2" ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17094,14 +17017,14 @@ L_2241:
 	pop
 	br	'L_2238'
 L_2242:
-// Line 3493:	      case SM_F2O: strcpy ( inName, name );
+// Line 3483:	      case SM_F2O: strcpy ( inName, name );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3494:	                   strcpy ( outName, "(stdout)" ); break;
+// Line 3484:	                   strcpy ( outName, "(stdout)" ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17111,11 +17034,11 @@ L_2242:
 	pop
 L_2244:
 L_2238:
-// Line 3495:	   }
+// Line 3485:	   }
 
-// Line 3496:	
+// Line 3486:	
 
-// Line 3497:	   if ( srcMode != SM_I2O && containsDubiousChars ( inName ) ) {
+// Line 3487:	   if ( srcMode != SM_I2O && containsDubiousChars ( inName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17126,13 +17049,12 @@ L_2238:
 	call	uint8 'containsDubiousChars'(void*)
 	ldc.i4	0
 	beq	'L_2245'
-// Line 3498:	      fprintf ( stderr, "%s: There are no files matching `%s'.\n",
+// Line 3488:	      fprintf ( stderr, "%s: There are no files matching `%s'.\n",
 
-// Line 3499:	      progName, inName );
+// Line 3489:	      progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_78'
 
 	ldsfld	void* 'progName'
@@ -17141,13 +17063,13 @@ L_2238:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3500:	      return;
+// Line 3490:	      return;
 
 	br	'L_2235'
 L_2245:
-// Line 3501:	   }
+// Line 3491:	   }
 
-// Line 3502:	   if ( srcMode != SM_I2O && !fileExists ( inName ) ) {
+// Line 3492:	   if ( srcMode != SM_I2O && !fileExists ( inName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17158,13 +17080,12 @@ L_2245:
 	call	uint8 'fileExists'(void*)
 	ldc.i4	0
 	bne.un	'L_2248'
-// Line 3503:	      fprintf ( stderr, "%s: Input file %s doesn't exist, skipping.\n",
+// Line 3493:	      fprintf ( stderr, "%s: Input file %s doesn't exist, skipping.\n",
 
-// Line 3504:	                progName, inName );
+// Line 3494:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_79'
 
 	ldsfld	void* 'progName'
@@ -17173,13 +17094,13 @@ L_2245:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3505:	      return;
+// Line 3495:	      return;
 
 	br	'L_2235'
 L_2248:
-// Line 3506:	   }
+// Line 3496:	   }
 
-// Line 3507:	   if ( srcMode != SM_I2O && endsInBz2 ( inName )) {
+// Line 3497:	   if ( srcMode != SM_I2O && endsInBz2 ( inName )) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17190,13 +17111,12 @@ L_2248:
 	call	uint8 'endsInBz2'(void*)
 	ldc.i4	0
 	beq	'L_2251'
-// Line 3508:	      fprintf ( stderr, "%s: Input file name %s ends in `.bz2', skipping.\n",
+// Line 3498:	      fprintf ( stderr, "%s: Input file name %s ends in `.bz2', skipping.\n",
 
-// Line 3509:	                progName, inName );
+// Line 3499:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_80'
 
 	ldsfld	void* 'progName'
@@ -17205,13 +17125,13 @@ L_2248:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3510:	      return;
+// Line 3500:	      return;
 
 	br	'L_2235'
 L_2251:
-// Line 3511:	   }
+// Line 3501:	   }
 
-// Line 3512:	   if ( srcMode != SM_I2O && notABogStandardFile ( inName )) {
+// Line 3502:	   if ( srcMode != SM_I2O && notABogStandardFile ( inName )) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17222,13 +17142,12 @@ L_2251:
 	call	uint8 'notABogStandardFile'(void*)
 	ldc.i4	0
 	beq	'L_2254'
-// Line 3513:	      fprintf ( stderr, "%s: Input file %s is not a normal file, skipping.\n",
+// Line 3503:	      fprintf ( stderr, "%s: Input file %s is not a normal file, skipping.\n",
 
-// Line 3514:	                progName, inName );
+// Line 3504:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_81'
 
 	ldsfld	void* 'progName'
@@ -17237,13 +17156,13 @@ L_2251:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3515:	      return;
+// Line 3505:	      return;
 
 	br	'L_2235'
 L_2254:
-// Line 3516:	   }
+// Line 3506:	   }
 
-// Line 3517:	   if ( srcMode == SM_F2F && fileExists ( outName ) ) {
+// Line 3507:	   if ( srcMode == SM_F2F && fileExists ( outName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17254,13 +17173,12 @@ L_2254:
 	call	uint8 'fileExists'(void*)
 	ldc.i4	0
 	beq	'L_2257'
-// Line 3518:	      fprintf ( stderr, "%s: Output file %s already exists, skipping.\n",
+// Line 3508:	      fprintf ( stderr, "%s: Output file %s already exists, skipping.\n",
 
-// Line 3519:	                progName, outName );
+// Line 3509:	                progName, outName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_82'
 
 	ldsfld	void* 'progName'
@@ -17269,13 +17187,13 @@ L_2254:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3520:	      return;
+// Line 3510:	      return;
 
 	br	'L_2235'
 L_2257:
-// Line 3521:	   }
+// Line 3511:	   }
 
-// Line 3522:	   switch ( srcMode ) {
+// Line 3512:	   switch ( srcMode ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17290,52 +17208,49 @@ L_2257:
 	ldc.i4	3
 	beq	'L_2273'
 	br	'L_2280'
-// Line 3523:	
+// Line 3513:	
 
 L_2262:
-// Line 3524:	      case SM_I2O:
+// Line 3514:	      case SM_I2O:
 
-// Line 3525:	         inStr = stdin;
+// Line 3515:	         inStr = stdin;
 
-	call	void* '__iob_func'()
+	ldsfld	void* '__stdin'
+
 	stloc	'inStr/2'
-// Line 3526:	         outStr = stdout;
+// Line 3516:	         outStr = stdout;
 
-	call	void* '__iob_func'()
-	ldc.i4	32
-	add
+	ldsfld	void* '__stdout'
+
 	stloc	'outStr/3'
-// Line 3527:	         if ( isatty ( fileno ( stdout ) ) ) {
+// Line 3517:	         if ( isatty ( fileno ( stdout ) ) ) {
 
-	call	void* '__iob_func'()
-	ldc.i4	40
-	add
-	ldind.i4
+	ldsfld	void* '__stdout'
+
+	call	int32 '_fileno'(void*)
 	call	int32 '_isatty'(int32)
 	ldc.i4	0
 	beq	'L_2260'
-// Line 3528:	            fprintf ( stderr,
+// Line 3518:	            fprintf ( stderr,
 
-// Line 3529:	                      "%s: I won't write compressed data to a terminal.\n",
+// Line 3519:	                      "%s: I won't write compressed data to a terminal.\n",
 
-// Line 3530:	                      progName );
+// Line 3520:	                      progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_83'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3531:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+// Line 3521:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
 
-// Line 3532:	                              progName, progName );
+// Line 3522:	                              progName, progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_84'
 
 	ldsfld	void* 'progName'
@@ -17344,21 +17259,21 @@ L_2262:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3533:	            return;
+// Line 3523:	            return;
 
 	br	'L_2235'
 L_2263:
-// Line 3534:	         };
+// Line 3524:	         };
 
-// Line 3535:	         break;
+// Line 3525:	         break;
 
 	br	'L_2260'
 L_2266:
-// Line 3536:	
+// Line 3526:	
 
-// Line 3537:	      case SM_F2O:
+// Line 3527:	      case SM_F2O:
 
-// Line 3538:	         inStr = fopen ( inName, "rb" );
+// Line 3528:	         inStr = fopen ( inName, "rb" );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -17366,43 +17281,39 @@ L_2266:
 
 	call	void* 'fopen'(void*, void*)
 	stloc	'inStr/2'
-// Line 3539:	         outStr = stdout;
+// Line 3529:	         outStr = stdout;
 
-	call	void* '__iob_func'()
-	ldc.i4	32
-	add
+	ldsfld	void* '__stdout'
+
 	stloc	'outStr/3'
-// Line 3540:	         if ( isatty ( fileno ( stdout ) ) ) {
+// Line 3530:	         if ( isatty ( fileno ( stdout ) ) ) {
 
-	call	void* '__iob_func'()
-	ldc.i4	40
-	add
-	ldind.i4
+	ldsfld	void* '__stdout'
+
+	call	int32 '_fileno'(void*)
 	call	int32 '_isatty'(int32)
 	ldc.i4	0
 	beq	'L_2267'
-// Line 3541:	            fprintf ( stderr,
+// Line 3531:	            fprintf ( stderr,
 
-// Line 3542:	                      "%s: I won't write compressed data to a terminal.\n",
+// Line 3532:	                      "%s: I won't write compressed data to a terminal.\n",
 
-// Line 3543:	                      progName );
+// Line 3533:	                      progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_83'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3544:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+// Line 3534:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
 
-// Line 3545:	                              progName, progName );
+// Line 3535:	                              progName, progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_84'
 
 	ldsfld	void* 'progName'
@@ -17411,24 +17322,23 @@ L_2266:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3546:	            return;
+// Line 3536:	            return;
 
 	br	'L_2235'
 L_2267:
-// Line 3547:	         };
+// Line 3537:	         };
 
-// Line 3548:	         if ( inStr == NULL ) {
+// Line 3538:	         if ( inStr == NULL ) {
 
 	ldloc	'inStr/2'
 	ldc.i4	0
 	bne.un	'L_2260'
-// Line 3549:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
+// Line 3539:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
 
-// Line 3550:	                      progName, inName );
+// Line 3540:	                      progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_85'
 
 	ldsfld	void* 'progName'
@@ -17437,21 +17347,21 @@ L_2267:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3551:	            return;
+// Line 3541:	            return;
 
 	br	'L_2235'
 L_2270:
-// Line 3552:	         };
+// Line 3542:	         };
 
-// Line 3553:	         break;
+// Line 3543:	         break;
 
 	br	'L_2260'
 L_2273:
-// Line 3554:	
+// Line 3544:	
 
-// Line 3555:	      case SM_F2F:
+// Line 3545:	      case SM_F2F:
 
-// Line 3556:	         inStr = fopen ( inName, "rb" );
+// Line 3546:	         inStr = fopen ( inName, "rb" );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -17459,7 +17369,7 @@ L_2273:
 
 	call	void* 'fopen'(void*, void*)
 	stloc	'inStr/2'
-// Line 3557:	         outStr = fopen ( outName, "wb" );
+// Line 3547:	         outStr = fopen ( outName, "wb" );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17467,18 +17377,17 @@ L_2273:
 
 	call	void* 'fopen'(void*, void*)
 	stloc	'outStr/3'
-// Line 3558:	         if ( outStr == NULL) {
+// Line 3548:	         if ( outStr == NULL) {
 
 	ldloc	'outStr/3'
 	ldc.i4	0
 	bne.un	'L_2274'
-// Line 3559:	            fprintf ( stderr, "%s: Can't create output file %s, skipping.\n",
+// Line 3549:	            fprintf ( stderr, "%s: Can't create output file %s, skipping.\n",
 
-// Line 3560:	                      progName, outName );
+// Line 3550:	                      progName, outName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_87'
 
 	ldsfld	void* 'progName'
@@ -17487,24 +17396,23 @@ L_2273:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3561:	            return;
+// Line 3551:	            return;
 
 	br	'L_2235'
 L_2274:
-// Line 3562:	         }
+// Line 3552:	         }
 
-// Line 3563:	         if ( inStr == NULL ) {
+// Line 3553:	         if ( inStr == NULL ) {
 
 	ldloc	'inStr/2'
 	ldc.i4	0
 	bne.un	'L_2260'
-// Line 3564:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
+// Line 3554:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
 
-// Line 3565:	                      progName, inName );
+// Line 3555:	                      progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_85'
 
 	ldsfld	void* 'progName'
@@ -17513,112 +17421,110 @@ L_2274:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3566:	            return;
+// Line 3556:	            return;
 
 	br	'L_2235'
 L_2277:
-// Line 3567:	         };
+// Line 3557:	         };
 
-// Line 3568:	         break;
+// Line 3558:	         break;
 
 	br	'L_2260'
 L_2280:
-// Line 3569:	
+// Line 3559:	
 
-// Line 3570:	      default:
+// Line 3560:	      default:
 
-// Line 3571:	         panic ( "compress: bad srcMode" );
+// Line 3561:	         panic ( "compress: bad srcMode" );
 
 	ldsflda	valuetype 'int8[]' 'L_88'
 
 	call	void 'panic'(void*)
-// Line 3572:	         break;
+// Line 3562:	         break;
 
 L_2260:
-// Line 3573:	   }
+// Line 3563:	   }
 
-// Line 3574:	   if (verbosity >= 1) {
+// Line 3564:	   if (verbosity >= 1) {
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	1
 	blt	'L_2282'
-// Line 3575:	      fprintf ( stderr,  "  %s: ", inName );
+// Line 3565:	      fprintf ( stderr,  "  %s: ", inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_89'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3576:	      pad ( inName );
+// Line 3566:	      pad ( inName );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	void 'pad'(void*)
-// Line 3577:	      fflush ( stderr );
+// Line 3567:	      fflush ( stderr );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	call	int32 'fflush'(void*)
 	pop
 L_2282:
-// Line 3578:	   }
+// Line 3568:	   }
 
-// Line 3579:	
+// Line 3569:	
 
-// Line 3580:	    
+// Line 3570:	    
 
-// Line 3581:	   outputHandleJustInCase = outStr;
+// Line 3571:	   outputHandleJustInCase = outStr;
 
 	ldloc	'outStr/3'
 	stsfld	void* 'outputHandleJustInCase'
 
-// Line 3582:	   compressStream ( inStr, outStr );
+// Line 3572:	   compressStream ( inStr, outStr );
 
 	ldloc	'inStr/2'
 	ldloc	'outStr/3'
 	call	void 'compressStream'(void*, void*)
-// Line 3583:	   outputHandleJustInCase = NULL;
+// Line 3573:	   outputHandleJustInCase = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'outputHandleJustInCase'
 
-// Line 3584:	
+// Line 3574:	
 
-// Line 3585:	    
+// Line 3575:	    
 
-// Line 3586:	   if ( srcMode == SM_F2F ) {
+// Line 3576:	   if ( srcMode == SM_F2F ) {
 
 	ldsfld	int32 'srcMode'
 
 	ldc.i4	3
 	bne.un	'L_2285'
-// Line 3587:	      copyDateAndPermissions ( inName, outName );
+// Line 3577:	      copyDateAndPermissions ( inName, outName );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	call	void 'copyDateAndPermissions'(void*, void*)
-// Line 3588:	      if ( !keepInputFiles ) {
+// Line 3578:	      if ( !keepInputFiles ) {
 
 	ldsfld	uint8 'keepInputFiles'
 
 	ldc.i4	0
 	bne.un	'L_2287'
-// Line 3589:	         IntNative retVal = remove ( inName );
+// Line 3579:	         IntNative retVal = remove ( inName );
 
 	ldloca	'retVal/4'
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	int32 'remove'(void*)
 	stind.i4
-// Line 3590:	         ERROR_IF_NOT_ZERO ( retVal );
+// Line 3580:	         ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/4'
 	ldc.i4	0
@@ -17626,12 +17532,12 @@ L_2282:
 	call	void 'ioError'()
 L_2290:
 L_2287:
-// Line 3591:	      }
+// Line 3581:	      }
 
 L_2285:
-// Line 3592:	   }
+// Line 3582:	   }
 
-// Line 3593:	}
+// Line 3583:	}
 
 L_2235:
 	ret
@@ -17639,9 +17545,9 @@ L_2235:
 }
  .method public hidebysig static void 'uncompress'(void* 'name' ) cil managed
 {
-// Line 3597:	void uncompress ( Char *name )
+// Line 3587:	void uncompress ( Char *name )
 
-// Line 3598:	{
+// Line 3588:	{
 
 	.locals
 	(
@@ -17655,17 +17561,17 @@ L_2235:
 	)
 	.maxstack	4
 L_2299:
-// Line 3601:	   Bool magicNumberOK;
+// Line 3591:	   Bool magicNumberOK;
 
-// Line 3602:	
+// Line 3592:	
 
-// Line 3603:	
+// Line 3593:	
 
-// Line 3604:	   PRINTLOC;
+// Line 3594:	   PRINTLOC;
 
-// Line 3605:	
+// Line 3595:	
 
-// Line 3606:	   if (name == NULL && srcMode != SM_I2O)
+// Line 3596:	   if (name == NULL && srcMode != SM_I2O)
 
 	ldarg	'name'
 	ldc.i4	0
@@ -17674,15 +17580,15 @@ L_2299:
 
 	ldc.i4	1
 	beq	'L_2302'
-// Line 3607:	      panic ( "uncompress: bad modes\n" );
+// Line 3597:	      panic ( "uncompress: bad modes\n" );
 
 	ldsflda	valuetype 'int8[]' 'L_90'
 
 	call	void 'panic'(void*)
 L_2302:
-// Line 3608:	
+// Line 3598:	
 
-// Line 3609:	   switch (srcMode) {
+// Line 3599:	   switch (srcMode) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17698,7 +17604,7 @@ L_2302:
 	beq	'L_2306'
 	br	'L_2310'
 L_2305:
-// Line 3610:	      case SM_I2O: strcpy ( inName, "(stdin)" );
+// Line 3600:	      case SM_I2O: strcpy ( inName, "(stdin)" );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -17706,7 +17612,7 @@ L_2305:
 
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3611:	                   strcpy ( outName, "(stdout)" ); break;
+// Line 3601:	                   strcpy ( outName, "(stdout)" ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17716,28 +17622,28 @@ L_2305:
 	pop
 	br	'L_2303'
 L_2306:
-// Line 3612:	      case SM_F2F: strcpy ( inName, name );
+// Line 3602:	      case SM_F2F: strcpy ( inName, name );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3613:	                   strcpy ( outName, name );
+// Line 3603:	                   strcpy ( outName, name );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3614:	                   if (endsInBz2 ( outName ))
+// Line 3604:	                   if (endsInBz2 ( outName ))
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	call	uint8 'endsInBz2'(void*)
 	ldc.i4	0
 	beq	'L_2303'
-// Line 3615:	                      outName [ strlen ( outName ) - 4 ] = '\0';
+// Line 3605:	                      outName [ strlen ( outName ) - 4 ] = '\0';
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17751,18 +17657,18 @@ L_2306:
 	ldc.i4	0
 	stind.i1
 L_2307:
-// Line 3616:	                   break;
+// Line 3606:	                   break;
 
 	br	'L_2303'
 L_2308:
-// Line 3617:	      case SM_F2O: strcpy ( inName, name );
+// Line 3607:	      case SM_F2O: strcpy ( inName, name );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3618:	                   strcpy ( outName, "(stdout)" ); break;
+// Line 3608:	                   strcpy ( outName, "(stdout)" ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -17772,11 +17678,11 @@ L_2308:
 	pop
 L_2310:
 L_2303:
-// Line 3619:	   }
+// Line 3609:	   }
 
-// Line 3620:	
+// Line 3610:	
 
-// Line 3621:	   if ( srcMode != SM_I2O && containsDubiousChars ( inName ) ) {
+// Line 3611:	   if ( srcMode != SM_I2O && containsDubiousChars ( inName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17787,13 +17693,12 @@ L_2303:
 	call	uint8 'containsDubiousChars'(void*)
 	ldc.i4	0
 	beq	'L_2311'
-// Line 3622:	      fprintf ( stderr, "%s: There are no files matching `%s'.\n",
+// Line 3612:	      fprintf ( stderr, "%s: There are no files matching `%s'.\n",
 
-// Line 3623:	                progName, inName );
+// Line 3613:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_78'
 
 	ldsfld	void* 'progName'
@@ -17802,13 +17707,13 @@ L_2303:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3624:	      return;
+// Line 3614:	      return;
 
 	br	'L_2300'
 L_2311:
-// Line 3625:	   }
+// Line 3615:	   }
 
-// Line 3626:	   if ( srcMode != SM_I2O && !fileExists ( inName ) ) {
+// Line 3616:	   if ( srcMode != SM_I2O && !fileExists ( inName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17819,13 +17724,12 @@ L_2311:
 	call	uint8 'fileExists'(void*)
 	ldc.i4	0
 	bne.un	'L_2314'
-// Line 3627:	      fprintf ( stderr, "%s: Input file %s doesn't exist, skipping.\n",
+// Line 3617:	      fprintf ( stderr, "%s: Input file %s doesn't exist, skipping.\n",
 
-// Line 3628:	                progName, inName );
+// Line 3618:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_79'
 
 	ldsfld	void* 'progName'
@@ -17834,13 +17738,13 @@ L_2311:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3629:	      return;
+// Line 3619:	      return;
 
 	br	'L_2300'
 L_2314:
-// Line 3630:	   }
+// Line 3620:	   }
 
-// Line 3631:	   if ( srcMode != SM_I2O && !endsInBz2 ( inName )) {
+// Line 3621:	   if ( srcMode != SM_I2O && !endsInBz2 ( inName )) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17851,15 +17755,14 @@ L_2314:
 	call	uint8 'endsInBz2'(void*)
 	ldc.i4	0
 	bne.un	'L_2317'
-// Line 3632:	      fprintf ( stderr,
+// Line 3622:	      fprintf ( stderr,
 
-// Line 3633:	                "%s: Input file name %s doesn't end in `.bz2', skipping.\n",
+// Line 3623:	                "%s: Input file name %s doesn't end in `.bz2', skipping.\n",
 
-// Line 3634:	                progName, inName );
+// Line 3624:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_91'
 
 	ldsfld	void* 'progName'
@@ -17868,13 +17771,13 @@ L_2314:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3635:	      return;
+// Line 3625:	      return;
 
 	br	'L_2300'
 L_2317:
-// Line 3636:	   }
+// Line 3626:	   }
 
-// Line 3637:	   if ( srcMode != SM_I2O && notABogStandardFile ( inName )) {
+// Line 3627:	   if ( srcMode != SM_I2O && notABogStandardFile ( inName )) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17885,13 +17788,12 @@ L_2317:
 	call	uint8 'notABogStandardFile'(void*)
 	ldc.i4	0
 	beq	'L_2320'
-// Line 3638:	      fprintf ( stderr, "%s: Input file %s is not a normal file, skipping.\n",
+// Line 3628:	      fprintf ( stderr, "%s: Input file %s is not a normal file, skipping.\n",
 
-// Line 3639:	                progName, inName );
+// Line 3629:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_81'
 
 	ldsfld	void* 'progName'
@@ -17900,13 +17802,13 @@ L_2317:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3640:	      return;
+// Line 3630:	      return;
 
 	br	'L_2300'
 L_2320:
-// Line 3641:	   }
+// Line 3631:	   }
 
-// Line 3642:	   if ( srcMode == SM_F2F && fileExists ( outName ) ) {
+// Line 3632:	   if ( srcMode == SM_F2F && fileExists ( outName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17917,13 +17819,12 @@ L_2320:
 	call	uint8 'fileExists'(void*)
 	ldc.i4	0
 	beq	'L_2323'
-// Line 3643:	      fprintf ( stderr, "%s: Output file %s already exists, skipping.\n",
+// Line 3633:	      fprintf ( stderr, "%s: Output file %s already exists, skipping.\n",
 
-// Line 3644:	                progName, outName );
+// Line 3634:	                progName, outName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_82'
 
 	ldsfld	void* 'progName'
@@ -17932,15 +17833,15 @@ L_2320:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3645:	      return;
+// Line 3635:	      return;
 
 	br	'L_2300'
 L_2323:
-// Line 3646:	   }
+// Line 3636:	   }
 
-// Line 3647:	
+// Line 3637:	
 
-// Line 3648:	   switch ( srcMode ) {
+// Line 3638:	   switch ( srcMode ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -17955,52 +17856,49 @@ L_2323:
 	ldc.i4	3
 	beq	'L_2336'
 	br	'L_2343'
-// Line 3649:	
+// Line 3639:	
 
 L_2328:
-// Line 3650:	      case SM_I2O:
+// Line 3640:	      case SM_I2O:
 
-// Line 3651:	         inStr = stdin;
+// Line 3641:	         inStr = stdin;
 
-	call	void* '__iob_func'()
+	ldsfld	void* '__stdin'
+
 	stloc	'inStr/2'
-// Line 3652:	         outStr = stdout;
+// Line 3642:	         outStr = stdout;
 
-	call	void* '__iob_func'()
-	ldc.i4	32
-	add
+	ldsfld	void* '__stdout'
+
 	stloc	'outStr/3'
-// Line 3653:	         if ( isatty ( fileno ( stdin ) ) ) {
+// Line 3643:	         if ( isatty ( fileno ( stdin ) ) ) {
 
-	call	void* '__iob_func'()
-	ldc.i4	8
-	add
-	ldind.i4
+	ldsfld	void* '__stdin'
+
+	call	int32 '_fileno'(void*)
 	call	int32 '_isatty'(int32)
 	ldc.i4	0
 	beq	'L_2326'
-// Line 3654:	            fprintf ( stderr,
+// Line 3644:	            fprintf ( stderr,
 
-// Line 3655:	                      "%s: I won't read compressed data from a terminal.\n",
+// Line 3645:	                      "%s: I won't read compressed data from a terminal.\n",
 
-// Line 3656:	                      progName );
+// Line 3646:	                      progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_92'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3657:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+// Line 3647:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
 
-// Line 3658:	                              progName, progName );
+// Line 3648:	                              progName, progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_84'
 
 	ldsfld	void* 'progName'
@@ -18009,19 +17907,65 @@ L_2328:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3659:	            return;
+// Line 3649:	            return;
 
 	br	'L_2300'
 L_2329:
+// Line 3650:	         };
+
+// Line 3651:	         break;
+
+	br	'L_2326'
+L_2332:
+// Line 3652:	
+
+// Line 3653:	      case SM_F2O:
+
+// Line 3654:	         inStr = fopen ( inName, "rb" );
+
+	ldsflda	valuetype 'int8[1024]' 'inName'
+
+	ldsflda	valuetype 'int8[]' 'L_73'
+
+	call	void* 'fopen'(void*, void*)
+	stloc	'inStr/2'
+// Line 3655:	         outStr = stdout;
+
+	ldsfld	void* '__stdout'
+
+	stloc	'outStr/3'
+// Line 3656:	         if ( inStr == NULL ) {
+
+	ldloc	'inStr/2'
+	ldc.i4	0
+	bne.un	'L_2326'
+// Line 3657:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
+
+// Line 3658:	                      progName, inName );
+
+	ldsfld	void* '__stderr'
+
+	ldsflda	valuetype 'int8[]' 'L_85'
+
+	ldsfld	void* 'progName'
+
+	ldsflda	valuetype 'int8[1024]' 'inName'
+
+	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
+	pop
+// Line 3659:	            return;
+
+	br	'L_2300'
+L_2333:
 // Line 3660:	         };
 
 // Line 3661:	         break;
 
 	br	'L_2326'
-L_2332:
+L_2336:
 // Line 3662:	
 
-// Line 3663:	      case SM_F2O:
+// Line 3663:	      case SM_F2F:
 
 // Line 3664:	         inStr = fopen ( inName, "rb" );
 
@@ -18031,55 +17975,7 @@ L_2332:
 
 	call	void* 'fopen'(void*, void*)
 	stloc	'inStr/2'
-// Line 3665:	         outStr = stdout;
-
-	call	void* '__iob_func'()
-	ldc.i4	32
-	add
-	stloc	'outStr/3'
-// Line 3666:	         if ( inStr == NULL ) {
-
-	ldloc	'inStr/2'
-	ldc.i4	0
-	bne.un	'L_2326'
-// Line 3667:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
-
-// Line 3668:	                      progName, inName );
-
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
-	ldsflda	valuetype 'int8[]' 'L_85'
-
-	ldsfld	void* 'progName'
-
-	ldsflda	valuetype 'int8[1024]' 'inName'
-
-	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
-	pop
-// Line 3669:	            return;
-
-	br	'L_2300'
-L_2333:
-// Line 3670:	         };
-
-// Line 3671:	         break;
-
-	br	'L_2326'
-L_2336:
-// Line 3672:	
-
-// Line 3673:	      case SM_F2F:
-
-// Line 3674:	         inStr = fopen ( inName, "rb" );
-
-	ldsflda	valuetype 'int8[1024]' 'inName'
-
-	ldsflda	valuetype 'int8[]' 'L_73'
-
-	call	void* 'fopen'(void*, void*)
-	stloc	'inStr/2'
-// Line 3675:	         outStr = fopen ( outName, "wb" );
+// Line 3665:	         outStr = fopen ( outName, "wb" );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -18087,18 +17983,17 @@ L_2336:
 
 	call	void* 'fopen'(void*, void*)
 	stloc	'outStr/3'
-// Line 3676:	         if ( outStr == NULL) {
+// Line 3666:	         if ( outStr == NULL) {
 
 	ldloc	'outStr/3'
 	ldc.i4	0
 	bne.un	'L_2337'
-// Line 3677:	            fprintf ( stderr, "%s: Can't create output file %s, skipping.\n",
+// Line 3667:	            fprintf ( stderr, "%s: Can't create output file %s, skipping.\n",
 
-// Line 3678:	                      progName, outName );
+// Line 3668:	                      progName, outName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_87'
 
 	ldsfld	void* 'progName'
@@ -18107,24 +18002,23 @@ L_2336:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3679:	            return;
+// Line 3669:	            return;
 
 	br	'L_2300'
 L_2337:
-// Line 3680:	         }
+// Line 3670:	         }
 
-// Line 3681:	         if ( inStr == NULL ) {
+// Line 3671:	         if ( inStr == NULL ) {
 
 	ldloc	'inStr/2'
 	ldc.i4	0
 	bne.un	'L_2326'
-// Line 3682:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
+// Line 3672:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
 
-// Line 3683:	                      progName, inName );
+// Line 3673:	                      progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_85'
 
 	ldsfld	void* 'progName'
@@ -18133,120 +18027,118 @@ L_2337:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3684:	            return;
+// Line 3674:	            return;
 
 	br	'L_2300'
 L_2340:
-// Line 3685:	         };
+// Line 3675:	         };
 
-// Line 3686:	         break;
+// Line 3676:	         break;
 
 	br	'L_2326'
 L_2343:
-// Line 3687:	
+// Line 3677:	
 
-// Line 3688:	      default:
+// Line 3678:	      default:
 
-// Line 3689:	         panic ( "uncompress: bad srcMode" );
+// Line 3679:	         panic ( "uncompress: bad srcMode" );
 
 	ldsflda	valuetype 'int8[]' 'L_93'
 
 	call	void 'panic'(void*)
-// Line 3690:	         break;
+// Line 3680:	         break;
 
 L_2326:
-// Line 3691:	   }
+// Line 3681:	   }
 
-// Line 3692:	
+// Line 3682:	
 
-// Line 3693:	   if (verbosity >= 1) {
+// Line 3683:	   if (verbosity >= 1) {
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	1
 	blt	'L_2345'
-// Line 3694:	      fprintf ( stderr, "  %s: ", inName );
+// Line 3684:	      fprintf ( stderr, "  %s: ", inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_89'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3695:	      pad ( inName );
+// Line 3685:	      pad ( inName );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	void 'pad'(void*)
-// Line 3696:	      fflush ( stderr );
+// Line 3686:	      fflush ( stderr );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	call	int32 'fflush'(void*)
 	pop
 L_2345:
-// Line 3697:	   }
+// Line 3687:	   }
 
-// Line 3698:	
+// Line 3688:	
 
-// Line 3699:	    
+// Line 3689:	    
 
-// Line 3700:	   outputHandleJustInCase = outStr;
+// Line 3690:	   outputHandleJustInCase = outStr;
 
 	ldloc	'outStr/3'
 	stsfld	void* 'outputHandleJustInCase'
 
-// Line 3701:	   magicNumberOK = uncompressStream ( inStr, outStr );
+// Line 3691:	   magicNumberOK = uncompressStream ( inStr, outStr );
 
 	ldloc	'inStr/2'
 	ldloc	'outStr/3'
 	call	uint8 'uncompressStream'(void*, void*)
 	stloc	'magicNumberOK/4'
-// Line 3702:	   outputHandleJustInCase = NULL;
+// Line 3692:	   outputHandleJustInCase = NULL;
 
 	ldc.i4	0
 	stsfld	void* 'outputHandleJustInCase'
 
-// Line 3703:	
+// Line 3693:	
 
-// Line 3704:	    
+// Line 3694:	    
 
-// Line 3705:	   if ( magicNumberOK ) {
+// Line 3695:	   if ( magicNumberOK ) {
 
 	ldloc	'magicNumberOK/4'
 	ldc.i4	0
 	beq	'L_2348'
-// Line 3706:	      if ( srcMode == SM_F2F ) {
+// Line 3696:	      if ( srcMode == SM_F2F ) {
 
 	ldsfld	int32 'srcMode'
 
 	ldc.i4	3
 	bne.un	'L_2360'
-// Line 3707:	         copyDateAndPermissions ( inName, outName );
+// Line 3697:	         copyDateAndPermissions ( inName, outName );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	call	void 'copyDateAndPermissions'(void*, void*)
-// Line 3708:	         if ( !keepInputFiles ) {
+// Line 3698:	         if ( !keepInputFiles ) {
 
 	ldsfld	uint8 'keepInputFiles'
 
 	ldc.i4	0
 	bne.un	'L_2352'
-// Line 3709:	            IntNative retVal = remove ( inName );
+// Line 3699:	            IntNative retVal = remove ( inName );
 
 	ldloca	'retVal/6'
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	int32 'remove'(void*)
 	stind.i4
-// Line 3710:	            ERROR_IF_NOT_ZERO ( retVal );
+// Line 3700:	            ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/6'
 	ldc.i4	0
@@ -18254,29 +18146,29 @@ L_2345:
 	call	void 'ioError'()
 L_2355:
 L_2352:
-// Line 3711:	         }
+// Line 3701:	         }
 
 L_2350:
-// Line 3712:	      }
+// Line 3702:	      }
 
 	br	'L_2360'
 L_2348:
-// Line 3713:	   } else {
+// Line 3703:	   } else {
 
-// Line 3714:	      if ( srcMode == SM_F2F ) {
+// Line 3704:	      if ( srcMode == SM_F2F ) {
 
 	ldsfld	int32 'srcMode'
 
 	ldc.i4	3
 	bne.un	'L_2362'
-// Line 3715:	         IntNative retVal = remove ( outName );
+// Line 3705:	         IntNative retVal = remove ( outName );
 
 	ldloca	'retVal/5'
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
 	call	int32 'remove'(void*)
 	stind.i4
-// Line 3716:	         ERROR_IF_NOT_ZERO ( retVal );
+// Line 3706:	         ERROR_IF_NOT_ZERO ( retVal );
 
 	ldloc	'retVal/5'
 	ldc.i4	0
@@ -18284,29 +18176,28 @@ L_2348:
 	call	void 'ioError'()
 L_2365:
 L_2362:
-// Line 3717:	      }
+// Line 3707:	      }
 
 L_2360:
-// Line 3718:	   }
+// Line 3708:	   }
 
-// Line 3719:	
+// Line 3709:	
 
-// Line 3720:	   if ( magicNumberOK ) {
+// Line 3710:	   if ( magicNumberOK ) {
 
 	ldloc	'magicNumberOK/4'
 	ldc.i4	0
 	beq	'L_2369'
-// Line 3721:	      if (verbosity >= 1)
+// Line 3711:	      if (verbosity >= 1)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	1
 	blt	'L_2373'
-// Line 3722:	         fprintf ( stderr, "done\n" );
+// Line 3712:	         fprintf ( stderr, "done\n" );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_94'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
@@ -18314,34 +18205,32 @@ L_2360:
 L_2371:
 	br	'L_2373'
 L_2369:
-// Line 3723:	   } else {
+// Line 3713:	   } else {
 
-// Line 3724:	      if (verbosity >= 1)
+// Line 3714:	      if (verbosity >= 1)
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	1
 	blt	'L_2375'
-// Line 3725:	         fprintf ( stderr, "not a bzip2 file, skipping.\n" ); else
+// Line 3715:	         fprintf ( stderr, "not a bzip2 file, skipping.\n" ); else
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_95'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 	br	'L_2376'
 L_2375:
-// Line 3726:	         fprintf ( stderr,
+// Line 3716:	         fprintf ( stderr,
 
-// Line 3727:	                   "%s: %s is not a bzip2 file, skipping.\n",
+// Line 3717:	                   "%s: %s is not a bzip2 file, skipping.\n",
 
-// Line 3728:	                   progName, inName );
+// Line 3718:	                   progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_96'
 
 	ldsfld	void* 'progName'
@@ -18352,11 +18241,11 @@ L_2375:
 	pop
 L_2376:
 L_2373:
-// Line 3729:	   }
+// Line 3719:	   }
 
-// Line 3730:	
+// Line 3720:	
 
-// Line 3731:	}
+// Line 3721:	}
 
 L_2300:
 	ret
@@ -18364,9 +18253,9 @@ L_2300:
 }
  .method public hidebysig static void 'testf'(void* 'name' ) cil managed
 {
-// Line 3735:	void testf ( Char *name )
+// Line 3725:	void testf ( Char *name )
 
-// Line 3736:	{
+// Line 3726:	{
 
 	.locals
 	(
@@ -18377,17 +18266,17 @@ L_2300:
 	)
 	.maxstack	4
 L_2383:
-// Line 3738:	   Bool allOK;
+// Line 3728:	   Bool allOK;
 
-// Line 3739:	
+// Line 3729:	
 
-// Line 3740:	
+// Line 3730:	
 
-// Line 3741:	   PRINTLOC;
+// Line 3731:	   PRINTLOC;
 
-// Line 3742:	
+// Line 3732:	
 
-// Line 3743:	   if (name == NULL && srcMode != SM_I2O)
+// Line 3733:	   if (name == NULL && srcMode != SM_I2O)
 
 	ldarg	'name'
 	ldc.i4	0
@@ -18396,15 +18285,15 @@ L_2383:
 
 	ldc.i4	1
 	beq	'L_2386'
-// Line 3744:	      panic ( "testf: bad modes\n" );
+// Line 3734:	      panic ( "testf: bad modes\n" );
 
 	ldsflda	valuetype 'int8[]' 'L_97'
 
 	call	void 'panic'(void*)
 L_2386:
-// Line 3745:	
+// Line 3735:	
 
-// Line 3746:	   strcpy ( outName, "(none)" );
+// Line 3736:	   strcpy ( outName, "(none)" );
 
 	ldsflda	valuetype 'int8[1024]' 'outName'
 
@@ -18412,7 +18301,7 @@ L_2386:
 
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3747:	   switch (srcMode) {
+// Line 3737:	   switch (srcMode) {
 
 	ldsfld	int32 'srcMode'
 
@@ -18428,7 +18317,7 @@ L_2386:
 	beq	'L_2390'
 	br	'L_2393'
 L_2389:
-// Line 3748:	      case SM_I2O: strcpy ( inName, "(stdin)" ); break;
+// Line 3738:	      case SM_I2O: strcpy ( inName, "(stdin)" ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -18438,7 +18327,7 @@ L_2389:
 	pop
 	br	'L_2387'
 L_2390:
-// Line 3749:	      case SM_F2F: strcpy ( inName, name ); break;
+// Line 3739:	      case SM_F2F: strcpy ( inName, name ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -18447,7 +18336,7 @@ L_2390:
 	pop
 	br	'L_2387'
 L_2391:
-// Line 3750:	      case SM_F2O: strcpy ( inName, name ); break;
+// Line 3740:	      case SM_F2O: strcpy ( inName, name ); break;
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -18456,11 +18345,11 @@ L_2391:
 	pop
 L_2393:
 L_2387:
-// Line 3751:	   }
+// Line 3741:	   }
 
-// Line 3752:	
+// Line 3742:	
 
-// Line 3753:	   if ( srcMode != SM_I2O && containsDubiousChars ( inName ) ) {
+// Line 3743:	   if ( srcMode != SM_I2O && containsDubiousChars ( inName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -18471,13 +18360,12 @@ L_2387:
 	call	uint8 'containsDubiousChars'(void*)
 	ldc.i4	0
 	beq	'L_2394'
-// Line 3754:	      fprintf ( stderr, "%s: There are no files matching `%s'.\n",
+// Line 3744:	      fprintf ( stderr, "%s: There are no files matching `%s'.\n",
 
-// Line 3755:	                progName, inName );
+// Line 3745:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_78'
 
 	ldsfld	void* 'progName'
@@ -18486,13 +18374,13 @@ L_2387:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3756:	      return;
+// Line 3746:	      return;
 
 	br	'L_2384'
 L_2394:
-// Line 3757:	   }
+// Line 3747:	   }
 
-// Line 3758:	   if ( srcMode != SM_I2O && !fileExists ( inName ) ) {
+// Line 3748:	   if ( srcMode != SM_I2O && !fileExists ( inName ) ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -18503,13 +18391,12 @@ L_2394:
 	call	uint8 'fileExists'(void*)
 	ldc.i4	0
 	bne.un	'L_2397'
-// Line 3759:	      fprintf ( stderr, "%s: Input file %s doesn't exist, skipping.\n",
+// Line 3749:	      fprintf ( stderr, "%s: Input file %s doesn't exist, skipping.\n",
 
-// Line 3760:	                progName, inName );
+// Line 3750:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_79'
 
 	ldsfld	void* 'progName'
@@ -18518,13 +18405,13 @@ L_2394:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3761:	      return;
+// Line 3751:	      return;
 
 	br	'L_2384'
 L_2397:
-// Line 3762:	   }
+// Line 3752:	   }
 
-// Line 3763:	   if ( srcMode != SM_I2O && !endsInBz2 ( inName )) {
+// Line 3753:	   if ( srcMode != SM_I2O && !endsInBz2 ( inName )) {
 
 	ldsfld	int32 'srcMode'
 
@@ -18535,15 +18422,14 @@ L_2397:
 	call	uint8 'endsInBz2'(void*)
 	ldc.i4	0
 	bne.un	'L_2400'
-// Line 3764:	      fprintf ( stderr,
+// Line 3754:	      fprintf ( stderr,
 
-// Line 3765:	                "%s: Input file name %s doesn't end in `.bz2', skipping.\n",
+// Line 3755:	                "%s: Input file name %s doesn't end in `.bz2', skipping.\n",
 
-// Line 3766:	                progName, inName );
+// Line 3756:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_91'
 
 	ldsfld	void* 'progName'
@@ -18552,13 +18438,13 @@ L_2397:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3767:	      return;
+// Line 3757:	      return;
 
 	br	'L_2384'
 L_2400:
-// Line 3768:	   }
+// Line 3758:	   }
 
-// Line 3769:	   if ( srcMode != SM_I2O && notABogStandardFile ( inName )) {
+// Line 3759:	   if ( srcMode != SM_I2O && notABogStandardFile ( inName )) {
 
 	ldsfld	int32 'srcMode'
 
@@ -18569,13 +18455,12 @@ L_2400:
 	call	uint8 'notABogStandardFile'(void*)
 	ldc.i4	0
 	beq	'L_2403'
-// Line 3770:	      fprintf ( stderr, "%s: Input file %s is not a normal file, skipping.\n",
+// Line 3760:	      fprintf ( stderr, "%s: Input file %s is not a normal file, skipping.\n",
 
-// Line 3771:	                progName, inName );
+// Line 3761:	                progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_81'
 
 	ldsfld	void* 'progName'
@@ -18584,15 +18469,15 @@ L_2400:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3772:	      return;
+// Line 3762:	      return;
 
 	br	'L_2384'
 L_2403:
-// Line 3773:	   }
+// Line 3763:	   }
 
-// Line 3774:	
+// Line 3764:	
 
-// Line 3775:	   switch ( srcMode ) {
+// Line 3765:	   switch ( srcMode ) {
 
 	ldsfld	int32 'srcMode'
 
@@ -18607,42 +18492,39 @@ L_2403:
 	ldc.i4	3
 	beq	'L_2413'
 	br	'L_2417'
-// Line 3776:	
+// Line 3766:	
 
 L_2408:
-// Line 3777:	      case SM_I2O:
+// Line 3767:	      case SM_I2O:
 
-// Line 3778:	         if ( isatty ( fileno ( stdin ) ) ) {
+// Line 3768:	         if ( isatty ( fileno ( stdin ) ) ) {
 
-	call	void* '__iob_func'()
-	ldc.i4	8
-	add
-	ldind.i4
+	ldsfld	void* '__stdin'
+
+	call	int32 '_fileno'(void*)
 	call	int32 '_isatty'(int32)
 	ldc.i4	0
 	beq	'L_2409'
-// Line 3779:	            fprintf ( stderr,
+// Line 3769:	            fprintf ( stderr,
 
-// Line 3780:	                      "%s: I won't read compressed data from a terminal.\n",
+// Line 3770:	                      "%s: I won't read compressed data from a terminal.\n",
 
-// Line 3781:	                      progName );
+// Line 3771:	                      progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_92'
 
 	ldsfld	void* 'progName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3782:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+// Line 3772:	            fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
 
-// Line 3783:	                              progName, progName );
+// Line 3773:	                              progName, progName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_84'
 
 	ldsfld	void* 'progName'
@@ -18651,26 +18533,27 @@ L_2408:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3784:	            return;
+// Line 3774:	            return;
 
 	br	'L_2384'
 L_2409:
-// Line 3785:	         };
+// Line 3775:	         };
 
-// Line 3786:	         inStr = stdin;
+// Line 3776:	         inStr = stdin;
 
-	call	void* '__iob_func'()
+	ldsfld	void* '__stdin'
+
 	stloc	'inStr/2'
-// Line 3787:	         break;
+// Line 3777:	         break;
 
 	br	'L_2406'
 L_2412:
 L_2413:
-// Line 3788:	
+// Line 3778:	
 
-// Line 3789:	      case SM_F2O: case SM_F2F:
+// Line 3779:	      case SM_F2O: case SM_F2F:
 
-// Line 3790:	         inStr = fopen ( inName, "rb" );
+// Line 3780:	         inStr = fopen ( inName, "rb" );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
@@ -18678,18 +18561,17 @@ L_2413:
 
 	call	void* 'fopen'(void*, void*)
 	stloc	'inStr/2'
-// Line 3791:	         if ( inStr == NULL ) {
+// Line 3781:	         if ( inStr == NULL ) {
 
 	ldloc	'inStr/2'
 	ldc.i4	0
 	bne.un	'L_2406'
-// Line 3792:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
+// Line 3782:	            fprintf ( stderr, "%s: Can't open input file %s, skipping.\n",
 
-// Line 3793:	                      progName, inName );
+// Line 3783:	                      progName, inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_85'
 
 	ldsfld	void* 'progName'
@@ -18698,76 +18580,74 @@ L_2413:
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, void*)
 	pop
-// Line 3794:	            return;
+// Line 3784:	            return;
 
 	br	'L_2384'
 L_2414:
-// Line 3795:	         };
+// Line 3785:	         };
 
-// Line 3796:	         break;
+// Line 3786:	         break;
 
 	br	'L_2406'
 L_2417:
-// Line 3797:	
+// Line 3787:	
 
-// Line 3798:	      default:
+// Line 3788:	      default:
 
-// Line 3799:	         panic ( "testf: bad srcMode" );
+// Line 3789:	         panic ( "testf: bad srcMode" );
 
 	ldsflda	valuetype 'int8[]' 'L_99'
 
 	call	void 'panic'(void*)
-// Line 3800:	         break;
+// Line 3790:	         break;
 
 L_2406:
-// Line 3801:	   }
+// Line 3791:	   }
 
-// Line 3802:	
+// Line 3792:	
 
-// Line 3803:	   if (verbosity >= 1) {
+// Line 3793:	   if (verbosity >= 1) {
 
 	ldsfld	int32 'verbosity'
 
 	ldc.i4	1
 	blt	'L_2419'
-// Line 3804:	      fprintf ( stderr, "  %s: ", inName );
+// Line 3794:	      fprintf ( stderr, "  %s: ", inName );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_89'
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3805:	      pad ( inName );
+// Line 3795:	      pad ( inName );
 
 	ldsflda	valuetype 'int8[1024]' 'inName'
 
 	call	void 'pad'(void*)
-// Line 3806:	      fflush ( stderr );
+// Line 3796:	      fflush ( stderr );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	call	int32 'fflush'(void*)
 	pop
 L_2419:
-// Line 3807:	   }
+// Line 3797:	   }
 
-// Line 3808:	
+// Line 3798:	
 
-// Line 3809:	    
+// Line 3799:	    
 
-// Line 3810:	   allOK = testStream ( inStr );
+// Line 3800:	   allOK = testStream ( inStr );
 
 	ldloc	'inStr/2'
 	call	uint8 'testStream'(void*)
 	stloc	'allOK/3'
-// Line 3811:	
+// Line 3801:	
 
-// Line 3812:	   if (allOK && verbosity >= 1) fprintf ( stderr, "ok\n" );
+// Line 3802:	   if (allOK && verbosity >= 1) fprintf ( stderr, "ok\n" );
 
 	ldloc	'allOK/3'
 	ldc.i4	0
@@ -18776,15 +18656,14 @@ L_2419:
 
 	ldc.i4	1
 	blt	'L_2422'
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_50'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
 L_2422:
-// Line 3813:	   if (!allOK) testFailsExist = True;
+// Line 3803:	   if (!allOK) testFailsExist = True;
 
 	ldloc	'allOK/3'
 	ldc.i4	0
@@ -18793,7 +18672,7 @@ L_2422:
 	stsfld	uint8 'testFailsExist'
 
 L_2423:
-// Line 3814:	}
+// Line 3804:	}
 
 L_2384:
 	ret
@@ -18801,68 +18680,67 @@ L_2384:
 }
  .method public hidebysig static void 'license'() cil managed
 {
-// Line 3818:	void license ( void )
+// Line 3808:	void license ( void )
 
-// Line 3819:	{
+// Line 3809:	{
 
 	.maxstack	2
 L_2429:
-// Line 3820:	   fprintf ( stderr,
+// Line 3810:	   fprintf ( stderr,
 
-// Line 3821:	
+// Line 3811:	
 
-// Line 3822:	    "bzip2, a block-sorting file compressor.  "
+// Line 3812:	    "bzip2, a block-sorting file compressor.  "
 
-// Line 3823:	    "Version 0.1pl2, 29-Aug-97.\n"
+// Line 3813:	    "Version 0.1pl2, 29-Aug-97.\n"
 
-// Line 3824:	    "   \n"
+// Line 3814:	    "   \n"
 
-// Line 3825:	    "   Copyright (C) 1996, 1997 by Julian Seward.\n"
+// Line 3815:	    "   Copyright (C) 1996, 1997 by Julian Seward.\n"
+
+// Line 3816:	    "   \n"
+
+// Line 3817:	    "   This program is free software; you can redistribute it and/or modify\n"
+
+// Line 3818:	    "   it under the terms of the GNU General Public License as published by\n"
+
+// Line 3819:	    "   the Free Software Foundation; either version 2 of the License, or\n"
+
+// Line 3820:	    "   (at your option) any later version.\n"
+
+// Line 3821:	    "   \n"
+
+// Line 3822:	    "   This program is distributed in the hope that it will be useful,\n"
+
+// Line 3823:	    "   but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+
+// Line 3824:	    "   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+
+// Line 3825:	    "   GNU General Public License for more details.\n"
 
 // Line 3826:	    "   \n"
 
-// Line 3827:	    "   This program is free software; you can redistribute it and/or modify\n"
+// Line 3827:	    "   You should have received a copy of the GNU General Public License\n"
 
-// Line 3828:	    "   it under the terms of the GNU General Public License as published by\n"
+// Line 3828:	    "   along with this program; if not, write to the Free Software\n"
 
-// Line 3829:	    "   the Free Software Foundation; either version 2 of the License, or\n"
+// Line 3829:	    "   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.\n"
 
-// Line 3830:	    "   (at your option) any later version.\n"
+// Line 3830:	    "   \n"
 
-// Line 3831:	    "   \n"
+// Line 3831:	    "   The GNU General Public License is contained in the file LICENSE.\n"
 
-// Line 3832:	    "   This program is distributed in the hope that it will be useful,\n"
+// Line 3832:	    "   \n"
 
-// Line 3833:	    "   but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+// Line 3833:	   );
 
-// Line 3834:	    "   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+	ldsfld	void* '__stderr'
 
-// Line 3835:	    "   GNU General Public License for more details.\n"
-
-// Line 3836:	    "   \n"
-
-// Line 3837:	    "   You should have received a copy of the GNU General Public License\n"
-
-// Line 3838:	    "   along with this program; if not, write to the Free Software\n"
-
-// Line 3839:	    "   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.\n"
-
-// Line 3840:	    "   \n"
-
-// Line 3841:	    "   The GNU General Public License is contained in the file LICENSE.\n"
-
-// Line 3842:	    "   \n"
-
-// Line 3843:	   );
-
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
 	ldsflda	valuetype 'int8[]' 'L_100'
 
 	call	vararg int32 'fprintf'(void*, void*, ...)
 	pop
-// Line 3844:	}
+// Line 3834:	}
 
 L_2430:
 	ret
@@ -18870,87 +18748,86 @@ L_2430:
 }
  .method public hidebysig static void 'usage'(void* 'fullProgName' ) cil managed
 {
-// Line 3848:	void usage ( Char *fullProgName )
+// Line 3838:	void usage ( Char *fullProgName )
 
-// Line 3849:	{
+// Line 3839:	{
 
 	.maxstack	3
 L_2437:
-// Line 3850:	   fprintf (
+// Line 3840:	   fprintf (
 
-// Line 3851:	      stderr,
+// Line 3841:	      stderr,
 
-// Line 3852:	      "bzip2, a block-sorting file compressor.  "
+// Line 3842:	      "bzip2, a block-sorting file compressor.  "
 
-// Line 3853:	      "Version 0.1pl2, 29-Aug-97.\n"
+// Line 3843:	      "Version 0.1pl2, 29-Aug-97.\n"
 
-// Line 3854:	      "\n   usage: %s [flags and input files in any order]\n"
+// Line 3844:	      "\n   usage: %s [flags and input files in any order]\n"
 
-// Line 3855:	      "\n"
+// Line 3845:	      "\n"
 
-// Line 3856:	      "   -h --help           print this message\n"
+// Line 3846:	      "   -h --help           print this message\n"
 
-// Line 3857:	      "   -d --decompress     force decompression\n"
+// Line 3847:	      "   -d --decompress     force decompression\n"
 
-// Line 3858:	      "   -f --compress       force compression\n"
+// Line 3848:	      "   -f --compress       force compression\n"
 
-// Line 3859:	      "   -t --test           test compressed file integrity\n"
+// Line 3849:	      "   -t --test           test compressed file integrity\n"
 
-// Line 3860:	      "   -c --stdout         output to standard out\n"
+// Line 3850:	      "   -c --stdout         output to standard out\n"
 
-// Line 3861:	      "   -v --verbose        be verbose (a 2nd -v gives more)\n"
+// Line 3851:	      "   -v --verbose        be verbose (a 2nd -v gives more)\n"
 
-// Line 3862:	      "   -k --keep           keep (don't delete) input files\n"
+// Line 3852:	      "   -k --keep           keep (don't delete) input files\n"
 
-// Line 3863:	      "   -L --license        display software version & license\n"
+// Line 3853:	      "   -L --license        display software version & license\n"
 
-// Line 3864:	      "   -V --version        display software version & license\n"
+// Line 3854:	      "   -V --version        display software version & license\n"
 
-// Line 3865:	      "   -s --small          use less memory (at most 2500k)\n"
+// Line 3855:	      "   -s --small          use less memory (at most 2500k)\n"
 
-// Line 3866:	      "   -1 .. -9            set block size to 100k .. 900k\n"
+// Line 3856:	      "   -1 .. -9            set block size to 100k .. 900k\n"
 
-// Line 3867:	      "   --repetitive-fast   compress repetitive blocks faster\n"
+// Line 3857:	      "   --repetitive-fast   compress repetitive blocks faster\n"
 
-// Line 3868:	      "   --repetitive-best   compress repetitive blocks better\n"
+// Line 3858:	      "   --repetitive-best   compress repetitive blocks better\n"
 
-// Line 3869:	      "\n"
+// Line 3859:	      "\n"
 
-// Line 3870:	      "   If invoked as `bzip2', the default action is to compress.\n"
+// Line 3860:	      "   If invoked as `bzip2', the default action is to compress.\n"
 
-// Line 3871:	      "              as `bunzip2', the default action is to decompress.\n"
+// Line 3861:	      "              as `bunzip2', the default action is to decompress.\n"
 
-// Line 3872:	      "\n"
+// Line 3862:	      "\n"
 
-// Line 3873:	      "   If no file names are given, bzip2 compresses or decompresses\n"
+// Line 3863:	      "   If no file names are given, bzip2 compresses or decompresses\n"
 
-// Line 3874:	      "   from standard input to standard output.  You can combine\n"
+// Line 3864:	      "   from standard input to standard output.  You can combine\n"
 
-// Line 3875:	      "   flags, so `-v -4' means the same as -v4 or -4v, &c.\n"
+// Line 3865:	      "   flags, so `-v -4' means the same as -v4 or -4v, &c.\n"
 
-// Line 3876:	      #if defined(BZ_UNIX) || defined(BZ_EMX)
+// Line 3866:	      #if defined(BZ_UNIX) || defined(BZ_EMX)
 
-// Line 3877:	      "\n"
+// Line 3867:	      "\n"
 
-// Line 3878:	      #endif
+// Line 3868:	      #endif
 
-// Line 3879:	      ,
+// Line 3869:	      ,
 
-// Line 3880:	
+// Line 3870:	
 
-// Line 3881:	      fullProgName
+// Line 3871:	      fullProgName
 
-// Line 3882:	   );
+// Line 3872:	   );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_101'
 
 	ldarg	'fullProgName'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*)
 	pop
-// Line 3883:	}
+// Line 3873:	}
 
 L_2438:
 	ret
@@ -18958,9 +18835,9 @@ L_2438:
 }
  .method public hidebysig static void* 'myMalloc'(int32 'n' ) cil managed
 {
-// Line 3910:	void *myMalloc ( Int32 n )
+// Line 3900:	void *myMalloc ( Int32 n )
 
-// Line 3911:	{
+// Line 3901:	{
 
 	.locals
 	(
@@ -18968,34 +18845,33 @@ L_2438:
 	)
 	.maxstack	4
 L_2445:
-// Line 3912:	   void* p;
+// Line 3902:	   void* p;
 
-// Line 3913:	
+// Line 3903:	
 
-// Line 3914:	   p = malloc ( (size_t)n );
+// Line 3904:	   p = malloc ( (size_t)n );
 
 	ldarg	'n'
 	conv.u4
 	call	void* 'malloc'(uint32)
 	stloc	'p/0'
-// Line 3915:	   if (p == NULL) {
+// Line 3905:	   if (p == NULL) {
 
 	ldloc	'p/0'
 	ldc.i4	0
 	bne.un	'L_2448'
-// Line 3916:	      fprintf (
+// Line 3906:	      fprintf (
 
-// Line 3917:	         stderr,
+// Line 3907:	         stderr,
 
-// Line 3918:	         "%s: `malloc' failed on request for %d bytes.\n",
+// Line 3908:	         "%s: `malloc' failed on request for %d bytes.\n",
 
-// Line 3919:	         progName, n
+// Line 3909:	         progName, n
 
-// Line 3920:	      );
+// Line 3910:	      );
 
-	call	void* '__iob_func'()
-	ldc.i4	64
-	add
+	ldsfld	void* '__stderr'
+
 	ldsflda	valuetype 'int8[]' 'L_102'
 
 	ldsfld	void* 'progName'
@@ -19003,17 +18879,17 @@ L_2445:
 	ldarg	'n'
 	call	vararg int32 'fprintf'(void*, void*, ..., void*, int32)
 	pop
-// Line 3921:	      exit ( 1 );
+// Line 3911:	      exit ( 1 );
 
 	ldc.i4	1
 	call	void 'exit'(int32)
 L_2448:
-// Line 3922:	   }
+// Line 3912:	   }
 
-// Line 3923:	   return p;
+// Line 3913:	   return p;
 
 	ldloc	'p/0'
-// Line 3924:	}
+// Line 3914:	}
 
 L_2446:
 	ret
@@ -19021,9 +18897,9 @@ L_2446:
 }
  .method public hidebysig static void* 'mkCell'() cil managed
 {
-// Line 3928:	Cell *mkCell ( void )
+// Line 3918:	Cell *mkCell ( void )
 
-// Line 3929:	{
+// Line 3919:	{
 
 	.locals
 	(
@@ -19031,31 +18907,31 @@ L_2446:
 	)
 	.maxstack	2
 L_2456:
-// Line 3930:	   Cell *c;
+// Line 3920:	   Cell *c;
 
-// Line 3931:	
+// Line 3921:	
 
-// Line 3932:	   c = (Cell*) myMalloc ( sizeof ( Cell ) );
+// Line 3922:	   c = (Cell*) myMalloc ( sizeof ( Cell ) );
 
 	ldc.i4	8
 	call	void* 'myMalloc'(int32)
 	stloc	'c/0'
-// Line 3933:	   c->name = NULL;
+// Line 3923:	   c->name = NULL;
 
 	ldloc	'c/0'
 	ldc.i4	0
 	stind.i4
-// Line 3934:	   c->link = NULL;
+// Line 3924:	   c->link = NULL;
 
 	ldloc	'c/0'
 	ldc.i4	4
 	add
 	ldc.i4	0
 	stind.i4
-// Line 3935:	   return c;
+// Line 3925:	   return c;
 
 	ldloc	'c/0'
-// Line 3936:	}
+// Line 3926:	}
 
 L_2457:
 	ret
@@ -19063,9 +18939,9 @@ L_2457:
 }
  .method public hidebysig static void* 'snocString'(void* 'root' , void* 'name' ) cil managed
 {
-// Line 3940:	Cell *snocString ( Cell *root, Char *name )
+// Line 3930:	Cell *snocString ( Cell *root, Char *name )
 
-// Line 3941:	{
+// Line 3931:	{
 
 	.locals
 	(
@@ -19074,17 +18950,17 @@ L_2457:
 	)
 	.maxstack	4
 L_2464:
-// Line 3942:	   if (root == NULL) {
+// Line 3932:	   if (root == NULL) {
 
 	ldarg	'root'
 	ldc.i4	0
 	bne.un	'L_2467'
-// Line 3943:	      Cell *tmp = mkCell();
+// Line 3933:	      Cell *tmp = mkCell();
 
 	ldloca	'tmp/1'
 	call	void* 'mkCell'()
 	stind.i4
-// Line 3944:	      tmp->name = (Char*) myMalloc ( 5 + strlen(name) );
+// Line 3934:	      tmp->name = (Char*) myMalloc ( 5 + strlen(name) );
 
 	ldloc	'tmp/1'
 	ldarg	'name'
@@ -19094,21 +18970,21 @@ L_2464:
 	conv.i4
 	call	void* 'myMalloc'(int32)
 	stind.i4
-// Line 3945:	      strcpy ( tmp->name, name );
+// Line 3935:	      strcpy ( tmp->name, name );
 
 	ldloc	'tmp/1'
 	ldind.u4
 	ldarg	'name'
 	call	void* 'strcpy'(void*, void*)
 	pop
-// Line 3946:	      return tmp;
+// Line 3936:	      return tmp;
 
 	ldloc	'tmp/1'
 	br	'L_2465'
 L_2467:
-// Line 3947:	   } else {
+// Line 3937:	   } else {
 
-// Line 3948:	      Cell *tmp = root;
+// Line 3938:	      Cell *tmp = root;
 
 	ldloca	'tmp/0'
 	ldarg	'root'
@@ -19121,7 +18997,7 @@ L_2472:
 	ldind.u4
 	stloc	'tmp/0'
 L_2474:
-// Line 3949:	      while (tmp->link != NULL) tmp = tmp->link;
+// Line 3939:	      while (tmp->link != NULL) tmp = tmp->link;
 
 	ldloc	'tmp/0'
 	ldc.i4	4
@@ -19130,7 +19006,7 @@ L_2474:
 	ldc.i4	0
 	bne.un	'L_2472'
 L_2473:
-// Line 3950:	      tmp->link = snocString ( tmp->link, name );
+// Line 3940:	      tmp->link = snocString ( tmp->link, name );
 
 	ldloc	'tmp/0'
 	ldc.i4	4
@@ -19142,13 +19018,13 @@ L_2473:
 	ldarg	'name'
 	call	void* 'snocString'(void*, void*)
 	stind.i4
-// Line 3951:	      return root;
+// Line 3941:	      return root;
 
 	ldarg	'root'
 L_2470:
-// Line 3952:	   }
+// Line 3942:	   }
 
-// Line 3953:	}
+// Line 3943:	}
 
 L_2465:
 	ret
@@ -19171,7 +19047,6 @@ L_2465:
 )
 .field public static uint8 'testFailsExist' at $testFailsExist
 .data $testFailsExist = bytearray (0 
-0 
 )
 .field public static uint32 'globalCrc' at $globalCrc
 .data $globalCrc = bytearray (0 0 0 0 
@@ -19771,7 +19646,6 @@ L_2465:
 )
 .field public static uint8 'firstAttempt' at $firstAttempt
 .data $firstAttempt = bytearray (0 
-0 0 
 )
 .field public static int32 'nBlocksRandomised' at $nBlocksRandomised
 .data $nBlocksRandomised = bytearray (0 0 0 0 
@@ -30194,7 +30068,21 @@ L_2465:
 .data $L_1 = bytearray (62 73 53 65 74 53 74 72 
 	65 61 6d 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -30203,6 +30091,19 @@ L_2465:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -30230,14 +30131,13 @@ L_2465:
 .class private value explicit ansi sealed '_utimbuf' {.pack 1 .size 8}
 .class private value explicit ansi sealed '_stat' {.pack 1 .size 36}
 .class private value explicit ansi sealed 'int32[257]' {.pack 1 .size 1028}
-.class private value explicit ansi sealed '__anontype_3191770589_0' {.pack 1 .size 12}
-.class private value explicit ansi sealed '__anontype_3191770589_0[1000]' {.pack 1 .size 12000}
+.class private value explicit ansi sealed '__anontype_400306509_0' {.pack 1 .size 12}
+.class private value explicit ansi sealed '__anontype_400306509_0[1000]' {.pack 1 .size 12000}
 .class private value explicit ansi sealed 'uint8[6]' {.pack 1 .size 6}
 .class private value explicit ansi sealed 'uint8[16]' {.pack 1 .size 16}
 .class private value explicit ansi sealed 'uint16[6]' {.pack 1 .size 12}
 .class private value explicit ansi sealed 'int32[516]' {.pack 1 .size 2064}
 .class private value explicit ansi sealed 'int32[260]' {.pack 1 .size 1040}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'utime'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 '_stat'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 '_setmode'(int32, int32) preservesig {}
@@ -30248,19 +30148,21 @@ L_2465:
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'strcpy'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'strcmp'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'strcat'(void*, void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'ferror'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'putc'(int32, void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'getc'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'ungetc'(int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'remove'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'perror'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fputc'(int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'fprintf'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'fopen'(void*, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 '_fileno'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fgetc'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fflush'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fclose'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}

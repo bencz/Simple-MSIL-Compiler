@@ -1,38 +1,110 @@
 //File lex.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
 
+.assembly extern lsmsilcrtl { }
 
-.method public hidebysig static int32 'isAlpha'(int32 'c' ) cil managed
+
+.method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
+{
+// Line 94:	int main()
+
+// Line 95:	{
+
+	.locals
+	(
+		[0] int32 'i/0',
+		[1] void* 'fileName/1'
+	)
+	.maxstack	3
+L_14:
+// Line 96:	  int i = 0;
+
+	ldloca	'i/0'
+	ldc.i4	0
+	stind.i4
+// Line 97:	  char* fileName = "test.c";
+
+	ldloca	'fileName/1'
+	ldsflda	valuetype 'int8[]' 'L_13'
+
+	stind.i4
+// Line 98:	  lex(fileName);
+
+	ldloc	'fileName/1'
+	call	void 'lex'(void*)
+// Line 99:	  
+
+	ldc.i4	0
+	stloc	'i/0'
+	br	'L_18'
+L_17:
+// Line 101:	    printf("%s\n", Token[i]);
+
+	ldsflda	valuetype 'int8[]' 'L_11'
+
+	ldloc	'i/0'
+	ldc.i4	2
+	shl
+	ldsflda	valuetype 'void*[1000]' 'Token'
+
+	add
+	ldind.u4
+	call	vararg int32 'printf'(void*, ..., void*)
+	pop
+L_20:
+	ldloc	'i/0'
+	ldc.i4	1
+	add
+	stloc	'i/0'
+// Line 100:	  for(i=0;i<nToken;i++)
+
+L_18:
+	ldloc	'i/0'
+	ldsfld	int32 'nToken'
+
+	blt	'L_17'
+L_19:
+// Line 102:	  
+
+// Line 103:	  return 0;
+
+	ldc.i4	0
+// Line 104:	}
+L_15:
+	ret
+
+}
+ .method public hidebysig static int32 'isAlpha'(int32 'c' ) cil managed
 {
 // Line 14:	int isAlpha(int c)
 
 // Line 15:	{
 
 	.maxstack	2
-L_1:
+L_26:
 // Line 16:		return (isalpha(c) || c == '_');
 
 	ldarg	'c'
 	call	int32 'isalpha'(int32)
 	ldc.i4	0
-	bne.un	'L_6'
+	bne.un	'L_31'
 	ldarg	'c'
 	ldc.i4	95
-	beq	'L_6'
+	beq	'L_31'
 	ldc.i4	0
-	br	'L_7'
-L_6:
+	br	'L_32'
+L_31:
 	ldc.i4	1
-L_7:
+L_32:
 	conv.i4
 // Line 17:	}
 
-L_2:
+L_27:
 	ret
 
 }
@@ -43,26 +115,26 @@ L_2:
 // Line 20:	{
 
 	.maxstack	2
-L_11:
+L_36:
 // Line 21:		return isAlpha(c) || isdigit(c);
 
 	ldarg	'c'
 	call	int32 'isAlpha'(int32)
 	ldc.i4	0
-	bne.un	'L_16'
+	bne.un	'L_41'
 	ldarg	'c'
 	call	int32 'isdigit'(int32)
 	ldc.i4	0
-	bne.un	'L_16'
+	bne.un	'L_41'
 	ldc.i4	0
-	br	'L_17'
-L_16:
+	br	'L_42'
+L_41:
 	ldc.i4	1
-L_17:
+L_42:
 	conv.i4
 // Line 22:	}
 
-L_12:
+L_37:
 	ret
 
 }
@@ -75,12 +147,10 @@ L_12:
 		[0] void* 'd/0'
 	)
 	.maxstack	3
-L_21:
+L_46:
 // Line 25:	    char *d = (char*)malloc (strlen (s) + 1);   
 
 	ldloca	'd/0'
-	ldc.i4	0
-	add
 	ldarg	's'
 	call	uint32 'strlen'(void*)
 	ldc.i4	1
@@ -91,11 +161,11 @@ L_21:
 
 	ldloc	'd/0'
 	ldc.i4	0
-	bne.un	'L_24'
+	bne.un	'L_49'
 	ldc.i4	0
 	conv.u4
-	br	'L_22'
-L_24:
+	br	'L_47'
+L_49:
 // Line 27:	    strcpy (d,s);                       
 
 	ldloc	'd/0'
@@ -107,7 +177,7 @@ L_24:
 	ldloc	'd/0'
 // Line 29:	}
 
-L_22:
+L_47:
 	ret
 
 }
@@ -127,16 +197,14 @@ L_22:
 		[5] void* 'fpSrc/5'
 	)
 	.maxstack	8
-L_42:
+L_55:
 // Line 33:		char linebuf[256], buf[128], op2[4], *p, *pBgn;
 
 // Line 34:		FILE *fpSrc = fopen(srcfile, "r");
 
 	ldloca	'fpSrc/5'
-	ldc.i4	0
-	add
 	ldarg	'srcfile'
-	ldsflda	valuetype 'int8[]' 'L_30'
+	ldsflda	valuetype 'int8[]' 'L_1'
 
 	call	void* 'fopen'(void*, void*)
 	stind.i4
@@ -144,23 +212,23 @@ L_42:
 
 	ldloc	'fpSrc/5'
 	ldc.i4	0
-	bne.un	'L_48'
+	bne.un	'L_61'
 // Line 36:			printf("file '%s' can't be opened", srcfile);
 
-	ldsflda	valuetype 'int8[]' 'L_31'
+	ldsflda	valuetype 'int8[]' 'L_2'
 
 	ldarg	'srcfile'
 	call	vararg int32 'printf'(void*, ..., void*)
 	pop
-L_45:
-	br	'L_48'
-L_46:
+L_58:
+	br	'L_61'
+L_59:
 // Line 38:		{
 
 	ldloca	'linebuf/0'
 	stloc	'p/3'
-	br	'L_51'
-L_50:
+	br	'L_64'
+L_63:
 // Line 40:			{
 
 // Line 41:				if (*p <= ' ')
@@ -169,7 +237,7 @@ L_50:
 	ldind.i1
 	conv.i4
 	ldc.i4	32
-	bgt	'L_55'
+	bgt	'L_68'
 // Line 42:				{
 
 // Line 43:					p++;
@@ -180,8 +248,8 @@ L_50:
 	stloc	'p/3'
 // Line 44:					continue;
 
-	br	'L_53'
-L_55:
+	br	'L_66'
+L_68:
 // Line 45:				}
 
 // Line 46:				if (p[0] == '/' && p[1] == '/') break;
@@ -190,15 +258,16 @@ L_55:
 	ldind.i1
 	conv.i4
 	ldc.i4	47
-	bne.un	'L_58'
+	bne.un	'L_114'
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	ldind.i1
 	conv.i4
 	ldc.i4	47
-	beq	'L_52'
-L_58:
+	beq	'L_65'
+L_114:
+L_71:
 // Line 47:				pBgn = p;
 
 	ldloc	'p/3'
@@ -209,15 +278,15 @@ L_58:
 	ldind.i1
 	conv.i4
 	ldc.i4	34
-	bne.un	'L_59'
+	bne.un	'L_72'
 // Line 49:				{
 
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	stloc	'p/3'
-	br	'L_62'
-L_61:
+	br	'L_75'
+L_74:
 // Line 51:					{
 
 // Line 52:						if (*p == '\\' && strchr("rn\"t", p[1]) != NULL)  
@@ -226,8 +295,8 @@ L_61:
 	ldind.i1
 	conv.i4
 	ldc.i4	92
-	bne.un	'L_66'
-	ldsflda	valuetype 'int8[]' 'L_32'
+	bne.un	'L_79'
+	ldsflda	valuetype 'int8[]' 'L_3'
 
 	ldloc	'p/3'
 	ldc.i4	1
@@ -236,7 +305,7 @@ L_61:
 	conv.i4
 	call	void* 'strchr'(void*, int32)
 	ldc.i4	0
-	beq	'L_66'
+	beq	'L_79'
 // Line 53:						{
 
 // Line 54:							*p = p[1] == 'r' ? '\r' : p[1] == 'n' ? '\n' : p[1] == '"' ? '\"' : '\t';
@@ -248,34 +317,34 @@ L_61:
 	ldind.i1
 	conv.i4
 	ldc.i4	114
-	bne.un	'L_101'
+	bne.un	'L_115'
 	ldc.i4	13
-	br	'L_102'
-L_101:
+	br	'L_116'
+L_115:
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	ldind.i1
 	conv.i4
 	ldc.i4	110
-	bne.un	'L_103'
+	bne.un	'L_117'
 	ldc.i4	10
-	br	'L_104'
-L_103:
+	br	'L_118'
+L_117:
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	ldind.i1
 	conv.i4
 	ldc.i4	34
-	bne.un	'L_105'
+	bne.un	'L_119'
 	ldc.i4	34
-	br	'L_106'
-L_105:
+	br	'L_120'
+L_119:
 	ldc.i4	9
-L_106:
-L_104:
-L_102:
+L_120:
+L_118:
+L_116:
 	conv.i1
 	stind.i1
 // Line 55:							strcpy(p + 1, p + 2);
@@ -288,8 +357,8 @@ L_102:
 	add
 	call	void* 'strcpy'(void*, void*)
 	pop
-	br	'L_69'
-L_66:
+	br	'L_82'
+L_79:
 // Line 56:						}
 
 // Line 57:						else if (*p == '\\')
@@ -298,7 +367,7 @@ L_66:
 	ldind.i1
 	conv.i4
 	ldc.i4	92
-	bne.un	'L_70'
+	bne.un	'L_83'
 // Line 58:						{
 
 // Line 59:							p++;
@@ -307,30 +376,30 @@ L_66:
 	ldc.i4	1
 	add
 	stloc	'p/3'
-L_70:
-L_69:
+L_83:
+L_82:
 // Line 60:						}
 
-L_64:
+L_77:
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	stloc	'p/3'
 // Line 50:					for (p++; *p != '\0' && *p != '"'; p++)
 
-L_62:
+L_75:
 	ldloc	'p/3'
 	ldind.i1
 	conv.i4
 	ldc.i4	0
-	beq	'L_107'
+	beq	'L_121'
 	ldloc	'p/3'
 	ldind.i1
 	conv.i4
 	ldc.i4	34
-	bne.un	'L_61'
-L_107:
-L_63:
+	bne.un	'L_74'
+L_121:
+L_76:
 // Line 61:					}
 
 // Line 62:					if (*p++ != '"') 
@@ -338,22 +407,22 @@ L_63:
 	ldloc	'p/3'
 	ldind.i1
 	conv.i4
-	ldc.i4	34
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	stloc	'p/3'
-	beq	'L_76'
+	ldc.i4	34
+	beq	'L_89'
 // Line 63:						printf("Expected '\"' <%s>", pBgn);
 
-	ldsflda	valuetype 'int8[]' 'L_33'
+	ldsflda	valuetype 'int8[]' 'L_4'
 
 	ldloc	'pBgn/4'
 	call	vararg int32 'printf'(void*, ..., void*)
 	pop
-L_74:
-	br	'L_76'
-L_59:
+L_87:
+	br	'L_89'
+L_72:
 // Line 64:				}
 
 // Line 65:				else if (isdigit(*p))
@@ -363,7 +432,7 @@ L_59:
 	conv.i4
 	call	int32 'isdigit'(int32)
 	ldc.i4	0
-	beq	'L_77'
+	beq	'L_90'
 // Line 66:				{
 
 // Line 67:					strtoul(p, &p, 10); 
@@ -373,20 +442,20 @@ L_59:
 	ldc.i4	10
 	call	uint32 'strtoul'(void*, void*, int32)
 	pop
-	br	'L_80'
-L_77:
+	br	'L_93'
+L_90:
 // Line 68:				}
 
 // Line 69:				else if (strncmp(pBgn, "char*", 5) == 0)  	
 
 	ldloc	'pBgn/4'
-	ldsflda	valuetype 'int8[]' 'L_34'
+	ldsflda	valuetype 'int8[]' 'L_5'
 
 	ldc.i4	5
 	conv.u4
 	call	int32 'strncmp'(void*, void*, uint32)
 	ldc.i4	0
-	bne.un	'L_81'
+	bne.un	'L_94'
 // Line 70:				{
 
 // Line 71:					p += 5;
@@ -395,8 +464,8 @@ L_77:
 	ldc.i4	5
 	add
 	stloc	'p/3'
-	br	'L_84'
-L_81:
+	br	'L_97'
+L_94:
 // Line 72:				}
 
 // Line 73:				else if (isAlpha(*p))
@@ -406,40 +475,40 @@ L_81:
 	conv.i4
 	call	int32 'isAlpha'(int32)
 	ldc.i4	0
-	beq	'L_85'
+	beq	'L_98'
 // Line 74:				{
 
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	stloc	'p/3'
-	br	'L_88'
-L_87:
+	br	'L_101'
+L_100:
 // Line 76:						p++;
 
 	ldloc	'p/3'
 	ldc.i4	1
 	add
 	stloc	'p/3'
-L_90:
+L_103:
 // Line 75:					for (p++; *p != '\0' && isAlNum(*p); ) 
 
-L_88:
+L_101:
 	ldloc	'p/3'
 	ldind.i1
 	conv.i4
 	ldc.i4	0
-	beq	'L_108'
+	beq	'L_122'
 	ldloc	'p/3'
 	ldind.i1
 	conv.i4
 	call	int32 'isAlNum'(int32)
 	ldc.i4	0
-	bne.un	'L_87'
-L_108:
-L_89:
-	br	'L_92'
-L_85:
+	bne.un	'L_100'
+L_122:
+L_102:
+	br	'L_105'
+L_98:
 // Line 77:				}
 
 // Line 78:				else
@@ -449,7 +518,7 @@ L_85:
 // Line 80:					sprintf(op2, "%c%c ", p[0], p[1]);
 
 	ldloca	'op2/2'
-	ldsflda	valuetype 'int8[]' 'L_35'
+	ldsflda	valuetype 'int8[]' 'L_6'
 
 	ldloc	'p/3'
 	ldind.i1
@@ -463,31 +532,31 @@ L_85:
 	pop
 // Line 81:					p += strstr(OPERATOR2, op2) != NULL ? 2 : 1;
 
-	ldsflda	valuetype 'int8[]' 'L_36'
+	ldsflda	valuetype 'int8[]' 'L_7'
 
 	ldloca	'op2/2'
 	call	void* 'strstr'(void*, void*)
 	ldc.i4	0
-	beq	'L_109'
+	beq	'L_123'
 	ldc.i4	2
-	br	'L_110'
-L_109:
+	br	'L_124'
+L_123:
 	ldc.i4	1
-L_110:
+L_124:
 	conv.u4
 	ldloc	'p/3'
 	add
 	stloc	'p/3'
-L_92:
-L_84:
-L_80:
-L_76:
+L_105:
+L_97:
+L_93:
+L_89:
 // Line 82:				}
 
 // Line 83:				sprintf(buf, "%.*s", p - pBgn, pBgn);
 
 	ldloca	'buf/1'
-	ldsflda	valuetype 'int8[]' 'L_37'
+	ldsflda	valuetype 'int8[]' 'L_8'
 
 	ldloc	'p/3'
 	ldloc	'pBgn/4'
@@ -500,14 +569,14 @@ L_76:
 	ldsfld	int32 'nToken'
 
 	ldc.i4	1000
-	bne.un	'L_95'
+	bne.un	'L_108'
 // Line 85:					printf("Token is to big");
 
-	ldsflda	valuetype 'int8[]' 'L_38'
+	ldsflda	valuetype 'int8[]' 'L_9'
 
 	call	vararg int32 'printf'(void*, ...)
 	pop
-L_95:
+L_108:
 // Line 86:				Token[nToken++] = strdup(buf);
 
 	ldsfld	int32 'nToken'
@@ -531,40 +600,40 @@ L_95:
 	ldsfld	int32 'fToken'
 
 	ldc.i4	0
-	beq	'L_96'
+	beq	'L_109'
 // Line 88:					printf(strchr(";{}", *buf) != NULL ? "%s\n" : "%s ", buf);
 
-	ldsflda	valuetype 'int8[]' 'L_39'
+	ldsflda	valuetype 'int8[]' 'L_10'
 
 	ldloc	'buf/1'
 	conv.i4
 	call	void* 'strchr'(void*, int32)
 	ldc.i4	0
-	beq	'L_111'
-	ldsflda	valuetype 'int8[]' 'L_40'
+	beq	'L_125'
+	ldsflda	valuetype 'int8[]' 'L_11'
 
-	br	'L_112'
-L_111:
-	ldsflda	valuetype 'int8[]' 'L_41'
+	br	'L_126'
+L_125:
+	ldsflda	valuetype 'int8[]' 'L_12'
 
-L_112:
+L_126:
 	ldloca	'buf/1'
 	call	vararg int32 'printf'(void*, ..., void*)
 	pop
-L_96:
-L_53:
+L_109:
+L_66:
 // Line 39:			for (p = linebuf; *p != '\0'; )
 
-L_51:
+L_64:
 	ldloc	'p/3'
 	ldind.i1
 	conv.i4
 	ldc.i4	0
-	bne.un	'L_50'
-L_52:
+	bne.un	'L_63'
+L_65:
 // Line 89:			} 
 
-L_48:
+L_61:
 // Line 37:		while (fgets(linebuf, sizeof(linebuf), fpSrc) != NULL)
 
 	ldloca	'linebuf/0'
@@ -572,8 +641,8 @@ L_48:
 	ldloc	'fpSrc/5'
 	call	void* 'fgets'(void*, int32, void*)
 	ldc.i4	0
-	bne.un	'L_46'
-L_47:
+	bne.un	'L_59'
+L_60:
 // Line 90:		}
 
 // Line 91:		fclose(fpSrc);
@@ -583,81 +652,7 @@ L_47:
 	pop
 // Line 92:	}
 
-L_43:
-	ret
-
-}
- .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
-{
-// Line 94:	int main()
-
-// Line 95:	{
-
-	.locals
-	(
-		[0] int32 'i/0',
-		[1] void* 'fileName/1'
-	)
-	.maxstack	3
-L_117:
-// Line 96:	  int i = 0;
-
-	ldloca	'i/0'
-	ldc.i4	0
-	add
-	ldc.i4	0
-	stind.i4
-// Line 97:	  char* fileName = "test.c";
-
-	ldloca	'fileName/1'
-	ldc.i4	0
-	add
-	ldsflda	valuetype 'int8[]' 'L_116'
-
-	stind.i4
-// Line 98:	  lex(fileName);
-
-	ldloc	'fileName/1'
-	call	void 'lex'(void*)
-// Line 99:	  
-
-	ldc.i4	0
-	stloc	'i/0'
-	br	'L_121'
-L_120:
-// Line 101:	    printf("%s\n", Token[i]);
-
-	ldsflda	valuetype 'int8[]' 'L_40'
-
-	ldloc	'i/0'
-	ldc.i4	2
-	shl
-	ldsflda	valuetype 'void*[1000]' 'Token'
-
-	add
-	ldind.u4
-	call	vararg int32 'printf'(void*, ..., void*)
-	pop
-L_123:
-	ldloc	'i/0'
-	ldc.i4	1
-	add
-	stloc	'i/0'
-// Line 100:	  for(i=0;i<nToken;i++)
-
-L_121:
-	ldloc	'i/0'
-	ldsfld	int32 'nToken'
-
-	blt	'L_120'
-L_122:
-// Line 102:	  
-
-// Line 103:	  return 0;
-
-	ldc.i4	0
-// Line 104:	}
-L_118:
+L_56:
 	ret
 
 }
@@ -1170,28 +1165,28 @@ L_118:
 	0 0 0 0 0 0 0 0 
 	
 )
-.field public static valuetype 'int8[]' 'L_116' at $L_116
-.data $L_116 = bytearray (74 65 73 74 2e 63 0 
+.field public static valuetype 'int8[]' 'L_13' at $L_13
+.data $L_13 = bytearray (74 65 73 74 2e 63 0 
 )
-.field public static valuetype 'int8[]' 'L_41' at $L_41
-.data $L_41 = bytearray (25 73 20 0 
+.field public static valuetype 'int8[]' 'L_12' at $L_12
+.data $L_12 = bytearray (25 73 20 0 
 )
-.field public static valuetype 'int8[]' 'L_40' at $L_40
-.data $L_40 = bytearray (25 73 a 0 
+.field public static valuetype 'int8[]' 'L_11' at $L_11
+.data $L_11 = bytearray (25 73 a 0 
 )
-.field public static valuetype 'int8[]' 'L_39' at $L_39
-.data $L_39 = bytearray (3b 7b 7d 0 
+.field public static valuetype 'int8[]' 'L_10' at $L_10
+.data $L_10 = bytearray (3b 7b 7d 0 
 )
-.field public static valuetype 'int8[]' 'L_38' at $L_38
-.data $L_38 = bytearray (54 6f 6b 65 6e 20 69 73 
+.field public static valuetype 'int8[]' 'L_9' at $L_9
+.data $L_9 = bytearray (54 6f 6b 65 6e 20 69 73 
 	20 74 6f 20 62 69 67 0 
 	
 )
-.field public static valuetype 'int8[]' 'L_37' at $L_37
-.data $L_37 = bytearray (25 2e 2a 73 0 
+.field public static valuetype 'int8[]' 'L_8' at $L_8
+.data $L_8 = bytearray (25 2e 2a 73 0 
 )
-.field public static valuetype 'int8[]' 'L_36' at $L_36
-.data $L_36 = bytearray (3d 3d 20 21 3d 20 3c 3d 
+.field public static valuetype 'int8[]' 'L_7' at $L_7
+.data $L_7 = bytearray (3d 3d 20 21 3d 20 3c 3d 
 	20 3e 3d 20 7c 3d 20 2b 
 	3d 20 2d 3d 20 2a 3d 20 
 	2f 3d 20 3e 3e 20 3c 3c 
@@ -1199,30 +1194,44 @@ L_118:
 	26 20 7c 7c 20 2d 3e 20 
 	0 
 )
-.field public static valuetype 'int8[]' 'L_35' at $L_35
-.data $L_35 = bytearray (25 63 25 63 20 0 
+.field public static valuetype 'int8[]' 'L_6' at $L_6
+.data $L_6 = bytearray (25 63 25 63 20 0 
 )
-.field public static valuetype 'int8[]' 'L_34' at $L_34
-.data $L_34 = bytearray (63 68 61 72 2a 0 
+.field public static valuetype 'int8[]' 'L_5' at $L_5
+.data $L_5 = bytearray (63 68 61 72 2a 0 
 )
-.field public static valuetype 'int8[]' 'L_33' at $L_33
-.data $L_33 = bytearray (45 78 70 65 63 74 65 64 
+.field public static valuetype 'int8[]' 'L_4' at $L_4
+.data $L_4 = bytearray (45 78 70 65 63 74 65 64 
 	20 27 22 27 20 3c 25 73 
 	3e 0 
 )
-.field public static valuetype 'int8[]' 'L_32' at $L_32
-.data $L_32 = bytearray (72 6e 22 74 0 
+.field public static valuetype 'int8[]' 'L_3' at $L_3
+.data $L_3 = bytearray (72 6e 22 74 0 
 )
-.field public static valuetype 'int8[]' 'L_31' at $L_31
-.data $L_31 = bytearray (66 69 6c 65 20 27 25 73 
+.field public static valuetype 'int8[]' 'L_2' at $L_2
+.data $L_2 = bytearray (66 69 6c 65 20 27 25 73 
 	27 20 63 61 6e 27 74 20 
 	62 65 20 6f 70 65 6e 65 
 	64 0 
 )
-.field public static valuetype 'int8[]' 'L_30' at $L_30
-.data $L_30 = bytearray (72 0 
+.field public static valuetype 'int8[]' 'L_1' at $L_1
+.data $L_1 = bytearray (72 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -1231,6 +1240,19 @@ L_118:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -1248,7 +1270,6 @@ L_118:
 .class private value explicit ansi sealed 'int8[4]' {.pack 1 .size 4}
 .class private value explicit ansi sealed 'int8[128]' {.pack 1 .size 128}
 .class private value explicit ansi sealed 'int8[256]' {.pack 1 .size 256}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'isdigit'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'isalpha'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'strstr'(void*, void*) preservesig {}
@@ -1257,10 +1278,14 @@ L_118:
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) uint32 'strlen'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'strcpy'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) uint32 'strtoul'(void*, void*, int32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'sprintf'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'fopen'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'fgets'(void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fclose'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}

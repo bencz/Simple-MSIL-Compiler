@@ -1,11 +1,4 @@
 #include <stdio.h>
-#undef stderr
-#undef stdin
-#undef stdout
-FILE *__iob_func();
-#define stdin __iob_func()
-#define stdout (__iob_func()+1)
-#define stderr (__iob_func()+2)
 
 #define RAND_MASK ((rNToGo == 1) ? 1 : 0)
 

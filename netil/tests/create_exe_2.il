@@ -1,10 +1,12 @@
 //File create_exe_2.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
+
+.assembly extern lsmsilcrtl { }
 
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
@@ -2541,7 +2543,7 @@ L_68:
 	0 0 0 0 0 0 0 0 
 	
 )
-.method public hidebysig static void '__DYNAMIC_STARTUP___3141815150'() cil managed
+.method private hidebysig static void '__DYNAMIC_STARTUP___3141815150'() cil managed
 {
 	.maxstack	2
 L_77:
@@ -2559,12 +2561,6 @@ L_77:
 	stind.i4
 	ldsflda	valuetype '_DLL[2]' 'dll'
 
-	ldc.i4	68
-	add
-	ldc.i4	1
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
 	ldc.i4	136
 	add
 	ldsflda	valuetype 'int8[]' 'L_3'
@@ -2576,78 +2572,6 @@ L_77:
 	add
 	ldsflda	valuetype 'int8[]' 'L_4'
 
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	204
-	add
-	ldc.i4	1
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	4
-	add
-	ldsflda	valuetype 'int8[]' 'L_2'
-
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	68
-	add
-	ldc.i4	1
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	136
-	add
-	ldsflda	valuetype 'int8[]' 'L_3'
-
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	140
-	add
-	ldsflda	valuetype 'int8[]' 'L_4'
-
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	204
-	add
-	ldc.i4	1
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	136
-	add
-	ldsflda	valuetype 'int8[]' 'L_3'
-
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	140
-	add
-	ldsflda	valuetype 'int8[]' 'L_4'
-
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	204
-	add
-	ldc.i4	1
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	140
-	add
-	ldsflda	valuetype 'int8[]' 'L_4'
-
-	stind.i4
-	ldsflda	valuetype '_DLL[2]' 'dll'
-
-	ldc.i4	204
-	add
-	ldc.i4	1
 	stind.i4
 L_78:
 	ret
@@ -2705,7 +2629,21 @@ L_78:
 .data $L_1 = bytearray (75 73 65 72 33 32 2e 64 
 	6c 6c 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -2714,6 +2652,19 @@ L_78:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	call void __DYNAMIC_STARTUP___3141815150()
 	ldloca 'argc'
 	ldloca 'argv'
@@ -2734,14 +2685,17 @@ L_78:
 .class private value explicit ansi sealed '_EXE_HEADER' {.pack 1 .size 496}
 .class private value explicit ansi sealed 'uint8[23]' {.pack 1 .size 23}
 .class private value explicit ansi sealed 'uint8[28]' {.pack 1 .size 28}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) uint32 'fwrite'(void*, uint32, uint32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'fopen'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) int32 'fclose'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'calloc'(uint32, uint32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) uint32 'strlen'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'strcpy'(void*, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'memcpy'(void*, void*, uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}

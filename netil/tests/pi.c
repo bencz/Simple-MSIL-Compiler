@@ -1,14 +1,6 @@
-  #define NULL ((void*)0)
-  void printf(char *, ...);
-  void scanf(char *, ...);
-  void exit(int);
-  void* malloc(int);
-  void free(void*);
-  void* memset(void*, int , unsigned int);
-  unsigned int strlen(const char*);
-  int putchar(int c);
-  int atoi(const char*);
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #define ARRAY_SIZE 128000
 
 int main(int argc, char **argv)

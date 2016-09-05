@@ -1,80 +1,81 @@
 //File float_to_ieee754.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
 
+.assembly extern lsmsilcrtl { }
+
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
-// Line 54:	int main()
+// Line 43:	int main()
 
-// Line 55:	{
+// Line 44:	{
 
 	.locals
 	(
 		[0] float32 'input/0',
-		[1] int32 'numeroDeBits/1',
-		[2] void* 'str/2'
+		[1] void* 'str/1'
 	)
 	.maxstack	3
 L_4:
-// Line 56:		float input = 0.0;
+// Line 45:		float input = 0.0;
 
 	ldloca	'input/0'
 	ldc.r4	0.0
 	stind.r4
-// Line 57:		const int numeroDeBits = 32;
+// Line 46:		const int numeroDeBits = 32;
 
-// Line 58:		char *str = (char*)malloc(sizeof(char) * numeroDeBits);
+// Line 47:		char *str = (char*)malloc(sizeof(char) * numeroDeBits);
 
-	ldloca	'str/2'
+	ldloca	'str/1'
 	ldc.i4	32
 	conv.u4
 	call	void* 'malloc'(uint32)
 	stind.i4
-// Line 59:		printf("Digite um numero float: ");
+// Line 48:		printf("Digite um numero float: ");
 
 	ldsflda	valuetype 'int8[]' 'L_1'
 
 	call	vararg int32 'printf'(void*, ...)
 	pop
-// Line 60:		scanf("%f", &input);
+// Line 49:		scanf("%f", &input);
 
 	ldsflda	valuetype 'int8[]' 'L_2'
 
 	ldloca	'input/0'
 	call	vararg int32 'scanf'(void*, ..., void*)
 	pop
-// Line 61:		floatToBinary(input, str, numeroDeBits);
+// Line 50:		floatToBinary(input, str, numeroDeBits);
 
 	ldloc	'input/0'
-	ldloc	'str/2'
+	ldloc	'str/1'
 	ldc.i4	32
 	call	void 'floatToBinary'(float32, void*, int32)
-// Line 62:		printf("%s\n", str);
+// Line 51:		printf("%s\n", str);
 
 	ldsflda	valuetype 'int8[]' 'L_3'
 
-	ldloc	'str/2'
+	ldloc	'str/1'
 	call	vararg int32 'printf'(void*, ..., void*)
 	pop
-// Line 63:		if(str != NULL)
+// Line 52:		if(str != NULL)
 
-	ldloc	'str/2'
+	ldloc	'str/1'
 	ldc.i4	0
 	beq	'L_7'
-// Line 64:	    free(str);     
+// Line 53:	    free(str);     
 
-	ldloc	'str/2'
+	ldloc	'str/1'
 	call	void 'free'(void*)
 L_7:
-// Line 65:		return 0;
+// Line 54:		return 0;
 
 	ldc.i4	0
-// Line 66:	}
+// Line 55:	}
 
 L_5:
 	ret
@@ -82,9 +83,9 @@ L_5:
 }
  .method public hidebysig static void* 'strrev_t'(void* 'str' ) cil managed
 {
-// Line 16:	char *strrev_t(char *str)
+// Line 5:	char *strrev_t(char *str)
 
-// Line 17:	{
+// Line 6:	{
 
 	.locals
 	(
@@ -93,11 +94,11 @@ L_5:
 	)
 	.maxstack	4
 L_13:
-// Line 18:		char *p1, *p2;
+// Line 7:		char *p1, *p2;
 
-// Line 19:	
+// Line 8:	
 
-// Line 20:		if (!str || !*str)
+// Line 9:		if (!str || !*str)
 
 	ldarg	'str'
 	ldc.i4	0
@@ -107,7 +108,7 @@ L_13:
 	ldc.i4	0
 	bne.un	'L_16'
 L_25:
-// Line 21:			return str;
+// Line 10:			return str;
 
 	ldarg	'str'
 	br	'L_14'
@@ -123,9 +124,9 @@ L_16:
 	stloc	'p2/1'
 	br	'L_18'
 L_17:
-// Line 23:		{
+// Line 12:		{
 
-// Line 24:			*p1 ^= *p2;
+// Line 13:			*p1 ^= *p2;
 
 	ldloc	'p1/0'
 	ldloc	'p1/0'
@@ -134,7 +135,7 @@ L_17:
 	ldind.i1
 	xor
 	stind.i1
-// Line 25:			*p2 ^= *p1;
+// Line 14:			*p2 ^= *p1;
 
 	ldloc	'p2/1'
 	ldloc	'p2/1'
@@ -143,7 +144,7 @@ L_17:
 	ldind.i1
 	xor
 	stind.i1
-// Line 26:			*p1 ^= *p2;
+// Line 15:			*p1 ^= *p2;
 
 	ldloc	'p1/0'
 	ldloc	'p1/0'
@@ -161,19 +162,19 @@ L_20:
 	ldc.i4	1
 	sub
 	stloc	'p2/1'
-// Line 22:		for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
+// Line 11:		for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
 
 L_18:
 	ldloc	'p2/1'
 	ldloc	'p1/0'
 	bgt	'L_17'
 L_19:
-// Line 27:		}
+// Line 16:		}
 
-// Line 28:		return str;
+// Line 17:		return str;
 
 	ldarg	'str'
-// Line 29:	}
+// Line 18:	}
 
 L_14:
 	ret
@@ -181,9 +182,9 @@ L_14:
 }
  .method public hidebysig static void 'floatToBinary'(float32 'f' , void* 'str' , int32 'numeroDeBits' ) cil managed
 {
-// Line 31:	void floatToBinary(float f, char *str, int numeroDeBits)
+// Line 20:	void floatToBinary(float f, char *str, int numeroDeBits)
 
-// Line 32:	{
+// Line 21:	{
 
 	.locals
 	(
@@ -193,22 +194,22 @@ L_14:
 	)
 	.maxstack	4
 L_29:
-// Line 33:		int i = 0;
+// Line 22:		int i = 0;
 
 	ldloca	'i/0'
 	ldc.i4	0
 	stind.i4
-// Line 34:		int strIndex = 0;
+// Line 23:		int strIndex = 0;
 
 	ldloca	'strIndex/1'
 	ldc.i4	0
 	stind.i4
-// Line 40:		u.f = f;
+// Line 29:		u.f = f;
 
 	ldloca	'u/2'
 	ldarg	'f'
 	stind.r4
-// Line 41:		memset(str, '0', numeroDeBits);
+// Line 30:		memset(str, '0', numeroDeBits);
 
 	ldarg	'str'
 	ldc.i4	48
@@ -216,15 +217,15 @@ L_29:
 	conv.u4
 	call	void* 'memset'(void*, int32, uint32)
 	pop
-// Line 42:	
+// Line 31:	
 
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_33'
 L_32:
-// Line 44:		{
+// Line 33:		{
 
-// Line 45:			str[strIndex++] = (u.i & (1 << 0)) ? '1' : '0';
+// Line 34:			str[strIndex++] = (u.i & (1 << 0)) ? '1' : '0';
 
 	ldloc	'strIndex/1'
 	ldarg	'str'
@@ -246,7 +247,7 @@ L_40:
 L_41:
 	conv.i1
 	stind.i1
-// Line 46:			u.i >>= 1;
+// Line 35:			u.i >>= 1;
 
 	ldloca	'u/2'
 	ldloca	'u/2'
@@ -259,32 +260,32 @@ L_35:
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 43:		for (i = 0; i < numeroDeBits; i++)
+// Line 32:		for (i = 0; i < numeroDeBits; i++)
 
 L_33:
 	ldloc	'i/0'
 	ldarg	'numeroDeBits'
 	blt	'L_32'
 L_34:
-// Line 47:		}
+// Line 36:		}
 
-// Line 48:	
+// Line 37:	
 
-// Line 49:	  	str[strIndex] = '\0';
+// Line 38:	  	str[strIndex] = '\0';
 
 	ldloc	'strIndex/1'
 	ldarg	'str'
 	add
 	ldc.i4	0
 	stind.i1
-// Line 50:	  
+// Line 39:	  
 
-// Line 51:		str = strrev_t(str);
+// Line 40:		str = strrev_t(str);
 
 	ldarg	'str'
 	call	void* 'strrev_t'(void*)
 	starg	'str'
-// Line 52:	}
+// Line 41:	}
 
 L_30:
 	ret
@@ -302,7 +303,21 @@ L_30:
 	20 66 6c 6f 61 74 3a 20 
 	0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -311,6 +326,19 @@ L_30:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -325,11 +353,14 @@ L_30:
 }
 .class private value explicit ansi sealed 'int8[]' {.pack 1 .size 1}
 .class private value explicit ansi sealed '__anontype_2486130647_0' {.pack 1 .size 4}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) uint32 'strlen'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'memset'(void*, int32, uint32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'scanf'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}

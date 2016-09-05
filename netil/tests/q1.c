@@ -1,5 +1,5 @@
-void printf(char *, ...);
-void exit(int);
+#include <stdio.h>
+#include <stdlib.h>
 
 struct aa
 {

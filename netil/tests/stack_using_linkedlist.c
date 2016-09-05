@@ -1,10 +1,5 @@
-#define NULL ((void*)0)
-
-void printf(char *, ...);
-void scanf(char *, ...);
-void exit(int);
-void* malloc(int);
-void free(void*);
+#include <stdio.h>
+#include <stdlib.h>
 
 #define bool int
 #define true 1

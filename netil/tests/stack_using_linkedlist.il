@@ -1,17 +1,19 @@
 //File stack_using_linkedlist.c
-//Compiler version 6.0.8.1
+//Compiler version 6.0.0.1
 
 .corflags 2 // 32-bit
 .assembly test { }
 
 .assembly extern mscorlib { }
 
+.assembly extern lsmsilcrtl { }
+
 
 .method public hidebysig static int32 'main'(int32 'argc', void * 'argv')  cil managed
 {
-// Line 342:	int main()
+// Line 337:	int main()
 
-// Line 343:	{
+// Line 338:	{
 
 	.locals
 	(
@@ -23,154 +25,164 @@
 	)
 	.maxstack	3
 L_8:
-// Line 345:	  int valor;
+// Line 340:	  int valor;
 
-// Line 346:		bool sucesso = true;
+// Line 341:		bool sucesso = true;
 
 	ldloca	'sucesso/2'
 	ldc.i4	1
 	stind.i4
-// Line 347:		pilha* pl = inicializapilha(20);
+// Line 342:		pilha* pl = inicializapilha(20);
 
 	ldloca	'pl/3'
 	ldc.i4	20
 	call	void* 'inicializapilha'(int32)
 	stind.i4
-// Line 348:		printf("---------- Empilhando ----------\n");
+// Line 343:		printf("---------- Empilhando ----------\n");
 
 	ldsflda	valuetype 'int8[]' 'L_1'
 
-	call	vararg void 'printf'(void*, ...)
+	call	vararg int32 'printf'(void*, ...)
+	pop
 	ldc.i4	0
 	stloc	'i/0'
 	br	'L_12'
 L_11:
-// Line 350:		{
+// Line 345:		{
 
-// Line 351:			valor = i * 10;
+// Line 346:			valor = i * 10;
 
 	ldloc	'i/0'
 	ldc.i4	10
 	mul
 	stloc	'valor/1'
-// Line 352:			pl_push(pl, valor, &sucesso);
+// Line 347:			pl_push(pl, valor, &sucesso);
 
 	ldloc	'pl/3'
 	ldloc	'valor/1'
 	ldloca	'sucesso/2'
 	call	void 'pl_push'(void*, int32, void*)
-// Line 353:			if (sucesso)
+// Line 348:			if (sucesso)
 
 	ldloc	'sucesso/2'
 	ldc.i4	0
 	beq	'L_16'
-// Line 354:				printf("%d\n", valor);
+// Line 349:				printf("%d\n", valor);
 
 	ldsflda	valuetype 'int8[]' 'L_2'
 
 	ldloc	'valor/1'
-	call	vararg void 'printf'(void*, ..., int32)
+	call	vararg int32 'printf'(void*, ..., int32)
+	pop
 L_16:
 L_14:
 	ldloc	'i/0'
 	ldc.i4	1
 	add
 	stloc	'i/0'
-// Line 349:		for (i = 0; (sucesso == true); i++)
+// Line 344:		for (i = 0; (sucesso == true); i++)
 
 L_12:
 	ldloc	'sucesso/2'
 	ldc.i4	1
 	beq	'L_11'
 L_13:
-// Line 355:		}
+// Line 350:		}
 
-// Line 356:		printf("-----------------------------------\n\n");
+// Line 351:		printf("-----------------------------------\n\n");
 
 	ldsflda	valuetype 'int8[]' 'L_3'
 
-	call	vararg void 'printf'(void*, ...)
-// Line 357:	
+	call	vararg int32 'printf'(void*, ...)
+	pop
+// Line 352:	
 
-// Line 358:		printf("-----------------------------------\n");
+// Line 353:		printf("-----------------------------------\n");
 
 	ldsflda	valuetype 'int8[]' 'L_4'
 
-	call	vararg void 'printf'(void*, ...)
-// Line 359:		printf("TOPO = %d\n", pl_topo(pl, &sucesso));
+	call	vararg int32 'printf'(void*, ...)
+	pop
+// Line 354:		printf("TOPO = %d\n", pl_topo(pl, &sucesso));
 
 	ldsflda	valuetype 'int8[]' 'L_5'
 
 	ldloc	'pl/3'
 	ldloca	'sucesso/2'
 	call	int32 'pl_topo'(void*, void*)
-	call	vararg void 'printf'(void*, ..., int32)
-// Line 360:		printf("BASE = %d\n", pl_base(pl, &sucesso));
+	call	vararg int32 'printf'(void*, ..., int32)
+	pop
+// Line 355:		printf("BASE = %d\n", pl_base(pl, &sucesso));
 
 	ldsflda	valuetype 'int8[]' 'L_6'
 
 	ldloc	'pl/3'
 	ldloca	'sucesso/2'
 	call	int32 'pl_base'(void*, void*)
-	call	vararg void 'printf'(void*, ..., int32)
-// Line 361:		printf("-----------------------------------\n\n");
+	call	vararg int32 'printf'(void*, ..., int32)
+	pop
+// Line 356:		printf("-----------------------------------\n\n");
 
 	ldsflda	valuetype 'int8[]' 'L_3'
 
-	call	vararg void 'printf'(void*, ...)
-// Line 362:	
+	call	vararg int32 'printf'(void*, ...)
+	pop
+// Line 357:	
 
-// Line 363:		printf("---------- Desempilhando ----------\n");
+// Line 358:		printf("---------- Desempilhando ----------\n");
 
 	ldsflda	valuetype 'int8[]' 'L_7'
 
-	call	vararg void 'printf'(void*, ...)
+	call	vararg int32 'printf'(void*, ...)
+	pop
 L_18:
-// Line 365:		{
+// Line 360:		{
 
-// Line 366:			int valor = pl_pop(pl, &sucesso);
+// Line 361:			int valor = pl_pop(pl, &sucesso);
 
 	ldloca	'valor/4'
 	ldloc	'pl/3'
 	ldloca	'sucesso/2'
 	call	int32 'pl_pop'(void*, void*)
 	stind.i4
-// Line 367:			if (sucesso == false)
+// Line 362:			if (sucesso == false)
 
 	ldloc	'sucesso/2'
 	ldc.i4	0
 	beq	'L_19'
-// Line 368:				break;
+// Line 363:				break;
 
 L_22:
-// Line 369:			printf("%d\n", valor);
+// Line 364:			printf("%d\n", valor);
 
 	ldsflda	valuetype 'int8[]' 'L_2'
 
 	ldloc	'valor/4'
-	call	vararg void 'printf'(void*, ..., int32)
+	call	vararg int32 'printf'(void*, ..., int32)
+	pop
 L_20:
-// Line 364:		while (true)
+// Line 359:		while (true)
 
 	br	'L_18'
 L_19:
-// Line 370:		}
+// Line 365:		}
 
-// Line 371:		printf("-----------------------------------\n");
+// Line 366:		printf("-----------------------------------\n");
 
 	ldsflda	valuetype 'int8[]' 'L_4'
 
-	call	vararg void 'printf'(void*, ...)
-// Line 372:	
+	call	vararg int32 'printf'(void*, ...)
+	pop
+// Line 367:	
 
-// Line 373:		pl_liberapilha(pl);
+// Line 368:		pl_liberapilha(pl);
 
 	ldloc	'pl/3'
 	call	void 'pl_liberapilha'(void*)
-// Line 374:		return 0;
+// Line 369:		return 0;
 
 	ldc.i4	0
-// Line 375:	}
+// Line 370:	}
 
 L_9:
 	ret
@@ -178,9 +190,9 @@ L_9:
 }
  .method public hidebysig static void* 'll_inicializalista'() cil managed
 {
-// Line 64:	lista* ll_inicializalista()
+// Line 59:	lista* ll_inicializalista()
 
-// Line 65:	{
+// Line 60:	{
 
 	.locals
 	(
@@ -188,49 +200,50 @@ L_9:
 	)
 	.maxstack	2
 L_29:
-// Line 66:		lista* tmp = (lista*)malloc(sizeof(lista));
+// Line 61:		lista* tmp = (lista*)malloc(sizeof(lista));
 
 	ldloca	'tmp/0'
 	ldc.i4	20
-	call	void* 'malloc'(int32)
+	conv.u4
+	call	void* 'malloc'(uint32)
 	stind.i4
-// Line 67:		tmp->indexcounter = 0;
+// Line 62:		tmp->indexcounter = 0;
 
 	ldloc	'tmp/0'
 	ldc.i4	0
 	stind.i4
-// Line 68:		tmp->tamanho = 0;
+// Line 63:		tmp->tamanho = 0;
 
 	ldloc	'tmp/0'
 	ldc.i4	4
 	add
 	ldc.i4	0
 	stind.i4
-// Line 69:		tmp->listanoh = NULL;
+// Line 64:		tmp->listanoh = NULL;
 
 	ldloc	'tmp/0'
 	ldc.i4	8
 	add
 	ldc.i4	0
 	stind.i4
-// Line 70:		tmp->head = NULL;
+// Line 65:		tmp->head = NULL;
 
 	ldloc	'tmp/0'
 	ldc.i4	12
 	add
 	ldc.i4	0
 	stind.i4
-// Line 71:		tmp->tail = NULL;
+// Line 66:		tmp->tail = NULL;
 
 	ldloc	'tmp/0'
 	ldc.i4	16
 	add
 	ldc.i4	0
 	stind.i4
-// Line 72:		return tmp;
+// Line 67:		return tmp;
 
 	ldloc	'tmp/0'
-// Line 73:	}
+// Line 68:	}
 
 L_30:
 	ret
@@ -238,9 +251,9 @@ L_30:
 }
  .method public hidebysig static void* 'crianoh'() cil managed
 {
-// Line 75:	noh* crianoh()
+// Line 70:	noh* crianoh()
 
-// Line 76:	{
+// Line 71:	{
 
 	.locals
 	(
@@ -248,37 +261,38 @@ L_30:
 	)
 	.maxstack	2
 L_37:
-// Line 77:		noh* novo = (noh*)malloc(sizeof(noh));
+// Line 72:		noh* novo = (noh*)malloc(sizeof(noh));
 
 	ldloca	'novo/0'
 	ldc.i4	16
-	call	void* 'malloc'(int32)
+	conv.u4
+	call	void* 'malloc'(uint32)
 	stind.i4
-// Line 78:		novo->conteudo = 0;
+// Line 73:		novo->conteudo = 0;
 
 	ldloc	'novo/0'
 	ldc.i4	4
 	add
 	ldc.i4	0
 	stind.i4
-// Line 79:		novo->proximo = NULL;
+// Line 74:		novo->proximo = NULL;
 
 	ldloc	'novo/0'
 	ldc.i4	8
 	add
 	ldc.i4	0
 	stind.i4
-// Line 80:		novo->anterior = NULL;
+// Line 75:		novo->anterior = NULL;
 
 	ldloc	'novo/0'
 	ldc.i4	12
 	add
 	ldc.i4	0
 	stind.i4
-// Line 81:		return novo;
+// Line 76:		return novo;
 
 	ldloc	'novo/0'
-// Line 82:	}
+// Line 77:	}
 
 L_38:
 	ret
@@ -286,9 +300,9 @@ L_38:
 }
  .method public hidebysig static void 'll_inserirfinal'(void* 'lst' , int32 'valor' ) cil managed
 {
-// Line 84:	void ll_inserirfinal(lista* lst, int valor)
+// Line 79:	void ll_inserirfinal(lista* lst, int valor)
 
-// Line 85:	{
+// Line 80:	{
 
 	.locals
 	(
@@ -297,21 +311,21 @@ L_38:
 	)
 	.maxstack	4
 L_45:
-// Line 86:		noh* novo = crianoh();
+// Line 81:		noh* novo = crianoh();
 
 	ldloca	'novo/0'
 	call	void* 'crianoh'()
 	stind.i4
-// Line 87:		novo->conteudo = valor;
+// Line 82:		novo->conteudo = valor;
 
 	ldloc	'novo/0'
 	ldc.i4	4
 	add
 	ldarg	'valor'
 	stind.i4
-// Line 88:	
+// Line 83:	
 
-// Line 89:		if (lst->listanoh == NULL)
+// Line 84:		if (lst->listanoh == NULL)
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -319,9 +333,9 @@ L_45:
 	ldind.u4
 	ldc.i4	0
 	bne.un	'L_48'
-// Line 90:		{
+// Line 85:		{
 
-// Line 91:			novo->index = lst->indexcounter++;
+// Line 86:			novo->index = lst->indexcounter++;
 
 	ldloc	'novo/0'
 	ldarg	'lst'
@@ -333,7 +347,7 @@ L_45:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 92:			lst->listanoh = lst->head = lst->tail = novo;
+// Line 87:			lst->listanoh = lst->head = lst->tail = novo;
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -356,7 +370,7 @@ L_45:
 	add
 	ldind.u4
 	stind.i4
-// Line 93:			lst->tamanho++;
+// Line 88:			lst->tamanho++;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -370,13 +384,13 @@ L_45:
 	stind.i4
 	br	'L_51'
 L_48:
-// Line 94:		}
+// Line 89:		}
 
-// Line 95:		else
+// Line 90:		else
 
-// Line 96:		{
+// Line 91:		{
 
-// Line 97:			noh* tmp = lst->tail;
+// Line 92:			noh* tmp = lst->tail;
 
 	ldloca	'tmp/1'
 	ldarg	'lst'
@@ -384,7 +398,7 @@ L_48:
 	add
 	ldind.u4
 	stind.i4
-// Line 98:			novo->index = lst->indexcounter++;
+// Line 93:			novo->index = lst->indexcounter++;
 
 	ldloc	'novo/0'
 	ldarg	'lst'
@@ -396,7 +410,7 @@ L_48:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 99:			lst->tail->proximo = novo;
+// Line 94:			lst->tail->proximo = novo;
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -406,14 +420,14 @@ L_48:
 	add
 	ldloc	'novo/0'
 	stind.i4
-// Line 100:			lst->tail = novo;		
+// Line 95:			lst->tail = novo;		
 
 	ldarg	'lst'
 	ldc.i4	16
 	add
 	ldloc	'novo/0'
 	stind.i4
-// Line 101:			lst->tail->anterior = tmp;
+// Line 96:			lst->tail->anterior = tmp;
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -423,7 +437,7 @@ L_48:
 	add
 	ldloc	'tmp/1'
 	stind.i4
-// Line 102:			lst->tamanho++;
+// Line 97:			lst->tamanho++;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -436,9 +450,9 @@ L_48:
 	add
 	stind.i4
 L_51:
-// Line 103:		}
+// Line 98:		}
 
-// Line 104:	}
+// Line 99:	}
 
 L_46:
 	ret
@@ -446,9 +460,9 @@ L_46:
 }
  .method public hidebysig static void 'll_inseririnicio'(void* 'lst' , int32 'valor' ) cil managed
 {
-// Line 106:	void ll_inseririnicio(lista* lst, int valor)
+// Line 101:	void ll_inseririnicio(lista* lst, int valor)
 
-// Line 107:	{
+// Line 102:	{
 
 	.locals
 	(
@@ -456,21 +470,21 @@ L_46:
 	)
 	.maxstack	4
 L_59:
-// Line 108:		noh* novo = crianoh();
+// Line 103:		noh* novo = crianoh();
 
 	ldloca	'novo/0'
 	call	void* 'crianoh'()
 	stind.i4
-// Line 109:		novo->conteudo = valor;
+// Line 104:		novo->conteudo = valor;
 
 	ldloc	'novo/0'
 	ldc.i4	4
 	add
 	ldarg	'valor'
 	stind.i4
-// Line 110:	
+// Line 105:	
 
-// Line 111:		if (lst->listanoh == NULL)
+// Line 106:		if (lst->listanoh == NULL)
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -478,9 +492,9 @@ L_59:
 	ldind.u4
 	ldc.i4	0
 	bne.un	'L_62'
-// Line 112:		{
+// Line 107:		{
 
-// Line 113:			novo->index = lst->indexcounter++;
+// Line 108:			novo->index = lst->indexcounter++;
 
 	ldloc	'novo/0'
 	ldarg	'lst'
@@ -492,7 +506,7 @@ L_59:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 114:			lst->listanoh = lst->head = lst->tail = novo;
+// Line 109:			lst->listanoh = lst->head = lst->tail = novo;
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -515,7 +529,7 @@ L_59:
 	add
 	ldind.u4
 	stind.i4
-// Line 115:			lst->tamanho++;
+// Line 110:			lst->tamanho++;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -529,13 +543,13 @@ L_59:
 	stind.i4
 	br	'L_65'
 L_62:
-// Line 116:		}
+// Line 111:		}
 
-// Line 117:		else
+// Line 112:		else
 
-// Line 118:		{
+// Line 113:		{
 
-// Line 119:			novo->index = lst->indexcounter++;
+// Line 114:			novo->index = lst->indexcounter++;
 
 	ldloc	'novo/0'
 	ldarg	'lst'
@@ -547,7 +561,7 @@ L_62:
 	ldc.i4	1
 	add
 	stind.i4
-// Line 120:			novo->proximo = lst->head;
+// Line 115:			novo->proximo = lst->head;
 
 	ldloc	'novo/0'
 	ldc.i4	8
@@ -557,7 +571,7 @@ L_62:
 	add
 	ldind.u4
 	stind.i4
-// Line 121:			lst->head->anterior = novo;
+// Line 116:			lst->head->anterior = novo;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -567,14 +581,14 @@ L_62:
 	add
 	ldloc	'novo/0'
 	stind.i4
-// Line 122:			lst->head = novo;
+// Line 117:			lst->head = novo;
 
 	ldarg	'lst'
 	ldc.i4	12
 	add
 	ldloc	'novo/0'
 	stind.i4
-// Line 123:			lst->listanoh = lst->head;
+// Line 118:			lst->listanoh = lst->head;
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -584,7 +598,7 @@ L_62:
 	add
 	ldind.u4
 	stind.i4
-// Line 124:			lst->tamanho++;
+// Line 119:			lst->tamanho++;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -597,9 +611,9 @@ L_62:
 	add
 	stind.i4
 L_65:
-// Line 125:		}
+// Line 120:		}
 
-// Line 126:	}
+// Line 121:	}
 
 L_60:
 	ret
@@ -607,9 +621,9 @@ L_60:
 }
  .method public hidebysig static void 'll_removernoh'(void* 'lst' , int32 'index' ) cil managed
 {
-// Line 128:	void ll_removernoh(lista *lst, int index)
+// Line 123:	void ll_removernoh(lista *lst, int index)
 
-// Line 129:	{
+// Line 124:	{
 
 	.locals
 	(
@@ -618,21 +632,21 @@ L_60:
 	)
 	.maxstack	3
 L_73:
-// Line 130:		noh* aux = NULL;
+// Line 125:		noh* aux = NULL;
 
 	ldloca	'aux/0'
 	ldc.i4	0
 	conv.u4
 	stind.i4
-// Line 131:		noh* ant = NULL;
+// Line 126:		noh* ant = NULL;
 
 	ldloca	'ant/1'
 	ldc.i4	0
 	conv.u4
 	stind.i4
-// Line 132:	
+// Line 127:	
 
-// Line 133:		if (lst->tamanho == 0)
+// Line 128:		if (lst->tamanho == 0)
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -640,12 +654,12 @@ L_73:
 	ldind.i4
 	ldc.i4	0
 	beq	'L_74'
-// Line 134:			return;
+// Line 129:			return;
 
 L_76:
-// Line 135:	    
+// Line 130:	    
 
-// Line 136:	  aux = lst->head;
+// Line 131:	  aux = lst->head;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -654,17 +668,17 @@ L_76:
 	stloc	'aux/0'
 	br	'L_79'
 L_77:
-// Line 139:		{
+// Line 134:		{
 
-// Line 140:			if (aux->index == index)
+// Line 135:			if (aux->index == index)
 
 	ldloc	'aux/0'
 	ldind.i4
 	ldarg	'index'
 	bne.un	'L_81'
-// Line 141:			{
+// Line 136:			{
 
-// Line 142:				if (aux == lst->head)
+// Line 137:				if (aux == lst->head)
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -672,9 +686,9 @@ L_77:
 	ldind.u4
 	ldloc	'aux/0'
 	bne.un	'L_83'
-// Line 143:				{
+// Line 138:				{
 
-// Line 144:					lst->head = lst->head->proximo;
+// Line 139:					lst->head = lst->head->proximo;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -687,7 +701,7 @@ L_77:
 	add
 	ldind.u4
 	stind.i4
-// Line 145:					lst->head->anterior = NULL;
+// Line 140:					lst->head->anterior = NULL;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -697,7 +711,7 @@ L_77:
 	add
 	ldc.i4	0
 	stind.i4
-// Line 146:					lst->listanoh = lst->head;
+// Line 141:					lst->listanoh = lst->head;
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -709,9 +723,9 @@ L_77:
 	stind.i4
 	br	'L_86'
 L_83:
-// Line 147:				}
+// Line 142:				}
 
-// Line 148:				else if (aux == lst->tail)
+// Line 143:				else if (aux == lst->tail)
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -719,16 +733,16 @@ L_83:
 	ldind.u4
 	ldloc	'aux/0'
 	bne.un	'L_87'
-// Line 149:				{
+// Line 144:				{
 
-// Line 150:					ant->proximo = NULL;
+// Line 145:					ant->proximo = NULL;
 
 	ldloc	'ant/1'
 	ldc.i4	8
 	add
 	ldc.i4	0
 	stind.i4
-// Line 151:					lst->tail = ant;
+// Line 146:					lst->tail = ant;
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -737,13 +751,13 @@ L_83:
 	stind.i4
 	br	'L_90'
 L_87:
-// Line 152:				}
+// Line 147:				}
 
-// Line 153:				else
+// Line 148:				else
 
-// Line 154:				{
+// Line 149:				{
 
-// Line 155:					aux->proximo->anterior = ant;
+// Line 150:					aux->proximo->anterior = ant;
 
 	ldloc	'aux/0'
 	ldc.i4	8
@@ -753,7 +767,7 @@ L_87:
 	add
 	ldloc	'ant/1'
 	stind.i4
-// Line 156:					ant->proximo = aux->proximo;
+// Line 151:					ant->proximo = aux->proximo;
 
 	ldloc	'ant/1'
 	ldc.i4	8
@@ -765,15 +779,15 @@ L_87:
 	stind.i4
 L_90:
 L_86:
-// Line 157:				}
+// Line 152:				}
 
-// Line 158:	
+// Line 153:	
 
-// Line 159:				free(aux);
+// Line 154:				free(aux);
 
 	ldloc	'aux/0'
 	call	void 'free'(void*)
-// Line 160:				lst->tamanho--;
+// Line 155:				lst->tamanho--;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -785,17 +799,17 @@ L_86:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 161:				break;
+// Line 156:				break;
 
 	br	'L_78'
 L_81:
-// Line 162:			}
+// Line 157:			}
 
-// Line 163:			ant = aux;
+// Line 158:			ant = aux;
 
 	ldloc	'aux/0'
 	stloc	'ant/1'
-// Line 164:			aux = aux->proximo;
+// Line 159:			aux = aux->proximo;
 
 	ldloc	'aux/0'
 	ldc.i4	8
@@ -803,17 +817,17 @@ L_81:
 	ldind.u4
 	stloc	'aux/0'
 L_79:
-// Line 137:	
+// Line 132:	
 
-// Line 138:		while (aux != NULL)
+// Line 133:		while (aux != NULL)
 
 	ldloc	'aux/0'
 	ldc.i4	0
 	bne.un	'L_77'
 L_78:
-// Line 165:		}
+// Line 160:		}
 
-// Line 166:	}
+// Line 161:	}
 
 L_74:
 	ret
@@ -821,9 +835,9 @@ L_74:
 }
  .method public hidebysig static int32 'll_removertail'(void* 'lst' ) cil managed
 {
-// Line 168:	int ll_removertail(lista *lst)
+// Line 163:	int ll_removertail(lista *lst)
 
-// Line 169:	{
+// Line 164:	{
 
 	.locals
 	(
@@ -832,12 +846,12 @@ L_74:
 	)
 	.maxstack	4
 L_100:
-// Line 170:		int valor = 0;
+// Line 165:		int valor = 0;
 
 	ldloca	'valor/0'
 	ldc.i4	0
 	stind.i4
-// Line 171:		valor = lst->tail->conteudo;
+// Line 166:		valor = lst->tail->conteudo;
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -847,9 +861,9 @@ L_100:
 	add
 	ldind.i4
 	stloc	'valor/0'
-// Line 172:	
+// Line 167:	
 
-// Line 173:		if (lst->tail->anterior != NULL) 
+// Line 168:		if (lst->tail->anterior != NULL) 
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -860,9 +874,9 @@ L_100:
 	ldind.u4
 	ldc.i4	0
 	beq	'L_103'
-// Line 174:		{
+// Line 169:		{
 
-// Line 175:			noh* ant = lst->tail->anterior;
+// Line 170:			noh* ant = lst->tail->anterior;
 
 	ldloca	'ant/1'
 	ldarg	'lst'
@@ -873,14 +887,14 @@ L_100:
 	add
 	ldind.u4
 	stind.i4
-// Line 176:			ant->proximo = NULL;
+// Line 171:			ant->proximo = NULL;
 
 	ldloc	'ant/1'
 	ldc.i4	8
 	add
 	ldc.i4	0
 	stind.i4
-// Line 177:			lst->tail = ant;
+// Line 172:			lst->tail = ant;
 
 	ldarg	'lst'
 	ldc.i4	16
@@ -889,11 +903,11 @@ L_100:
 	stind.i4
 	br	'L_106'
 L_103:
-// Line 178:		}
+// Line 173:		}
 
-// Line 179:		else 
+// Line 174:		else 
 
-// Line 180:			lst->listanoh = lst->head = lst->tail = NULL;
+// Line 175:			lst->listanoh = lst->head = lst->tail = NULL;
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -917,9 +931,9 @@ L_103:
 	ldind.u4
 	stind.i4
 L_106:
-// Line 181:	
+// Line 176:	
 
-// Line 182:		lst->tamanho--;
+// Line 177:		lst->tamanho--;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -931,10 +945,10 @@ L_106:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 183:		return valor;
+// Line 178:		return valor;
 
 	ldloc	'valor/0'
-// Line 184:	}
+// Line 179:	}
 
 L_101:
 	ret
@@ -942,9 +956,9 @@ L_101:
 }
  .method public hidebysig static int32 'll_removerhead'(void* 'lst' ) cil managed
 {
-// Line 186:	int ll_removerhead(lista *lst)
+// Line 181:	int ll_removerhead(lista *lst)
 
-// Line 187:	{
+// Line 182:	{
 
 	.locals
 	(
@@ -952,7 +966,7 @@ L_101:
 	)
 	.maxstack	3
 L_112:
-// Line 188:		int valor = lst->head->conteudo;
+// Line 183:		int valor = lst->head->conteudo;
 
 	ldloca	'valor/0'
 	ldarg	'lst'
@@ -963,7 +977,7 @@ L_112:
 	add
 	ldind.i4
 	stind.i4
-// Line 189:		if (lst->head->proximo != NULL)
+// Line 184:		if (lst->head->proximo != NULL)
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -974,9 +988,9 @@ L_112:
 	ldind.u4
 	ldc.i4	0
 	beq	'L_115'
-// Line 190:		{
+// Line 185:		{
 
-// Line 191:			lst->head = lst->head->proximo;
+// Line 186:			lst->head = lst->head->proximo;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -989,7 +1003,7 @@ L_112:
 	add
 	ldind.u4
 	stind.i4
-// Line 192:			lst->head->anterior = NULL;
+// Line 187:			lst->head->anterior = NULL;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -1001,11 +1015,11 @@ L_112:
 	stind.i4
 	br	'L_118'
 L_115:
-// Line 193:		}
+// Line 188:		}
 
-// Line 194:		else
+// Line 189:		else
 
-// Line 195:			lst->head = lst->tail  = NULL;
+// Line 190:			lst->head = lst->tail  = NULL;
 
 	ldarg	'lst'
 	ldc.i4	12
@@ -1021,9 +1035,9 @@ L_115:
 	ldind.u4
 	stind.i4
 L_118:
-// Line 196:		
+// Line 191:		
 
-// Line 197:		lst->listanoh = lst->head;
+// Line 192:		lst->listanoh = lst->head;
 
 	ldarg	'lst'
 	ldc.i4	8
@@ -1033,7 +1047,7 @@ L_118:
 	add
 	ldind.u4
 	stind.i4
-// Line 198:		lst->tamanho--;
+// Line 193:		lst->tamanho--;
 
 	ldarg	'lst'
 	ldc.i4	4
@@ -1045,10 +1059,10 @@ L_118:
 	ldc.i4	1
 	sub
 	stind.i4
-// Line 199:		return valor;
+// Line 194:		return valor;
 
 	ldloc	'valor/0'
-// Line 200:	}
+// Line 195:	}
 
 L_113:
 	ret
@@ -1056,62 +1070,62 @@ L_113:
 }
  .method public hidebysig static void 'll_removertudo'(void* 'lst' ) cil managed
 {
-// Line 202:	void ll_removertudo(lista *lst)
+// Line 197:	void ll_removertudo(lista *lst)
 
-// Line 203:	{
+// Line 198:	{
 
 	.maxstack	2
 L_124:
-// Line 204:		free(lst->tail);
+// Line 199:		free(lst->tail);
 
 	ldarg	'lst'
 	ldc.i4	16
 	add
 	ldind.u4
 	call	void 'free'(void*)
-// Line 205:		free(lst->head);
+// Line 200:		free(lst->head);
 
 	ldarg	'lst'
 	ldc.i4	12
 	add
 	ldind.u4
 	call	void 'free'(void*)
-// Line 206:	
+// Line 201:	
 
-// Line 207:		lst->indexcounter = 0;
+// Line 202:		lst->indexcounter = 0;
 
 	ldarg	'lst'
 	ldc.i4	0
 	stind.i4
-// Line 208:		lst->tamanho = 0;
+// Line 203:		lst->tamanho = 0;
 
 	ldarg	'lst'
 	ldc.i4	4
 	add
 	ldc.i4	0
 	stind.i4
-// Line 209:		lst->listanoh = NULL;
+// Line 204:		lst->listanoh = NULL;
 
 	ldarg	'lst'
 	ldc.i4	8
 	add
 	ldc.i4	0
 	stind.i4
-// Line 210:		lst->head = NULL;
+// Line 205:		lst->head = NULL;
 
 	ldarg	'lst'
 	ldc.i4	12
 	add
 	ldc.i4	0
 	stind.i4
-// Line 211:		lst->tail = NULL;
+// Line 206:		lst->tail = NULL;
 
 	ldarg	'lst'
 	ldc.i4	16
 	add
 	ldc.i4	0
 	stind.i4
-// Line 212:	}
+// Line 207:	}
 
 L_125:
 	ret
@@ -1119,9 +1133,9 @@ L_125:
 }
  .method public hidebysig static void* 'll_buscanoh'(void* 'lst' , int32 'index' ) cil managed
 {
-// Line 214:	noh* ll_buscanoh(lista *lst, int index)
+// Line 209:	noh* ll_buscanoh(lista *lst, int index)
 
-// Line 215:	{
+// Line 210:	{
 
 	.locals
 	(
@@ -1129,7 +1143,7 @@ L_125:
 	)
 	.maxstack	3
 L_132:
-// Line 216:		noh* aux = lst->head;
+// Line 211:		noh* aux = lst->head;
 
 	ldloca	'aux/0'
 	ldarg	'lst'
@@ -1139,20 +1153,20 @@ L_132:
 	stind.i4
 	br	'L_137'
 L_135:
-// Line 218:		{
+// Line 213:		{
 
-// Line 219:			if (aux->index == index)
+// Line 214:			if (aux->index == index)
 
 	ldloc	'aux/0'
 	ldind.i4
 	ldarg	'index'
 	bne.un	'L_139'
-// Line 220:				return aux;
+// Line 215:				return aux;
 
 	ldloc	'aux/0'
 	br	'L_133'
 L_139:
-// Line 221:			aux = aux->proximo;
+// Line 216:			aux = aux->proximo;
 
 	ldloc	'aux/0'
 	ldc.i4	8
@@ -1160,19 +1174,19 @@ L_139:
 	ldind.u4
 	stloc	'aux/0'
 L_137:
-// Line 217:		while (aux != NULL)
+// Line 212:		while (aux != NULL)
 
 	ldloc	'aux/0'
 	ldc.i4	0
 	bne.un	'L_135'
 L_136:
-// Line 222:		}
+// Line 217:		}
 
-// Line 223:		return NULL;
+// Line 218:		return NULL;
 
 	ldc.i4	0
 	conv.u4
-// Line 224:	}
+// Line 219:	}
 
 L_133:
 	ret
@@ -1180,19 +1194,19 @@ L_133:
 }
  .method public hidebysig static void* 'll_head'(void* 'lst' ) cil managed
 {
-// Line 226:	noh* ll_head(lista *lst)
+// Line 221:	noh* ll_head(lista *lst)
 
-// Line 227:	{
+// Line 222:	{
 
 	.maxstack	2
 L_146:
-// Line 228:		return lst->head;
+// Line 223:		return lst->head;
 
 	ldarg	'lst'
 	ldc.i4	12
 	add
 	ldind.u4
-// Line 229:	}
+// Line 224:	}
 
 L_147:
 	ret
@@ -1200,19 +1214,19 @@ L_147:
 }
  .method public hidebysig static void* 'll_tail'(void* 'lst' ) cil managed
 {
-// Line 231:	noh* ll_tail(lista *lst)
+// Line 226:	noh* ll_tail(lista *lst)
 
-// Line 232:	{
+// Line 227:	{
 
 	.maxstack	2
 L_154:
-// Line 233:		return lst->tail;
+// Line 228:		return lst->tail;
 
 	ldarg	'lst'
 	ldc.i4	16
 	add
 	ldind.u4
-// Line 234:	}
+// Line 229:	}
 
 L_155:
 	ret
@@ -1220,9 +1234,9 @@ L_155:
 }
  .method public hidebysig static void 'll_reindexar'(void* 'lst' ) cil managed
 {
-// Line 236:	void ll_reindexar(lista *lst)
+// Line 231:	void ll_reindexar(lista *lst)
 
-// Line 237:	{
+// Line 232:	{
 
 	.locals
 	(
@@ -1231,7 +1245,7 @@ L_155:
 	)
 	.maxstack	3
 L_162:
-// Line 238:		noh* aux = lst->head;
+// Line 233:		noh* aux = lst->head;
 
 	ldloca	'aux/0'
 	ldarg	'lst'
@@ -1239,21 +1253,21 @@ L_162:
 	add
 	ldind.u4
 	stind.i4
-// Line 239:		int i = 0;
+// Line 234:		int i = 0;
 
 	ldloca	'i/1'
 	ldc.i4	0
 	stind.i4
 	br	'L_166'
 L_165:
-// Line 241:		{
+// Line 236:		{
 
-// Line 242:			aux->index = i;
+// Line 237:			aux->index = i;
 
 	ldloc	'aux/0'
 	ldloc	'i/1'
 	stind.i4
-// Line 243:			aux = aux->proximo;
+// Line 238:			aux = aux->proximo;
 
 	ldloc	'aux/0'
 	ldc.i4	8
@@ -1265,21 +1279,21 @@ L_168:
 	ldc.i4	1
 	add
 	stloc	'i/1'
-// Line 240:		for (; aux != NULL;i++)
+// Line 235:		for (; aux != NULL;i++)
 
 L_166:
 	ldloc	'aux/0'
 	ldc.i4	0
 	bne.un	'L_165'
 L_167:
-// Line 244:		}
+// Line 239:		}
 
-// Line 245:		lst->indexcounter = i;
+// Line 240:		lst->indexcounter = i;
 
 	ldarg	'lst'
 	ldloc	'i/1'
 	stind.i4
-// Line 246:	}
+// Line 241:	}
 
 L_163:
 	ret
@@ -1287,19 +1301,19 @@ L_163:
 }
  .method public hidebysig static int32 'll_tamanho'(void* 'lst' ) cil managed
 {
-// Line 248:	int ll_tamanho(lista *lst)
+// Line 243:	int ll_tamanho(lista *lst)
 
-// Line 249:	{
+// Line 244:	{
 
 	.maxstack	2
 L_176:
-// Line 250:		return lst->tamanho;
+// Line 245:		return lst->tamanho;
 
 	ldarg	'lst'
 	ldc.i4	4
 	add
 	ldind.i4
-// Line 251:	}
+// Line 246:	}
 
 L_177:
 	ret
@@ -1307,17 +1321,17 @@ L_177:
 }
  .method public hidebysig static void 'll_liberalista'(void* 'lst' ) cil managed
 {
-// Line 253:	void ll_liberalista(lista* lst)
+// Line 248:	void ll_liberalista(lista* lst)
 
-// Line 254:	{
+// Line 249:	{
 
 	.maxstack	1
 L_184:
-// Line 255:		free(lst);
+// Line 250:		free(lst);
 
 	ldarg	'lst'
 	call	void 'free'(void*)
-// Line 256:	}
+// Line 251:	}
 
 L_185:
 	ret
@@ -1325,9 +1339,9 @@ L_185:
 }
  .method public hidebysig static void* 'inicializapilha'(int32 'tamanho' ) cil managed
 {
-// Line 259:	pilha* inicializapilha(int tamanho)
+// Line 254:	pilha* inicializapilha(int tamanho)
 
-// Line 260:	{
+// Line 255:	{
 
 	.locals
 	(
@@ -1335,28 +1349,29 @@ L_185:
 	)
 	.maxstack	2
 L_192:
-// Line 261:		pilha* tmp = (pilha*)malloc(sizeof(pilha));
+// Line 256:		pilha* tmp = (pilha*)malloc(sizeof(pilha));
 
 	ldloca	'tmp/0'
 	ldc.i4	8
-	call	void* 'malloc'(int32)
+	conv.u4
+	call	void* 'malloc'(uint32)
 	stind.i4
-// Line 262:		tmp->tamanho = tamanho;
+// Line 257:		tmp->tamanho = tamanho;
 
 	ldloc	'tmp/0'
 	ldarg	'tamanho'
 	stind.i4
-// Line 263:		tmp->lst = ll_inicializalista();
+// Line 258:		tmp->lst = ll_inicializalista();
 
 	ldloc	'tmp/0'
 	ldc.i4	4
 	add
 	call	void* 'll_inicializalista'()
 	stind.i4
-// Line 264:		return tmp;
+// Line 259:		return tmp;
 
 	ldloc	'tmp/0'
-// Line 265:	}
+// Line 260:	}
 
 L_193:
 	ret
@@ -1364,34 +1379,34 @@ L_193:
 }
  .method public hidebysig static void 'pl_push'(void* 'pl' , int32 'elemento' , void* 'sucesso' ) cil managed
 {
-// Line 267:	void pl_push(pilha* pl, int elemento, bool* sucesso)
+// Line 262:	void pl_push(pilha* pl, int elemento, bool* sucesso)
 
-// Line 268:	{
+// Line 263:	{
 
 	.maxstack	2
 L_200:
-// Line 269:		if (pl_pilhacheia(pl))
+// Line 264:		if (pl_pilhacheia(pl))
 
 	ldarg	'pl'
 	call	int32 'pl_pilhacheia'(void*)
 	ldc.i4	0
 	beq	'L_203'
-// Line 270:		{
+// Line 265:		{
 
-// Line 271:			*sucesso = false;
+// Line 266:			*sucesso = false;
 
 	ldarg	'sucesso'
 	ldc.i4	0
 	stind.i4
-// Line 272:			return;
+// Line 267:			return;
 
 	br	'L_201'
 L_203:
-// Line 273:		}
+// Line 268:		}
 
-// Line 274:	
+// Line 269:	
 
-// Line 275:		ll_inserirfinal(pl->lst, elemento);
+// Line 270:		ll_inserirfinal(pl->lst, elemento);
 
 	ldarg	'pl'
 	ldc.i4	4
@@ -1399,12 +1414,12 @@ L_203:
 	ldind.u4
 	ldarg	'elemento'
 	call	void 'll_inserirfinal'(void*, int32)
-// Line 276:		*sucesso = true;
+// Line 271:		*sucesso = true;
 
 	ldarg	'sucesso'
 	ldc.i4	1
 	stind.i4
-// Line 277:	}
+// Line 272:	}
 
 L_201:
 	ret
@@ -1412,9 +1427,9 @@ L_201:
 }
  .method public hidebysig static int32 'pl_pop'(void* 'pl' , void* 'sucesso' ) cil managed
 {
-// Line 279:	int pl_pop(pilha* pl, bool* sucesso)
+// Line 274:	int pl_pop(pilha* pl, bool* sucesso)
 
-// Line 280:	{
+// Line 275:	{
 
 	.locals
 	(
@@ -1422,31 +1437,31 @@ L_201:
 	)
 	.maxstack	3
 L_211:
-// Line 281:	  int v;
+// Line 276:	  int v;
 
-// Line 282:		if (pl_pilhavazia(pl))
+// Line 277:		if (pl_pilhavazia(pl))
 
 	ldarg	'pl'
 	call	int32 'pl_pilhavazia'(void*)
 	ldc.i4	0
 	beq	'L_214'
-// Line 283:		{
+// Line 278:		{
 
-// Line 284:			*sucesso = false;
+// Line 279:			*sucesso = false;
 
 	ldarg	'sucesso'
 	ldc.i4	0
 	stind.i4
-// Line 285:			return -1;
+// Line 280:			return -1;
 
 	ldc.i4	-1
 	br	'L_212'
 L_214:
-// Line 286:		}
+// Line 281:		}
 
-// Line 287:	
+// Line 282:	
 
-// Line 288:		v = ll_removertail(pl->lst);
+// Line 283:		v = ll_removertail(pl->lst);
 
 	ldarg	'pl'
 	ldc.i4	4
@@ -1454,15 +1469,15 @@ L_214:
 	ldind.u4
 	call	int32 'll_removertail'(void*)
 	stloc	'v/0'
-// Line 289:		*sucesso = true;
+// Line 284:		*sucesso = true;
 
 	ldarg	'sucesso'
 	ldc.i4	1
 	stind.i4
-// Line 290:		return v;
+// Line 285:		return v;
 
 	ldloc	'v/0'
-// Line 291:	}
+// Line 286:	}
 
 L_212:
 	ret
@@ -1470,33 +1485,33 @@ L_212:
 }
  .method public hidebysig static int32 'pl_topo'(void* 'pl' , void* 'sucesso' ) cil managed
 {
-// Line 293:	int pl_topo(pilha *pl, bool* sucesso)
+// Line 288:	int pl_topo(pilha *pl, bool* sucesso)
 
-// Line 294:	{
+// Line 289:	{
 
 	.maxstack	3
 L_222:
-// Line 295:		if (pl_pilhavazia(pl))
+// Line 290:		if (pl_pilhavazia(pl))
 
 	ldarg	'pl'
 	call	int32 'pl_pilhavazia'(void*)
 	ldc.i4	0
 	beq	'L_225'
-// Line 296:		{
+// Line 291:		{
 
-// Line 297:			*sucesso = false;
+// Line 292:			*sucesso = false;
 
 	ldarg	'sucesso'
 	ldc.i4	0
 	stind.i4
-// Line 298:			return -1;
+// Line 293:			return -1;
 
 	ldc.i4	-1
 	br	'L_223'
 L_225:
-// Line 299:		}
+// Line 294:		}
 
-// Line 300:		return ll_tail(pl->lst)->conteudo;
+// Line 295:		return ll_tail(pl->lst)->conteudo;
 
 	ldarg	'pl'
 	ldc.i4	4
@@ -1506,7 +1521,7 @@ L_225:
 	ldc.i4	4
 	add
 	ldind.i4
-// Line 301:	}
+// Line 296:	}
 
 L_223:
 	ret
@@ -1514,33 +1529,33 @@ L_223:
 }
  .method public hidebysig static int32 'pl_base'(void* 'pl' , void* 'sucesso' ) cil managed
 {
-// Line 303:	int pl_base(pilha* pl, bool *sucesso)
+// Line 298:	int pl_base(pilha* pl, bool *sucesso)
 
-// Line 304:	{
+// Line 299:	{
 
 	.maxstack	3
 L_233:
-// Line 305:		if (pl_pilhavazia(pl))
+// Line 300:		if (pl_pilhavazia(pl))
 
 	ldarg	'pl'
 	call	int32 'pl_pilhavazia'(void*)
 	ldc.i4	0
 	beq	'L_236'
-// Line 306:		{
+// Line 301:		{
 
-// Line 307:			*sucesso = false;
+// Line 302:			*sucesso = false;
 
 	ldarg	'sucesso'
 	ldc.i4	0
 	stind.i4
-// Line 308:			return -1;
+// Line 303:			return -1;
 
 	ldc.i4	-1
 	br	'L_234'
 L_236:
-// Line 309:		}
+// Line 304:		}
 
-// Line 310:		return ll_head(pl->lst)->conteudo;
+// Line 305:		return ll_head(pl->lst)->conteudo;
 
 	ldarg	'pl'
 	ldc.i4	4
@@ -1550,7 +1565,7 @@ L_236:
 	ldc.i4	4
 	add
 	ldind.i4
-// Line 311:	}
+// Line 306:	}
 
 L_234:
 	ret
@@ -1558,13 +1573,13 @@ L_234:
 }
  .method public hidebysig static int32 'pl_pilhacheia'(void* 'pl' ) cil managed
 {
-// Line 313:	bool pl_pilhacheia(pilha* pl)
+// Line 308:	bool pl_pilhacheia(pilha* pl)
 
-// Line 314:	{
+// Line 309:	{
 
 	.maxstack	3
 L_244:
-// Line 315:		return ll_tamanho(pl->lst) >= pl->tamanho;
+// Line 310:		return ll_tamanho(pl->lst) >= pl->tamanho;
 
 	ldarg	'pl'
 	ldc.i4	4
@@ -1577,7 +1592,7 @@ L_244:
 	ldc.i4.1
 	xor
 	conv.i4
-// Line 316:	}
+// Line 311:	}
 
 L_245:
 	ret
@@ -1585,13 +1600,13 @@ L_245:
 }
  .method public hidebysig static int32 'pl_pilhavazia'(void* 'pl' ) cil managed
 {
-// Line 318:	bool pl_pilhavazia(pilha* pl)
+// Line 313:	bool pl_pilhavazia(pilha* pl)
 
-// Line 319:	{
+// Line 314:	{
 
 	.maxstack	2
 L_252:
-// Line 320:		return ll_tamanho(pl->lst) == 0;
+// Line 315:		return ll_tamanho(pl->lst) == 0;
 
 	ldarg	'pl'
 	ldc.i4	4
@@ -1601,7 +1616,7 @@ L_252:
 	ldc.i4	0
 	ceq
 	conv.i4
-// Line 321:	}
+// Line 316:	}
 
 L_253:
 	ret
@@ -1609,20 +1624,20 @@ L_253:
 }
  .method public hidebysig static int32 'pl_tamanho'(void* 'pl' ) cil managed
 {
-// Line 323:	int pl_tamanho(pilha* pl)
+// Line 318:	int pl_tamanho(pilha* pl)
 
-// Line 324:	{
+// Line 319:	{
 
 	.maxstack	2
 L_260:
-// Line 325:		return ll_tamanho(pl->lst);
+// Line 320:		return ll_tamanho(pl->lst);
 
 	ldarg	'pl'
 	ldc.i4	4
 	add
 	ldind.u4
 	call	int32 'll_tamanho'(void*)
-// Line 326:	}
+// Line 321:	}
 
 L_261:
 	ret
@@ -1630,24 +1645,24 @@ L_261:
 }
  .method public hidebysig static void 'pl_liberapilha'(void* 'pl' ) cil managed
 {
-// Line 328:	void pl_liberapilha(pilha* pl)
+// Line 323:	void pl_liberapilha(pilha* pl)
 
-// Line 329:	{
+// Line 324:	{
 
 	.maxstack	2
 L_268:
-// Line 330:		ll_liberalista(pl->lst);
+// Line 325:		ll_liberalista(pl->lst);
 
 	ldarg	'pl'
 	ldc.i4	4
 	add
 	ldind.u4
 	call	void 'll_liberalista'(void*)
-// Line 331:		free(pl);
+// Line 326:		free(pl);
 
 	ldarg	'pl'
 	call	void 'free'(void*)
-// Line 332:	}
+// Line 327:	}
 
 L_269:
 	ret
@@ -1655,25 +1670,25 @@ L_269:
 }
  .method public hidebysig static void 'pl_esvaziarpilha'(void* 'pl' ) cil managed
 {
-// Line 334:	void pl_esvaziarpilha(pilha *pl)
+// Line 329:	void pl_esvaziarpilha(pilha *pl)
 
-// Line 335:	{
+// Line 330:	{
 
 	.maxstack	2
 L_276:
-// Line 336:		ll_removertudo(pl->lst);
+// Line 331:		ll_removertudo(pl->lst);
 
 	ldarg	'pl'
 	ldc.i4	4
 	add
 	ldind.u4
 	call	void 'll_removertudo'(void*)
-// Line 337:		pl->tamanho = 0;
+// Line 332:		pl->tamanho = 0;
 
 	ldarg	'pl'
 	ldc.i4	0
 	stind.i4
-// Line 338:	}
+// Line 333:	}
 
 L_277:
 	ret
@@ -1718,7 +1733,21 @@ L_277:
 	2d 2d 2d 2d 2d 2d 2d 2d 
 	a 0 
 )
-.method public hidebysig static void $Main() cil managed {
+
+	.field public static void *'__stdin'
+
+	.field public static void *'__stdout'
+
+	.field public static void *'__stderr'
+
+	.field public static void *'_pctype'
+.method private hidebysig static void * __GetErrno() cil managed {
+	.maxstack 1
+
+	call void * '_errno'()
+	ret
+}
+.method private hidebysig static void $Main() cil managed {
 	.entrypoint
 	.locals (
 		[0] int32 'argc',
@@ -1727,6 +1756,19 @@ L_277:
 		[3] void * 'newmode'
 	)
 	.maxstack 5
+
+	call void *'__pctype_func'()
+	stsfld void * '_pctype'
+	call void *'__iob_func'()
+	dup
+	stsfld void * '__stdin'
+	dup
+	ldc.i4 32
+	add
+	stsfld void * '__stdout'
+	ldc.i4 64
+	add
+	stsfld void * '__stderr'
 	ldloca 'argc'
 	ldloca 'argv'
 	ldloca 'environ'
@@ -1740,8 +1782,11 @@ L_277:
 	ret
 }
 .class private value explicit ansi sealed 'int8[]' {.pack 1 .size 1}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg int32 'printf'(void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'free'(void*) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(int32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* 'malloc'(uint32) preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '_errno'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__pctype_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void* '__iob_func'() preservesig {}
+.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void '__getmainargs'(void*, void*, void*, int32, void*) preservesig {}
 .method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) void 'exit'(int32) preservesig {}
-.method public hidebysig static pinvokeimpl("msvcrt.dll" cdecl) vararg void 'printf'(void*) preservesig {}

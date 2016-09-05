@@ -1,6 +1,4 @@
-/*#include <Stdio.h>*/
-void printf(void*,...);
-void strcpy(char *, char*);
+#include <stdio.h>
 main()
 {
     double aa = 44.032;

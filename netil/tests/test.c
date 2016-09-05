@@ -1,5 +1,5 @@
-void printf(char *, ...);
-void exit(int);
+#include <stdio.h>
+#include <stdlib.h>
 int p=35;
 int *x=&p;
 int qq()
