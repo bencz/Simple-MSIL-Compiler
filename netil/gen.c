@@ -650,9 +650,19 @@ void asm_parm(QUAD *q)               /* push a parameter*/
     }
     else if (q->valist && q->valist->type == en_l_p)
     {
-        AMODE *ap = (AMODE *)beLocalAlloc(sizeof(AMODE));
-        ap->mode = am_argit_unmanaged;
-        gen_code (op_callvirt, ap);
+        QUAD *find = q;
+        while (find && find->dc.opcode != i_gosub)
+            find = find->fwd;
+        if (find)
+        {
+            FUNCTIONCALL *params = (FUNCTIONCALL *)find->altdata;
+            if (params->sp->linkage2 == lk_unmanaged)
+            {
+                AMODE *ap = (AMODE *)beLocalAlloc(sizeof(AMODE));
+                ap->mode = am_argit_unmanaged;
+                gen_code (op_callvirt, ap);
+            }
+        }
     }
 }
 void asm_parmblock(QUAD *q)          /* push a block of memory */
@@ -738,10 +748,12 @@ void asm_gosub(QUAD *q)              /* normal gosub to an immediate label or th
                 if (hr)
                     if (((SYMBOL *)hr->p)->tp->type == bt_ellipse)
                     {
-                        if (objectArray_exp)
+                        if (objectArray_exp && !q->nullvararg)
                             gen_code(op_ldloc, make_index(am_local, objectArray_exp->v.sp->offset, objectArray_exp->v.sp));
                         else
                             gen_code(op_ldnull, 0);
+                        increment_stack();
+                        decrement_stack();
                     }
             }
             gen_code(op_call, ap);
@@ -1102,6 +1114,7 @@ void asm_swbranch(QUAD *q)           /* case characteristics */
             gen_code(op_sub, NULL);
         }
         gen_code(op_switch, swap);
+        decrement_stack();
         gen_branch(op_br, switch_deflab, FALSE);
     }
     switch(switch_mode)
@@ -1328,6 +1341,8 @@ int examine_icode(QUAD *head)
         {
             if (fillinvararg)
                 fillinvararg->offset->v.i = parmIndex;
+            if (!parmIndex && ((FUNCTIONCALL *)head->altdata)->vararg)
+                head->nullvararg = TRUE;
             fillinvararg = NULL;
             parmIndex = 0;
         }
@@ -1399,12 +1414,13 @@ int examine_icode(QUAD *head)
                 QUAD *q = Alloc(sizeof(QUAD));
                 QUAD *q1 = Alloc(sizeof(QUAD));
                 IMODE *ap = InitTempOpt(ISZ_ADDR, ISZ_ADDR);
-                IMODE *ap1 = make_immed(ISZ_ADDR, 0);
+                IMODE *ap1 = Alloc(sizeof(IMODE));
                 IMODE *ap2 = InitTempOpt(-ISZ_UINT, -ISZ_UINT);
                 IMODE *ap3 = make_immed(-ISZ_UINT, parmIndex++);
                 QUAD *prev = head;
                 ap1->offset = objectArray_exp;
                 ap1->mode = i_direct;
+                ap1->size = ISZ_ADDR;
                 while (prev->back && !prev->back->varargPrev)
                     prev = prev->back;
                 if (parmIndex - 1 == 0)
@@ -1414,9 +1430,10 @@ int examine_icode(QUAD *head)
                     QUAD *q3 = Alloc(sizeof(QUAD));
                     IMODE *ap4 = InitTempOpt(ISZ_ADDR, ISZ_ADDR);
                     IMODE *ap5 = Alloc(sizeof(IMODE));
-                    IMODE *ap6 = make_immed(ISZ_ADDR, 0);
+                    IMODE *ap6 = Alloc(sizeof(IMODE));
                     ap6->offset = objectArray_exp;
                     ap6->mode = i_direct;
+                    ap6->size = ISZ_ADDR;
                     ap5->mode = i_immed;
                     ap5->size = -ISZ_UINT;
                     ap5->offset = intNode(en_c_i, 0);

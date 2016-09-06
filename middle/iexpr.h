@@ -193,6 +193,7 @@ typedef struct quad
     int hook:1; /* one of the two assigns for a hook, used in diagnostic generation */
     int vararg:1; /* a param passed as a vararg */
     int varargPrev:1; /* right before the vararg is genned */
+    int nullvararg:1; /* a gosub has a null vararg list */
     char novalue;
     char temps;
     char precolored;

@@ -811,7 +811,7 @@ IMODE *gen_deref(EXPRESSION *node, SYMBOL *funcsp, int flags)
             ap1->restricted = node->isrestrict;
         }
     }
-    else if ((chosenAssembler->arch->denyopts & DO_UNIQUEIND) && (node->left->type == en_global || node->left->type == en_label) &&
+    else if ((chosenAssembler->arch->denyopts & DO_UNIQUEIND) && (node->left->type == en_global || node->left->type == en_label || node->left->type == en_auto) &&
             (isarray(node->left->v.sp->tp) || isstructured(node->left->v.sp->tp)))
     {
         ap1 = gen_expr(funcsp, node->left, 0, ISZ_ADDR);
@@ -1583,9 +1583,20 @@ IMODE *gen_aincdec(SYMBOL *funcsp, EXPRESSION *node, int flags, int size, enum i
     {
         if (flags & F_COMPARE)
         {
-            ap3 = tempreg(siz1, 0);
-            gen_icode(i_assn, ap3, ap5, NULL);
-            intermed_tail->needsOCP = TRUE;
+            if (chosenAssembler->arch->preferopts & CODEGEN_MSIL)
+            {
+                IMODE *ap6;
+                ap6 = gen_expr( funcsp, RemoveAutoIncDec(node->left), 0, siz1);
+                ap3 = LookupLoadTemp(ap6, ap6);
+                if (ap3 != ap6)
+                    gen_icode(i_assn, ap3, ap6, NULL);
+            }
+            else
+            {
+                ap3 = tempreg(siz1, 0);
+                gen_icode(i_assn, ap3, ap5, NULL);
+                intermed_tail->needsOCP = TRUE;
+            }
         }
         else
         {
