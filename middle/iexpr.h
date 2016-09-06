@@ -194,6 +194,7 @@ typedef struct quad
     int vararg:1; /* a param passed as a vararg */
     int varargPrev:1; /* right before the vararg is genned */
     int nullvararg:1; /* a gosub has a null vararg list */
+    int throwaway:1; /* MSIL: stack has an expression which isn't going to be referenced */
     char novalue;
     char temps;
     char precolored;
