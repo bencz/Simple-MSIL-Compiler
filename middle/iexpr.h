@@ -66,7 +66,7 @@ enum i_ops
         i_atomic_fence, i_atomic_flag_fence, i_cmpswp,
         i_prologue, i_epilogue, i_pushcontext, i_popcontext, i_loadcontext, i_unloadcontext,
         i_tryblock, i_substack, i_parmstack, i_loadstack, i_savestack, i_functailstart, i_functailend,
-        i_gcsestub,
+        i_gcsestub, i_expressiontag, 
      /* Dag- specific stuff */
         i_var, i_const, i_ptr, i_labcon,
         /* end marker */
@@ -194,7 +194,6 @@ typedef struct quad
     int vararg:1; /* a param passed as a vararg */
     int varargPrev:1; /* right before the vararg is genned */
     int nullvararg:1; /* a gosub has a null vararg list */
-    int throwaway:1; /* MSIL: stack has an expression which isn't going to be referenced */
     char novalue;
     char temps;
     char precolored;

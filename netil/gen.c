@@ -572,12 +572,28 @@ void put_label(int label)
 {
 }
 
-static void throwaway(QUAD *q)
+void asm_expressiontag(QUAD *q)
 {
-    if (q->throwaway)
+    if (!q->dc.v.label)
     {
-        gen_code(op_pop, NULL);
-        decrement_stack();
+        // expression tags can be nested...
+        int n = 1;
+        q = q->back;
+        while (n && (q->dc.opcode == op_line || q->dc.opcode == i_expressiontag))
+        {
+            if (q->dc.opcode == i_expressiontag)
+                if (q->dc.v.label)
+                    n--;
+                else
+                    n++;
+            q = q->back;
+        }
+        if (n)
+        {
+
+            gen_code(op_pop, NULL);
+            decrement_stack();
+        }
     }
 }
 void asm_line(QUAD *q)               /* line number information and text */
@@ -621,7 +637,6 @@ void asm_label(QUAD *q)              /* put a label in the code stream */
     out->opcode = op_label;
     out->oper1 = (AMODE *)q->dc.v.label;
     add_peep(out);
-    throwaway(q);
 }
 void asm_goto(QUAD *q)               /* unconditional branch */
 {
@@ -816,37 +831,31 @@ void asm_add(QUAD *q)                /* evaluate an addition */
 {
     decrement_stack();
     gen_code(op_add, NULL);
-    throwaway(q);
 }
 void asm_sub(QUAD *q)                /* evaluate a subtraction */
 {
     decrement_stack();
     gen_code(op_sub, NULL);
-    throwaway(q);
 }
 void asm_udiv(QUAD *q)               /* unsigned division */
 {
     decrement_stack();
     gen_code(op_div_un, NULL);
-    throwaway(q);
 }
 void asm_umod(QUAD *q)               /* unsigned modulous */
 {
     decrement_stack();
     gen_code(op_rem_un, NULL);
-    throwaway(q);
 }
 void asm_sdiv(QUAD *q)               /* signed division */
 {
     decrement_stack();
     gen_code(op_div, NULL);
-    throwaway(q);
 }
 void asm_smod(QUAD *q)               /* signed modulous */
 {
     decrement_stack();
     gen_code(op_rem, NULL);
-    throwaway(q);
 }
 void asm_muluh(QUAD *q)
 {
@@ -856,7 +865,6 @@ void asm_muluh(QUAD *q)
     gen_code(op_ldc_i4, ap);
     gen_code(op_shr_un, NULL);
     decrement_stack();
-    throwaway(q);
 }
 void asm_mulsh(QUAD *q)
 {
@@ -866,59 +874,49 @@ void asm_mulsh(QUAD *q)
     gen_code(op_ldc_i4, ap);
     gen_code(op_shr, NULL);
     decrement_stack();
-    throwaway(q);
 }
 void asm_mul(QUAD *q)               /* signed multiply */
 {
     decrement_stack();
     gen_code(op_mul, NULL);
-    throwaway(q);
 }
 void asm_lsr(QUAD *q)                /* unsigned shift right */
 {
     decrement_stack();
     gen_code(op_shr_un, NULL);
-    throwaway(q);
 }
 void asm_lsl(QUAD *q)                /* signed shift left */
 {
     decrement_stack();
     gen_code(op_shl, NULL);
-    throwaway(q);
 }
 void asm_asr(QUAD *q)                /* signed shift right */
 {
     decrement_stack();
     gen_code(op_shr, NULL);
-    throwaway(q);
 }
 void asm_neg(QUAD *q)                /* negation */
 {
     gen_code(op_neg, NULL);
-    throwaway(q);
 }
 void asm_not(QUAD *q)                /* complement */
 {
     gen_code(op_not, NULL);
-    throwaway(q);
 }
 void asm_and(QUAD *q)                /* binary and */
 {
     decrement_stack();
     gen_code(op_and, NULL);
-    throwaway(q);
 }
 void asm_or(QUAD *q)                 /* binary or */
 {
     decrement_stack();
     gen_code(op_or, NULL);
-    throwaway(q);
 }
 void asm_eor(QUAD *q)                /* binary exclusive or */
 {
     decrement_stack();
     gen_code(op_xor, NULL);
-    throwaway(q);
 }
 void asm_setne(QUAD *q)              /* evaluate a = b != c */
 {
@@ -928,29 +926,21 @@ void asm_setne(QUAD *q)              /* evaluate a = b != c */
     increment_stack();
     decrement_stack();
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_sete(QUAD *q)               /* evaluate a = b == c */
 {
     gen_code(op_ceq, NULL);
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_setc(QUAD *q)               /* evaluate a = b U< c */
 {
     gen_code(op_clt_un, NULL);
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_seta(QUAD *q)               /* evaluate a = b U> c */
 {
     gen_code(op_cgt_un, NULL);
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_setnc(QUAD *q)              /* evaluate a = b U>= c */
 {
@@ -960,7 +950,6 @@ void asm_setnc(QUAD *q)              /* evaluate a = b U>= c */
     increment_stack();
     decrement_stack();
     decrement_stack();
-    throwaway(q);
 }
 void asm_setbe(QUAD *q)              /* evaluate a = b U<= c */
 {
@@ -970,22 +959,16 @@ void asm_setbe(QUAD *q)              /* evaluate a = b U<= c */
     increment_stack();
     decrement_stack();
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_setl(QUAD *q)               /* evaluate a = b S< c */
 {
     gen_code(op_clt, NULL);
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_setg(QUAD *q)               /* evaluate a = b s> c */
 {
     gen_code(op_cgt, NULL);
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_setle(QUAD *q)              /* evaluate a = b S<= c */
 {
@@ -995,8 +978,6 @@ void asm_setle(QUAD *q)              /* evaluate a = b S<= c */
     increment_stack();
     decrement_stack();
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_setge(QUAD *q)              /* evaluate a = b S>= c */
 {
@@ -1006,8 +987,6 @@ void asm_setge(QUAD *q)              /* evaluate a = b S>= c */
     increment_stack();
     decrement_stack();
     decrement_stack();
-    throwaway(q);
-    
 }
 void asm_assn(QUAD *q)               /* assignment */
 {
@@ -1228,7 +1207,10 @@ void asm_ja(QUAD *q)                 /* branch if a U> b */
 }
 void asm_je(QUAD *q)                 /* branch if a == b */
 {
-    gen_branch(op_beq, q->dc.v.label, TRUE);
+    if (q->dc.right->mode == i_immed && isconstzero(&stdint, q->dc.right->offset))
+        gen_branch(op_brfalse, q->dc.v.label, TRUE);
+    else
+        gen_branch(op_beq, q->dc.v.label, TRUE);
     
 }
 void asm_jnc(QUAD *q)                /* branch if a U>= b */
@@ -1243,7 +1225,10 @@ void asm_jbe(QUAD *q)                /* branch if a U<= b */
 }
 void asm_jne(QUAD *q)                /* branch if a != b */
 {
-    gen_branch(op_bne_un, q->dc.v.label, TRUE);
+    if (q->dc.right->mode == i_immed && isconstzero(&stdint, q->dc.right->offset))
+        gen_branch(op_brtrue, q->dc.v.label, TRUE);
+    else
+        gen_branch(op_bne_un, q->dc.v.label, TRUE);
     
 }
 void asm_jl(QUAD *q)                 /* branch if a S< b */
@@ -1387,7 +1372,8 @@ int examine_icode(QUAD *head)
             && head->dc.opcode != i_label && head->dc.opcode != i_line && head->dc.opcode != i_passthrough
             && head->dc.opcode != i_func && head->dc.opcode != i_gosub && head->dc.opcode != i_parmadj
             && head->dc.opcode != i_ret && head->dc.opcode != i_varstart
-            && head->dc.opcode != i_coswitch && head->dc.opcode != i_swbranch)
+            && head->dc.opcode != i_coswitch && head->dc.opcode != i_swbranch
+            && head->dc.opcode != i_expressiontag)
         {
             if (head->dc.opcode == i_muluh || head->dc.opcode == i_mulsh)
             {
@@ -1434,15 +1420,18 @@ int examine_icode(QUAD *head)
             }
             if (head->dc.right && head->dc.right->mode == i_immed)
             {
-                IMODE *ap = InitTempOpt(head->dc.right->size, head->dc.right->size);
-                QUAD *q = Alloc(sizeof(QUAD));
-                q->dc.opcode = i_assn;
-                q->ans = ap;
-                q->temps = TEMP_ANS;
-                q->dc.left = head->dc.right;
-                head->dc.right = ap;
-                head->temps |= TEMP_RIGHT;
-                InsertInstruction(head->back, q);
+                if (head->dc.opcode != i_je && head->dc.opcode != i_jne || !isconstzero(&stdint, head->dc.right->offset))
+                {
+                    IMODE *ap = InitTempOpt(head->dc.right->size, head->dc.right->size);
+                    QUAD *q = Alloc(sizeof(QUAD));
+                    q->dc.opcode = i_assn;
+                    q->ans = ap;
+                    q->temps = TEMP_ANS;
+                    q->dc.left = head->dc.right;
+                    head->dc.right = ap;
+                    head->temps |= TEMP_RIGHT;
+                    InsertInstruction(head->back, q);
+                }
             }
             if (head->vararg)
             {

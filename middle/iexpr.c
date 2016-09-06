@@ -2607,6 +2607,28 @@ IMODE *gen_expr(SYMBOL *funcsp, EXPRESSION *node, int flags, int size)
         node = node->left;
     lbarrier = doatomicFence(funcsp, node, node->left, 0);
     rbarrier = doatomicFence(funcsp, NULL, node->right, 0);
+    if (flags & F_NOVALUE)
+    {
+        if (chosenAssembler->arch->preferopts & CODEGEN_MSIL)
+        {
+            switch( node->type)
+            {
+                case en_autoinc:
+                case en_autodec:
+                case en_assign:
+                case en_func:
+                case en_intcall:
+                case en_blockassign:
+                case en_blockclear:
+                case en_void:
+                    break;
+                default:
+                    gen_nodag(i_expressiontag, 0, 0, 0);
+                    intermed_tail->dc.v.label = 1;
+                    break;
+            }
+        } 
+    }
     switch (node->type)
     {
         case en_shiftby:
@@ -3155,9 +3177,13 @@ IMODE *gen_expr(SYMBOL *funcsp, EXPRESSION *node, int flags, int size)
                 case en_assign:
                 case en_func:
                 case en_intcall:
+                case en_blockassign:
+                case en_blockclear:
+                case en_void:
                     break;
                 default:
-                    intermed_tail->throwaway = TRUE;
+                    gen_nodag(i_expressiontag, 0, 0, 0);
+                    intermed_tail->dc.v.label = 0;
                     break;
             }
         } 
