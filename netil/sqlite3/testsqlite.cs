@@ -57,7 +57,7 @@ namespace HelloWorld
 
             Console.Write(@"\ntype a string here: ");
             // use CString to make a string buffer the C code can put stuff in
-            CString bld = new CString(10);
+            CString bld = new CString(100);
             ar.mygets(bld.ToPointer(), 101);
             // now convert the string buffer to a string and print it
             Console.WriteLine("{0}", bld.ToString());
