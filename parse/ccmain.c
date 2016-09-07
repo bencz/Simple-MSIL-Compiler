@@ -547,6 +547,8 @@ int main(int argc, char *argv[])
     char *p;
     BOOLEAN multipleFiles = FALSE;
     int rv;
+    char realOutFile[260];
+    char oldOutFile[260];
     srand(time(0));
 
         /*   signal(SIGSEGV,internalError) ;*/
@@ -575,9 +577,10 @@ int main(int argc, char *argv[])
         multipleFiles = TRUE;
 #ifdef PARSER_ONLY
     strcpy(buffer, clist->data);
-    outputfile(outfile, buffer, ".ods");
-    if (!ccDBOpen(outfile))
-        fatal("Cannot open database file %s", outfile);
+    strcpy(realOutFile, outfile);
+    outputfile(realOutFile, buffer, ".ods");
+    if (!ccDBOpen(realOutFile))
+        fatal("Cannot open database file %s", realOutFile);
 #else
     BitInit();
     regInit();
@@ -587,10 +590,14 @@ int main(int argc, char *argv[])
         cparams.prm_cplusplus = FALSE;
         strcpy(buffer, clist->data);
 #ifndef PARSER_ONLY
+        strcpy(realOutFile, outfile);
         if (cparams.prm_asmfile)
-            outputfile(outfile, buffer, chosenAssembler->asmext);
+            outputfile(realOutFile, buffer, chosenAssembler->asmext);
         else
-            outputfile(outfile, buffer, chosenAssembler->objext);
+            outputfile(realOutFile, buffer, chosenAssembler->objext);
+        strcpy(oldOutFile, realOutFile);
+        StripExt(oldOutFile);
+        AddExt(oldOutFile, ".tmp");
 #else
         ccNewFile(buffer, TRUE);
 #endif
@@ -638,11 +645,13 @@ int main(int argc, char *argv[])
         else
         {
 #ifndef PARSER_ONLY
-            outputFile = fopen(outfile, cparams.prm_asmfile ? "w" : "wb");
+            unlink(oldOutFile);
+            rename(realOutFile, oldOutFile);
+            outputFile = fopen(realOutFile, cparams.prm_asmfile ? "w" : "wb");
             if (!outputFile)
             {
                 fclose(inputFile);
-                fatal("Cannot open output file %s", outfile);
+                fatal("Cannot open output file %s", realOutFile);
             }
             setvbuf(outputFile,0,_IOFBF,32768);
 #endif
@@ -760,8 +769,16 @@ int main(int argc, char *argv[])
             fclose(browseFile);
         if (icdFile)
             fclose(icdFile);
+        
         if (total_errors)
-            unlink(outfile);
+        {
+            unlink(realOutFile);
+            rename(oldOutFile, realOutFile);
+        }
+        else
+        {
+            unlink (oldOutFile);
+        }
 
         /* Flag to stop if there are any errors */
         stoponerr |= total_errors;
