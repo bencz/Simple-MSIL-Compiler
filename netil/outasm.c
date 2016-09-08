@@ -1246,7 +1246,8 @@ void putfunccall(AMODE *arg)
         else
         {
             if (namespaceAndClass[0])
-                bePrintf(" %s%s", namespaceAndClass, spi->name);
+                bePrintf(" %s%s", namespaceAndClass, spi->name);  
+            bePrintf(" '%s'", spi->name);
         }
     else
         bePrintf(" '%s'", spi->name);
